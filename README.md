@@ -70,18 +70,22 @@ Els XP de les preguntes ràpides també sumen per al rang del joc (es llegeixen 
 
 ### Mode docent
 
-Afegint `?docent` a l'adreça (per exemple `https://USUARI.github.io/corbatera-games-studio/?docent`) totes les missions queden desbloquejades, per revisar-les o projectar-les.
+Afegint `?docent` a l'adreça (`https://laurasc14.github.io/jocs-matematiquesA/?docent`) totes les missions queden desbloquejades, per revisar-les o projectar-les.
 
 ### On es guarda el progrés
 
 Al navegador de cada ordinador (`localStorage`). Si diversos alumnes fan servir el mateix ordinador, cadascú entra amb el seu nom. Si s'esborren les dades del navegador o es canvia d'ordinador, el progrés es perd: per això cal descarregar l'informe en acabar cada sessió.
 
+**Joc:** https://laurasc14.github.io/jocs-matematiquesA/
+**Repositori:** https://github.com/laurasc14/jocs-matematiquesA
+
 ## Publicar-ho a GitHub Pages
 
-1. Crea un repositori nou a GitHub (per exemple `corbatera-games-studio`).
+1. Repositori: `laurasc14/jocs-matematiquesA`.
 2. Puja-hi **tot el contingut d'aquesta carpeta** (`index.html`, `entrenament-1a.html`, `entrenament-2a.html`, `css/`, `js/`, `README.md`, `.nojekyll`) a l'arrel del repositori. Des de la web: *Add file → Upload files* i arrossega-ho tot.
 3. Ves a *Settings → Pages*, a *Source* tria *Deploy from a branch*, branca `main` i carpeta `/ (root)`. Desa.
-4. Al cap d'un minut la pàgina serà a `https://USUARI.github.io/corbatera-games-studio/`.
+4. Al cap d'un minut la pàgina serà a `https://laurasc14.github.io/jocs-matematiquesA/`.
+   - Mode entrenament: `https://laurasc14.github.io/jocs-matematiquesA/entrenament-1a.html` i `…/entrenament-2a.html`
 
 També funciona sense internet: obre `index.html` directament amb el navegador.
 
