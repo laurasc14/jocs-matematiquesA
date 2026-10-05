@@ -1,0 +1,702 @@
+<!doctype html><html lang="ca"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Entrenament 1a avaluació</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: studio console — map of levels on the left, the active "mission" screen on the right; stacks on phones */
+:root {
+  --bg: #eef3f4; --panel: #ffffff; --ink: #18292d; --muted: #5d7177; --line: #d3dfe2;
+  --brand: #1f5c66; --brand-ink: #ffffff; --brand-soft: #e3eef0; --accent: #e8664f; --accent-soft: #fdece8;
+  --ok: #2e8b57; --ok-soft: #e4f4ea; --bad: #c8412b; --bad-soft: #fbe7e3; --gold: #c9971c;
+  --z1: #1e78c8; --z2: #7a52bf; --z3: #e07c00; --z4: #3a9a44;
+  --plot-bg: #ffffff; --plot-grid: #e3ebed; --plot-ax: #4f6268;
+  --f-display: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+  --f-body: 'Open Sans', 'Segoe UI', system-ui, sans-serif;
+  --f-num: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1b1e; --panel: #172629; --ink: #e5eef0; --muted: #9db0b5; --line: #2a3d41;
+  --brand: #2c7480; --brand-ink: #ffffff; --brand-soft: #1d3338; --accent: #f07c66; --accent-soft: #3a2421;
+  --ok: #5cc28a; --ok-soft: #173326; --bad: #f08b77; --bad-soft: #3b211d; --gold: #e6b83e;
+  --z1: #5aa7ec; --z2: #a98be6; --z3: #f5a23a; --z4: #6cc474;
+  --plot-bg: #12201f; --plot-grid: #263a3e; --plot-ax: #a9bcc1; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f1b1e; --panel: #172629; --ink: #e5eef0; --muted: #9db0b5; --line: #2a3d41;
+  --brand: #2c7480; --brand-ink: #ffffff; --brand-soft: #1d3338; --accent: #f07c66; --accent-soft: #3a2421;
+  --ok: #5cc28a; --ok-soft: #173326; --bad: #f08b77; --bad-soft: #3b211d; --gold: #e6b83e;
+  --z1: #5aa7ec; --z2: #a98be6; --z3: #f5a23a; --z4: #6cc474;
+  --plot-bg: #12201f; --plot-grid: #263a3e; --plot-ax: #a9bcc1; color-scheme: dark; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; padding: 0 16px 40px; }
+.wrap { max-width: 1120px; margin: 0 auto; }
+header.top { background: var(--brand); color: var(--brand-ink); margin: 0 -16px; padding: 14px 16px; }
+header.top .in { max-width: 1120px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+.eyebrow { font-family: var(--f-display); font-weight: 700; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .78; }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(20px, 3vw, 26px); margin: 2px 0 0; text-wrap: balance; }
+.stats { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.stat { display: flex; flex-direction: column; min-width: 72px; }
+.stat b { font-family: var(--f-num); font-size: 20px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 11px; opacity: .8; text-transform: uppercase; letter-spacing: .06em; font-family: var(--f-display); font-weight: 700; }
+.xpbar { width: 140px; height: 8px; background: rgba(255,255,255,.22); border-radius: 4px; overflow: hidden; margin-top: 4px; }
+.xpbar i { display: block; height: 100%; background: var(--accent); width: 0; transition: width .4s; }
+.grid { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 20px; margin-top: 20px; align-items: start; }
+@media (max-width: 820px) { .grid { grid-template-columns: minmax(0, 1fr); } .play { order: -1; } }
+.side { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+.side h2, .diary h2 { font-family: var(--f-display); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 10px; }
+.map { padding: 14px; }
+.zones { display: flex; flex-direction: column; gap: 8px; }
+.zone { display: grid; grid-template-columns: 10px minmax(0,1fr) auto; gap: 10px; align-items: center; width: 100%; text-align: left; padding: 10px 10px 10px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--ink); cursor: pointer; font: inherit; overflow: hidden; }
+.zone .strip { align-self: stretch; }
+.zone[aria-current="true"] { border-color: var(--brand); box-shadow: 0 0 0 2px var(--brand-soft); }
+.zone:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.zone .nm { font-family: var(--f-display); font-weight: 700; font-size: 14px; }
+.zone .sb { font-size: 12px; color: var(--muted); line-height: 1.3; }
+.zone .pg { height: 5px; background: var(--line); border-radius: 3px; margin-top: 6px; overflow: hidden; }
+.zone .pg i { display: block; height: 100%; }
+.badge { font-family: var(--f-display); font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; padding: 3px 7px; border-radius: 10px; white-space: nowrap; }
+.b-lock { background: var(--brand-soft); color: var(--muted); }
+.b-ready { background: var(--accent-soft); color: var(--accent); }
+.b-done { background: var(--ok-soft); color: var(--ok); }
+.z1 { --zc: var(--z1); } .z2 { --zc: var(--z2); } .z3 { --zc: var(--z3); } .z4 { --zc: var(--z4); }
+.strip { background: var(--zc); }
+.pg i { background: var(--zc); }
+.diary { padding: 14px; }
+.errbars { display: flex; flex-direction: column; gap: 8px; }
+.eb { display: grid; grid-template-columns: 22px minmax(0,1fr) 34px; gap: 8px; align-items: center; font-size: 13px; }
+.eb b { font-family: var(--f-num); }
+.eb .track { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+.eb .track i { display: block; height: 100%; background: var(--accent); }
+.eb .n { font-family: var(--f-num); text-align: right; font-variant-numeric: tabular-nums; }
+.tip { font-size: 12.5px; color: var(--muted); margin: 10px 0 0; }
+.linkbtn { background: none; border: 0; color: var(--muted); text-decoration: underline; font: inherit; font-size: 12px; cursor: pointer; padding: 0; margin-top: 10px; }
+.confirm { font-size: 12.5px; margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.play { padding: 0; overflow: hidden; min-width: 0; }
+.play .bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 18px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.play .bar .zl { font-family: var(--f-display); font-weight: 800; font-size: 15px; display: flex; gap: 10px; align-items: center; }
+.dot { width: 12px; height: 12px; border-radius: 3px; background: var(--zc); display: inline-block; }
+.mode { font-family: var(--f-display); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; padding: 4px 9px; border-radius: 12px; background: var(--brand-soft); color: var(--brand); }
+.mode.boss { background: var(--accent); color: #fff; }
+.body { padding: 20px 18px 22px; display: flex; flex-direction: column; gap: 16px; }
+.q { font-size: 17px; line-height: 1.55; max-width: 62ch; }
+.m { font-family: var(--f-num); font-weight: 700; white-space: nowrap; background: var(--brand-soft); padding: 1px 6px; border-radius: 4px; }
+sup { font-size: .7em; line-height: 0; }
+.visual { display: flex; }
+.plot { width: 100%; max-width: 300px; height: auto; border: 1px solid var(--line); border-radius: 6px; }
+.plot.wide { max-width: 420px; }
+.plot .bgp { fill: var(--plot-bg); } .plot .gl { stroke: var(--plot-grid); stroke-width: 1; } .plot .ax { stroke: var(--plot-ax); stroke-width: 1.4; }
+.plot .tl { fill: var(--plot-ax); font-size: 11px; font-family: var(--f-num); }
+.plot .cv { fill: none; stroke: var(--brand); stroke-width: 3; } .plot .pt { fill: var(--accent); }
+.plot .box { fill: var(--brand-soft); stroke: var(--brand); stroke-width: 3; }
+.tw { overflow-x: auto; max-width: 100%; }
+.dt { border-collapse: collapse; font-family: var(--f-num); font-variant-numeric: tabular-nums; }
+.dt th, .dt td { border: 1px solid var(--line); padding: 6px 12px; text-align: center; }
+.dt th { background: var(--brand-soft); font-family: var(--f-display); font-size: 13px; }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+.opt { text-align: left; padding: 12px 14px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--panel); color: var(--ink); font-family: var(--f-num); font-size: 15px; font-weight: 500; cursor: pointer; min-height: 48px; }
+.opt:hover:not(:disabled) { border-color: var(--brand); }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); text-decoration: line-through; }
+.numrow { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.numrow input { font-family: var(--f-num); font-size: 18px; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--ink); width: 180px; max-width: 100%; }
+.unit { font-family: var(--f-num); color: var(--muted); }
+.btn { font-family: var(--f-display); font-weight: 700; font-size: 14px; padding: 11px 18px; border-radius: 8px; border: 0; cursor: pointer; }
+.btn.primary { background: var(--brand); color: var(--brand-ink); }
+.btn.ghost { background: transparent; color: var(--brand); border: 1.5px solid var(--brand); }
+.btn.accent { background: var(--accent); color: #fff; }
+.btn:disabled { opacity: .45; cursor: default; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.fb { border-radius: 8px; padding: 12px 14px; font-size: 14.5px; max-width: 70ch; }
+.fb.ok { background: var(--ok-soft); border-left: 4px solid var(--ok); }
+.fb.no { background: var(--bad-soft); border-left: 4px solid var(--bad); }
+.fb.hint { background: var(--brand-soft); border-left: 4px solid var(--brand); }
+.fb .tag { font-family: var(--f-display); font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; margin-right: 6px; }
+.steps { margin: 6px 0 0; padding-left: 20px; }
+.steps li { font-family: var(--f-num); font-size: 14px; }
+.self { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.self button { font: inherit; font-size: 13px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+.bossbar { display: flex; gap: 6px; }
+.bossbar i { width: 22px; height: 8px; border-radius: 3px; background: var(--line); }
+.bossbar i.ok { background: var(--ok); } .bossbar i.no { background: var(--bad); } .bossbar i.cur { background: var(--accent); }
+.result { text-align: center; padding: 26px 10px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.result .big { font-family: var(--f-display); font-weight: 800; font-size: 28px; }
+.legend { font-size: 12.5px; color: var(--muted); }
+.namein, #sumtxt { font: inherit; font-size: 14px; width: 100%; border: 1.5px solid var(--line); border-radius: 8px; padding: 8px 10px; background: var(--panel); color: var(--ink); }
+#sumtxt { font-family: var(--f-num); font-size: 12.5px; margin: 10px 0 8px; resize: vertical; }
+.tabs { max-width: 1120px; margin: 16px auto 0; display: flex; gap: 6px; border-bottom: 1px solid var(--line); }
+.tab { font-family: var(--f-display); font-weight: 700; font-size: 14px; padding: 10px 16px; border: 0; background: none; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tab[aria-selected="true"] { color: var(--brand); border-bottom-color: var(--brand); }
+.prog { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+.prog .intro { padding: 16px 18px; }
+.prog h2 { font-family: var(--f-display); font-weight: 800; font-size: 18px; margin: 0 0 4px; }
+.prog .lead { color: var(--muted); margin: 0; max-width: 75ch; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 14px; }
+.kpi { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.kpi span { display: block; font-family: var(--f-display); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.kpi b { font-family: var(--f-num); font-size: 22px; font-variant-numeric: tabular-nums; }
+.kpi small { display: block; font-size: 12px; color: var(--muted); }
+.zcards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 820px) { .zcards { grid-template-columns: minmax(0, 1fr); } }
+.zc { overflow: hidden; }
+.zc .zh { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-family: var(--f-display); font-weight: 800; }
+.zc .zh small { font-family: var(--f-body); font-weight: 600; color: var(--muted); font-size: 13px; }
+.zc .zb { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 14px; }
+.can { display: flex; flex-direction: column; gap: 6px; }
+.can p { margin: 0; font-size: 14px; font-weight: 600; }
+.seg { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
+.seg button { font: inherit; font-size: 12px; line-height: 1.2; padding: 7px 4px; min-height: 36px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 6px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); font-weight: 700; }
+.chart h3 { font-family: var(--f-display); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 6px; }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart .gl { stroke: var(--plot-grid); stroke-width: 1; }
+.chart .tl { fill: var(--muted); font-size: 11px; font-family: var(--f-num); }
+.chart .l-acc { fill: none; stroke: var(--zc); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.chart .l-self { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 5 4; stroke-linejoin: round; stroke-linecap: round; }
+.chart .p-acc { fill: var(--zc); stroke: var(--panel); stroke-width: 2; }
+.chart .p-self { fill: var(--panel); stroke: var(--ink); stroke-width: 2; }
+.chart .hit { fill: transparent; cursor: default; }
+.lg { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-top: 6px; }
+.lg i { display: inline-block; width: 18px; height: 0; border-top: 2px solid var(--zc); vertical-align: middle; margin-right: 6px; }
+.lg i.self { border-top: 2px dashed var(--ink); }
+.empty { font-size: 13px; color: var(--muted); border: 1px dashed var(--line); border-radius: 8px; padding: 14px; text-align: center; }
+.verdict { font-size: 13.5px; border-radius: 8px; padding: 10px 12px; background: var(--brand-soft); border-left: 4px solid var(--brand); }
+.verdict.up { background: var(--ok-soft); border-left-color: var(--ok); }
+.verdict.warn { background: var(--accent-soft); border-left-color: var(--accent); }
+.verdict b { font-family: var(--f-display); }
+details.tbl summary { font-size: 12.5px; color: var(--muted); cursor: pointer; }
+details.tbl table { margin-top: 6px; font-size: 12.5px; }
+.goal { padding: 16px 18px; }
+.goal textarea { font: inherit; font-size: 14px; width: 100%; border: 1.5px solid var(--line); border-radius: 8px; padding: 8px 10px; background: var(--panel); color: var(--ink); resize: vertical; margin-top: 8px; }
+.saved { font-size: 12px; color: var(--ok); min-height: 18px; }
+#tt { position: fixed; z-index: 10; pointer-events: none; background: var(--ink); color: var(--panel); font-size: 12px; padding: 6px 9px; border-radius: 6px; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+footer { margin-top: 24px; font-size: 12px; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="top"><div class="in">
+  <div><div class="eyebrow"><a href="index.html" style="color:inherit">← Tornar al joc</a> · Corbatera Games Studio · Matemàtiques A 4t ESO</div><h1 id="title">Mode entrenament · 1a avaluació</h1></div>
+  <div class="stats">
+    <div class="stat"><span>Rang</span><b id="rank" style="font-family:var(--f-display);font-size:16px">Becari/ària</b><div class="xpbar"><i id="xpfill"></i></div></div>
+    <div class="stat"><span>XP</span><b id="xp">0</b></div>
+    <div class="stat"><span>Ratxa</span><b id="streak">0</b></div>
+  </div>
+</div></header>
+
+<nav class="tabs" role="tablist" aria-label="Seccions">
+  <button class="tab" role="tab" id="t-train" aria-selected="true" aria-controls="v-train" type="button">Entrenament</button>
+  <button class="tab" role="tab" id="t-prog" aria-selected="false" aria-controls="v-prog" type="button">El meu avanç</button>
+</nav>
+<div class="wrap">
+<div class="grid" id="v-train" role="tabpanel" aria-labelledby="t-train">
+  <aside class="side">
+    <section class="panel map" aria-labelledby="maph"><h2 id="maph">Mapa del trimestre</h2><div class="zones" id="zones"></div>
+      <p class="legend" style="margin:10px 0 0">Encerta 6 preguntes d'un nivell per desbloquejar el seu boss: 5 preguntes seguides, sense pistes. Supera'l amb 4 encerts.</p></section>
+    <section class="panel diary" aria-labelledby="dh"><h2 id="dh">Diari d'errors</h2>
+      <div class="errbars" id="errbars"></div>
+      <p class="tip" id="tip"></p>
+      <button class="linkbtn" id="reset" type="button">Esborra el meu progrés</button>
+      <div class="confirm" id="confirm" hidden>Segur? Es perdran XP i nivells. <button class="btn accent" id="yes" type="button" style="padding:6px 10px">Sí, esborra</button><button class="btn ghost" id="no" type="button" style="padding:6px 10px">No</button></div>
+    </section>
+    <section class="panel diary" aria-labelledby="rh"><h2 id="rh">Resum per a la profe</h2>
+      <label for="stname" class="legend" style="display:block;margin-bottom:4px">El teu nom</label>
+      <input id="stname" class="namein" maxlength="40" placeholder="Nom i cognom" autocomplete="name">
+      <button class="btn primary" id="mksum" type="button" style="margin-top:10px;width:100%">Genera el resum</button>
+      <div id="sumbox" hidden><textarea id="sumtxt" readonly rows="7" aria-label="Resum del progrés"></textarea>
+        <button class="btn ghost" id="copysum" type="button" style="width:100%">Copia el resum</button>
+        <p class="tip" id="copymsg">Enganxa'l com a comentari privat a la tasca del Classroom.</p></div>
+    </section>
+  </aside>
+  <main class="panel play" id="play" aria-live="polite"></main>
+</div>
+<div class="prog" id="v-prog" role="tabpanel" aria-labelledby="t-prog" hidden>
+  <section class="panel intro"><h2>Com em veig i com vaig</h2>
+    <p class="lead">Valora cada frase segons com et veus <b>ara</b>. Fes-ho cada setmana: així podràs comparar com et veus tu amb els encerts que fas i veure com avances.</p>
+    <div class="kpis" id="kpis"></div></section>
+  <div class="zcards" id="zcards"></div>
+  <section class="panel goal"><h2 style="font-size:16px">El meu objectiu per a la propera sessió</h2>
+    <p class="lead" style="font-size:13.5px">Tria una sola cosa concreta. Per exemple: «Superar el boss del Nivell 2» o «Fer 10 preguntes de radicals sense pista».</p>
+    <textarea id="goal" rows="2" maxlength="200" aria-label="El meu objectiu"></textarea><div class="saved" id="goalmsg"></div></section>
+</div>
+<div id="tt" hidden></div>
+<footer>El progrés es guarda només en aquest navegador. Les preguntes es generen cada vegada amb números nous: pots practicar tant com vulguis.</footer>
+</div>
+
+<script>
+// ---- helpers shared by generators (pure, testable in node) ----
+const R = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function nf(n, d = 2) { // number format, catalan
+  const r = Math.round(n * Math.pow(10, d)) / Math.pow(10, d);
+  return String(r).replace('.', ',').replace('-', '−');
+}
+const sup = (e) => `<sup>${String(e).replace('-', '−')}</sup>`;
+function sgn(n, first = false) { // "+ 3" / "− 3" for building expressions
+  if (first) return n < 0 ? `−${Math.abs(n)}` : `${n}`;
+  return n < 0 ? `− ${Math.abs(n)}` : `+ ${n}`;
+}
+function term(c, v, first = false) { // coefficient * variable, with sign
+  if (c === 0) return '';
+  const a = Math.abs(c);
+  const coef = a === 1 && v ? '' : nf(a);
+  const s = c < 0 ? (first ? '−' : '− ') : (first ? '' : '+ ');
+  return `${s}${coef}${v}`;
+}
+function poly(cs, v = 'x') { // cs: [[coef, power], ...]
+  let out = '', first = true;
+  for (const [c, p] of cs) {
+    if (c === 0) continue;
+    const vv = p === 0 ? '' : p === 1 ? v : `${v}${sup(p)}`;
+    const t = p === 0 ? (first ? nf(c) : (c < 0 ? `− ${nf(Math.abs(c))}` : `+ ${nf(c)}`)) : term(c, vv, first);
+    out += (first ? '' : ' ') + t; first = false;
+  }
+  return out || '0';
+}
+function mc(options) { // options: [{h, ok, t, w}] -> shuffled, unique by html
+  const seen = new Set(); const out = [];
+  for (const o of options) { if (seen.has(o.h)) continue; seen.add(o.h); out.push(o); }
+  return shuffle(out);
+}
+function median(v) { const s = v.slice().sort((a, b) => a - b); const n = s.length; return n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2; }
+function mean(v) { return v.reduce((a, b) => a + b, 0) / v.length; }
+function q1(v) { const s = v.slice().sort((a, b) => a - b); const n = s.length; return median(s.slice(0, Math.floor(n / 2))); }
+function q3(v) { const s = v.slice().sort((a, b) => a - b); const n = s.length; return median(s.slice(Math.ceil(n / 2))); }
+function mode(v) { const c = {}; v.forEach(x => c[x] = (c[x] || 0) + 1); let best = null, bc = 0, tie = false; for (const k in c) { if (c[k] > bc) { bc = c[k]; best = +k; tie = false; } else if (c[k] === bc) tie = true; } return tie ? null : best; }
+
+// ---- SVG helpers ----
+function plotSVG(fns, opt = {}) {
+  const xmin = opt.xmin ?? -5, xmax = opt.xmax ?? 5, ymin = opt.ymin ?? -5, ymax = opt.ymax ?? 5;
+  const W = 260, H = 260 * (ymax - ymin) / (xmax - xmin);
+  const X = x => (x - xmin) / (xmax - xmin) * W, Y = y => H - (y - ymin) / (ymax - ymin) * H;
+  let g = '';
+  const stepX = opt.stepX || 1, stepY = opt.stepY || 1;
+  for (let k = Math.ceil(xmin / stepX) * stepX; k <= xmax; k += stepX) g += `<line x1="${X(k)}" y1="0" x2="${X(k)}" y2="${H}" class="gl"/>`;
+  for (let k = Math.ceil(ymin / stepY) * stepY; k <= ymax; k += stepY) g += `<line x1="0" y1="${Y(k)}" x2="${W}" y2="${Y(k)}" class="gl"/>`;
+  if (ymin <= 0 && ymax >= 0) g += `<line x1="0" y1="${Y(0)}" x2="${W}" y2="${Y(0)}" class="ax"/>`;
+  if (xmin <= 0 && xmax >= 0) g += `<line x1="${X(0)}" y1="0" x2="${X(0)}" y2="${H}" class="ax"/>`;
+  const lx = opt.labelsX || [], ly = opt.labelsY || [];
+  lx.forEach(k => g += `<text x="${X(k)}" y="${Math.min(H - 3, Y(0) + 13)}" class="tl" text-anchor="middle">${String(k).replace('-', '−')}</text>`);
+  ly.forEach(k => g += `<text x="${X(0) - 5}" y="${Y(k) + 4}" class="tl" text-anchor="end">${String(k).replace('-', '−')}</text>`);
+  fns.forEach(([f, a, b]) => {
+    a = a ?? xmin; b = b ?? xmax; let pts = [];
+    for (let i = 0; i <= 160; i++) { const x = a + (b - a) * i / 160; pts.push(`${X(x).toFixed(1)},${Y(f(x)).toFixed(1)}`); }
+    g += `<polyline points="${pts.join(' ')}" class="cv"/>`;
+  });
+  (opt.points || []).forEach(([x, y]) => g += `<circle cx="${X(x)}" cy="${Y(y)}" r="4" class="pt"/>`);
+  return `<svg class="plot" viewBox="0 0 ${W} ${H}" role="img" aria-label="Gràfica"><defs><clipPath id="clp"><rect width="${W}" height="${H}"/></clipPath></defs><rect width="${W}" height="${H}" class="bgp"/><g clip-path="url(#clp)">${g}</g></svg>`;
+}
+function boxSVG(mn, a, m, b, mx, lo, hi, step) {
+  const W = 300, H = 90, pad = 20; const X = v => pad + (v - lo) / (hi - lo) * (W - 2 * pad);
+  let g = `<line x1="${X(lo)}" y1="70" x2="${X(hi)}" y2="70" class="ax"/>`;
+  for (let v = lo; v <= hi; v += step / 2) g += (v - lo) % step === 0 ? `<line x1="${X(v)}" y1="65" x2="${X(v)}" y2="75" class="ax"/><text x="${X(v)}" y="87" class="tl" text-anchor="middle">${v}</text>` : `<line x1="${X(v)}" y1="68" x2="${X(v)}" y2="72" class="ax"/>`;
+  g += `<line x1="${X(mn)}" y1="35" x2="${X(a)}" y2="35" class="cv"/><line x1="${X(b)}" y1="35" x2="${X(mx)}" y2="35" class="cv"/>`;
+  g += `<line x1="${X(mn)}" y1="25" x2="${X(mn)}" y2="45" class="cv"/><line x1="${X(mx)}" y1="25" x2="${X(mx)}" y2="45" class="cv"/>`;
+  g += `<rect x="${X(a)}" y="18" width="${X(b) - X(a)}" height="34" class="box"/><line x1="${X(m)}" y1="18" x2="${X(m)}" y2="52" class="cv"/>`;
+  return `<svg class="plot wide" viewBox="0 0 ${W} ${H}" role="img" aria-label="Diagrama de caixa i bigotis"><rect width="${W}" height="${H}" class="bgp"/>${g}</svg>`;
+}
+function tableHTML(rows) { // rows: [[label, ...cells], ...]
+  return '<div class="tw"><table class="dt">' + rows.map((r, i) => '<tr>' + r.map((c, j) => j === 0 ? `<th>${c}</th>` : `<td>${c}</td>`).join('') + '</tr>').join('') + '</table></div>';
+}
+if (typeof module !== 'undefined') module.exports = { R, pick, shuffle, nf, sup, sgn, term, poly, mc, median, mean, q1, q3, mode, plotSVG, boxSVG, tableHTML };
+
+// ---- 1a avaluació: generators ----
+const EVAL = {
+  key: 'cgs-entrenament-1a',
+  title: '1a avaluació',
+  sub: 'Nombres reals · potències i radicals · polinomis · equacions i problemes',
+  zones: [
+  { id: 'T', name: 'Tutorial', sub: 'Nombres reals', color: 'z1', can: ["Classificar un nombre (natural, enter, racional o irracional)", "Passar d'una desigualtat a un interval i al revés", "Arrodonir i calcular l'error comès"], gens: [
+    function classify() {
+      const cases = [
+        () => { const n = pick([2, 3, 5, 6, 7, 8, 10, 11, 12, 15]); return { h: `√${n}`, ok: 'Irracional', why: `${n} no és un quadrat perfecte: √${n} té infinites xifres decimals no periòdiques.` }; },
+        () => { const k = R(2, 9); return { h: `√${k * k}`, ok: 'Natural', why: `√${k * k} = ${k}, que és un nombre natural.` }; },
+        () => { const k = R(2, 9); return { h: `−√${k * k}`, ok: 'Enter (no natural)', why: `−√${k * k} = −${k}: és un enter negatiu.` }; },
+        () => { const b = pick([3, 7, 9, 11]); let a = R(1, 20); if (a % b === 0) a++; return { h: `${a}/${b}`, ok: 'Racional (no enter)', why: `${a}/${b} és una fracció que no dona un nombre enter: és racional.` }; },
+        () => { const d = R(1, 9), p = R(1, 9); return { h: `${d},${p}${p}${p}…`, ok: 'Racional (no enter)', why: 'És un decimal periòdic: es pot escriure com a fracció, per tant és racional.' }; },
+        () => ({ h: 'π', ok: 'Irracional', why: 'π té infinites xifres decimals no periòdiques.' }),
+      ];
+      const c = pick(cases)();
+      const all = ['Natural', 'Enter (no natural)', 'Racional (no enter)', 'Irracional'];
+      const errs = { 'Irracional': { t: 'C', w: 'Un nombre és irracional només si no es pot escriure com a fracció: decimals infinits <b>no periòdics</b>.' },
+        'Racional (no enter)': { t: 'C', w: 'Fixa\'t si el resultat és exacte: si l\'arrel és exacta, el nombre és enter o natural.' },
+        'Natural': { t: 'C', w: 'Els naturals són 0, 1, 2, 3… Comprova el signe i si el resultat és exacte.' },
+        'Enter (no natural)': { t: 'C', w: 'Els enters no naturals són els negatius: −1, −2, −3…' } };
+      return { p: `Quin tipus de nombre és <span class="m">${c.h}</span>?`, k: 'mc',
+        o: mc(all.map(x => x === c.ok ? { h: x, ok: true } : { h: x, ok: false, ...errs[x] })),
+        hint: 'Pregunta\'t: és exacte? és negatiu? es pot escriure com a fracció?', steps: [c.why] };
+    },
+    function interval() {
+      const a = R(-6, 2), b = a + R(2, 7);
+      const L = pick(['<', '≤']), Rr = pick(['<', '≤']);
+      const lb = L === '<' ? '(' : '[', rb = Rr === '<' ? ')' : ']';
+      const ok = `${lb}${nf(a)}, ${nf(b)}${rb}`;
+      const opts = [['(', ')'], ['[', ']'], ['(', ']'], ['[', ')']].map(([x, y]) => `${x}${nf(a)}, ${nf(b)}${y}`);
+      return { p: `Escriu com a interval: <span class="m">${nf(a)} ${L} x ${Rr} ${nf(b)}</span>`, k: 'mc',
+        o: mc(opts.map(h => h === ok ? { h, ok: true } : { h, ok: false, t: 'P', w: 'Revisa els claudàtors: <b>&lt;</b> vol dir que l\'extrem no hi és → parèntesi; <b>≤</b> vol dir que hi és → claudàtor.' })),
+        hint: '&lt; → ( ) · ≤ → [ ]', steps: [`${nf(a)} ${L} x: l\'extrem esquerre ${L === '<' ? 'no hi és → (' : 'hi és → ['}`, `x ${Rr} ${nf(b)}: l'extrem dret ${Rr === '<' ? 'no hi és → )' : 'hi és → ]'}`, `Solució: ${ok}`] };
+    },
+    function round() {
+      const n = (R(100, 9999) * 10 + R(1, 9)) / 1000; const ok = Math.round(n * 100) / 100; const tr = Math.floor(n * 100) / 100;
+      const traps = tr !== ok ? [{ v: tr, t: 'P', w: 'Has truncat (tallat) en lloc d\'arrodonir: mira la xifra següent; si és 5 o més, la de les centèsimes puja 1.' }] : [];
+      return { p: `Arrodoneix <span class="m">${n.toFixed(3).replace('.', ',')}</span> a les centèsimes.`, k: 'num', a: ok, tol: 0.0001, traps,
+        hint: 'Mira la tercera xifra decimal: si és 5 o més, puges la segona.', steps: [`La xifra de les mil·lèsimes és ${Math.round(n * 1000) % 10}.`, `${Math.round(n * 1000) % 10 >= 5 ? 'És 5 o més: les centèsimes pugen 1.' : 'És menor que 5: les centèsimes es queden igual.'}`, `Resultat: ${nf(ok)}`] };
+    },
+    function belongs() {
+      const a = R(-5, 1), b = a + R(3, 6); const lb = pick(['(', '[']), rb = pick([')', ']']);
+      const ints = []; for (let k = a; k <= b; k++) { if (k === a && lb === '(') continue; if (k === b && rb === ')') continue; ints.push(k); }
+      const n = ints.length;
+      const traps = [{ v: b - a + 1, t: 'P', w: 'Has comptat els dos extrems: comprova si cada extrem és obert ( ) o tancat [ ].' }, { v: b - a - 1, t: 'P', w: 'Has deixat fora algun extrem tancat: un claudàtor [ ] vol dir que l\'extrem hi és.' }].filter(t => t.v !== n);
+      return { p: `Quants nombres enters hi ha a l'interval <span class="m">${lb}${nf(a)}, ${nf(b)}${rb}</span>?`, k: 'num', a: n, tol: 0, traps,
+        hint: 'Escriu-los un per un i comprova els extrems.', steps: [`Enters: ${ints.map(x => nf(x)).join(', ')}`, `En total: ${n}`] };
+    },
+  ]},
+  { id: 'N1', name: 'Nivell 1', sub: 'Potències, notació científica i radicals', color: 'z2', can: ["Operar amb potències i les seves propietats", "Escriure i operar en notació científica", "Simplificar i operar amb radicals", "Aplicar el teorema de Pitàgores"], gens: [
+    function powers() {
+      const b = R(2, 7), m = R(2, 6), n = R(-3, 4), p = R(1, 4); const e = m + n - p;
+      const traps = [{ v: m * n - p, t: 'C', w: 'En multiplicar potències de la mateixa base, els exponents se <b>sumen</b>, no es multipliquen.' }, { v: m + n + p, t: 'P', w: 'En dividir, l\'exponent del divisor es <b>resta</b>.' }].filter(t => t.v !== e);
+      return { p: `Expressa com una sola potència de base ${b}: <span class="m">${b}${sup(m)} · ${b}${sup(n)} : ${b}${sup(p)}</span>. Quin és l'exponent?`, k: 'num', a: e, tol: 0, traps,
+        hint: 'Producte → sumes exponents. Quocient → restes exponents.', steps: [`${b}${sup(m)} · ${b}${sup(n)} = ${b}${sup(m + n)}`, `${b}${sup(m + n)} : ${b}${sup(p)} = ${b}${sup(e)}`] };
+    },
+    function sci() {
+      let m1, m2; do { m1 = R(2, 9); m2 = R(2, 9); } while (m1 * m2 < 10);
+      const e1 = R(-4, 9), e2 = R(-4, 6); const prod = m1 * m2; const M = prod / 10, E = e1 + e2 + 1;
+      const okh = `${nf(M)}·10${sup(E)}`;
+      return { p: `Calcula en notació científica: <span class="m">(${m1}·10${sup(e1)}) · (${m2}·10${sup(e2)})</span>`, k: 'mc',
+        o: mc([{ h: okh, ok: true }, { h: `${prod}·10${sup(e1 + e2)}`, ok: false, t: 'P', w: `El resultat és correcte però no està en notació científica: ${prod} no és entre 1 i 10. Cal reajustar: ${prod} = ${nf(M)}·10.` },
+          { h: `${nf(M)}·10${sup(e1 + e2)}`, ok: false, t: 'P', w: 'Has mogut la coma però no has sumat 1 a l\'exponent.' },
+          { h: `${nf(M)}·10${sup(e1 * e2 + 1)}`, ok: false, t: 'C', w: 'Els exponents de 10 se sumen quan es multiplica, no es multipliquen.' }]),
+        hint: 'Multiplica els nombres i suma els exponents. Després comprova que el primer nombre sigui entre 1 i 10.', steps: [`${m1} · ${m2} = ${prod}`, `10${sup(e1)} · 10${sup(e2)} = 10${sup(e1 + e2)}`, `${prod}·10${sup(e1 + e2)} = ${okh}`] };
+    },
+    function radicals() {
+      const r = pick([2, 3, 5]); const k = R(2, 4); let j = R(1, 4); if (j === k) j++;
+      const A = k * k * r, B = j * j * r;
+      return { p: `Simplifica i suma: <span class="m">√${A} + √${B}</span>`, k: 'mc',
+        o: mc([{ h: `${k + j}√${r}`, ok: true }, { h: `√${A + B}`, ok: false, t: 'C', w: 'No es poden sumar els radicands: √a + √b no és √(a + b). Primer simplifica cada radical.' },
+          { h: `${k * j}√${r}`, ok: false, t: 'P', w: `Has multiplicat els coeficients: ${k}√${r} + ${j}√${r} = (${k} + ${j})√${r}.` },
+          { h: `${k + j}√${2 * r}`, ok: false, t: 'P', w: 'En sumar radicals semblants, el radicand no canvia.' }]),
+        hint: `Busca un quadrat perfecte dins de cada radicand: ${A} = ${k * k} · ${r}.`, steps: [`√${A} = √(${k * k}·${r}) = ${k}√${r}`, `√${B} = √(${j * j}·${r}) = ${j === 1 ? '' : j}√${r}`, `${k}√${r} + ${j === 1 ? '' : j}√${r} = ${k + j}√${r}`] };
+    },
+    function distance() {
+      const t = pick([[3, 4, 5], [6, 8, 10], [5, 12, 13], [8, 6, 10], [4, 3, 5]]); const x1 = R(-4, 3), y1 = R(-4, 3);
+      const sx = pick([1, -1]), sy = pick([1, -1]); const x2 = x1 + sx * t[0], y2 = y1 + sy * t[1];
+      return { p: `Un personatge va de <span class="m">(${nf(x1)}, ${nf(y1)})</span> a <span class="m">(${nf(x2)}, ${nf(y2)})</span> en línia recta. Quina distància recorre?`, k: 'num', a: t[2], tol: 0.01,
+        traps: [{ v: t[0] + t[1], t: 'C', w: 'Has sumat els desplaçaments horitzontal i vertical. La distància en línia recta es calcula amb Pitàgores.' }],
+        hint: 'd = √(Δx² + Δy²)', steps: [`Δx = ${t[0]}, Δy = ${t[1]}`, `d = √(${t[0] * t[0]} + ${t[1] * t[1]}) = √${t[2] * t[2]} = ${t[2]}`] };
+    },
+  ]},
+  { id: 'N2', name: 'Nivell 2', sub: 'Polinomis', color: 'z3', can: ["Calcular el valor numèric d'un polinomi", "Sumar, restar i multiplicar polinomis", "Fer servir els productes notables", "Factoritzar un polinomi (Ruffini)"], gens: [
+    function value() {
+      const a = R(-3, 3) || 1, b = R(-6, 6), c = R(-9, 9), x = R(-3, 3) || -2;
+      const val = a * x * x + b * x + c;
+      const trap = -a * x * x + b * x + c;
+      return { p: `P(x) = <span class="m">${poly([[a, 2], [b, 1], [c, 0]])}</span>. Calcula <span class="m">P(${nf(x)})</span>.`, k: 'num', a: val, tol: 0,
+        traps: trap !== val ? [{ v: trap, t: 'P', w: `Compte amb el signe del quadrat: (${nf(x)})² = ${x * x}, sempre positiu.` }] : [],
+        hint: 'Substitueix x pel valor, amb parèntesis.', steps: [`P(${nf(x)}) = ${nf(a)}·(${nf(x)})² ${sgn(b)}·(${nf(x)}) ${sgn(c)}`, `= ${nf(a * x * x)} ${sgn(b * x)} ${sgn(c)} = ${nf(val)}`] };
+    },
+    function square() {
+      const a = R(1, 9), s = pick([1, -1]);
+      const ok = poly([[1, 2], [2 * a * s, 1], [a * a, 0]]);
+      return { p: `Desenvolupa: <span class="m">(x ${s > 0 ? '+' : '−'} ${a})${sup(2)}</span>`, k: 'mc',
+        o: mc([{ h: ok, ok: true }, { h: poly([[1, 2], [a * a, 0]]), ok: false, t: 'C', w: 'Falta el doble producte: (x + a)² = x² + 2ax + a².' },
+          { h: poly([[1, 2], [a * s, 1], [a * a, 0]]), ok: false, t: 'P', w: 'El terme del mig és el <b>doble</b> producte: 2·x·a.' },
+          { h: poly([[1, 2], [2 * a * s, 1], [-a * a, 0]]), ok: false, t: 'P', w: 'L\'últim terme és a², que sempre és positiu.' }]),
+        hint: '(x ± a)² = x² ± 2ax + a²', steps: [`x² ${s > 0 ? '+' : '−'} 2·x·${a} + ${a}²`, ok] };
+    },
+    function common() {
+      const k = R(2, 6), m = R(1, 5) * pick([1, -1]); const A = k * pick([1, 2, 3]);
+      return { p: `Factoritza traient factor comú: <span class="m">${poly([[A, 3], [k * m, 2]])}</span>`, k: 'mc',
+        o: mc([{ h: `${k}x${sup(2)}(${poly([[A / k, 1], [m, 0]])})`, ok: true },
+          { h: `${k}x(${poly([[A / k, 2], [m, 1]])})`, ok: false, t: 'P', w: 'Es pot treure més factor comú: les dues x tenen com a mínim x².' },
+          { h: `x${sup(2)}(${poly([[A, 1], [k * m, 0]])})`, ok: false, t: 'P', w: `També hi ha un factor comú numèric: ${k}.` },
+          { h: `${k}x${sup(2)}(${poly([[A, 1], [m, 0]])})`, ok: false, t: 'D', w: 'Comprova multiplicant: el primer terme no et dona el mateix.' }]),
+        hint: 'Busca el nombre més gran que divideix els dos coeficients i la potència més petita de x.', steps: [`Factor comú: ${k}x²`, `Divideix cada terme per ${k}x²`] };
+    },
+    function remainder() {
+      const c = [R(1, 3), R(-4, 4), R(-5, 5), R(-6, 6)], a = R(-3, 3) || 2;
+      const P = x => c[0] * x ** 3 + c[1] * x * x + c[2] * x + c[3];
+      return { p: `Troba el residu de la divisió <span class="m">(${poly([[c[0], 3], [c[1], 2], [c[2], 1], [c[3], 0]])}) : (x ${a > 0 ? '−' : '+'} ${Math.abs(a)})</span>`, k: 'num', a: P(a), tol: 0,
+        traps: P(-a) !== P(a) ? [{ v: P(-a), t: 'P', w: `Has fet servir ${nf(-a)}. Per dividir entre (x ${a > 0 ? '−' : '+'} ${Math.abs(a)}), a Ruffini o al teorema del residu va el ${nf(a)}.` }] : [],
+        hint: 'Teorema del residu: el residu de P(x) : (x − a) és P(a). També ho pots fer per Ruffini.', steps: [`a = ${nf(a)}`, `P(${nf(a)}) = ${nf(P(a))}`] };
+    },
+  ]},
+  { id: 'N3', name: 'Nivell 3', sub: 'Equacions, percentatges, inequacions i sistemes', color: 'z4', can: ["Resoldre equacions de 1r i 2n grau", "Calcular percentatges, IVA i interessos", "Resoldre inequacions", "Plantejar i resoldre sistemes"], gens: [
+    function linear() {
+      const x = R(-6, 9), a = R(2, 5), b = R(1, 6), c = a * (x - b) - x;
+      const wrong = (c + b) / (a - 1); // error: a(x-b) -> ax - b
+      return { p: `Resol: <span class="m">${a}(x − ${b}) = x ${sgn(c)}</span>`, k: 'num', a: x, tol: 0.001,
+        traps: Number.isFinite(wrong) && Math.abs(wrong - x) > 0.001 ? [{ v: wrong, t: 'P', w: `En treure el parèntesi, el ${a} multiplica també el ${b}: ${a}·${b} = ${a * b}.` }] : [],
+        hint: 'Treu el parèntesi, passa les x a un costat i els números a l\'altre.', steps: [`${a}x − ${a * b} = x ${sgn(c)}`, `${a}x − x = ${c} + ${a * b}`, `${a - 1}x = ${c + a * b}`, `x = ${nf(x)}`] };
+    },
+    function quadratic() {
+      let r1 = R(-5, 6), r2 = R(-5, 6); if (r1 === r2) r2 = r1 + 2;
+      const s = r1 + r2, p = r1 * r2; const sorted = [r1, r2].sort((a, b) => a - b);
+      const h = (a, b) => `x = ${nf(Math.min(a, b))} i x = ${nf(Math.max(a, b))}`;
+      return { p: `Resol: <span class="m">${poly([[1, 2], [-s, 1], [p, 0]])} = 0</span>`, k: 'mc',
+        o: mc([{ h: h(r1, r2), ok: true }, { h: h(-r1, -r2), ok: false, t: 'P', w: 'Revisa el signe de −b a la fórmula: x = (−b ± √Δ) / 2a.' },
+          { h: h(r1 + 1, r2 + 1), ok: false, t: 'D', w: 'Comprova substituint a l\'equació: no dona 0.' },
+          { h: `x = ${nf(sorted[0] * 2)} i x = ${nf(sorted[1] * 2)}`, ok: false, t: 'P', w: 'No has dividit entre 2a.' }]),
+        hint: 'x = (−b ± √(b² − 4ac)) / 2a. Comprova les solucions substituint.', steps: [`Δ = ${s * s} − ${4 * p} = ${s * s - 4 * p}`, `√Δ = ${Math.abs(r1 - r2)}`, `x = (${nf(s)} ± ${Math.abs(r1 - r2)}) / 2`, h(r1, r2)] };
+    },
+    function percent() {
+      const P = pick([20, 25, 30, 40, 45, 50, 60, 80, 120]), d = pick([10, 15, 20, 25, 30]); const up = Math.random() < 0.4;
+      const ok = up ? P * (1 + d / 100) : P * (1 - d / 100);
+      return { p: up ? `Un joc val <span class="m">${P} €</span> i se li aplica un <span class="m">${d} %</span> d'augment. Quin és el preu final?` : `Un joc val <span class="m">${P} €</span> i té un <span class="m">${d} %</span> de descompte. Quin és el preu final?`, k: 'num', a: ok, tol: 0.01, unit: '€',
+        traps: [{ v: P * d / 100, t: 'C', w: 'Això és només l\'import del descompte o de l\'augment, no el preu final.' }, { v: up ? P * (1 - d / 100) : P * (1 + d / 100), t: 'C', w: up ? 'Has fet un descompte en lloc d\'un augment.' : 'Has fet un augment en lloc d\'un descompte.' }],
+        hint: up ? `Índex de variació: 1 + ${d}/100 = ${nf(1 + d / 100)}` : `Índex de variació: 1 − ${d}/100 = ${nf(1 - d / 100)}`, steps: [`Índex: ${nf(up ? 1 + d / 100 : 1 - d / 100)}`, `${P} · ${nf(up ? 1 + d / 100 : 1 - d / 100)} = ${nf(ok)} €`] };
+    },
+    function inequality() {
+      const a = pick([2, 3, 4, -2, -3]), x0 = R(-4, 5), b = R(-6, 6), c = a * x0 + b; const gt = Math.random() < 0.5;
+      const op = gt ? '&gt;' : '&lt;'; const op2 = (a > 0) === gt ? '&gt;' : '&lt;';
+      const sol = (a > 0) === gt ? `(${nf(x0)}, +∞)` : `(−∞, ${nf(x0)})`;
+      const flip = (a > 0) === gt ? `(−∞, ${nf(x0)})` : `(${nf(x0)}, +∞)`;
+      return { p: `Resol i escriu la solució com a interval: <span class="m">${a === 1 ? '' : nf(a)}x ${sgn(b)} ${op} ${nf(c)}</span>`, k: 'mc',
+        o: mc([{ h: sol, ok: true }, { h: flip, ok: false, t: a < 0 ? 'C' : 'P', w: a < 0 ? 'En dividir per un nombre negatiu, el sentit de la desigualtat <b>canvia</b>.' : 'Has canviat el sentit de la desigualtat sense motiu: només canvia si divideixes o multipliques per un negatiu.' },
+          { h: (a > 0) === gt ? `[${nf(x0)}, +∞)` : `(−∞, ${nf(x0)}]`, ok: false, t: 'P', w: 'La desigualtat és estricta (&lt; o &gt;): l\'extrem no hi és, va amb parèntesi.' },
+          { h: (a > 0) === gt ? `(${nf(x0 + 2)}, +∞)` : `(−∞, ${nf(x0 - 2)})`, ok: false, t: 'D', w: 'Revisa els càlculs de passar el terme independent.' }]),
+        hint: 'Resol com una equació. Si divideixes per un negatiu, gira el signe.', steps: [`${nf(a)}x ${op} ${nf(c)} ${sgn(-b)}`, `${nf(a)}x ${op} ${nf(c - b)}`, `x ${op2} ${nf(c - b)} : ${a < 0 ? '(' + nf(a) + ')' : nf(a)} = ${nf(x0)}${a < 0 ? ' (canvia el sentit perquè divideixes per un negatiu)' : ''}`, sol] };
+    },
+    function system() {
+      const x = R(1, 9), y = R(1, 9); const s = x + y, d = x - y;
+      return { p: `Resol el sistema: <span class="m">x + y = ${s} ; x − y = ${nf(d)}</span>`, k: 'mc',
+        o: mc([{ h: `x = ${x}, y = ${y}`, ok: true }, { h: `x = ${y}, y = ${x}`, ok: false, t: 'D', w: 'Has intercanviat x i y. Comprova a la segona equació.' },
+          { h: `x = ${s}, y = ${nf(d)}`, ok: false, t: 'C', w: 'Aquests són els termes independents, no la solució.' },
+          { h: `x = ${nf(s + d)}, y = ${nf((s - d) / 2)}`, ok: false, t: 'P', w: 'Per reducció: en sumar les equacions obtens 2x = …; falta dividir entre 2.' }]),
+        hint: 'Suma les dues equacions: desapareix la y.', steps: [`2x = ${s + d} → x = ${x}`, `y = ${s} − ${x} = ${y}`] };
+    },
+  ]},
+  ],
+};
+if (typeof module !== 'undefined') module.exports = EVAL;
+
+(function () {
+  const RANKS = ['Becari/ària', 'Júnior', 'Programador/a', 'Sènior', 'Cap d\'equip', 'Llegenda de l\'estudi'];
+  const ERR = { C: 'Conceptual', P: 'De procediment', D: 'De distracció' };
+  const TIPS = { C: 'Tens més errors conceptuals: torna a la idea de base (què vol dir cada concepte) abans de fer més càlculs.', P: 'Tens més errors de procediment: escriu cada pas en una línia i comprova els signes i l\'ordre de les operacions.', D: 'Tens més errors de distracció: abans de respondre, torna a llegir l\'enunciat i comprova el resultat.' };
+  const blank = () => ({ xp: 0, streak: 0, best: 0, zones: {}, err: { C: 0, P: 0, D: 0 }, daily: {}, self: {}, selfHist: [], goal: '' });
+  let S = blank();
+  try { const raw = localStorage.getItem(EVAL.key); if (raw) S = Object.assign(blank(), JSON.parse(raw)); } catch (e) {}
+  const save = () => { try { localStorage.setItem(EVAL.key, JSON.stringify(S)); } catch (e) {} };
+  EVAL.zones.forEach(z => { S.zones[z.id] = Object.assign({ ok: 0, boss: false }, S.zones[z.id] || {}); });
+  let cur = EVAL.zones[0].id, mode = 'train', q = null, tries = 0, usedHint = false, done = false, boss = null;
+  const $ = (id) => document.getElementById(id);
+  const zoneOf = (id) => EVAL.zones.find(z => z.id === id);
+  function parseNum(s) {
+    s = String(s).trim().replace(/\s/g, '').replace('−', '-').replace(',', '.').replace(/[€s]$/i, '');
+    if (/^-?\d+(\.\d+)?\/-?\d+(\.\d+)?$/.test(s)) { const [a, b] = s.split('/').map(Number); return b ? a / b : NaN; }
+    return s === '' ? NaN : Number(s);
+  }
+  function renderTop() {
+    $('xp').textContent = S.xp; $('streak').textContent = S.streak;
+    const lvl = Math.min(RANKS.length - 1, Math.floor(S.xp / 150));
+    $('rank').textContent = RANKS[lvl];
+    $('xpfill').style.width = (lvl === RANKS.length - 1 ? 100 : (S.xp % 150) / 150 * 100) + '%';
+  }
+  function renderMap() {
+    $('zones').innerHTML = EVAL.zones.map(z => {
+      const st = S.zones[z.id]; const pct = Math.min(100, st.ok / 6 * 100);
+      const badge = st.boss ? '<span class="badge b-done">Superat</span>' : st.ok >= 6 ? '<span class="badge b-ready">Boss obert</span>' : `<span class="badge b-lock">${Math.min(st.ok, 6)}/6</span>`;
+      return `<button type="button" class="zone ${z.color}" data-z="${z.id}" aria-current="${z.id === cur}"><span class="strip"></span><span><span class="nm">${z.name}</span><br><span class="sb">${z.sub}</span><span class="pg"><i style="width:${pct}%"></i></span></span>${badge}</button>`;
+    }).join('');
+    document.querySelectorAll('.zone').forEach(b => b.onclick = () => { cur = b.dataset.z; mode = 'train'; boss = null; next(); renderMap(); });
+    const tot = S.err.C + S.err.P + S.err.D, mx = Math.max(1, S.err.C, S.err.P, S.err.D);
+    $('errbars').innerHTML = ['C', 'P', 'D'].map(k => `<div class="eb"><b>${k}</b><span><span style="font-size:12px;color:var(--muted)">${ERR[k]}</span><span class="track" style="display:block"><i style="width:${S.err[k] / mx * 100}%"></i></span></span><span class="n">${S.err[k]}</span></div>`).join('');
+    const top = tot ? ['C', 'P', 'D'].sort((a, b) => S.err[b] - S.err[a])[0] : null;
+    $('tip').textContent = top ? TIPS[top] : 'Aquí es comptaran els teus errors segons el tipus. Serveix per saber què has de revisar.';
+  }
+  function head() {
+    const z = zoneOf(cur);
+    const right = mode === 'boss'
+      ? `<span class="bossbar">${boss.res.map((r, i) => `<i class="${r === 1 ? 'ok' : r === 0 ? 'no' : i === boss.i ? 'cur' : ''}"></i>`).join('')}</span><span class="mode boss">Boss · ${Math.min(boss.i + 1, 5)}/5</span>`
+      : `${S.zones[cur].ok >= 6 && !S.zones[cur].boss ? '<button class="btn accent" id="goboss" type="button" style="padding:7px 12px">Lluita contra el boss</button>' : ''}<span class="mode">Entrenament</span>`;
+    return `<div class="bar ${z.color}"><span class="zl"><span class="dot"></span>${z.name} · <span style="font-weight:600;font-family:var(--f-body);font-size:14px;color:var(--muted)">${z.sub}</span></span><span class="actions">${right}</span></div>`;
+  }
+  function next() {
+    const z = zoneOf(cur); q = pick(z.gens)(); tries = 0; usedHint = false; done = false; render();
+  }
+  function render(fbHTML = '') {
+    const answer = q.k === 'mc'
+      ? `<div class="opts" role="group" aria-label="Opcions">${q.o.map((o, i) => `<button type="button" class="opt" data-i="${i}">${o.h}</button>`).join('')}</div>`
+      : `<form class="numrow" id="nf" autocomplete="off"><label for="ans" style="position:absolute;left:-9999px">Resposta</label><input id="ans" inputmode="decimal" placeholder="La teva resposta">${q.unit ? `<span class="unit">${q.unit}</span>` : ''}<button class="btn primary" type="submit">Comprova</button></form>`;
+    const hintBtn = mode === 'train' ? `<button class="btn ghost" id="hint" type="button">Pista</button>` : '';
+    $('play').innerHTML = head() + `<div class="body"><div class="q">${q.p}</div>${q.v ? `<div class="visual">${q.v}</div>` : ''}${answer}<div id="fb">${fbHTML}</div><div class="actions" id="acts">${hintBtn}<button class="btn primary" id="next" type="button" hidden>Següent</button></div></div>`;
+    wire();
+  }
+  function wire() {
+    const gb = $('goboss'); if (gb) gb.onclick = startBoss;
+    const h = $('hint'); if (h) h.onclick = () => { usedHint = true; h.disabled = true; addFb(`<div class="fb hint"><span class="tag">Pista</span>${q.hint}</div>`); };
+    $('next').onclick = () => { if (mode === 'boss') bossNext(); else next(); };
+    if (q.k === 'mc') document.querySelectorAll('.opt').forEach(b => b.onclick = () => answerMC(+b.dataset.i, b));
+    else { $('nf').onsubmit = (e) => { e.preventDefault(); answerNum($('ans').value); }; try { $('ans').focus({ preventScroll: true }); } catch (e) {} }
+  }
+  function addFb(html) { $('fb').insertAdjacentHTML('beforeend', html); }
+  function solution() { return `<ol class="steps">${q.steps.map(s => `<li>${s}</li>`).join('')}</ol>`; }
+  function logErr(t) { if (t) { S.err[t]++; save(); renderMap(); } }
+  function finish(correct) {
+    done = true;
+    if (mode === 'boss') { boss.res[boss.i] = correct ? 1 : 0; }
+    if (mode === 'train') S.zones[cur].seen = (S.zones[cur].seen || 0) + 1;
+    { const dk = today(); const dd = S.daily[dk] = S.daily[dk] || {}; const c = dd[cur] = dd[cur] || { s: 0, o: 0 }; c.s++; if (correct) c.o++; }
+    if (mode === 'boss') {} else if (correct) {
+      const gain = tries === 1 ? (usedHint ? 6 : 10) : 4; S.xp += gain; S.zones[cur].ok++; S.streak++; S.best = Math.max(S.best, S.streak);
+      if (S.zones[cur].ok === 6) addFb(`<div class="fb ok"><span class="tag">Boss desbloquejat</span>Ja pots lluitar contra el boss d'aquest nivell.</div>`);
+    } else S.streak = 0;
+    if (mode === 'boss' && !correct) S.streak = 0;
+    if (mode === 'boss' && correct) { S.streak++; S.xp += 10; }
+    save(); renderTop(); renderMap();
+    document.querySelectorAll('.opt').forEach(b => b.disabled = true);
+    const f = $('nf'); if (f) f.querySelectorAll('input,button').forEach(x => x.disabled = true);
+    const h = $('hint'); if (h) h.hidden = true;
+    const n = $('next'); n.hidden = false; n.textContent = mode === 'boss' && boss.i === 4 ? 'Resultat' : 'Següent'; n.focus({ preventScroll: true });
+    if (mode === 'train' && S.zones[cur].ok >= 6 && !S.zones[cur].boss && !$('goboss')) { const bar = document.querySelector('.bar .actions'); bar.insertAdjacentHTML('afterbegin', '<button class="btn accent" id="goboss" type="button" style="padding:7px 12px">Lluita contra el boss</button>'); $('goboss').onclick = startBoss; }
+  }
+  function wrongFb(t, w, generic) {
+    if (t) return `<div class="fb no"><span class="tag">Error ${t} · ${ERR[t]}</span>${w}</div>`;
+    return `<div class="fb no"><span class="tag">No és correcte</span>${generic}<div class="self" id="self">Quin tipus d'error creus que has fet? ${['C', 'P', 'D'].map(k => `<button type="button" data-k="${k}">${k} · ${ERR[k]}</button>`).join('')}</div></div>`;
+  }
+  function wireSelf() { const s = $('self'); if (!s) return; s.querySelectorAll('button').forEach(b => b.onclick = () => { logErr(b.dataset.k); s.innerHTML = `Anotat com a error ${b.dataset.k}. Saber-ho t'ajuda a no repetir-lo.`; s.removeAttribute('id'); }); }
+  function answerMC(i, btn) {
+    if (done) return; tries++; const o = q.o[i];
+    if (o.ok) { btn.classList.add('right'); addFb(`<div class="fb ok"><span class="tag">Correcte</span>${tries === 1 ? (usedHint ? '+6 XP' : '+10 XP') : '+4 XP'}${mode === 'boss' ? '' : ''}</div>`); finish(true); return; }
+    btn.classList.add('wrong'); btn.disabled = true; logErr(o.t); addFb(wrongFb(o.t, o.w));
+    if (mode === 'boss' || tries >= 2) { const okb = [...document.querySelectorAll('.opt')].find(b => q.o[+b.dataset.i].ok); okb.classList.add('right'); addFb(`<div class="fb hint"><span class="tag">Solució</span>${solution()}</div>`); finish(false); }
+    else addFb(`<div class="fb hint"><span class="tag">Segona oportunitat</span>Torna-ho a provar.</div>`);
+  }
+  function answerNum(raw) {
+    if (done) return; const v = parseNum(raw);
+    if (!Number.isFinite(v)) { addFb(`<div class="fb hint"><span class="tag">Format</span>Escriu un nombre (pots fer servir coma decimal, per exemple 3,5).</div>`); return; }
+    tries++;
+    if (Math.abs(v - q.a) <= (q.tol || 0) + 1e-9) { addFb(`<div class="fb ok"><span class="tag">Correcte</span>${mode === 'boss' ? '' : tries === 1 ? (usedHint ? '+6 XP' : '+10 XP') : '+4 XP'}</div>`); finish(true); return; }
+    const trap = (q.traps || []).find(t => Math.abs(v - t.v) <= Math.max(q.tol || 0, 0.011));
+    if (trap) logErr(trap.t);
+    addFb(trap ? wrongFb(trap.t, trap.w) : wrongFb(null, null, mode === 'boss' || tries >= 2 ? 'Mira la solució pas a pas.' : 'Revisa els càlculs i torna-ho a provar.'));
+    wireSelf();
+    if (mode === 'boss' || tries >= 2) { addFb(`<div class="fb hint"><span class="tag">Solució · ${nf(q.a)}${q.unit ? ' ' + q.unit : ''}</span>${solution()}</div>`); finish(false); }
+    else { addFb(`<div class="fb hint"><span class="tag">Segona oportunitat</span>Torna-ho a provar.</div>`); $('ans').select(); }
+  }
+  function startBoss() { mode = 'boss'; boss = { i: 0, res: [null, null, null, null, null] }; next(); }
+  function bossNext() {
+    if (boss.i < 4) { boss.i++; next(); return; }
+    const okn = boss.res.filter(r => r === 1).length; const win = okn >= 4; const z = zoneOf(cur);
+    if (win && !S.zones[cur].boss) { S.zones[cur].boss = true; S.xp += 50; }
+    save(); renderTop(); renderMap();
+    $('play').innerHTML = head() + `<div class="result">${win ? '' : ''}<div class="big">${win ? 'Boss superat!' : 'El boss ha guanyat aquesta vegada'}</div><p>${okn} de 5 encerts. ${win ? `Has completat ${z.name}${S.zones[cur].boss ? ' (+50 XP)' : ''}.` : 'Necessites 4 encerts. Entrena una mica més i torna-ho a provar.'}</p><div class="actions" style="justify-content:center"><button class="btn primary" id="again" type="button">${win ? 'Continua entrenant' : 'Torna a entrenar'}</button>${win ? '' : '<button class="btn accent" id="retry" type="button">Repeteix el boss</button>'}</div></div>`;
+    $('again').onclick = () => { mode = 'train'; boss = null; next(); };
+    const r = $('retry'); if (r) r.onclick = startBoss;
+  }
+
+  // ---------- El meu avanç: autoavaluació + evolució ----------
+  const LV = ['Encara no', 'Amb ajuda', 'Sol/a', 'Ho puc explicar'];
+  function today() { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }
+  const dshort = (k) => { const [y, m, d] = k.split('-'); return `${+d}/${+m}`; };
+  const selfPct = (arr) => { const v = (arr || []).filter(x => x); return v.length ? Math.round(v.reduce((a, b) => a + b, 0) / v.length / 4 * 100) : null; };
+  const selfAvg = (arr) => { const v = (arr || []).filter(x => x); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; };
+  function zoneSeries(id) {
+    const keys = new Set(Object.keys(S.daily).filter(k => S.daily[k][id]));
+    S.selfHist.forEach(h => { if (h.r[id] && h.r[id].some(x => x)) keys.add(h.d); });
+    const ks = [...keys].sort().slice(-8);
+    return ks.map(k => { const c = (S.daily[k] || {})[id]; const h = S.selfHist.find(x => x.d === k);
+      return { k, acc: c && c.s ? Math.round(c.o / c.s * 100) : null, n: c ? c.s : 0, self: h ? selfPct(h.r[id]) : null }; });
+  }
+  function zoneAcc(id) { let s = 0, o = 0; Object.values(S.daily).forEach(d => { if (d[id]) { s += d[id].s; o += d[id].o; } }); return { s, o, p: s ? Math.round(o / s * 100) : null }; }
+  function chartSVG(id, ser) {
+    const W = 440, H = 150, L = 34, Rr = 10, T = 8, B = 20, n = ser.length;
+    const x = (i) => n === 1 ? (L + W - Rr) / 2 : L + i * (W - L - Rr) / (n - 1), y = (v) => T + (100 - v) / 100 * (H - T - B);
+    let g = [0, 50, 100].map(v => `<line class="gl" x1="${L}" x2="${W - Rr}" y1="${y(v)}" y2="${y(v)}"/><text class="tl" x="${L - 5}" y="${y(v) + 3}" text-anchor="end">${v}%</text>`).join('');
+    const lbl = n <= 4 ? ser.map((p, i) => i) : [0, n - 1];
+    g += lbl.map(i => `<text class="tl" x="${x(i)}" y="${H - 4}" text-anchor="middle">${dshort(ser[i].k)}</text>`).join('');
+    const line = (key, cls) => { const pts = ser.map((p, i) => p[key] == null ? null : [x(i), y(p[key])]).filter(Boolean); return pts.length > 1 ? `<polyline class="${cls}" points="${pts.map(p => p.join(',')).join(' ')}"/>` : ''; };
+    g += line('self', 'l-self') + line('acc', 'l-acc');
+    ser.forEach((p, i) => {
+      if (p.self != null) g += `<circle class="p-self" cx="${x(i)}" cy="${y(p.self)}" r="4"/>`;
+      if (p.acc != null) g += `<circle class="p-acc" cx="${x(i)}" cy="${y(p.acc)}" r="4.5"/>`;
+      const tip = `${dshort(p.k)} · Encerts: ${p.acc == null ? '—' : p.acc + ' % (' + p.n + ' preg.)'} · Com em veig: ${p.self == null ? '—' : p.self + ' %'}`;
+      const w = n === 1 ? 60 : (W - L - Rr) / (n - 1);
+      g += `<rect class="hit" x="${x(i) - w / 2}" y="${T}" width="${w}" height="${H - T - B}" data-tip="${tip}"/>`;
+    });
+    return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Evolució d'encerts i autoavaluació">${g}</svg>`;
+  }
+  function verdict(id) {
+    const a = zoneAcc(id), sv = selfAvg(S.self[id]);
+    if (sv == null) return `<div class="verdict">Valora les frases de dalt per comparar com et veus amb els teus encerts.</div>`;
+    if (a.s < 6) return `<div class="verdict">Fes almenys 6 preguntes d'aquest nivell per poder comparar (en portes ${a.s}).</div>`;
+    if (sv >= 3 && a.p < 50) return `<div class="verdict warn"><b>Potser t'ho mires massa bé.</b> Et veus segur/a, però encertes el ${a.p} %. Practica una mica més i torna a valorar-te.</div>`;
+    if (sv <= 2 && a.p >= 80) return `<div class="verdict up"><b>Ho fas millor del que creus!</b> Encertes el ${a.p} %. Prova el boss i pujaràs la teva confiança.</div>`;
+    if (sv < 2.5 && a.p < 50) return `<div class="verdict">Et coneixes bé: saps que encara costa (${a.p} % d'encerts). Fes servir les pistes i mira les solucions pas a pas.</div>`;
+    return `<div class="verdict up">La teva valoració i els teus encerts (${a.p} %) coincideixen. Bona feina coneixent-te!</div>`;
+  }
+  function renderProg() {
+    const days = Object.keys(S.daily).sort();
+    let ts = 0, to = 0; days.forEach(k => Object.values(S.daily[k]).forEach(c => { ts += c.s; to += c.o; }));
+    const first = S.selfHist[0], last = S.selfHist[S.selfHist.length - 1];
+    const allSelf = (h) => h ? selfPct(EVAL.zones.flatMap(z => h.r[z.id] || [])) : null;
+    const f0 = allSelf(first), f1 = allSelf(last);
+    const recent = days.slice(-3), older = days.slice(0, -3);
+    const accOf = (ks) => { let s = 0, o = 0; ks.forEach(k => Object.values(S.daily[k]).forEach(c => { s += c.s; o += c.o; })); return s ? Math.round(o / s * 100) : null; };
+    const ar = accOf(recent), ao = accOf(older);
+    $('kpis').innerHTML = [
+      `<div class="kpi"><span>Dies practicats</span><b>${days.length}</b><small>${ts} preguntes en total</small></div>`,
+      `<div class="kpi"><span>Encerts</span><b>${ts ? Math.round(to / ts * 100) + ' %' : '—'}</b><small>${ao != null && ar != null ? `últims dies ${ar} % · abans ${ao} %` : 'de totes les preguntes'}</small></div>`,
+      `<div class="kpi"><span>Com em veig</span><b>${f1 != null ? f1 + ' %' : '—'}</b><small>${S.selfHist.length > 1 && first.d !== last.d ? `el ${dshort(first.d)} era ${f0} %` : 'de confiança mitjana'}</small></div>`,
+      `<div class="kpi"><span>Bosses superats</span><b>${EVAL.zones.filter(z => S.zones[z.id].boss).length}/${EVAL.zones.length}</b><small>${S.selfHist.length} autoavaluacions desades</small></div>`].join('');
+    $('zcards').innerHTML = EVAL.zones.map(z => {
+      const r = S.self[z.id] || [], ser = zoneSeries(z.id);
+      const cans = z.can.map((c, i) => `<div class="can"><p>Sé… ${c.charAt(0).toLowerCase() + c.slice(1)}</p><div class="seg" role="group" aria-label="${c}">${LV.map((l, j) => `<button type="button" data-z="${z.id}" data-i="${i}" data-v="${j + 1}" aria-pressed="${r[i] === j + 1}">${l}</button>`).join('')}</div></div>`).join('');
+      const chart = ser.length ? `${chartSVG(z.id, ser)}<div class="lg"><span><i></i>Encerts del dia</span><span><i class="self"></i>Com em veig</span></div>
+        <details class="tbl"><summary>Veure-ho en taula</summary><table class="dt"><tr><th>Dia</th><th>Encerts</th><th>Com em veig</th></tr>${ser.map(p => `<tr><td>${dshort(p.k)}</td><td>${p.acc == null ? '—' : p.acc + ' % (' + p.n + ')'}</td><td>${p.self == null ? '—' : p.self + ' %'}</td></tr>`).join('')}</table></details>`
+        : `<div class="empty">Encara no hi ha dades. Practica aquest nivell i valora't per veure com evolucionas.</div>`;
+      return `<section class="panel zc ${z.color}"><div class="zh"><span class="dot"></span>${z.name} <small>${z.sub}</small></div><div class="zb">${cans}<div class="chart"><h3>La meva evolució</h3>${chart}</div>${verdict(z.id)}</div></section>`;
+    }).join('');
+    $('zcards').querySelectorAll('.seg button').forEach(b => b.onclick = () => {
+      const id = b.dataset.z, i = +b.dataset.i, v = +b.dataset.v; const r = S.self[id] = S.self[id] || [];
+      r[i] = r[i] === v ? null : v;
+      const d = today(); let h = S.selfHist.find(x => x.d === d);
+      if (!h) { h = { d, r: {} }; S.selfHist.push(h); S.selfHist.sort((a, b) => a.d < b.d ? -1 : 1); }
+      h.r = JSON.parse(JSON.stringify(S.self)); save();
+      const y = window.scrollY; renderProg(); window.scrollTo(0, y);
+      const nb = document.querySelector(`.seg button[data-z="${id}"][data-i="${i}"][data-v="${v}"]`); if (nb) nb.focus({ preventScroll: true });
+    });
+    const tt = $('tt');
+    $('zcards').querySelectorAll('.hit').forEach(h => {
+      h.onmouseenter = h.onmousemove = (e) => { tt.textContent = h.dataset.tip; tt.hidden = false; const w = tt.offsetWidth; tt.style.left = Math.max(8, Math.min(window.innerWidth - w - 8, e.clientX - w / 2)) + 'px'; tt.style.top = (e.clientY - 38) + 'px'; };
+      h.onmouseleave = () => { tt.hidden = true; };
+    });
+    $('goal').value = S.goal || '';
+  }
+  let gT; $('goal').oninput = () => { S.goal = $('goal').value; clearTimeout(gT); gT = setTimeout(() => { save(); $('goalmsg').textContent = 'Desat'; }, 400); };
+  function tab(p) {
+    $('t-train').setAttribute('aria-selected', !p); $('t-prog').setAttribute('aria-selected', p);
+    $('v-train').hidden = p; $('v-prog').hidden = !p; if (p) renderProg();
+  }
+  $('t-train').onclick = () => tab(false); $('t-prog').onclick = () => tab(true);
+  [$('t-train'), $('t-prog')].forEach(t => t.onkeydown = (e) => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const o = t.id === 't-train' ? $('t-prog') : $('t-train'); o.focus(); o.click(); } });
+  try { $('stname').value = localStorage.getItem(EVAL.key + '-nom') || ''; } catch (e) {}
+  $('stname').oninput = () => { try { localStorage.setItem(EVAL.key + '-nom', $('stname').value); } catch (e) {} };
+  function selfLines() {
+    if (!S.selfHist.length) return ['Autoavaluació: encara no feta'];
+    const first = S.selfHist[0];
+    const out = ['AUTOAVALUACIÓ (1 = encara no · 4 = ho puc explicar)'];
+    EVAL.zones.forEach(z => { const now = selfAvg(S.self[z.id]), was = selfAvg(first.r[z.id]); const a = zoneAcc(z.id);
+      if (now == null) return;
+      out.push(`- ${z.name}: es veu ${now.toFixed(1).replace('.', ',')}/4${was != null && first.d !== today() ? ` (el ${dshort(first.d)}: ${was.toFixed(1).replace('.', ',')})` : ''} · encerts ${a.p == null ? '—' : a.p + ' %'}`); });
+    if ((S.goal || '').trim()) out.push(`Objectiu: ${S.goal.trim()}`);
+    return out;
+  }
+  function summary() {
+    const d = new Date(); const date = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+    const lvl = RANKS[Math.min(RANKS.length - 1, Math.floor(S.xp / 150))];
+    const zl = EVAL.zones.map(z => { const st = S.zones[z.id]; const seen = st.seen || 0; const pct = seen ? Math.round(st.ok / seen * 100) : 0; return `- ${z.name} (${z.sub}): ${st.ok} encerts de ${seen} preguntes${seen ? ` (${pct} %)` : ''} · boss ${st.boss ? 'superat' : st.ok >= 6 ? 'pendent' : 'bloquejat'}`; });
+    const tot = S.err.C + S.err.P + S.err.D; const top = tot ? ['C', 'P', 'D'].sort((a, b) => S.err[b] - S.err[a])[0] : null;
+    return [`ENTRENAMENT ${EVAL.title.toUpperCase()} · Matemàtiques A`, `Alumne/a: ${$('stname').value.trim() || '(sense nom)'} · ${date}`, `XP: ${S.xp} (${lvl}) · millor ratxa: ${S.best}`, ...zl, `Errors: C ${S.err.C} · P ${S.err.P} · D ${S.err.D}${top ? ` (més freqüent: ${ERR[top].toLowerCase()})` : ''}`, ...selfLines()].join('\n');
+  }
+  $('mksum').onclick = () => { if (!$('stname').value.trim()) { $('stname').focus(); $('stname').placeholder = 'Escriu el teu nom primer'; return; } $('sumtxt').value = summary(); $('sumbox').hidden = false; $('copymsg').textContent = 'Enganxa\'l com a comentari privat a la tasca del Classroom.'; };
+  $('copysum').onclick = async () => { const t = $('sumtxt'); try { await navigator.clipboard.writeText(t.value); $('copymsg').textContent = 'Copiat! Ara enganxa\'l al Classroom.'; } catch (e) { t.focus(); t.select(); $('copymsg').textContent = 'Selecciona el text i copia\'l amb Ctrl+C (o mantén premut al mòbil).'; } };
+  $('reset').onclick = () => { $('confirm').hidden = false; };
+  $('no').onclick = () => { $('confirm').hidden = true; };
+  $('yes').onclick = () => { S = blank(); EVAL.zones.forEach(z => S.zones[z.id] = { ok: 0, boss: false }); save(); $('confirm').hidden = true; tab(false); mode = 'train'; boss = null; renderTop(); renderMap(); next(); };
+  renderTop(); renderMap(); next();
+})();
+</script>
+
+</body></html>

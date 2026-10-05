@@ -1,0 +1,106 @@
+# Corbatera Games Studio · Matemàtiques A
+
+Gamificació de **Matemàtiques A · 4t ESO** (Corbatera Institut Escola, curs 2026–2027) dins de la situació d'aprenentatge «Corbatera Games Studio».
+L'alumnat resol cada missió **pas a pas** i tot el procés (respostes, intents fallits, pistes) queda registrat en un **diari de procés** que es pot descarregar com a informe.
+
+## Contingut
+
+| Nivell | Fase | Missió | Sabers |
+|---|---|---|---|
+| **0 · Tutorial** (U1) | 1 | Tria el teu personatge | Classificació: ℕ, ℤ, ℚ, I, ℝ |
+| | 2 | Els cofres del tresor | Decimal exacte, periòdic pur i mixt, il·limitat |
+| | 3 | Les regles del joc | Intervals: desigualtat, notació, paraules, recta |
+| | 4 | La pista de curses | Arrodoniment, truncament, error absolut |
+| | 5 | Caça el bug | Errors conceptuals de la U1 |
+| | BOSS | Prova d'accés a l'estudi | Un exercici de cada fase, sense pistes |
+| **1 · Memòria i píxels** (U2) | 1 | Quants colors? | Potències, bits, exponent 0 i negatiu |
+| | 2 | Quant ocupa? | Propietats de les potències |
+| | 3 | Caça de bugs | Errors típics amb potències |
+| | 4 | Xifres del joc | Notació científica i la «E» de la calculadora |
+| | 5 | El servidor | Operacions en notació científica |
+| | 6 | Distància entre personatges | Arrels i teorema de Pitàgores |
+| | 7 | Escalat de sprites | Extreure factors d'un radical |
+| | 8 | Camins del mapa | Operacions amb radicals |
+| | BOSS | Boss del Nivell 1 | Un exercici de cada fase, sense pistes |
+| **2 · La física del salt** (U3) | 1 | El salt com a fórmula | Monomis, polinomis i valor numèric |
+| | 2 | Salts diferents | Sumar i restar polinomis |
+| | 3 | L'àrea jugable | Multiplicar polinomis (taula de l'àrea) |
+| | 4 | Quadrats que creixen | Productes notables i càlcul mental |
+| | 5 | Caça de bugs algebraics | Errors típics amb polinomis |
+| | 6 | Desfer la multiplicació | Factor comú i identitats al revés |
+| | 7 | Repartir la pantalla | Divisió entre (x − a), D = d · q + r |
+| | 8 | Ruffini: quan toca a terra? | Ruffini, teorema del residu, arrels enteres |
+| | BOSS | Boss del Nivell 2 | Un exercici de cada fase, sense pistes |
+| **3 · La botiga i el llançament** (U4) | 1 | Situar plataformes | Equacions de 1r grau (parèntesis i denominadors) |
+| | 2 | Quan aterra el salt? | Equacions de 2n grau: fórmula general |
+| | 3 | Dreceres | Equacions de 2n grau incompletes i factoritzades |
+| | 4 | El salt arriba a la plataforma? | Discriminant i nombre de solucions |
+| | 5 | Del joc a l'equació | Problemes amb el mètode dels quatre passos |
+| | 6 | La botiga: rebaixes i IVA | Percentatges i índex de variació |
+| | 7 | Estalviar o finançar? | Variacions encadenades, interès simple i compost |
+| | 8 | El preu mínim | Inequacions de 1r grau i intervals |
+| | 9 | Packs a la gràfica | Sistemes 2×2: resolució gràfica i tipus |
+| | 10 | Tres camins | Substitució, igualació i reducció |
+| | BOSS | Boss del Nivell 3 | Un exercici de cada fase, sense pistes |
+
+L'ampliació (racionalització, exponents fraccionaris, fraccions algebraiques, biquadrades, inequacions de 2n grau, sistemes no lineals…) no hi és, perquè no entra a les proves.
+
+Als polinomis, l'alumnat escriu cada coeficient en una casella amb el seu signe (0 si el terme no hi és).
+
+## Campanya i mode entrenament
+
+El mapa té dues parts:
+
+- **Campanya · ara mateix:** els nivells 2 i 3. Dins de cada nivell, les fases s'obren en ordre.
+- **Mode entrenament:** per repassar el que ja s'ha fet.
+  - **Preguntes ràpides** (`entrenament-1a.html` i `entrenament-2a.html`): el mode entrenament que ja teníem, amb preguntes noves cada vegada, diari d'errors C/P/D, boss per nivell, «El meu avanç» i «Resum per a la profe».
+  - **Nivells 0 i 1** del joc pas a pas, amb totes les fases obertes.
+
+Els XP de les preguntes ràpides també sumen per al rang del joc (es llegeixen del mateix navegador). Per canviar quins nivells són d'entrenament, edita `var ENTRENAMENT = ['N0', 'N1'];` a `js/app.js` (per exemple, afegeix-hi `'N2'` quan s'acabi el Nivell 2).
+
+## Com funciona
+
+- **Pas a pas:** cada exercici està dividit en passos. Fins que un pas no és correcte no apareix el següent, i els passos resolts queden escrits a sobre com un procediment.
+- **Nombres personalitzats:** els nombres es generen a partir del nom de l'alumne/a, així cadascú té exercicis diferents. Si torna a jugar una missió, li surten nombres nous.
+- **XP:** 10 XP per pas a la primera; −3 per cada intent fallit (mínim 3); amb pista, màxim 5; si es mostra la solució (després de 3 intents), 0 XP. Compta la millor partida de cada missió.
+- **Rangs:** Becari/ària (0) → Junior dev (300) → Desenvolupador/a (900) → Sènior dev (1.700) → Lead dev (2.600) → Cap d'estudi (3.500 XP).
+- **Bosses:** sense pistes; cal un 60 % dels XP per superar-los.
+- **Desbloqueig:** a la campanya, la fase 1 de cada nivell està oberta i les altres s'obren en ordre. Al mode entrenament tot està obert.
+- **Diari de procés i informe:** el botó *Descarrega l'informe* genera un fitxer HTML amb el resum (missions, XP, passos a la primera, pistes, solucions mostrades) i el procés complet de cada exercici, amb els intents fallits ratllats. També es pot imprimir o desar com a PDF. L'alumnat el penja al Classroom.
+
+### Mode docent
+
+Afegint `?docent` a l'adreça (per exemple `https://USUARI.github.io/corbatera-games-studio/?docent`) totes les missions queden desbloquejades, per revisar-les o projectar-les.
+
+### On es guarda el progrés
+
+Al navegador de cada ordinador (`localStorage`). Si diversos alumnes fan servir el mateix ordinador, cadascú entra amb el seu nom. Si s'esborren les dades del navegador o es canvia d'ordinador, el progrés es perd: per això cal descarregar l'informe en acabar cada sessió.
+
+## Publicar-ho a GitHub Pages
+
+1. Crea un repositori nou a GitHub (per exemple `corbatera-games-studio`).
+2. Puja-hi **tot el contingut d'aquesta carpeta** (`index.html`, `entrenament-1a.html`, `entrenament-2a.html`, `css/`, `js/`, `README.md`, `.nojekyll`) a l'arrel del repositori. Des de la web: *Add file → Upload files* i arrossega-ho tot.
+3. Ves a *Settings → Pages*, a *Source* tria *Deploy from a branch*, branca `main` i carpeta `/ (root)`. Desa.
+4. Al cap d'un minut la pàgina serà a `https://USUARI.github.io/corbatera-games-studio/`.
+
+També funciona sense internet: obre `index.html` directament amb el navegador.
+
+## Estructura
+
+```
+index.html        pàgina principal (joc pas a pas)
+entrenament-1a.html  mode entrenament · preguntes ràpides de la 1a avaluació
+entrenament-2a.html  mode entrenament · preguntes ràpides de la 2a avaluació
+css/estil.css     estil (capçalera verda, etiquetes FASE, mode fosc)
+js/util.js        utilitats: atzar amb llavor, format, lectura de respostes, figures SVG
+js/nivell0.js     missions del Nivell 0 (U1)
+js/nivell1.js     missions del Nivell 1 (U2)
+js/nivell2.js     missions del Nivell 2 (U3)
+js/nivell3.js     missions del Nivell 3 (U4)
+js/app.js         motor del joc: mapa, passos, XP, diari i informe
+```
+
+Per afegir un nivell nou (per exemple, funcions a la 2a avaluació) n'hi ha prou de crear `js/nivell4.js` amb el mateix format (`CGS.NIVELLS.push({...})`) i enllaçar-lo a `index.html` abans d'`app.js`.
+
+---
+Docent: Laura · Corbatera Institut Escola
