@@ -1,7 +1,7 @@
 # Corbatera Games Studio · Matemàtiques A
 
 Gamificació de **Matemàtiques A · 4t ESO** (Corbatera Institut Escola, curs 2026–2027) dins de la situació d'aprenentatge «Corbatera Games Studio».
-L'alumnat resol cada missió **pas a pas** i tot el procés (respostes, intents fallits, pistes) queda registrat en un **diari de procés** que es pot descarregar com a informe.
+L'alumnat resol cada missió **pas a pas** i tot el procés (respostes, intents fallits, pistes) queda registrat en un **diari de procés** que es pot descarregar com a informe.   
 
 ## Contingut
 
