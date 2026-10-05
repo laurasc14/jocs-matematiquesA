@@ -1,0 +1,52 @@
+/* Apartat d'estudi (teoria) */
+.study { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 24px; max-width: 1120px; margin: 0 auto; padding: 18px 16px 40px; align-items: start; }
+@media (max-width: 860px) { .study { grid-template-columns: minmax(0, 1fr); } .toc { position: static !important; max-height: none !important; } }
+.toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: .92rem; }
+.toc h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 6px 0 8px; }
+.toc a { display: block; color: var(--ink); text-decoration: none; padding: 3px 6px; border-radius: 6px; }
+.toc a:hover, .toc a.on { background: var(--green-l); color: var(--green-d); }
+.toc .tu { font-weight: 700; margin-top: 8px; }
+.toc .ts { padding-left: 16px; font-size: .88rem; }
+.toc .tools { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+.toc .tools .btn { text-align: center; text-decoration: none; }
+.toc input { width: 100%; margin-bottom: 6px; }
+.unit { margin-bottom: 36px; }
+.unit > header { background: #2e7d32; color: #fff; border-radius: 12px; padding: 14px 18px; margin-bottom: 14px; }
+.unit > header h2 { margin: 4px 0 2px; font-size: 1.4rem; }
+.unit > header p { margin: 0; opacity: .9; }
+.unit > header .badge { background: #fff; color: #2e7d32; }
+.topic { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; margin: 14px 0; scroll-margin-top: 12px; }
+.topic h3 { margin: 0 0 8px; font-size: 1.15rem; color: var(--green-d); }
+.topic h4 { margin: 14px 0 4px; font-size: 1rem; }
+.topic p, .topic li { line-height: 1.6; }
+.topic ul, .topic ol { padding-left: 22px; margin: 6px 0; }
+.def, .prop, .ex, .warn2, .lect { border-radius: 8px; padding: 10px 14px; margin: 10px 0; }
+.def { background: var(--green-l); border-left: 4px solid var(--green); }
+.prop { background: var(--card); border: 1.5px solid var(--green); }
+.ex { background: var(--bg); border-left: 4px solid #1e88e5; }
+.warn2 { background: var(--red-l); border-left: 4px solid var(--red); }
+.lect { background: var(--gold-l); border-left: 4px solid var(--gold); font-size: .95rem; }
+.def::before, .prop::before, .ex::before, .warn2::before, .lect::before { display: block; font-weight: 800; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+.def::before { content: 'Definició'; color: var(--green-d); }
+.prop::before { content: 'Regles i fórmules'; color: var(--green-d); }
+.ex::before { content: 'Exemple resolt'; color: #1e88e5; }
+.warn2::before { content: 'Compte! Errors típics'; color: var(--red); }
+.lect::before { content: 'Per saber-ne més (només lectura)'; color: var(--gold); }
+.f { font-size: 1.12rem; text-align: center; margin: 8px 0; }
+.st { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .95rem; line-height: 1.8; }
+.tbl { border-collapse: collapse; margin: 8px 0; font-size: .95rem; }
+.tbl th, .tbl td { border: 1px solid var(--line); padding: 5px 10px; text-align: center; }
+.tbl th { background: var(--green-l); }
+.tblwrap { overflow-x: auto; }
+.practice { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; border-top: 1px dashed var(--line); padding-top: 10px; }
+.practice a { font-size: .85rem; text-decoration: none; padding: 5px 10px; border-radius: 16px; border: 1.5px solid var(--green); color: var(--green-d); background: var(--green-l); }
+.hidden-by-search { display: none; }
+.nores { color: var(--muted); padding: 10px; }
+@media print {
+  .toc, .top, .foot, .practice { display: none !important; }
+  .study { display: block; padding: 0; }
+  .topic { break-inside: avoid; border-color: #bbb; }
+  .unit { break-before: page; }
+  .unit:first-of-type { break-before: auto; }
+  .unit > header, .def, .warn2, .lect, .ex { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

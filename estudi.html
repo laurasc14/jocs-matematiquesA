@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estudi · Corbatera Games Studio</title>
+  <meta name="description" content="Teoria de Matemàtiques A (4t ESO) del 1r trimestre: nombres reals, potències i radicals, polinomis, equacions, percentatges, inequacions i sistemes.">
+  <link rel="stylesheet" href="css/estil.css">
+  <link rel="stylesheet" href="css/estudi.css">
+</head>
+<body>
+  <header class="top">
+    <div class="logo" aria-hidden="true">CGS</div>
+    <div>
+      <h1>Corbatera Games Studio · Estudi</h1>
+      <p>Matemàtiques A · 4t ESO · Teoria del 1r trimestre</p>
+    </div>
+  </header>
+
+  <div class="study">
+    <nav class="toc" aria-label="Índex">
+      <a href="index.html" class="btn ghost sm" style="display:block;text-align:center;margin-bottom:10px">← Tornar al joc</a>
+      <label for="cerca" class="small">Cerca a la teoria</label>
+      <input id="cerca" type="search" placeholder="Ex.: Ruffini, interval, IVA…" autocomplete="off">
+      <h2>Índex</h2>
+      <div id="tocl"></div>
+      <div class="tools"><button class="btn sm" onclick="window.print()">Imprimeix / PDF</button></div>
+    </nav>
+
+    <main id="contingut">
+      <p class="nores" id="nores" hidden>No hi ha cap apartat que contingui aquesta paraula.</p>
+
+      <!-- ===================================================== U1 ===================================================== -->
+      <section class="unit" id="u1">
+        <header><span class="badge">NIVELL 0 · TUTORIAL</span><h2>Unitat 1 · Els nombres reals</h2><p>Conjunts numèrics, expressió decimal, intervals i aproximacions</p></header>
+
+        <article class="topic" id="u1-conjunts">
+          <h3>1.1 Els conjunts numèrics</h3>
+          <div class="def">
+            <ul>
+              <li><b>Naturals (ℕ)</b>: 0, 1, 2, 3, 4… Serveixen per comptar.</li>
+              <li><b>Enters (ℤ)</b>: …, −3, −2, −1, 0, 1, 2, 3… Els naturals i els seus oposats.</li>
+              <li><b>Racionals (ℚ)</b>: els nombres que es poden escriure com una fracció <span class="frac"><span>a</span><span>b</span></span> amb a i b enters i b ≠ 0. La seva expressió decimal és <b>exacta</b> o <b>periòdica</b>.</li>
+              <li><b>Irracionals (I)</b>: els nombres que <b>no</b> es poden escriure com una fracció. Tenen infinites xifres decimals <b>sense període</b>: √<span class="rad">2</span>, √<span class="rad">5</span>, π, 1,010010001…</li>
+              <li><b>Reals (ℝ)</b>: tots els racionals i tots els irracionals junts: ℝ = ℚ ∪ I.</li>
+            </ul>
+          </div>
+          <div class="prop">
+            <p class="f">ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ &nbsp;&nbsp;i&nbsp;&nbsp; I ⊂ ℝ</p>
+            <p>Com les nines russes: tot natural és enter, tot enter és racional i tot racional és real. Un nombre no pot ser alhora racional i irracional.</p>
+          </div>
+          <div class="ex">
+            <ul>
+              <li>−7 → enter (−7 = <span class="frac"><span>−7</span><span>1</span></span>), per tant també racional i real.</li>
+              <li><span class="frac"><span>12</span><span>4</span></span> = 3 → natural, enter, racional i real.</li>
+              <li>√<span class="rad">49</span> = 7 → natural. −√<span class="rad">9</span> = −3 → enter.</li>
+              <li>2,3333… → decimal periòdic → racional.</li>
+              <li>√<span class="rad">7</span> = 2,6457513… → irracional.</li>
+            </ul>
+          </div>
+          <div class="warn2">
+            <ul>
+              <li>«Té infinits decimals, per tant és irracional» → <b>fals</b> si són periòdics: 0,333… = <span class="frac"><span>1</span><span>3</span></span> és racional.</li>
+              <li>«És una arrel, per tant és irracional» → <b>fals</b> si l'arrel és exacta: √<span class="rad">16</span> = 4.</li>
+              <li>«7 no és racional perquè no té decimals» → <b>fals</b>: 7 = <span class="frac"><span>7</span><span>1</span></span>.</li>
+            </ul>
+          </div>
+          <div class="practice"><a href="index.html#jugar=N0M1">Practica-ho: Tria el teu personatge →</a></div>
+        </article>
+
+        <article class="topic" id="u1-decimals">
+          <h3>1.2 L'expressió decimal</h3>
+          <p>Per passar una fracció a decimal es divideix el numerador entre el denominador.</p>
+          <div class="def">
+            <ul>
+              <li><b>Decimal exacte</b>: té un nombre finit de xifres decimals. <span class="frac"><span>3</span><span>4</span></span> = 0,75</li>
+              <li><b>Periòdic pur</b>: un bloc de xifres (el <b>període</b>) es repeteix just després de la coma. <span class="frac"><span>5</span><span>11</span></span> = 0,4545… = 0,<span class="per">45</span></li>
+              <li><b>Periòdic mixt</b>: abans del període hi ha xifres que no es repeteixen (l'<b>anteperíode</b>). <span class="frac"><span>7</span><span>6</span></span> = 1,1666… = 1,1<span class="per">6</span></li>
+              <li><b>Il·limitat no periòdic</b>: infinites xifres sense cap bloc que es repeteixi. √<span class="rad">2</span> = 1,41421356…</li>
+            </ul>
+          </div>
+          <div class="prop">
+            <div class="tblwrap"><table class="tbl">
+              <tr><th>Tipus de decimal</th><th>Tipus de nombre</th></tr>
+              <tr><td>Exacte</td><td>Racional</td></tr>
+              <tr><td>Periòdic (pur o mixt)</td><td>Racional</td></tr>
+              <tr><td>Il·limitat no periòdic</td><td>Irracional</td></tr>
+            </table></div>
+            <p>El període s'indica amb un arc o una ratlla a sobre: 2,<span class="per">3</span> vol dir 2,333…</p>
+          </div>
+          <div class="ex">
+            <p><span class="frac"><span>29</span><span>12</span></span> → 29 : 12 = 2,41666… → part entera 2, anteperíode 41, període 6 → periòdic mixt → racional.</p>
+          </div>
+          <div class="practice"><a href="index.html#jugar=N0M2">Practica-ho: Els cofres del tresor →</a></div>
+        </article>
+
+        <article class="topic" id="u1-intervals">
+          <h3>1.3 La recta real i els intervals</h3>
+          <p>Cada nombre real correspon a un punt de la recta i cada punt de la recta és un nombre real. Un <b>interval</b> és un tros de la recta.</p>
+          <div class="prop">
+            <div class="tblwrap"><table class="tbl">
+              <tr><th>Nom</th><th>Notació</th><th>Desigualtat</th><th>Extrems</th></tr>
+              <tr><td>Obert</td><td>(a, b)</td><td>a &lt; x &lt; b</td><td>cap inclòs</td></tr>
+              <tr><td>Tancat</td><td>[a, b]</td><td>a ≤ x ≤ b</td><td>tots dos inclosos</td></tr>
+              <tr><td>Semiobert</td><td>[a, b)</td><td>a ≤ x &lt; b</td><td>només a</td></tr>
+              <tr><td>Semiobert</td><td>(a, b]</td><td>a &lt; x ≤ b</td><td>només b</td></tr>
+              <tr><td>Semirecta</td><td>[a, +∞)</td><td>x ≥ a</td><td>a inclòs</td></tr>
+              <tr><td>Semirecta</td><td>(a, +∞)</td><td>x &gt; a</td><td>a no inclòs</td></tr>
+              <tr><td>Semirecta</td><td>(−∞, b]</td><td>x ≤ b</td><td>b inclòs</td></tr>
+              <tr><td>Semirecta</td><td>(−∞, b)</td><td>x &lt; b</td><td>b no inclòs</td></tr>
+            </table></div>
+            <ul>
+              <li>Claudàtor [ ] i punt <b>ple</b> ● a la recta: l'extrem hi és (≤, ≥).</li>
+              <li>Parèntesi ( ) i punt <b>buit</b> ○ a la recta: l'extrem no hi és (&lt;, &gt;).</li>
+              <li>L'infinit (−∞, +∞) no és un nombre: sempre va amb parèntesi.</li>
+            </ul>
+          </div>
+          <div class="prop">
+            <p><b>De paraules a símbols</b>: «com a mínim 3» → x ≥ 3 · «com a màxim 5» → x ≤ 5 · «més de 2» → x &gt; 2 · «menys de 8» → x &lt; 8 · «entre 1 i 4, tots dos inclosos» → 1 ≤ x ≤ 4.</p>
+          </div>
+          <div class="ex">
+            <p>−2 &lt; x ≤ 5 → (−2, 5]. Pertany el −2? No (parèntesi). I el 5? Sí (claudàtor). I el 0? Sí.</p>
+            <p>«Per obrir la porta calen com a mínim 10 punts» → x ≥ 10 → [10, +∞).</p>
+          </div>
+          <div class="practice"><a href="index.html#jugar=N0M3">Practica-ho: Les regles del joc →</a></div>
+        </article>
+
+        <article class="topic" id="u1-aproximacions">
+          <h3>1.4 Aproximacions i error</h3>
+          <div class="def">
+            <ul>
+              <li><b>Truncar</b> a una xifra: tallar i eliminar totes les xifres que van darrere. 3,1478 truncat a les centèsimes → 3,14.</li>
+              <li><b>Arrodonir</b> a una xifra: mirar la xifra següent; si és <b>5 o més</b>, la darrera xifra que queda puja 1; si és menor que 5, es queda igual. 3,1478 arrodonit a les centèsimes → 3,15.</li>
+              <li><b>Error absolut</b>: la diferència entre el valor real i l'aproximació, sempre en positiu.</li>
+            </ul>
+          </div>
+          <div class="prop"><p class="f">Error absolut = | valor real − aproximació |</p><p>La millor aproximació és la que comet <b>menys error</b>. L'arrodoniment mai comet més error que el truncament.</p></div>
+          <div class="ex">
+            <p>x = 12,3478 a les centèsimes: arrodoniment 12,35 → error |12,3478 − 12,35| = 0,0022. Truncament 12,34 → error 0,0078. L'arrodoniment és més precís.</p>
+          </div>
+          <div class="warn2"><ul><li>Arrodonir 2,46 a les dècimes dona 2,5 (no 2,4).</li><li>π = 3,14 és fals: 3,14 és només una aproximació de π (π ≈ 3,14).</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N0M4">Practica-ho: La pista de curses →</a><a href="index.html#jugar=N0M5">Caça el bug →</a></div>
+        </article>
+      </section>
+
+      <!-- ===================================================== U2 ===================================================== -->
+      <section class="unit" id="u2">
+        <header><span class="badge">NIVELL 1 · MEMÒRIA I PÍXELS</span><h2>Unitat 2 · Potències i radicals</h2><p>Potències, propietats, notació científica, arrels, radicals i Pitàgores</p></header>
+
+        <article class="topic" id="u2-potencies">
+          <h3>2.1 Potències</h3>
+          <div class="def">
+            <p>Una potència és un producte de factors iguals: <b>a<sup>n</sup> = a · a · … · a</b> (n vegades). <b>a</b> és la <b>base</b> i <b>n</b> l'<b>exponent</b>.</p>
+          </div>
+          <div class="prop">
+            <ul>
+              <li>a<sup>1</sup> = a &nbsp;·&nbsp; <b>a<sup>0</sup> = 1</b> (si a ≠ 0)</li>
+              <li><b>Exponent negatiu</b>: a<sup>−n</sup> = <span class="frac"><span>1</span><span>a<sup>n</sup></span></span>. Ex.: 2<sup>−3</sup> = <span class="frac"><span>1</span><span>8</span></span> = 0,125</li>
+              <li><b>Signe</b> amb base negativa: exponent <b>parell</b> → positiu; exponent <b>senar</b> → negatiu. (−2)<sup>4</sup> = 16 · (−2)<sup>3</sup> = −8</li>
+              <li>Compte amb el parèntesi: (−3)<sup>2</sup> = 9, però −3<sup>2</sup> = −9 (l'exponent només afecta el 3).</li>
+            </ul>
+          </div>
+          <div class="ex"><p>Amb n bits es poden guardar 2<sup>n</sup> combinacions: 8 bits = 2<sup>8</sup> = 256 valors. Un color RGB (3 canals de 8 bits) té 2<sup>24</sup> = 16.777.216 colors.</p></div>
+          <div class="warn2"><ul><li>a<sup>0</sup> = 1, no 0.</li><li>2<sup>−3</sup> no és −8: l'exponent negatiu no fa negatiu el resultat, indica l'invers.</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N1M1">Practica-ho: Quants colors? →</a></div>
+        </article>
+
+        <article class="topic" id="u2-propietats">
+          <h3>2.2 Propietats de les potències</h3>
+          <div class="prop">
+            <div class="tblwrap"><table class="tbl">
+              <tr><th>Propietat</th><th>Regla</th><th>Exemple</th></tr>
+              <tr><td>Producte, mateixa base</td><td>a<sup>m</sup> · a<sup>n</sup> = a<sup>m+n</sup></td><td>2<sup>6</sup> · 2<sup>14</sup> = 2<sup>20</sup></td></tr>
+              <tr><td>Quocient, mateixa base</td><td>a<sup>m</sup> : a<sup>n</sup> = a<sup>m−n</sup></td><td>2<sup>30</sup> : 2<sup>14</sup> = 2<sup>16</sup></td></tr>
+              <tr><td>Potència d'una potència</td><td>(a<sup>m</sup>)<sup>n</sup> = a<sup>m·n</sup></td><td>(2<sup>8</sup>)<sup>3</sup> = 2<sup>24</sup></td></tr>
+              <tr><td>Potència d'un producte</td><td>(a · b)<sup>n</sup> = a<sup>n</sup> · b<sup>n</sup></td><td>3<sup>4</sup> · 5<sup>4</sup> = 15<sup>4</sup></td></tr>
+              <tr><td>Potència d'un quocient</td><td>(a : b)<sup>n</sup> = a<sup>n</sup> : b<sup>n</sup></td><td>12<sup>3</sup> : 4<sup>3</sup> = 3<sup>3</sup></td></tr>
+            </table></div>
+          </div>
+          <div class="ex"><p class="st">(5<sup>3</sup> · 5<sup>4</sup>) : 5<sup>2</sup> = 5<sup>7</sup> : 5<sup>2</sup> = 5<sup>5</sup> = 3.125</p></div>
+          <div class="warn2"><ul>
+            <li>3<sup>4</sup> · 3<sup>2</sup> = 3<sup>6</sup>, no 3<sup>8</sup> (en un producte els exponents se <b>sumen</b>).</li>
+            <li>(2<sup>3</sup>)<sup>2</sup> = 2<sup>6</sup>, no 2<sup>5</sup> (en una potència d'una potència es <b>multipliquen</b>).</li>
+            <li>Les propietats <b>no</b> serveixen per a sumes: 2<sup>3</sup> + 2<sup>3</sup> = 16 = 2<sup>4</sup>, no 2<sup>6</sup>.</li>
+          </ul></div>
+          <div class="practice"><a href="index.html#jugar=N1M2">Practica-ho: Quant ocupa? →</a><a href="index.html#jugar=N1M3">Caça de bugs →</a></div>
+        </article>
+
+        <article class="topic" id="u2-nc">
+          <h3>2.3 Notació científica</h3>
+          <div class="def"><p>Un nombre està en notació científica si s'escriu com <b>a · 10<sup>n</sup></b>, amb <b>1 ≤ a &lt; 10</b> (una sola xifra no nul·la davant la coma) i n enter.</p></div>
+          <div class="prop">
+            <ul>
+              <li><b>Nombres grans</b> → n positiu: la coma es mou cap a l'esquerra. 50.000.000.000 = 5 · 10<sup>10</sup></li>
+              <li><b>Nombres petits</b> (entre 0 i 1) → n negatiu: la coma es mou cap a la dreta. 0,00028 = 2,8 · 10<sup>−4</sup></li>
+              <li><b>Comparar</b>: primer es mira l'exponent (més gran → nombre més gran; compte: −3 &gt; −4). Si és igual, es mira el nombre de davant.</li>
+              <li><b>Calculadora</b>: la tecla ×10<sup>x</sup> (o EXP) i la «E» de la pantalla: <code>6.02E23</code> = 6,02 · 10<sup>23</sup>, <code>1.5E-3</code> = 1,5 · 10<sup>−3</sup>.</li>
+            </ul>
+          </div>
+          <div class="prop">
+            <p><b>Operar</b>: producte → es multipliquen els nombres i se <b>sumen</b> els exponents. Quocient → es divideixen els nombres i es <b>resten</b> els exponents. Al final, si el nombre de davant no és entre 1 i 10, es corregeix.</p>
+          </div>
+          <div class="ex">
+            <p class="st">(6 · 10<sup>3</sup>) · (3,9 · 10<sup>4</sup>) = 23,4 · 10<sup>7</sup> = 2,34 · 10<sup>8</sup></p>
+            <p class="st">(1,2 · 10<sup>9</sup>) : (4 · 10<sup>3</sup>) = 0,3 · 10<sup>6</sup> = 3 · 10<sup>5</sup></p>
+          </div>
+          <div class="warn2"><ul><li>23,4 · 10<sup>7</sup> és correcte però no està en notació científica: 23,4 = 2,34 · 10, per tant l'exponent puja 1.</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N1M4">Practica-ho: Xifres del joc →</a><a href="index.html#jugar=N1M5">El servidor →</a></div>
+        </article>
+
+        <article class="topic" id="u2-arrels">
+          <h3>2.4 Arrels i radicals</h3>
+          <div class="def">
+            <p>L'<b>arrel n-èsima</b> d'un nombre a és el nombre b que, elevat a n, dona a: <b><sup class="idx">n</sup>√<span class="rad">a</span> = b ⟺ b<sup>n</sup> = a</b>. L'arrel és l'operació inversa de la potència.</p>
+            <p>En <sup class="idx">n</sup>√<span class="rad">a</span>: <b>n</b> és l'<b>índex</b> i <b>a</b> el <b>radicand</b>. Si l'índex és 2 no s'escriu.</p>
+          </div>
+          <div class="prop">
+            <ul>
+              <li>√<span class="rad">49</span> = 7 perquè 7<sup>2</sup> = 49 · <sup class="idx">3</sup>√<span class="rad">125</span> = 5 perquè 5<sup>3</sup> = 125 · <sup class="idx">3</sup>√<span class="rad">−8</span> = −2.</li>
+              <li><b>Arrel exacta</b>: el radicand és un quadrat (o cub…) perfecte → el resultat és racional.</li>
+              <li><b>Arrel no exacta</b>: √<span class="rad">2</span>, √<span class="rad">7</span>… → el resultat és <b>irracional</b> i s'aproxima.</li>
+              <li>Amb índex parell, el radicand no pot ser negatiu: √<span class="rad">−4</span> no existeix als reals.</li>
+            </ul>
+          </div>
+          <div class="lect"><p>Un radical es pot escriure com una potència d'exponent fraccionari: <sup class="idx">n</sup>√<span class="rad">a</span> = a<sup>1/n</sup>. Per exemple, √<span class="rad">a</span> = a<sup>1/2</sup>.</p></div>
+        </article>
+
+        <article class="topic" id="u2-radicals">
+          <h3>2.5 Simplificar i operar radicals</h3>
+          <div class="prop">
+            <h4>Extreure factors</h4>
+            <ol><li>Descompon el radicand en factors primers.</li><li>Cada parella de factors iguals surt fora de l'arrel com un sol factor.</li><li>El que no fa parella es queda a dins.</li></ol>
+            <p class="st">√<span class="rad">72</span> = √<span class="rad">2<sup>3</sup> · 3<sup>2</sup></span> = √<span class="rad">2<sup>2</sup> · 3<sup>2</sup> · 2</span> = 2 · 3 · √<span class="rad">2</span> = 6√<span class="rad">2</span></p>
+          </div>
+          <div class="prop">
+            <h4>Operacions (mateix índex)</h4>
+            <ul>
+              <li><b>Producte</b>: √<span class="rad">a</span> · √<span class="rad">b</span> = √<span class="rad">a · b</span> &nbsp;&nbsp; √<span class="rad">2</span> · √<span class="rad">8</span> = √<span class="rad">16</span> = 4</li>
+              <li><b>Quocient</b>: √<span class="rad">a</span> : √<span class="rad">b</span> = √<span class="rad">a : b</span> &nbsp;&nbsp; √<span class="rad">50</span> : √<span class="rad">2</span> = √<span class="rad">25</span> = 5</li>
+              <li><b>Suma i resta</b>: només es poden sumar radicals <b>semblants</b> (mateix índex i mateix radicand). Se sumen els coeficients: 3√<span class="rad">2</span> + 5√<span class="rad">2</span> = 8√<span class="rad">2</span>.</li>
+            </ul>
+          </div>
+          <div class="ex"><p class="st">√<span class="rad">27</span> + √<span class="rad">75</span> = 3√<span class="rad">3</span> + 5√<span class="rad">3</span> = 8√<span class="rad">3</span></p><p>Si l'àrea d'un sprite de 4 × 4 px es duplica (32 px<sup>2</sup>), el costat nou és √<span class="rad">32</span> = 4√<span class="rad">2</span> ≈ 5,66 px: el costat no es duplica, es multiplica per √<span class="rad">2</span>.</p></div>
+          <div class="warn2"><ul><li>√<span class="rad">2</span> + √<span class="rad">3</span> ≠ √<span class="rad">5</span>. L'arrel d'una suma no és la suma de les arrels.</li><li>√<span class="rad">2</span> + √<span class="rad">2</span> = 2√<span class="rad">2</span>, no √<span class="rad">4</span>.</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N1M7">Practica-ho: Escalat de sprites →</a><a href="index.html#jugar=N1M8">Camins del mapa →</a></div>
+        </article>
+
+        <article class="topic" id="u2-pitagores">
+          <h3>2.6 Teorema de Pitàgores i distància entre dos punts</h3>
+          <div class="def"><p>En un triangle rectangle, el quadrat de la hipotenusa és igual a la suma dels quadrats dels catets: <b>h<sup>2</sup> = a<sup>2</sup> + b<sup>2</sup></b>.</p></div>
+          <div class="prop">
+            <p>Distància entre A(x<sub>1</sub>, y<sub>1</sub>) i B(x<sub>2</sub>, y<sub>2</sub>): els catets són les diferències de coordenades.</p>
+            <p class="f">d = √<span class="rad">(x<sub>2</sub> − x<sub>1</sub>)<sup>2</sup> + (y<sub>2</sub> − y<sub>1</sub>)<sup>2</sup></span></p>
+          </div>
+          <div class="ex"><p class="st">H(2, 1), E(8, 9): catets 6 i 8 → d = √<span class="rad">36 + 64</span> = √<span class="rad">100</span> = 10<br>H(9, 3), E(6, 10): catets 3 i 7 → d = √<span class="rad">58</span> ≈ 7,62 (irracional)</p></div>
+          <div class="warn2"><ul><li>La distància en línia recta no és la suma dels catets (6 + 8 = 14 ≠ 10).</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N1M6">Practica-ho: Distància entre personatges →</a></div>
+        </article>
+      </section>
+
+      <!-- ===================================================== U3 ===================================================== -->
+      <section class="unit" id="u3">
+        <header><span class="badge">NIVELL 2 · LA FÍSICA DEL SALT</span><h2>Unitat 3 · Polinomis</h2><p>Monomis, operacions, productes notables, factorització, divisió i Ruffini</p></header>
+
+        <article class="topic" id="u3-monomis">
+          <h3>3.1 Monomis i polinomis</h3>
+          <div class="def">
+            <ul>
+              <li><b>Monomi</b>: un nombre multiplicat per lletres elevades a exponents naturals. En −5t<sup>2</sup>: <b>coeficient</b> −5, <b>part literal</b> t<sup>2</sup>, <b>grau</b> 2.</li>
+              <li><b>Monomis semblants</b>: tenen la mateixa part literal (3x<sup>2</sup> i −x<sup>2</sup>). Només els semblants es poden sumar.</li>
+              <li><b>Polinomi</b>: suma de monomis. El seu <b>grau</b> és el del monomi de grau més alt. El <b>terme independent</b> és el que no té lletra.</li>
+              <li><b>Valor numèric</b> P(a): el resultat de substituir la lletra per un nombre a.</li>
+            </ul>
+          </div>
+          <div class="ex">
+            <p>h(t) = −5t<sup>2</sup> + 20t + 5 → 3 termes, grau 2, coeficients −5 i 20, terme independent 5.</p>
+            <p class="st">h(1,5) = −5 · 1,5<sup>2</sup> + 20 · 1,5 + 5 = −11,25 + 30 + 5 = 23,75 m</p>
+          </div>
+          <div class="warn2"><ul><li>Substitueix amb parèntesis: si t = −2, t<sup>2</sup> = (−2)<sup>2</sup> = 4, no −4.</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N2M1">Practica-ho: El salt com a fórmula →</a></div>
+        </article>
+
+        <article class="topic" id="u3-operacions">
+          <h3>3.2 Suma, resta i producte de polinomis</h3>
+          <div class="prop">
+            <ul>
+              <li><b>Sumar</b>: s'ajunten els monomis semblants (se sumen els coeficients; la part literal no canvia).</li>
+              <li><b>Restar</b>: es canvia el signe de <b>tots</b> els termes del segon polinomi i se sumen.</li>
+              <li><b>Monomi × polinomi</b>: el monomi multiplica cada terme. 3x(2x − 5) = 6x<sup>2</sup> − 15x</li>
+              <li><b>Polinomi × polinomi</b>: cada terme del primer per cada terme del segon (taula de l'àrea) i després s'ajunten els semblants.</li>
+              <li>En multiplicar monomis: coeficients per coeficients i lletres sumant exponents: 2x · 3x = 6x<sup>2</sup>.</li>
+            </ul>
+          </div>
+          <div class="ex">
+            <p class="st">(3x<sup>2</sup> + 2x) − (x<sup>2</sup> − 5x) = 3x<sup>2</sup> + 2x − x<sup>2</sup> + 5x = 2x<sup>2</sup> + 7x</p>
+            <div class="tblwrap"><table class="tbl"><tr><th>×</th><th>x</th><th>+5</th></tr><tr><th>x</th><td>x<sup>2</sup></td><td>5x</td></tr><tr><th>+3</th><td>3x</td><td>15</td></tr></table></div>
+            <p class="st">(x + 3)(x + 5) = x<sup>2</sup> + 5x + 3x + 15 = x<sup>2</sup> + 8x + 15</p>
+          </div>
+          <div class="warn2"><ul><li>3x<sup>2</sup> + 2x<sup>2</sup> = 5x<sup>2</sup>, no 5x<sup>4</sup>.</li><li>−(2x − 3) = −2x + 3: el menys canvia tots els signes.</li><li>x(x − 2) = x<sup>2</sup> − 2x, no x<sup>2</sup> − 2.</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N2M2">Practica-ho: Salts diferents →</a><a href="index.html#jugar=N2M3">L'àrea jugable →</a></div>
+        </article>
+
+        <article class="topic" id="u3-notables">
+          <h3>3.3 Productes notables</h3>
+          <div class="prop">
+            <p class="f">(a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup></p>
+            <p class="f">(a − b)<sup>2</sup> = a<sup>2</sup> − 2ab + b<sup>2</sup></p>
+            <p class="f">(a + b)(a − b) = a<sup>2</sup> − b<sup>2</sup></p>
+            <p>Quadrat d'una suma: quadrat del primer, més el <b>doble producte</b>, més quadrat del segon. El doble producte són les dues peces rectangulars del dibuix d'un quadrat de costat a + b.</p>
+          </div>
+          <div class="ex">
+            <p class="st">(2x − 3)<sup>2</sup> = 4x<sup>2</sup> − 12x + 9<br>(x + 7)(x − 7) = x<sup>2</sup> − 49<br>21<sup>2</sup> = (20 + 1)<sup>2</sup> = 400 + 40 + 1 = 441<br>49 · 51 = (50 − 1)(50 + 1) = 2.500 − 1 = 2.499</p>
+          </div>
+          <div class="warn2"><ul><li>(x + 4)<sup>2</sup> ≠ x<sup>2</sup> + 16: falta el doble producte 8x.</li><li>(2x)<sup>3</sup> = 8x<sup>3</sup>: la potència afecta el coeficient i la lletra.</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N2M4">Practica-ho: Quadrats que creixen →</a><a href="index.html#jugar=N2M5">Caça de bugs algebraics →</a></div>
+        </article>
+
+        <article class="topic" id="u3-factoritzar">
+          <h3>3.4 Factoritzar</h3>
+          <div class="def"><p><b>Factoritzar</b> és escriure un polinomi com un producte. És el camí invers de multiplicar. Sempre es pot comprovar multiplicant.</p></div>
+          <div class="prop">
+            <ol>
+              <li><b>Factor comú</b>: el nombre més gran que divideix tots els coeficients i cada lletra amb l'exponent més petit. 6x<sup>3</sup> − 9x<sup>2</sup> = 3x<sup>2</sup>(2x − 3)</li>
+              <li><b>Identitats notables al revés</b>: x<sup>2</sup> − 36 = (x + 6)(x − 6) · x<sup>2</sup> + 10x + 25 = (x + 5)<sup>2</sup> · 4x<sup>2</sup> − 12x + 9 = (2x − 3)<sup>2</sup></li>
+              <li><b>Ruffini</b> (apartat 3.6) quan no funciona cap de les anteriors.</li>
+            </ol>
+            <p>Sovint cal fer-ne més d'un: 2x<sup>3</sup> − 18x = 2x(x<sup>2</sup> − 9) = 2x(x + 3)(x − 3).</p>
+          </div>
+          <div class="prop"><p><b>Un producte val 0 si algun dels factors val 0.</b> Per això factoritzar serveix per trobar quan un polinomi val 0.</p></div>
+          <div class="ex"><p class="st">h(t) = −5t<sup>2</sup> + 20t = −5t(t − 4) = 0 → t = 0 (salta) o t = 4 (aterra)</p></div>
+          <div class="practice"><a href="index.html#jugar=N2M6">Practica-ho: Desfer la multiplicació →</a></div>
+        </article>
+
+        <article class="topic" id="u3-divisio">
+          <h3>3.5 Divisió de polinomis</h3>
+          <div class="prop">
+            <p class="f">Dividend = divisor · quocient + residu &nbsp;&nbsp;&nbsp; D = d · q + r</p>
+            <p>El grau del residu és més petit que el del divisor. Si r = 0, la divisió és exacta.</p>
+            <ol><li>Divideix el primer terme del dividend entre el primer del divisor.</li><li>Multiplica el resultat per tot el divisor.</li><li>Resta-ho del dividend (canvia els signes).</li><li>Baixa el terme següent i repeteix fins que el grau del que queda sigui menor que el del divisor.</li></ol>
+          </div>
+          <div class="ex">
+            <p class="st">(x<sup>2</sup> + 7x + 12) : (x + 3)<br>x<sup>2</sup> : x = x → x(x + 3) = x<sup>2</sup> + 3x → resta: 4x + 12<br>4x : x = 4 → 4(x + 3) = 4x + 12 → resta: 0<br>Quocient x + 4, residu 0. Comprovació: (x + 3)(x + 4) = x<sup>2</sup> + 7x + 12 ✔</p>
+          </div>
+          <div class="practice"><a href="index.html#jugar=N2M7">Practica-ho: Repartir la pantalla →</a></div>
+        </article>
+
+        <article class="topic" id="u3-ruffini">
+          <h3>3.6 Regla de Ruffini, teorema del residu i arrels</h3>
+          <div class="prop">
+            <p><b>Ruffini</b> divideix un polinomi entre (x − a) fent servir només els coeficients:</p>
+            <ol><li>Escriu els coeficients ordenats, amb <b>0</b> als termes que falten. A l'esquerra posa <b>a</b> (compte: dividir entre x + 2 vol dir a = −2).</li><li>Baixa el primer coeficient.</li><li>Multiplica'l per a i posa el resultat sota el coeficient següent. Suma.</li><li>Repeteix. L'últim nombre és el <b>residu</b>; els altres són els coeficients del quocient (un grau menys).</li></ol>
+          </div>
+          <div class="ex">
+            <p>(x<sup>3</sup> − 2x<sup>2</sup> − 5x + 6) : (x − 1)</p>
+            <div class="tblwrap"><table class="ruffini"><tr><td class="ra"></td><td>1</td><td>−2</td><td>−5</td><td class="rlast">6</td></tr><tr class="rmid"><td class="ra">1</td><td></td><td>1</td><td>−1</td><td class="rlast">−6</td></tr><tr class="rbot"><td class="ra"></td><td>1</td><td>−1</td><td>−6</td><td class="rlast">0</td></tr></table></div>
+            <p>Quocient x<sup>2</sup> − x − 6, residu 0. Per tant x<sup>3</sup> − 2x<sup>2</sup> − 5x + 6 = (x − 1)(x<sup>2</sup> − x − 6) = (x − 1)(x − 3)(x + 2).</p>
+          </div>
+          <div class="prop">
+            <ul>
+              <li><b>Teorema del residu</b>: el residu de dividir P(x) entre (x − a) és P(a).</li>
+              <li>Si P(a) = 0, <b>a és una arrel</b> del polinomi i (x − a) n'és un factor.</li>
+              <li>Les <b>arrels enteres</b> d'un polinomi (amb coeficients enters) són <b>divisors del terme independent</b>. Si el terme independent és 6, es proven ±1, ±2, ±3, ±6.</li>
+              <li><b>Factorització completa</b>: cada arrel a dona un factor (x − a).</li>
+            </ul>
+          </div>
+          <div class="ex"><p class="st">h(t) = t<sup>3</sup> − 9t<sup>2</sup> + 20t = t(t<sup>2</sup> − 9t + 20) = t(t − 4)(t − 5) → a terra a t = 0, 4 i 5 s</p></div>
+          <div class="warn2"><ul><li>Oblidar el 0 d'un terme que falta (x<sup>3</sup> − 7x + 6 → coeficients 1, 0, −7, 6).</li><li>Arrel 3 → factor (x − 3), no (x + 3).</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N2M8">Practica-ho: Ruffini: quan toca a terra? →</a></div>
+        </article>
+      </section>
+
+      <!-- ===================================================== U4 ===================================================== -->
+      <section class="unit" id="u4">
+        <header><span class="badge">NIVELL 3 · LA BOTIGA I EL LLANÇAMENT</span><h2>Unitat 4 · Equacions, percentatges, inequacions i sistemes</h2><p>Equacions de 1r i 2n grau, problemes, percentatges i interessos, inequacions i sistemes 2×2</p></header>
+
+        <article class="topic" id="u4-eq1">
+          <h3>4.1 Equacions de primer grau</h3>
+          <div class="def"><p>Una <b>equació</b> és una igualtat amb una incògnita. <b>Resoldre-la</b> és trobar el valor (la <b>solució</b>) que la fa certa. Dues equacions són <b>equivalents</b> si tenen la mateixa solució.</p></div>
+          <div class="prop">
+            <ol><li>Treu els parèntesis.</li><li>Si hi ha denominadors, multiplica tots els termes pel <b>m.c.m.</b> dels denominadors.</li><li>Lletres a un costat i nombres a l'altre (el que canvia de costat canvia de signe).</li><li>Agrupa i aïlla la x.</li><li>Comprova la solució a l'equació inicial.</li></ol>
+          </div>
+          <div class="ex">
+            <p class="st">3(x − 2) = x + 4 → 3x − 6 = x + 4 → 3x − x = 4 + 6 → 2x = 10 → x = 5<br>Comprova: 3 · (5 − 2) = 9 i 5 + 4 = 9 ✔</p>
+            <p class="st"><span class="frac"><span>x</span><span>2</span></span> + <span class="frac"><span>x</span><span>3</span></span> = 10 → m.c.m. = 6 → 3x + 2x = 60 → 5x = 60 → x = 12</p>
+          </div>
+          <div class="warn2"><ul><li>5(x − 2): el 5 multiplica també el 2 → 5x − 10.</li><li>En multiplicar pel m.c.m., cal multiplicar <b>tots</b> els termes, també els que no tenen denominador.</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N3M1">Practica-ho: Situar plataformes →</a></div>
+        </article>
+
+        <article class="topic" id="u4-eq2">
+          <h3>4.2 Equacions de segon grau</h3>
+          <div class="def"><p>Forma general: <b>ax<sup>2</sup> + bx + c = 0</b>, amb a ≠ 0. Primer s'ordena tot i s'iguala a 0.</p></div>
+          <div class="prop">
+            <p class="f">x = <span class="frac"><span>−b ± √<span class="rad">b<sup>2</sup> − 4ac</span></span><span>2a</span></span></p>
+            <p><b>Discriminant</b> Δ = b<sup>2</sup> − 4ac:</p>
+            <ul><li>Δ &gt; 0 → dues solucions diferents</li><li>Δ = 0 → una solució (doble)</li><li>Δ &lt; 0 → cap solució real</li></ul>
+          </div>
+          <div class="prop">
+            <h4>Equacions incompletes (dreceres)</h4>
+            <ul>
+              <li><b>Sense terme en x</b> (ax<sup>2</sup> + c = 0): aïlla x<sup>2</sup> i fes l'arrel amb ±. x<sup>2</sup> − 49 = 0 → x = ±7. Si x<sup>2</sup> = negatiu, no té solució.</li>
+              <li><b>Sense terme independent</b> (ax<sup>2</sup> + bx = 0): factor comú. x<sup>2</sup> − 6x = 0 → x(x − 6) = 0 → x = 0 o x = 6.</li>
+              <li><b>Ja factoritzada</b>: (x − 4)(x + 1) = 0 → x = 4 o x = −1.</li>
+            </ul>
+          </div>
+          <div class="ex"><p class="st">x<sup>2</sup> − 5x + 6 = 0 → a = 1, b = −5, c = 6 → Δ = 25 − 24 = 1 → x = <span class="frac"><span>5 ± 1</span><span>2</span></span> → x = 3 o x = 2</p></div>
+          <div class="warn2"><ul><li>No dividis mai per x: perdries la solució x = 0.</li><li>Escriu a, b i c amb el seu signe abans de substituir: −b vol dir el contrari de b.</li><li>x<sup>2</sup> = 49 té dues solucions, 7 i −7.</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N3M2">Practica-ho: Quan aterra el salt? →</a><a href="index.html#jugar=N3M3">Dreceres →</a><a href="index.html#jugar=N3M4">El salt arriba a la plataforma? →</a></div>
+        </article>
+
+        <article class="topic" id="u4-problemes">
+          <h3>4.3 Resolució de problemes</h3>
+          <div class="prop">
+            <ol><li><b>Llegeix</b> i escriu què és la x (amb unitats).</li><li><b>Planteja</b> l'equació a partir de l'enunciat.</li><li><b>Resol</b>-la.</li><li><b>Comprova</b> a l'enunciat i <b>descarta</b> les solucions que no tenen sentit (longituds, temps o quantitats negatives…).</li></ol>
+          </div>
+          <div class="ex"><p>Un nivell rectangular és 30 m més llarg que ample i té 260 m de perímetre. x = amplada → 2x + 2(x + 30) = 260 → 4x + 60 = 260 → x = 50. Dimensions: 50 × 80 m.</p><p>Dos nivells consecutius: x(x + 1) = 132 → x<sup>2</sup> + x − 132 = 0 → x = 11 o x = −12 → es descarta −12: nivells 11 i 12.</p></div>
+          <div class="practice"><a href="index.html#jugar=N3M5">Practica-ho: Del joc a l'equació →</a></div>
+        </article>
+
+        <article class="topic" id="u4-percentatges">
+          <h3>4.4 Percentatges i índex de variació</h3>
+          <div class="def"><p>L'<b>índex de variació</b> és el nombre pel qual es multiplica una quantitat per aplicar-hi un augment o una disminució percentual.</p></div>
+          <div class="prop">
+            <ul>
+              <li>Augment del r % → × (1 + <span class="frac"><span>r</span><span>100</span></span>). +21 % → × 1,21</li>
+              <li>Disminució del r % → × (1 − <span class="frac"><span>r</span><span>100</span></span>). −35 % → × 0,65</li>
+              <li><b>Quantitat final = quantitat inicial × índex</b> &nbsp;·&nbsp; <b>Quantitat inicial = quantitat final : índex</b></li>
+              <li><b>% de variació</b> = (<span class="frac"><span>preu nou</span><span>preu vell</span></span> − 1) · 100 (positiu: augment; negatiu: descompte).</li>
+            </ul>
+          </div>
+          <div class="ex"><p class="st">Preu amb IVA: 30 € · 1,21 = 36,30 €<br>Preu sense IVA: 24,99 € : 1,21 ≈ 20,65 €<br>Preu abans d'una rebaixa del 20 % si ara val 36 €: 36 : 0,80 = 45 €<br>De 60 € a 45 €: 45 : 60 = 0,75 → −25 %</p></div>
+          <div class="warn2"><ul><li>Per treure l'IVA no es resta el 21 %: es divideix per 1,21.</li><li>Si un preu baixa un 20 %, per tornar al preu inicial no s'ha de sumar un 20 %.</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N3M6">Practica-ho: La botiga: rebaixes i IVA →</a></div>
+        </article>
+
+        <article class="topic" id="u4-interessos">
+          <h3>4.5 Variacions encadenades i interès</h3>
+          <div class="prop">
+            <ul>
+              <li><b>Variacions encadenades</b>: es multipliquen els índexs. +10 % i després −5 % → 1,10 · 0,95 = 1,045 → +4,5 % (no +5 %).</li>
+              <li><b>Interès simple</b> (els interessos no s'acumulen al capital): <b>I = C · r · t</b>, amb r en tant per u i t en anys. Capital final = C + I.</li>
+              <li><b>Interès compost</b> (cada any els interessos s'afegeixen al capital): <b>C<sub>f</sub> = C · (1 + r)<sup>t</sup></b>. Interessos = C<sub>f</sub> − C.</li>
+            </ul>
+          </div>
+          <div class="ex"><p class="st">3.000 € al 2,5 % durant 4 anys<br>Simple: I = 3.000 · 0,025 · 4 = 300 € → 3.300 €<br>Compost: 3.000 · 1,025<sup>4</sup> ≈ 3.311,44 €</p></div>
+          <div class="warn2"><ul><li>Els percentatges encadenats no se sumen.</li><li>El tipus d'interès s'escriu en tant per u: 6 % → 0,06.</li></ul></div>
+          <div class="practice"><a href="index.html#jugar=N3M7">Practica-ho: Estalviar o finançar? →</a></div>
+        </article>
+
+        <article class="topic" id="u4-inequacions">
+          <h3>4.6 Inequacions de primer grau</h3>
+          <div class="def"><p>Una <b>inequació</b> és una desigualtat amb una incògnita (&lt;, ≤, &gt;, ≥). La solució és un conjunt de nombres: un <b>interval</b>.</p></div>
+          <div class="prop">
+            <ul>
+              <li>Es resol com una equació.</li>
+              <li><b>Si multipliques o divideixes per un nombre negatiu, el símbol gira</b> (&lt; ↔ &gt;, ≤ ↔ ≥).</li>
+              <li>La solució s'escriu com a interval i es dibuixa a la recta (vegeu 1.3).</li>
+            </ul>
+          </div>
+          <div class="ex">
+            <p class="st">3x − 5 &lt; 10 → 3x &lt; 15 → x &lt; 5 → (−∞, 5)<br>7 − 4x &gt; 15 → −4x &gt; 8 → x &lt; −2 → (−∞, −2) &nbsp;(gira en dividir per −4)</p>
+            <p>Preu mínim: cost 4.800 €, la botiga es queda el 30 %, 1.000 còpies → 1.000 · 0,70 · p ≥ 4.800 → p ≥ 6,857… → preu mínim 6,86 € (s'arrodoneix cap amunt).</p>
+          </div>
+          <div class="practice"><a href="index.html#jugar=N3M8">Practica-ho: El preu mínim →</a></div>
+        </article>
+
+        <article class="topic" id="u4-sistemes">
+          <h3>4.7 Sistemes d'equacions lineals 2×2</h3>
+          <div class="def"><p>Un <b>sistema</b> són dues equacions amb dues incògnites que s'han de complir alhora. La <b>solució</b> és la parella (x, y) que compleix les dues.</p></div>
+          <div class="prop">
+            <h4>Resolució gràfica i tipus de sistemes</h4>
+            <p>Cada equació és una recta (fes una taula de valors amb dos punts). La solució és el <b>punt de tall</b>.</p>
+            <ul><li>Les rectes es tallen → <b>una solució</b> (compatible determinat).</li><li>Rectes paral·leles → <b>cap solució</b> (incompatible).</li><li>La mateixa recta → <b>infinites solucions</b> (compatible indeterminat).</li></ul>
+          </div>
+          <div class="prop">
+            <h4>Mètodes algebraics</h4>
+            <ul>
+              <li><b>Substitució</b>: aïlla una incògnita d'una equació i substitueix-la a l'altra. Va bé si alguna incògnita té coeficient 1.</li>
+              <li><b>Igualació</b>: aïlla la mateixa incògnita a les dues equacions i iguala. Va bé si ja estan aïllades (y = …).</li>
+              <li><b>Reducció</b>: multiplica una o les dues equacions perquè una incògnita tingui coeficients oposats i suma-les.</li>
+            </ul>
+            <p>Sempre: comprova la solució a les <b>dues</b> equacions.</p>
+          </div>
+          <div class="ex">
+            <p>x + 2y = 7 &nbsp;i&nbsp; 3x − y = 7</p>
+            <p class="st">Substitució: x = 7 − 2y → 3(7 − 2y) − y = 7 → 21 − 7y = 7 → y = 2 → x = 3<br>Reducció: 2a × 2 → 6x − 2y = 14; sumant amb la 1a: 7x = 21 → x = 3 → y = 2</p>
+            <p>Packs: 2 skins i 3 gemmes costen 12 €; 3 skins i 1 gemma, 11 € → 2s + 3g = 12, 3s + g = 11 → s = 3 €, g = 2 €.</p>
+          </div>
+          <div class="practice"><a href="index.html#jugar=N3M9">Practica-ho: Packs a la gràfica →</a><a href="index.html#jugar=N3M10">Tres camins →</a></div>
+        </article>
+      </section>
+    </main>
+  </div>
+  <footer class="foot">Situació d'aprenentatge «Corbatera Games Studio» · Curs 2026–2027 · Aquesta teoria és la mateixa que pots copiar al teu formulari personal.</footer>
+
+  <script>
+  (function () {
+    // Índex automàtic
+    var toc = document.getElementById('tocl'), units = document.querySelectorAll('.unit');
+    var html = '';
+    [].forEach.call(units, function (u) {
+      html += '<a class="tu" href="#' + u.id + '">' + u.querySelector('h2').textContent + '</a>';
+      [].forEach.call(u.querySelectorAll('.topic'), function (t) {
+        html += '<a class="ts" href="#' + t.id + '">' + t.querySelector('h3').textContent + '</a>';
+      });
+    });
+    toc.innerHTML = html;
+    // Apartat actiu a l'índex
+    var links = toc.querySelectorAll('a.ts');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) [].forEach.call(links, function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
+        });
+      }, { rootMargin: '-10% 0px -80% 0px' });
+      [].forEach.call(document.querySelectorAll('.topic'), function (t) { io.observe(t); });
+    }
+    // Cerca
+    var norm = function (s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+    document.getElementById('cerca').addEventListener('input', function () {
+      var q = norm(this.value.trim()), any = false;
+      [].forEach.call(units, function (u) {
+        var vis = 0;
+        [].forEach.call(u.querySelectorAll('.topic'), function (t) {
+          var ok = !q || norm(t.textContent).indexOf(q) >= 0;
+          t.classList.toggle('hidden-by-search', !ok); if (ok) vis++;
+        });
+        u.classList.toggle('hidden-by-search', vis === 0); if (vis) any = true;
+      });
+      document.getElementById('nores').hidden = any;
+    });
+  })();
+  </script>
+</body>
+</html>

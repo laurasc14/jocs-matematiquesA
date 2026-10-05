@@ -28,6 +28,11 @@
     { key: 'cgs-entrenament-1a', href: 'entrenament-1a.html', titol: 'Preguntes ràpides · 1a avaluació', sub: 'Nombres reals, potències i radicals, polinomis, equacions i problemes. Preguntes noves cada vegada, diari d\'errors (C, P, D), boss per nivell i «El meu avanç».' },
     { key: 'cgs-entrenament-2a', href: 'entrenament-2a.html', titol: 'Preguntes ràpides · 2a avaluació', sub: 'Representacions, funcions afins, quadràtiques i estadística.' }
   ];
+  // Apartat d'estudi (estudi.html): apartat de teoria de cada missió
+  var ESTUDI = { N0M1: 'u1-conjunts', N0M2: 'u1-decimals', N0M3: 'u1-intervals', N0M4: 'u1-aproximacions', N0M5: 'u1-conjunts', N0B: 'u1',
+    N1M1: 'u2-potencies', N1M2: 'u2-propietats', N1M3: 'u2-propietats', N1M4: 'u2-nc', N1M5: 'u2-nc', N1M6: 'u2-pitagores', N1M7: 'u2-radicals', N1M8: 'u2-radicals', N1B: 'u2',
+    N2M1: 'u3-monomis', N2M2: 'u3-operacions', N2M3: 'u3-operacions', N2M4: 'u3-notables', N2M5: 'u3-notables', N2M6: 'u3-factoritzar', N2M7: 'u3-divisio', N2M8: 'u3-ruffini', N2B: 'u3',
+    N3M1: 'u4-eq1', N3M2: 'u4-eq2', N3M3: 'u4-eq2', N3M4: 'u4-eq2', N3M5: 'u4-problemes', N3M6: 'u4-percentatges', N3M7: 'u4-interessos', N3M8: 'u4-inequacions', N3M9: 'u4-sistemes', N3M10: 'u4-sistemes', N3B: 'u4' };
   function quickXP(q) { try { var s = JSON.parse(localStorage.getItem(q.key) || 'null'); return s && s.xp ? +s.xp : 0; } catch (e) { return 0; } }
   function trainXP() { return QUICK.reduce(function (a, q) { return a + quickXP(q); }, 0); }
   function missionXP(p) { var s = 0; Object.keys(p.missions).forEach(function (k) { s += p.missions[k].best || 0; }); return s; }
@@ -69,7 +74,8 @@
       n = n.trim().replace(/\s+/g, ' ');
       if (n.length < 3) { document.getElementById('nom').focus(); return; }
       if (!DB.players[n]) DB.players[n] = { nom: n, creat: Date.now(), missions: {}, log: [] };
-      DB.current = n; save(); viewMap();
+      DB.current = n; save();
+      if (PENDING) { var j = PENDING; PENDING = null; jumpTo(j); } else viewMap();
     };
     document.getElementById('go').onclick = function () { go(document.getElementById('nom').value); };
     document.getElementById('nom').onkeydown = function (e) { if (e.key === 'Enter') go(this.value); };
@@ -87,8 +93,9 @@
   function viewMap() {
     var p = P(), h = hud();
     if (DOCENT) h += '<p class="docent">Mode docent: totes les missions desbloquejades.</p>';
+    if (NOTICE) { h += '<p class="warn">' + NOTICE + '</p>'; NOTICE = ''; }
     var levelHTML = function (nv) {
-      var o = '<section class="level' + (nv.entrenament ? ' train' : '') + '"><h2>' + (nv.entrenament ? '<span class="badge tr">ENTRENAMENT</span> ' : '') + nv.nom + '</h2><p class="sub">' + nv.sub + (nv.entrenament ? ' · ja fet a classe: totes les fases obertes' : '') + '</p><div class="missions">';
+      var o = '<section class="level' + (nv.entrenament ? ' train' : '') + '"><h2>' + nv.nom + '</h2><p class="sub">' + nv.sub + (nv.entrenament ? ' · ja fet a classe: totes les fases obertes' : '') + '</p><div class="missions">';
       nv.missions.forEach(function (m) {
         var idx = MISSIONS.indexOf(m), st = p.missions[m.id] || {}, open = unlocked(idx);
         var cls = 'mission' + (m.boss ? ' boss' : '') + (st.done ? ' done' : '') + (open ? '' : ' locked');
@@ -99,13 +106,13 @@
       });
       return o + '</div></section>';
     };
-    h += '<h2 class="part">Campanya · ara mateix</h2>';
-    CGS.NIVELLS.filter(function (nv) { return !nv.entrenament; }).forEach(function (nv) { h += levelHTML(nv); });
-    h += '<h2 class="part">Mode entrenament</h2><p class="small">Per repassar el que ja hem fet. Tot el que hi guanyis també suma XP per al teu rang.</p>' +
+    h += '<a class="card estudi-link" href="estudi.html"><span class="badge tr">ESTUDI</span> <b>Teoria</b> · Tota la teoria del trimestre, amb definicions, fórmules, exemples resolts i errors típics. Ideal per preparar els bosses i la prova. →</a>';
+    h += '<h2 class="part">Nivells</h2>';
+    CGS.NIVELLS.forEach(function (nv) { h += levelHTML(nv); });
+    h += '<h2 class="part">Mode entrenament</h2><p class="small">Preguntes ràpides per repassar. Tot el que hi guanyis també suma XP per al teu rang.</p>' +
       '<div class="quick">' + QUICK.map(function (q) {
         return '<a class="mission quickcard" href="' + q.href + '"><span class="badge tr">PREGUNTES RÀPIDES</span><span class="mt">' + q.titol + '</span><span class="ms">' + q.sub + '</span><span class="mstate">' + quickXP(q) + ' XP guanyats →</span></a>';
       }).join('') + '</div>';
-    CGS.NIVELLS.filter(function (nv) { return nv.entrenament; }).forEach(function (nv) { h += levelHTML(nv); });
     h += '<section class="card tools"><h3>Diari de procés</h3><p class="small">Tot el que has fet, pas a pas, amb els intents i les pistes. Quan acabis (o quan t\'ho demani la docent), descarrega l\'informe i penja\'l al Classroom.</p>' +
       '<div class="row"><button class="btn" id="diari">Mira el diari</button><button class="btn" id="inf">Descarrega l\'informe</button><button class="btn ghost" id="print">Imprimeix / PDF</button><button class="btn ghost" id="out">Canvia de jugador</button></div></section>';
     app.innerHTML = h;
@@ -145,7 +152,7 @@
       '<div><span class="badge">' + (m.boss ? 'BOSS' : 'FASE ' + m.fase) + '</span> <b>' + m.titol + '</b> <span class="small">· ' + m.nivell.nom + '</span></div>' +
       '<div class="small">Exercici ' + (c.ex + 1) + ' / ' + S.exs.length + ' · ' + c.xp + ' XP en aquesta partida</div></div>';
     h += '<div class="progress">' + S.exs.map(function (x, i) { return '<span class="' + (i < c.ex ? 'ok' : i === c.ex ? 'now' : '') + '"></span>'; }).join('') + '</div>';
-    h += '<details class="theory"' + (c.ex === 0 && c.step === 0 && !m.boss ? ' open' : '') + '><summary>☰ Recuadre de teoria</summary><div>' + m.teoria + '</div></details>';
+    h += '<details class="theory"' + (c.ex === 0 && c.step === 0 && !m.boss ? ' open' : '') + '><summary>☰ Recuadre de teoria</summary><div>' + m.teoria + (ESTUDI[m.id] ? '<p class="small"><a href="estudi.html#' + ESTUDI[m.id] + '" target="_blank" rel="noopener">Teoria completa d\'aquest tema →</a></p>' : '') + '</div></details>';
     h += '<section class="card ex"><h3>' + e.title + '</h3><div class="ctx">' + e.ctx + '</div>' + (e.fig ? '<div class="figwrap">' + e.fig + '</div>' : '') + '<ol class="steps">';
     e.steps.forEach(function (st, i) {
       var lg = L.steps[i];
@@ -361,11 +368,20 @@
 
   window.addEventListener('pageshow', function (e) { if (e.persisted && DB.current && document.querySelector('.missions')) viewMap(); });
   // ======================= ARRENCADA =======================
+  // Enllaços «Practica-ho» de l'apartat d'estudi: index.html#jugar=N2M8
+  var PENDING = (location.hash.match(/jugar=(\w+)/) || [])[1] || null;
+  if (PENDING) history.replaceState(null, '', location.pathname + location.search);
+  if (PENDING && !mById(PENDING)) PENDING = null;
+  var NOTICE = '';
+  function jumpTo(id) {
+    if (unlocked(MISSIONS.indexOf(mById(id)))) startMission(id);
+    else { NOTICE = 'La missió «' + mById(id).titol + '» encara està bloquejada: acaba primer les fases anteriors del nivell.'; viewMap(); }
+  }
   load();
   if (DB.current && DB.players[DB.current]) {
     var p = P();
     if (p.cur && !mById(p.cur.mid)) p.cur = null;
-    if (p.cur) { startMission(p.cur.mid); } else viewMap();
+    if (PENDING) { jumpTo(PENDING); PENDING = null;    } else if (p.cur) { startMission(p.cur.mid); } else viewMap();
   } else viewStart();
   CGS._debug = { DB: function () { return DB; }, exercises: exercises, MISSIONS: MISSIONS };
 })(CGS);

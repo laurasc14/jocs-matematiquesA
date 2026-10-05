@@ -47,16 +47,25 @@ L'ampliació (racionalització, exponents fraccionaris, fraccions algebraiques, 
 
 Als polinomis, l'alumnat escriu cada coeficient en una casella amb el seu signe (0 si el terme no hi és).
 
-## Campanya i mode entrenament
+## Estudi (teoria)
 
-El mapa té dues parts:
+`estudi.html` és l'apartat de teoria del trimestre (unitats 1 a 4): definicions, regles i fórmules, exemples resolts i errors típics, amb índex, cercador i opció d'imprimir o desar en PDF.
 
-- **Campanya · ara mateix:** els nivells 2 i 3. Dins de cada nivell, les fases s'obren en ordre.
-- **Mode entrenament:** per repassar el que ja s'ha fet.
-  - **Preguntes ràpides** (`entrenament-1a.html` i `entrenament-2a.html`): el mode entrenament que ja teníem, amb preguntes noves cada vegada, diari d'errors C/P/D, boss per nivell, «El meu avanç» i «Resum per a la profe».
-  - **Nivells 0 i 1** del joc pas a pas, amb totes les fases obertes.
+- Al mapa del joc hi ha una targeta **Estudi** a dalt de tot.
+- Dins de cada missió, el «Recuadre de teoria» té un enllaç **Teoria completa d'aquest tema →**.
+- Cada apartat de teoria té botons **Practica-ho** que obren directament la missió corresponent (`index.html#jugar=N2M8`). Si la missió encara està bloquejada, el joc ho avisa.
+- Adreça directa: `https://laurasc14.github.io/jocs-matematiquesA/estudi.html`
 
-Els XP de les preguntes ràpides també sumen per al rang del joc (es llegeixen del mateix navegador). Per canviar quins nivells són d'entrenament, edita `var ENTRENAMENT = ['N0', 'N1'];` a `js/app.js` (per exemple, afegeix-hi `'N2'` quan s'acabi el Nivell 2).
+## Organització del mapa
+
+De dalt a baix:
+
+1. **Estudi**: targeta que porta a la teoria (`estudi.html`).
+2. **Nivells 0, 1, 2 i 3**, per ordre. Els nivells 0 i 1 (ja fets a classe) tenen totes les fases obertes; als nivells 2 i 3 les fases s'obren en ordre.
+3. **Mode entrenament**: les preguntes ràpides (`entrenament-1a.html` i `entrenament-2a.html`), amb diari d'errors C/P/D, boss per nivell, «El meu avanç» i «Resum per a la profe». Els seus XP també sumen per al rang del joc (es llegeixen del mateix navegador).
+4. **Diari de procés** i informe.
+
+Per obrir totes les fases d'un nivell que ja s'ha fet a classe, edita `var ENTRENAMENT = ['N0', 'N1'];` a `js/app.js` (per exemple, afegeix-hi `'N2'` quan s'acabi el Nivell 2).
 
 ## Com funciona
 
@@ -70,18 +79,22 @@ Els XP de les preguntes ràpides també sumen per al rang del joc (es llegeixen 
 
 ### Mode docent
 
-Afegint `?docent` a l'adreça (per exemple `https://USUARI.github.io/corbatera-games-studio/?docent`) totes les missions queden desbloquejades, per revisar-les o projectar-les.
+Afegint `?docent` a l'adreça (`https://laurasc14.github.io/jocs-matematiquesA/?docent`) totes les missions queden desbloquejades, per revisar-les o projectar-les.
 
 ### On es guarda el progrés
 
 Al navegador de cada ordinador (`localStorage`). Si diversos alumnes fan servir el mateix ordinador, cadascú entra amb el seu nom. Si s'esborren les dades del navegador o es canvia d'ordinador, el progrés es perd: per això cal descarregar l'informe en acabar cada sessió.
 
+**Joc:** https://laurasc14.github.io/jocs-matematiquesA/
+**Repositori:** https://github.com/laurasc14/jocs-matematiquesA
+
 ## Publicar-ho a GitHub Pages
 
-1. Crea un repositori nou a GitHub (per exemple `corbatera-games-studio`).
-2. Puja-hi **tot el contingut d'aquesta carpeta** (`index.html`, `entrenament-1a.html`, `entrenament-2a.html`, `css/`, `js/`, `README.md`, `.nojekyll`) a l'arrel del repositori. Des de la web: *Add file → Upload files* i arrossega-ho tot.
+1. Repositori: `laurasc14/jocs-matematiquesA`.
+2. Puja-hi **tot el contingut d'aquesta carpeta** (`index.html`, `estudi.html`, `entrenament-1a.html`, `entrenament-2a.html`, `css/`, `js/`, `README.md`, `.nojekyll`) a l'arrel del repositori. Des de la web: *Add file → Upload files* i arrossega-ho tot.
 3. Ves a *Settings → Pages*, a *Source* tria *Deploy from a branch*, branca `main` i carpeta `/ (root)`. Desa.
-4. Al cap d'un minut la pàgina serà a `https://USUARI.github.io/corbatera-games-studio/`.
+4. Al cap d'un minut la pàgina serà a `https://laurasc14.github.io/jocs-matematiquesA/`.
+   - Mode entrenament: `https://laurasc14.github.io/jocs-matematiquesA/entrenament-1a.html` i `…/entrenament-2a.html`
 
 També funciona sense internet: obre `index.html` directament amb el navegador.
 
@@ -89,9 +102,11 @@ També funciona sense internet: obre `index.html` directament amb el navegador.
 
 ```
 index.html        pàgina principal (joc pas a pas)
+estudi.html       apartat d'estudi: teoria de les unitats 1 a 4
 entrenament-1a.html  mode entrenament · preguntes ràpides de la 1a avaluació
 entrenament-2a.html  mode entrenament · preguntes ràpides de la 2a avaluació
 css/estil.css     estil (capçalera verda, etiquetes FASE, mode fosc)
+css/estudi.css    estil de l'apartat d'estudi (i de la versió impresa)
 js/util.js        utilitats: atzar amb llavor, format, lectura de respostes, figures SVG
 js/nivell0.js     missions del Nivell 0 (U1)
 js/nivell1.js     missions del Nivell 1 (U2)

@@ -163,6 +163,7 @@ table.ruffini { border-collapse: collapse; margin: 8px auto; font-size: 1.1rem; 
 .fig .cut { fill: var(--gold); stroke: var(--card); stroke-width: 2; }
 .part { margin: 28px 0 4px; font-size: 1.05rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); border-bottom: 2px solid var(--line); padding-bottom: 4px; }
 .badge.tr { background: #1f5c66; }
-.level.train h2 { font-size: 1.2rem; }
 .quick { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 10px; }
 a.quickcard { text-decoration: none; border-color: #1f5c66; }
+.estudi-link { display: block; text-decoration: none; color: var(--ink); border-color: #1f5c66; }
+.estudi-link:hover { box-shadow: 0 4px 14px rgba(0,0,0,.08); }
