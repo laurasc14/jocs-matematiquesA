@@ -29,8 +29,8 @@
     { key: 'cgs-entrenament-2a', href: 'entrenament-2a.html', titol: 'Preguntes ràpides · 2a avaluació', sub: 'Representacions, funcions afins, quadràtiques i estadística.' }
   ];
   // Apartat d'estudi (estudi.html): apartat de teoria de cada missió
-  var ESTUDI = { N0M1: 'u1-conjunts', N0M2: 'u1-decimals', N0M3: 'u1-intervals', N0M4: 'u1-aproximacions', N0M5: 'u1-conjunts', N0B: 'u1',
-    N1M1: 'u2-potencies', N1M2: 'u2-propietats', N1M3: 'u2-propietats', N1M4: 'u2-nc', N1M5: 'u2-nc', N1M6: 'u2-pitagores', N1M7: 'u2-radicals', N1M8: 'u2-radicals', N1B: 'u2',
+  var ESTUDI = { N0M1: 'u1-conjunts', N0M2: 'u1-decimals', N0M3: 'u1-intervals', N0M4: 'u1-aproximacions', N0M5: 'u1-conjunts', N0M6: 'u1-enters', N0M7: 'u1-fraccions', N0B: 'u1',
+    N1M1: 'u2-potencies', N1M2: 'u2-propietats', N1M3: 'u2-propietats', N1M4: 'u2-nc', N1M5: 'u2-nc', N1M6: 'u2-pitagores', N1M7: 'u2-radicals', N1M8: 'u2-radicals', N1M9: 'u2-potfrac', N1B: 'u2',
     N2M1: 'u3-monomis', N2M2: 'u3-operacions', N2M3: 'u3-operacions', N2M4: 'u3-notables', N2M5: 'u3-notables', N2M6: 'u3-factoritzar', N2M7: 'u3-divisio', N2M8: 'u3-ruffini', N2B: 'u3',
     N3M1: 'u4-eq1', N3M2: 'u4-eq2', N3M3: 'u4-eq2', N3M4: 'u4-eq2', N3M5: 'u4-problemes', N3M6: 'u4-percentatges', N3M7: 'u4-interessos', N3M8: 'u4-inequacions', N3M9: 'u4-sistemes', N3M10: 'u4-sistemes', N3B: 'u4' };
   function quickXP(q) { try { var s = JSON.parse(localStorage.getItem(q.key) || 'null'); return s && s.xp ? +s.xp : 0; } catch (e) { return 0; } }
