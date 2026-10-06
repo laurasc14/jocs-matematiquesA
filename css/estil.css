@@ -171,3 +171,10 @@ a.quickcard { text-decoration: none; border-color: #1f5c66; }
 .mission.repascard { border-color: #c77700; }
 .mission.repascard.done { background: #fff4e0; }
 @media (prefers-color-scheme: dark) { .mission.repascard.done { background: #3a2a10; } }
+
+/* Ruta de recuperació */
+.badge.fi { background: #8e2a5c; }
+.card.recu { border: 2px solid #8e2a5c; }
+.mission.recucard { border-color: #8e2a5c; }
+.mission.recucard.done { background: #f8e8f0; }
+@media (prefers-color-scheme: dark) { .badge.fi { background: #b0457a; } .card.recu, .mission.recucard { border-color: #b0457a; } .mission.recucard.done { background: #3a1a2a; } }

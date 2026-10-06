@@ -16,7 +16,8 @@
   var MISSIONS = [];
   CGS.NIVELLS.forEach(function (nv) { nv.missions.forEach(function (m) { m.nivell = nv; MISSIONS.push(m); }); });
   if (CGS.REPAS) CGS.REPAS.missions.forEach(function (m) { m.nivell = CGS.REPAS; MISSIONS.push(m); });
-  function badgeOf(m) { return m.repas ? 'REPÀS' : m.boss ? 'BOSS' : 'FASE ' + m.fase; }
+  if (CGS.RECU) CGS.RECU.missions.forEach(function (m) { m.nivell = CGS.RECU; MISSIONS.push(m); });
+  function badgeOf(m) { return m.recu ? 'FITA ' + m.fita : m.repas ? 'REPÀS' : m.boss ? 'BOSS' : 'FASE ' + m.fase; }
   function mById(id) { return MISSIONS.filter(function (m) { return m.id === id; })[0]; }
 
   var RANKS = [[0, 'Becari/ària'], [400, 'Junior dev'], [1200, 'Desenvolupador/a'], [2300, 'Sènior dev'], [3500, 'Lead dev'], [4800, 'Cap d\'estudi']];
@@ -40,7 +41,7 @@
   function missionXP(p) { var s = 0; Object.keys(p.missions).forEach(function (k) { s += p.missions[k].best || 0; }); return s; }
   function totalXP(p) { return missionXP(p) + trainXP(); }
   function unlocked(idx) {
-    if (DOCENT || MISSIONS[idx].repas || MISSIONS[idx].nivell.entrenament) return true;
+    if (DOCENT || MISSIONS[idx].repas || MISSIONS[idx].recu || MISSIONS[idx].nivell.entrenament) return true;
     // Cada nivell s'obre per la seva fase 1; dins del nivell, les fases van en ordre
     for (var i = 0; i < idx; i++) {
       if (MISSIONS[i].nivell !== MISSIONS[idx].nivell) continue;
@@ -92,6 +93,24 @@
       '<div class="xpbar" title="' + xp + ' XP"><span style="width:' + pct + '%"></span></div>' +
       '<div class="xp" title="' + missionXP(p) + ' XP de missions + ' + trainXP() + ' XP de preguntes ràpides">' + xp + ' XP' + (nx ? ' <span class="small">(' + (nx[0] - xp) + ' per a ' + nx[1] + ')</span>' : '') + '</div></div>';
   }
+  function avuiN() { var d = new Date(); return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate(); }
+  // Ruta de recuperació: fites mínimes de la 1a avaluació
+  function recuState(p) {
+    var ok = 0; CGS.RECU.missions.forEach(function (m) { if ((p.missions[m.id] || {}).done) ok++; });
+    return ok;
+  }
+  function recuHTML(p) {
+    var R = CGS.RECU, ok = recuState(p), tot = R.missions.length, pc = Math.round(100 * R.llindar);
+    var h = '<section class="card recu" id="recu"><div class="row" style="margin:0;justify-content:space-between;align-items:center"><div><span class="badge fi">RECUPERACIÓ</span> <b>Ruta de recuperació · fites mínimes de la 1a avaluació</b></div><b>' + ok + ' / ' + tot + ' fites</b></div>' +
+      '<div class="xpbar" style="margin:8px 0"><span style="width:' + Math.round(100 * ok / tot) + '%"></span></div>' +
+      '<p class="small">Si vas a la recuperació, aquest és el mínim que has de dominar. Cada fita és una ronda de 5 exercicis pas a pas: quan en fas una amb el ' + pc + ' % dels XP o més, la fita queda <b>assolida</b>. Els nombres canvien a cada ronda. També tens la <a href="recu-1a.html">fitxa de fites mínimes</a> per fer a mà.</p><div class="missions">';
+    R.missions.forEach(function (m) {
+      var st = p.missions[m.id] || {};
+      h += '<button class="mission recucard' + (st.done ? ' done' : '') + '" data-id="' + m.id + '"><span class="badge fi">FITA ' + m.fita + '</span><span class="mt">' + m.titol + '</span><span class="ms">' + m.sabers + '</span>' +
+        '<span class="mstate">' + (st.done ? '✔ Assolida · millor ronda ' + Math.round(100 * (st.pct || 0)) + ' %' : st.runs ? 'Encara no · millor ronda ' + Math.round(100 * (st.pct || 0)) + ' % (cal ' + pc + ' %)' : 'Pendent') + '</span></button>';
+    });
+    return h + '</div></section>';
+  }
   function viewMap() {
     var p = P(), h = hud();
     if (DOCENT) h += '<p class="docent">Mode docent: totes les missions desbloquejades.</p>';
@@ -110,6 +129,7 @@
     };
     var avui = new Date(), t2 = DOCENT || (avui.getFullYear() * 10000 + (avui.getMonth() + 1) * 100 + avui.getDate()) >= 20261209;
     if (t2) h += '<a class="card estudi-link t2link" href="trailer.html' + (DOCENT ? '?docent' : '') + '"><span class="badge tr">TEMPORADA 2</span> <b>Tràiler «El joc creix»</b> · Un minijoc per sessió fins a Nadal: històries amb gràfiques, caça monedes, dissenya el salt, dominó i l\'enigma de Nadal. →</a>';
+    if (CGS.RECU && (DOCENT || avuiN() >= CGS.RECU.obre)) h += recuHTML(p);
     h += '<a class="card estudi-link" href="estudi.html"><span class="badge tr">ESTUDI</span> <b>Teoria</b> · Tota la teoria del trimestre, amb definicions, fórmules, exemples resolts i errors típics. Ideal per preparar els bosses i la prova. →</a>';
     h += '<h2 class="part">Nivells</h2>';
     CGS.NIVELLS.forEach(function (nv) { h += levelHTML(nv); });
@@ -160,7 +180,7 @@
   function renderExercise() {
     var m = S.m, c = S.cur, e = S.exs[c.ex], L = currentLog();
     var h = hud() + '<div class="mhead"><button class="btn ghost sm" id="back">← Mapa</button>' +
-      '<div><span class="badge' + (m.repas ? ' rp' : '') + '">' + badgeOf(m) + '</span> <b>' + m.titol + '</b> <span class="small">· ' + m.nivell.nom + '</span></div>' +
+      '<div><span class="badge' + (m.recu ? ' fi' : m.repas ? ' rp' : '') + '">' + badgeOf(m) + '</span> <b>' + m.titol + '</b> <span class="small">· ' + m.nivell.nom + '</span></div>' +
       '<div class="small">Exercici ' + (c.ex + 1) + ' / ' + S.exs.length + ' · ' + c.xp + ' XP en aquesta partida</div></div>';
     h += '<div class="progress">' + S.exs.map(function (x, i) { return '<span class="' + (i < c.ex ? 'ok' : i === c.ex ? 'now' : '') + '"></span>'; }).join('') + '</div>';
     h += '<details class="theory"' + (c.ex === 0 && c.step === 0 && !m.boss ? ' open' : '') + '><summary>☰ Recuadre de teoria</summary><div>' + m.teoria + ((ESTUDI[m.id] || m.estudi) ? '<p class="small"><a href="estudi.html#' + (ESTUDI[m.id] || m.estudi) + '" target="_blank" rel="noopener">Teoria completa d\'aquest tema →</a></p>' : '') + '</div></details>';
@@ -293,17 +313,19 @@
     if (c.ex + 1 < S.exs.length) { c.ex++; c.step = 0; save(); renderExercise(); return; }
     // Final de missió
     var p = P(), m = S.m, st = p.missions[m.id], max = maxXP(m, S.exs), pct = c.xp / max;
-    var passed = !m.boss || pct >= 0.6;
+    var passed = m.recu ? pct >= CGS.RECU.llindar : !m.boss || pct >= 0.6;
     st.max = max;
+    if (m.recu) st.pct = Math.max(st.pct || 0, pct);
     if (passed) { st.done = true; st.best = Math.max(st.best || 0, c.xp); }
     p.cur = null; save();
     var logs = p.log.filter(function (l) { return l.mid === m.id && l.run === c.run; });
     var nSteps = 0, first = 0, hints = 0, rev = 0;
     logs.forEach(function (l) { l.steps.forEach(function (s) { nSteps++; if (!s.wrong.length && !s.hint && !s.revealed) first++; if (s.hint) hints++; if (s.revealed) rev++; }); });
     var h = hud() + '<section class="card end ' + (passed ? 'win' : 'lose') + '"><div class="badge">' + badgeOf(m) + '</div>' +
-      '<h2>' + (passed ? (m.repas ? 'Ronda de repàs acabada!' : m.boss ? 'Boss derrotat!' : 'Missió superada!') : 'El boss encara resisteix…') + '</h2>' +
+      '<h2>' + (m.recu ? (passed ? 'Fita ' + m.fita + ' assolida!' : 'Fita ' + m.fita + ': encara no') : passed ? (m.repas ? 'Ronda de repàs acabada!' : m.boss ? 'Boss derrotat!' : 'Missió superada!') : 'El boss encara resisteix…') + '</h2>' +
       '<p class="bigxp">' + c.xp + ' / ' + max + ' XP</p>' +
       '<ul class="stats"><li><b>' + first + '</b> de ' + nSteps + ' passos a la primera</li><li><b>' + hints + '</b> pistes</li><li><b>' + rev + '</b> solucions mostrades</li></ul>' +
+      (m.recu ? '<p>' + (passed ? 'Has fet el ' + Math.round(100 * pct) + ' % dels XP. Ja tens ' + recuState(p) + ' de ' + CGS.RECU.missions.length + ' fites assolides.' : 'Has fet el ' + Math.round(100 * pct) + ' % dels XP i cal un ' + Math.round(100 * CGS.RECU.llindar) + ' %. Mira la teoria i torna-ho a provar: els nombres canvien.') + '</p>' : '') +
       (m.boss && !passed ? '<p>Per superar el boss cal un 60 % dels XP. Repassa les fases i torna-ho a provar (els nombres canvien).</p>' : '') +
       '<div class="row"><button class="btn" id="map">Torna al mapa</button><button class="btn ghost" id="again">Juga-la de nou (nombres nous)</button></div></section>';
     app.innerHTML = h;
@@ -321,7 +343,7 @@
       Object.keys(byRun).filter(function (k) { return k.split('#')[0] === m.id; }).forEach(function (k) {
         var ls = byRun[k], xp = 0;
         ls.forEach(function (l) { l.steps.forEach(function (s) { xp += s.xp || 0; }); });
-        h += '<section class="dm"><h3><span class="badge">' + (m.boss ? 'BOSS' : m.nivell.id + ' · FASE ' + m.fase) + '</span> ' + m.titol + ' <span class="small">· partida ' + k.split('#')[1] + ' · ' + xp + ' XP · ' + new Date(ls[0].t0).toLocaleString('ca-ES') + '</span></h3>';
+        h += '<section class="dm"><h3><span class="badge">' + (m.boss ? 'BOSS' : m.repas || m.recu ? badgeOf(m) : m.nivell.id + ' · FASE ' + m.fase) + '</span> ' + m.titol + ' <span class="small">· partida ' + k.split('#')[1] + ' · ' + xp + ' XP · ' + new Date(ls[0].t0).toLocaleString('ca-ES') + '</span></h3>';
         ls.forEach(function (l) {
           var mins = l.t1 ? Math.max(1, Math.round((l.t1 - l.t0) / 60000)) + ' min' : 'sense acabar';
           h += '<div class="dex"><h4>Exercici ' + l.ex + ' · ' + l.title + ' <span class="small">(' + mins + ')</span></h4><div class="ctx">' + l.ctx + '</div><ol>';
@@ -343,7 +365,7 @@
     MISSIONS.forEach(function (m) {
       var st = p.missions[m.id] || {}, n = 0, f = 0, hi = 0, rv = 0;
       p.log.forEach(function (l) { if (l.mid !== m.id) return; l.steps.forEach(function (s) { n++; if (!s.wrong.length && !s.hint && !s.revealed && s.ok) f++; if (s.hint) hi++; if (s.revealed) rv++; }); });
-      h += '<tr><td>' + (m.repas ? 'REPÀS ' : m.boss ? m.nivell.id + ' · ' : m.nivell.id + '·F' + m.fase + ' ') + m.titol + '</td><td>' + (st.done ? (m.repas ? '✔ ' + st.runs + ' rond.' : '✔ superada') : st.runs ? 'en curs' : '—') + '</td><td>' + (st.runs || 0) + '</td><td>' + (st.best || 0) + (st.max ? ' / ' + st.max : '') + '</td><td>' + (n ? f + ' / ' + n : '—') + '</td><td>' + hi + '</td><td>' + rv + '</td></tr>';
+      h += '<tr><td>' + (m.recu ? 'FITA ' + m.fita + ' ' : m.repas ? 'REPÀS ' : m.boss ? m.nivell.id + ' · ' : m.nivell.id + '·F' + m.fase + ' ') + m.titol + '</td><td>' + (st.done ? (m.recu ? '✔ assolida' : m.repas ? '✔ ' + st.runs + ' rond.' : '✔ superada') : st.runs ? 'en curs' : '—') + '</td><td>' + (st.runs || 0) + '</td><td>' + (st.best || 0) + (st.max ? ' / ' + st.max : '') + '</td><td>' + (n ? f + ' / ' + n : '—') + '</td><td>' + hi + '</td><td>' + rv + '</td></tr>';
     });
     return h + '</tbody></table>';
   }
@@ -363,12 +385,17 @@
     if (!ks.length) return '';
     return '<h2>Temporada 2 · Tràiler</h2><p>Insígnies (' + ks.length + ' de 7): ' + ks.map(function (k) { return '★ ' + T2M[k] + ' <span class="small">(' + new Date(m[k]).toLocaleDateString('ca-ES') + ')</span>'; }).join(' · ') + '</p>';
   }
+  function recuReport(p) {
+    if (!CGS.RECU || !CGS.RECU.missions.some(function (m) { return p.missions[m.id]; })) return '';
+    return '<h2>Ruta de recuperació · 1a avaluació</h2><p>Fites mínimes assolides: <b>' + recuState(p) + ' de ' + CGS.RECU.missions.length + '</b></p><ul>' +
+      CGS.RECU.missions.map(function (m) { var st = p.missions[m.id] || {}; return '<li>' + (st.done ? '✔' : '☐') + ' Fita ' + m.fita + ' · ' + m.titol + (st.runs ? ' <span class="small">(' + st.runs + (st.runs === 1 ? ' ronda' : ' rondes') + ', millor ' + Math.round(100 * (st.pct || 0)) + ' %)</span>' : '') + '</li>'; }).join('') + '</ul>';
+  }
   function reportDoc() {
     var p = P(), xp = totalXP(p), css = document.getElementById('report-css').textContent;
     return '<!doctype html><html lang="ca"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Informe · ' + U.esc(p.nom) + '</title><style>' + css + '</style></head><body class="report">' +
       '<header class="rhead"><div><b>Corbatera Games Studio</b> · Matemàtiques A · 4t ESO · Corbatera Institut Escola</div><div>Informe de procés</div></header>' +
       '<h1>' + U.esc(p.nom) + '</h1><p>' + xp + ' XP · rang: <b>' + rank(xp)[1] + '</b> · generat el ' + new Date().toLocaleString('ca-ES') + '</p>' +
-      '<h2>Resum</h2><p>XP de missions: <b>' + missionXP(p) + '</b> · XP de preguntes ràpides (mode entrenament, en aquest navegador): <b>' + trainXP() + '</b></p>' + summaryHTML(p) + t2HTML() + '<h2>Procés pas a pas</h2><p class="small">Per a cada pas: els intents fallits (ratllats), si s\'ha fet servir pista i la resposta correcta.</p>' + diariHTML(p) + '</body></html>';
+      '<h2>Resum</h2><p>XP de missions: <b>' + missionXP(p) + '</b> · XP de preguntes ràpides (mode entrenament, en aquest navegador): <b>' + trainXP() + '</b></p>' + summaryHTML(p) + recuReport(p) + t2HTML() + '<h2>Procés pas a pas</h2><p class="small">Per a cada pas: els intents fallits (ratllats), si s\'ha fet servir pista i la resposta correcta.</p>' + diariHTML(p) + '</body></html>';
   }
   function downloadReport() {
     var p = P(), blob = new Blob([reportDoc()], { type: 'text/html' });
@@ -389,6 +416,7 @@
   // ======================= ARRENCADA =======================
   // Enllaços «Practica-ho» de l'apartat d'estudi: temporada1.html#jugar=N2M8
   var PENDING = (location.hash.match(/jugar=(\w+)/) || [])[1] || null;
+  var GORECU = location.hash === '#recu';
   if (PENDING) history.replaceState(null, '', location.pathname + location.search);
   if (PENDING && !mById(PENDING)) PENDING = null;
   var NOTICE = '';
@@ -410,7 +438,7 @@
   if (DB.current && DB.players[DB.current]) {
     var p = P();
     if (p.cur && !mById(p.cur.mid)) p.cur = null;
-    if (PENDING) { jumpTo(PENDING); PENDING = null;    } else if (p.cur) { startMission(p.cur.mid); } else viewMap();
+    if (PENDING) { jumpTo(PENDING); PENDING = null;    } else if (GORECU) { p.cur = null; viewMap(); var rc = document.getElementById('recu'); if (rc) rc.scrollIntoView(); } else if (p.cur) { startMission(p.cur.mid); } else viewMap();
   } else viewStart();
   CGS._debug = { DB: function () { return DB; }, exercises: exercises, MISSIONS: MISSIONS };
 })(CGS);

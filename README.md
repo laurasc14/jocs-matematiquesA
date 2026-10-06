@@ -69,6 +69,16 @@ Als polinomis, l'alumnat escriu cada coeficient en una casella amb el seu signe 
 
 Cada apartat enllaça amb la teoria de la Temporada 1 que cal repassar. A l'Inici apareix dins la Temporada 2 a partir del 9/12 (amb `?docent`, sempre). Adreça directa: `https://laurasc14.github.io/jocs-matematiquesA/estudi-2a.html`
 
+## Recuperació de la 1a avaluació
+
+Per a l'alumnat que va a la recuperació hi ha **13 fites mínimes** (tipus de nombres; intervals i aproximacions; enters i fraccions; potències; notació científica; radicals i Pitàgores; operacions amb polinomis; identitats notables i factor comú; Ruffini i arrels; equacions de 1r grau; equacions de 2n grau; problemes i percentatges; sistemes 2×2). Inequacions i interessos queden fora del mínim.
+
+- **Ruta de recuperació** (dins de `temporada1.html`, a dalt del mapa): una ronda de 5 exercicis pas a pas per fita. La fita queda **assolida** quan una ronda arriba al 60 % dels XP. El recompte (x / 13) surt al mapa i a l'informe. Enllaç directe: `temporada1.html#recu`.
+- **Fitxa de fites mínimes** (`recu-1a.html`): per a cada fita, què has de saber fer, un recordatori, un exemple resolt i exercicis per fer a mà. Inclou una taula d'autoavaluació inicial. Per imprimir, una fita per pàgina amb espai per escriure.
+- **Solucionari** (`recu-1a-solucions.html`): no està enllaçat des de les pàgines de l'alumnat; repartiu-lo quan vulgueu.
+
+Tot apareix a partir del **10/12** (amb `?docent`, sempre). Per canviar la data o el llindar, editeu `obre` i `llindar` a `js/recu-1a.js`.
+
 ## Inici per temporades
 
 `index.html` és la porta d'entrada. Primer l'alumne escriu el seu **nom i cognom** (o tria un jugador ja guardat en aquell ordinador) i després veu una targeta per temporada. El nom serveix per a totes les pàgines: el joc l'agafa directament i les preguntes ràpides l'escriuen sol al «Resum per a la profe». «Canvia de jugador» torna a aquesta pantalla.
@@ -145,7 +155,7 @@ Al navegador de cada ordinador (`localStorage`). Si diversos alumnes fan servir 
 ## Publicar-ho a GitHub Pages
 
 1. Repositori: `laurasc14/jocs-matematiquesA`.
-2. Puja-hi **tot el contingut d'aquesta carpeta** (`index.html`, `estudi.html`, `estudi-2a.html`, `entrenament-1a.html`, `entrenament-2a.html`, `css/`, `js/`, `README.md`, `.nojekyll`) a l'arrel del repositori. Des de la web: *Add file → Upload files* i arrossega-ho tot.
+2. Puja-hi **tot el contingut d'aquesta carpeta** (`index.html`, `estudi.html`, `estudi-2a.html`, `recu-1a.html`, `recu-1a-solucions.html`, `entrenament-1a.html`, `entrenament-2a.html`, `css/`, `js/`, `README.md`, `.nojekyll`) a l'arrel del repositori. Des de la web: *Add file → Upload files* i arrossega-ho tot.
 3. Ves a *Settings → Pages*, a *Source* tria *Deploy from a branch*, branca `main` i carpeta `/ (root)`. Desa.
 4. Al cap d'un minut la pàgina serà a `https://laurasc14.github.io/jocs-matematiquesA/`.
    - Mode entrenament: `https://laurasc14.github.io/jocs-matematiquesA/entrenament-1a.html` i `…/entrenament-2a.html`
@@ -159,6 +169,9 @@ index.html        inici: tria de temporada (T1, T2, T3)
 temporada1.html   Temporada 1: el joc pas a pas (nivells 0–3, repàs, diari)
 estudi.html       apartat d'estudi: teoria de les unitats 1 a 4
 estudi-2a.html    apartat d'estudi de la Temporada 2: funcions i trigonometria (nivells 4 a 6)
+recu-1a.html      fitxa de fites mínimes per a la recuperació de la 1a avaluació
+recu-1a-solucions.html  solucionari de la fitxa (per a la docent)
+js/recu-1a.js     ruta de recuperació del joc (13 fites mínimes)
 trailer.html      Temporada 2 · tràiler de desembre (un minijoc per sessió)
 entrenament-1a.html  mode entrenament · preguntes ràpides de la 1a avaluació
 entrenament-2a.html  mode entrenament · preguntes ràpides de la 2a avaluació
@@ -175,6 +188,8 @@ js/mode-repas.js  mode repàs: rondes per tema (notació científica i la resta 
 js/trailer.js     minijocs del tràiler de la Temporada 2
 js/app.js         motor del joc: mapa, passos, XP, diari i informe
 ```
+
+Per afegir un nivell nou (per exemple, funcions a la 2a avaluació) n'hi ha prou de crear `js/nivell4.js` amb el mateix format (`CGS.NIVELLS.push({...})`) i enllaçar-lo a `index.html` abans d'`app.js`.
 
 ---
 Docent: Laura · Corbatera Institut Escola

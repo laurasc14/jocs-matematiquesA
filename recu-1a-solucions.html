@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solucionari · Fites mínimes · Corbatera Games Studio</title>
+  <meta name="description" content="Solucionari de la fitxa de fites mínimes de la 1a avaluació de Matemàtiques A (4t ESO).">
+  <link rel="stylesheet" href="css/estil.css">
+  <link rel="stylesheet" href="css/estudi.css">
+  <style>
+    .top.rc, .unit > header { background: #8e2a5c; }
+    .unit > header .badge { color: #8e2a5c; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 18px 16px 40px; }
+    .bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .bar .btn { text-decoration: none; }
+    .fita { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 0 0 14px; margin: 16px 0; overflow: hidden; }
+    .fita > header { background: #8e2a5c; color: #fff; padding: 10px 18px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .fita > header h2 { margin: 0; font-size: 1.15rem; }
+    .fita > header .badge { background: #fff; color: #8e2a5c; }
+    .fita .in { padding: 4px 18px 0; }
+    .fita h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 12px 0 4px; }
+    .fita ul.sap { list-style: none; padding-left: 0; margin: 4px 0; }
+    .fita ul.sap li::before { content: '☐ '; font-weight: 700; color: #8e2a5c; }
+    .fita ol.exs > li { margin: 8px 0; line-height: 1.7; }
+    .fita .sol { background: var(--green-l); border-left: 4px solid var(--green); border-radius: 6px; padding: 6px 10px; margin: 4px 0 10px; line-height: 1.8; }
+    .space { display: none; }
+    .rec { background: var(--green-l); border-left: 4px solid var(--green); border-radius: 8px; padding: 8px 14px; margin: 10px 0; }
+    .rec::before { content: 'Recorda'; display: block; font-weight: 800; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--green-d); margin-bottom: 2px; }
+    .rec p { margin: 0; line-height: 1.7; }
+    .auto { border-collapse: collapse; width: 100%; font-size: .95rem; }
+    .auto th, .auto td { border: 1px solid var(--line); padding: 5px 8px; }
+    .auto th { background: var(--green-l); text-align: left; }
+    .auto td.c { text-align: center; width: 90px; }
+    .links a { font-size: .85rem; text-decoration: none; padding: 4px 10px; border-radius: 16px; border: 1.5px solid #8e2a5c; color: #8e2a5c; margin-right: 6px; }
+    @media (prefers-color-scheme: dark) { .links a { color: #e7a6c6; border-color: #b0457a; } }
+    @media print {
+      .foot, .bar, .links { display: none !important; }
+      .top { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .wrap { padding: 0; max-width: none; }
+      .fita { break-inside: avoid; border-color: #bbb; }
+      .fita > header, .fita .sol, .rec, .ex { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .space { display: block; height: 120px; border-bottom: 1px dotted #bbb; }
+      .pb { break-before: page; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top rc">
+    <div class="logo" aria-hidden="true">CGS</div>
+    <div>
+      <h1>Solucionari · Fites mínimes de la 1a avaluació</h1>
+      <p>Matemàtiques A · 4t ESO · Corbatera Institut Escola · Recuperació de la 1a avaluació</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="bar"><a class="btn ghost sm" href="recu-1a.html">← Fitxa</a><button class="btn sm" onclick="window.print()">Imprimeix / PDF</button></div>
+    <section class="fita"><header><span class="badge">FITA 1</span><h2>Tipus de nombres</h2></header><div class="in"><ol class="exs">
+      <li>Classifica cada nombre (el conjunt més petit on és): −5 · <span class="frac"><span>3</span><span>4</span></span> · √<span class="rad">16</span> · √<span class="rad">7</span> · 2,0303… · π<div class="sol">−5 → enter (ℤ) · <span class="frac"><span>3</span><span>4</span></span> → racional (ℚ) · √<span class="rad">16</span> = 4 → natural (ℕ) · √<span class="rad">7</span> → irracional (no és arrel exacta) · 2,0303… = 2,<span class="per">03</span> → periòdic → racional · π → irracional</div></li>
+      <li>Passa a decimal i digues de quin tipus és: a) <span class="frac"><span>5</span><span>8</span></span> b) <span class="frac"><span>4</span><span>9</span></span> c) <span class="frac"><span>7</span><span>12</span></span><div class="sol">a) 5 : 8 = 0,625 → decimal exacte<br>b) 4 : 9 = 0,444… = 0,<span class="per">4</span> → periòdic pur<br>c) 7 : 12 = 0,58333… = 0,58<span class="per">3</span> → periòdic mixt</div></li>
+      <li>Vertader o fals? Justifica-ho. a) Tot nombre enter és racional. b) 0,121212… és irracional. c) √<span class="rad">25</span> és irracional.<div class="sol">a) Vertader: −3 = <span class="frac"><span>−3</span><span>1</span></span>.<br>b) Fals: és periòdic (0,<span class="per">12</span>), per tant racional.<br>c) Fals: √<span class="rad">25</span> = 5, és natural.</div></li>
+    </ol></div></section>
+    <section class="fita"><header><span class="badge">FITA 2</span><h2>Intervals i aproximacions</h2></header><div class="in"><ol class="exs">
+      <li>Escriu com a interval i representa a la recta: a) −2 ≤ x &lt; 5 b) x &gt; 3 c) x ≤ 1<div class="sol">a) [−2, 5): punt ple a −2 i buit a 5<br>b) (3, +∞): punt buit a 3 i fletxa cap a la dreta<br>c) (−∞, 1]: punt ple a 1 i fletxa cap a l'esquerra</div></li>
+      <li>Escriu amb una desigualtat: a) (−4, 0] b) [2, +∞) c) (−∞, −1)<div class="sol">a) −4 &lt; x ≤ 0 b) x ≥ 2 c) x &lt; −1</div></li>
+      <li>El temps d'una cursa és 3,4762 s. a) Arrodoneix-lo a les centèsimes. b) Trunca'l a les centèsimes. c) Calcula l'error absolut de l'arrodoniment.<div class="sol">a) 3,48 s (la xifra següent és 6 ≥ 5, s'apuja) b) 3,47 s c) |3,4762 − 3,48| = 0,0038 s</div></li>
+    </ol></div></section>
+    <section class="fita"><header><span class="badge">FITA 3</span><h2>Enters i fraccions</h2></header><div class="in"><ol class="exs">
+      <li>Calcula: a) 12 − 3 · (4 − 6)<sup>2</sup> b) (−2) · (−5) − 18 : (−3)<div class="sol">a) 12 − 3 · (−2)<sup>2</sup> = 12 − 3 · 4 = 12 − 12 = 0<br>b) 10 − (−6) = 10 + 6 = 16</div></li>
+      <li>Calcula i simplifica: <span class="frac"><span>2</span><span>3</span></span> + <span class="frac"><span>1</span><span>4</span></span> − <span class="frac"><span>5</span><span>6</span></span><div class="sol">m.c.m.(3, 4, 6) = 12 → <span class="frac"><span>8</span><span>12</span></span> + <span class="frac"><span>3</span><span>12</span></span> − <span class="frac"><span>10</span><span>12</span></span> = <span class="frac"><span>1</span><span>12</span></span></div></li>
+      <li>Calcula i simplifica: <span class="frac"><span>1</span><span>2</span></span> + <span class="frac"><span>3</span><span>4</span></span> · <span class="frac"><span>2</span><span>9</span></span><div class="sol">Primer el producte: <span class="frac"><span>3</span><span>4</span></span> · <span class="frac"><span>2</span><span>9</span></span> = <span class="frac"><span>6</span><span>36</span></span> = <span class="frac"><span>1</span><span>6</span></span><br><span class="frac"><span>1</span><span>2</span></span> + <span class="frac"><span>1</span><span>6</span></span> = <span class="frac"><span>3</span><span>6</span></span> + <span class="frac"><span>1</span><span>6</span></span> = <span class="frac"><span>4</span><span>6</span></span> = <span class="frac"><span>2</span><span>3</span></span></div></li>
+    </ol></div></section>
+    <section class="fita"><header><span class="badge">FITA 4</span><h2>Potències</h2></header><div class="in"><ol class="exs">
+      <li>Calcula: a) 2<sup>−3</sup> b) (−3)<sup>0</sup> c) (<span class="frac"><span>2</span><span>5</span></span>)<sup>−2</sup> d) (−2)<sup>4</sup> i −2<sup>4</sup><div class="sol">a) <span class="frac"><span>1</span><span>8</span></span> b) 1 c) (<span class="frac"><span>5</span><span>2</span></span>)<sup>2</sup> = <span class="frac"><span>25</span><span>4</span></span> d) (−2)<sup>4</sup> = 16 i −2<sup>4</sup> = −16 (el signe no està elevat)</div></li>
+      <li>Escriu com una sola potència: a) 3<sup>5</sup> · 3<sup>−2</sup> b) 5<sup>7</sup> : 5<sup>9</sup> c) (2<sup>3</sup>)<sup>4</sup> d) x<sup>2</sup> · x<sup>3</sup> : x<sup>4</sup><div class="sol">a) 3<sup>3</sup> b) 5<sup>−2</sup> c) 2<sup>12</sup> d) x<sup>5</sup> : x<sup>4</sup> = x</div></li>
+      <li>Simplifica i calcula: <span class="frac"><span>2<sup>4</sup> · 2<sup>−1</sup></span><span>(2<sup>2</sup>)<sup>3</sup></span></span><div class="sol"><span class="frac"><span>2<sup>3</sup></span><span>2<sup>6</sup></span></span> = 2<sup>−3</sup> = <span class="frac"><span>1</span><span>8</span></span></div></li>
+    </ol></div></section>
+    <section class="fita"><header><span class="badge">FITA 5</span><h2>Notació científica</h2></header><div class="in"><ol class="exs">
+      <li>Escriu en notació científica: a) 45 000 000 b) 0,00072 c) 0,3 · 10<sup>5</sup><div class="sol">a) 4,5 · 10<sup>7</sup> b) 7,2 · 10<sup>−4</sup> c) 3 · 10<sup>4</sup></div></li>
+      <li>Calcula i dona el resultat en notació científica: a) (3 · 10<sup>8</sup>) · (4 · 10<sup>−3</sup>) b) (8 · 10<sup>5</sup>) : (2 · 10<sup>9</sup>)<div class="sol">a) 12 · 10<sup>5</sup> = 1,2 · 10<sup>6</sup> b) 4 · 10<sup>−4</sup></div></li>
+      <li>Un joc ocupa 2,5 · 10<sup>9</sup> bytes. Quants jocs caben en un disc d'1 · 10<sup>12</sup> bytes?<div class="sol">(1 · 10<sup>12</sup>) : (2,5 · 10<sup>9</sup>) = 0,4 · 10<sup>3</sup> = 400 jocs</div></li>
+    </ol></div></section>
+    <section class="fita"><header><span class="badge">FITA 6</span><h2>Radicals i Pitàgores</h2></header><div class="in"><ol class="exs">
+      <li>Extreu factors: a) √<span class="rad">50</span> b) √<span class="rad">72</span> c) √<span class="rad">12</span><div class="sol">a) √<span class="rad">25 · 2</span> = 5√<span class="rad">2</span> b) √<span class="rad">36 · 2</span> = 6√<span class="rad">2</span> c) √<span class="rad">4 · 3</span> = 2√<span class="rad">3</span></div></li>
+      <li>Calcula: 3√<span class="rad">2</span> + √<span class="rad">8</span> − √<span class="rad">18</span><div class="sol">√<span class="rad">8</span> = 2√<span class="rad">2</span> i √<span class="rad">18</span> = 3√<span class="rad">2</span> → 3√<span class="rad">2</span> + 2√<span class="rad">2</span> − 3√<span class="rad">2</span> = 2√<span class="rad">2</span></div></li>
+      <li>a) Calcula la distància entre A(1, 1) i B(4, 5). b) La hipotenusa d'un triangle rectangle fa 13 cm i un catet, 5 cm. Quant fa l'altre catet?<div class="sol">a) Diferències: 3 i 4 → √<span class="rad">9 + 16</span> = √<span class="rad">25</span> = 5<br>b) √<span class="rad">169 − 25</span> = √<span class="rad">144</span> = 12 cm</div></li>
+    </ol></div></section>
+    <section class="fita"><header><span class="badge">FITA 7</span><h2>Operacions amb polinomis</h2></header><div class="in"><ol class="exs">
+      <li>P(x) = 2x<sup>2</sup> − 3x + 1. Calcula P(−1) i P(2).<div class="sol">P(−1) = 2 · 1 + 3 + 1 = 6 · P(2) = 8 − 6 + 1 = 3</div></li>
+      <li>Amb P(x) = 2x<sup>2</sup> − 3x + 1 i Q(x) = x − 2, calcula P(x) + Q(x) i P(x) − Q(x).<div class="sol">P + Q = 2x<sup>2</sup> − 2x − 1<br>P − Q = 2x<sup>2</sup> − 3x + 1 − x + 2 = 2x<sup>2</sup> − 4x + 3</div></li>
+      <li>Calcula P(x) · Q(x).<div class="sol">(2x<sup>2</sup> − 3x + 1)(x − 2) = 2x<sup>3</sup> − 4x<sup>2</sup> − 3x<sup>2</sup> + 6x + x − 2 = 2x<sup>3</sup> − 7x<sup>2</sup> + 7x − 2</div></li>
+    </ol></div></section>
+    <section class="fita"><header><span class="badge">FITA 8</span><h2>Identitats notables i factor comú</h2></header><div class="in"><ol class="exs">
+      <li>Desenvolupa: a) (x + 3)<sup>2</sup> b) (2x − 1)<sup>2</sup> c) (x + 5)(x − 5)<div class="sol">a) x<sup>2</sup> + 6x + 9 b) 4x<sup>2</sup> − 4x + 1 c) x<sup>2</sup> − 25</div></li>
+      <li>Factoritza: a) 6x<sup>3</sup> − 9x<sup>2</sup> b) x<sup>2</sup> − 16 c) x<sup>2</sup> − 10x + 25<div class="sol">a) 3x<sup>2</sup>(2x − 3) b) (x + 4)(x − 4) c) (x − 5)<sup>2</sup></div></li>
+      <li>Factoritza del tot: 2x<sup>2</sup> − 18<div class="sol">2(x<sup>2</sup> − 9) = 2(x + 3)(x − 3)</div></li>
+    </ol></div></section>
+    <section class="fita"><header><span class="badge">FITA 9</span><h2>Ruffini i arrels</h2></header><div class="in"><ol class="exs">
+      <li>Divideix per Ruffini (x<sup>3</sup> − 2x<sup>2</sup> − 5x + 6) : (x − 1). Quin és el quocient i el residu?<div class="sol">Coeficients 1 | −2 | −5 | 6, amb a = 1 → 1 | −1 | −6 | 0<br>Quocient: x<sup>2</sup> − x − 6 · Residu: 0</div></li>
+      <li>És x = 2 una arrel de P(x) = x<sup>3</sup> − 3x + 2? I x = −2?<div class="sol">P(2) = 8 − 6 + 2 = 4 ≠ 0 → no · P(−2) = −8 + 6 + 2 = 0 → sí</div></li>
+      <li>Factoritza x<sup>3</sup> − 2x<sup>2</sup> − 5x + 6 i escriu les seves arrels.<div class="sol">De l'exercici 1: (x − 1)(x<sup>2</sup> − x − 6). Per Ruffini (o equació de 2n grau): x<sup>2</sup> − x − 6 = (x − 3)(x + 2)<br>→ (x − 1)(x − 3)(x + 2) · arrels: 1, 3 i −2</div></li>
+    </ol></div></section>
+    <section class="fita"><header><span class="badge">FITA 10</span><h2>Equacions de 1r grau</h2></header><div class="in"><ol class="exs">
+      <li>Resol: 5x − 7 = 2x + 8<div class="sol">3x = 15 → x = 5 · Comprova: 18 = 18 ✔</div></li>
+      <li>Resol: 3(x − 4) − 2(x + 1) = 6<div class="sol">3x − 12 − 2x − 2 = 6 → x − 14 = 6 → x = 20</div></li>
+      <li>Resol: <span class="frac"><span>x</span><span>2</span></span> − <span class="frac"><span>x − 1</span><span>3</span></span> = 2<div class="sol">m.c.m. = 6 → 3x − 2(x − 1) = 12 → 3x − 2x + 2 = 12 → x = 10<br>Comprova: 5 − 3 = 2 ✔</div></li>
+    </ol></div></section>
+    <section class="fita"><header><span class="badge">FITA 11</span><h2>Equacions de 2n grau</h2></header><div class="in"><ol class="exs">
+      <li>Resol: x<sup>2</sup> − 5x + 6 = 0<div class="sol">x = <span class="frac"><span>5 ± √<span class="rad">25 − 24</span></span><span>2</span></span> = <span class="frac"><span>5 ± 1</span><span>2</span></span> → x = 3 o x = 2</div></li>
+      <li>Resol: a) 3x<sup>2</sup> − 27 = 0 b) x<sup>2</sup> + 7x = 0<div class="sol">a) x<sup>2</sup> = 9 → x = 3 o x = −3<br>b) x(x + 7) = 0 → x = 0 o x = −7</div></li>
+      <li>Sense resoldre-les, quantes solucions tenen? a) 2x<sup>2</sup> − 4x + 5 = 0 b) x<sup>2</sup> − 6x + 9 = 0<div class="sol">a) Δ = 16 − 40 = −24 &lt; 0 → cap solució<br>b) Δ = 36 − 36 = 0 → una solució (x = 3)</div></li>
+    </ol></div></section>
+    <section class="fita"><header><span class="badge">FITA 12</span><h2>Problemes i percentatges</h2></header><div class="in"><ol class="exs">
+      <li>Un joc costa 40 € i té un 15 % de descompte. Quant val ara?<div class="sol">40 · 0,85 = 34 €</div></li>
+      <li>Un preu amb el 21 % d'IVA és 60,50 €. Quin era el preu sense IVA?<div class="sol">60,50 : 1,21 = 50 €</div></li>
+      <li>La suma de tres nombres consecutius és 72. Quins són?<div class="sol">x + (x + 1) + (x + 2) = 72 → 3x + 3 = 72 → x = 23<br>Són 23, 24 i 25.</div></li>
+      <li>Un rectangle fa 3 cm més de llarg que d'ample i té 40 cm<sup>2</sup> d'àrea. Quines mides té?<div class="sol">x(x + 3) = 40 → x<sup>2</sup> + 3x − 40 = 0 → x = 5 o x = −8 (no té sentit)<br>Fa 5 cm d'ample i 8 cm de llarg.</div></li>
+    </ol></div></section>
+    <section class="fita"><header><span class="badge">FITA 13</span><h2>Sistemes 2×2</h2></header><div class="in"><ol class="exs">
+      <li>Resol per substitució: x + y = 10 · x − y = 4<div class="sol">x = 10 − y → 10 − y − y = 4 → y = 3 → x = 7</div></li>
+      <li>Resol pel mètode que vulguis: 2x + 3y = 12 · 3x − y = 7<div class="sol">y = 3x − 7 → 2x + 3(3x − 7) = 12 → 11x = 33 → x = 3, y = 2<br>Comprova: 6 + 6 = 12 ✔ · 9 − 2 = 7 ✔</div></li>
+      <li>2 skins i 1 gemma costen 11 €; 1 skin i 3 gemmes, 13 €. Quant costa cada cosa?<div class="sol">2s + g = 11 · s + 3g = 13 → s = 13 − 3g → 2(13 − 3g) + g = 11 → 26 − 5g = 11 → g = 3, s = 4<br>Un skin costa 4 € i una gemma, 3 €.</div></li>
+    </ol></div></section>
+  </main>
+  <footer class="foot">Situació d'aprenentatge «Corbatera Games Studio» · Curs 2026–2027</footer>
+</body>
+</html>

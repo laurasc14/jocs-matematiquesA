@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fites mínimes · 1a avaluació · Corbatera Games Studio</title>
+  <meta name="description" content="Fitxa de repàs de les fites mínimes de la 1a avaluació de Matemàtiques A (4t ESO) per preparar la recuperació.">
+  <link rel="stylesheet" href="css/estil.css">
+  <link rel="stylesheet" href="css/estudi.css">
+  <style>
+    .top.rc, .unit > header { background: #8e2a5c; }
+    .unit > header .badge { color: #8e2a5c; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 18px 16px 40px; }
+    .bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .bar .btn { text-decoration: none; }
+    .fita { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 0 0 14px; margin: 16px 0; overflow: hidden; }
+    .fita > header { background: #8e2a5c; color: #fff; padding: 10px 18px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .fita > header h2 { margin: 0; font-size: 1.15rem; }
+    .fita > header .badge { background: #fff; color: #8e2a5c; }
+    .fita .in { padding: 4px 18px 0; }
+    .fita h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 12px 0 4px; }
+    .fita ul.sap { list-style: none; padding-left: 0; margin: 4px 0; }
+    .fita ul.sap li::before { content: '☐ '; font-weight: 700; color: #8e2a5c; }
+    .fita ol.exs > li { margin: 8px 0; line-height: 1.7; }
+    .fita .sol { background: var(--green-l); border-left: 4px solid var(--green); border-radius: 6px; padding: 6px 10px; margin: 4px 0 10px; line-height: 1.8; }
+    .space { display: none; }
+    .rec { background: var(--green-l); border-left: 4px solid var(--green); border-radius: 8px; padding: 8px 14px; margin: 10px 0; }
+    .rec::before { content: 'Recorda'; display: block; font-weight: 800; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--green-d); margin-bottom: 2px; }
+    .rec p { margin: 0; line-height: 1.7; }
+    .auto { border-collapse: collapse; width: 100%; font-size: .95rem; }
+    .auto th, .auto td { border: 1px solid var(--line); padding: 5px 8px; }
+    .auto th { background: var(--green-l); text-align: left; }
+    .auto td.c { text-align: center; width: 90px; }
+    .links a { font-size: .85rem; text-decoration: none; padding: 4px 10px; border-radius: 16px; border: 1.5px solid #8e2a5c; color: #8e2a5c; margin-right: 6px; }
+    @media (prefers-color-scheme: dark) { .links a { color: #e7a6c6; border-color: #b0457a; } }
+    @media print {
+      .foot, .bar, .links { display: none !important; }
+      .top { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .wrap { padding: 0; max-width: none; }
+      .fita { break-inside: avoid; border-color: #bbb; }
+      .fita > header, .fita .sol, .rec, .ex { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .space { display: block; height: 120px; border-bottom: 1px dotted #bbb; }
+      .pb { break-before: page; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top rc">
+    <div class="logo" aria-hidden="true">CGS</div>
+    <div>
+      <h1>Fites mínimes de la 1a avaluació</h1>
+      <p>Matemàtiques A · 4t ESO · Corbatera Institut Escola · Recuperació de la 1a avaluació</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="bar"><a class="btn ghost sm" href="index.html">⌂ Inici</a><a class="btn ghost sm" href="temporada1.html#recu">🛟 Ruta de recuperació (joc)</a><a class="btn ghost sm" href="estudi.html">📖 Estudi</a><button class="btn sm" onclick="window.print()">Imprimeix / PDF</button></div>
+    <section class="topic">
+      <h3>Com fer servir aquesta fitxa</h3>
+      <p>Aquestes són les <b>13 fites mínimes</b> de la 1a avaluació: el que cal dominar per aprovar la recuperació. Per a cada fita tens què has de saber fer, un recordatori, un exemple resolt i exercicis per fer a mà (amb el procediment). Pots practicar cada fita al joc, a la <b>Ruta de recuperació</b>, i consultar la teoria completa a l'apartat d'Estudi.</p>
+      <p><b>Abans de començar</b>, marca com et veus a cada fita. Torna-ho a fer quan acabis.</p>
+      <div class="tblwrap"><table class="auto"><tr><th>Fita</th><th>Ho sé fer</th><th>Més o menys</th><th>Encara no</th></tr>
+        <tr><td>1 · Tipus de nombres</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+        <tr><td>2 · Intervals i aproximacions</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+        <tr><td>3 · Enters i fraccions</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+        <tr><td>4 · Potències</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+        <tr><td>5 · Notació científica</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+        <tr><td>6 · Radicals i Pitàgores</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+        <tr><td>7 · Operacions amb polinomis</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+        <tr><td>8 · Identitats notables i factor comú</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+        <tr><td>9 · Ruffini i arrels</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+        <tr><td>10 · Equacions de 1r grau</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+        <tr><td>11 · Equacions de 2n grau</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+        <tr><td>12 · Problemes i percentatges</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+        <tr><td>13 · Sistemes 2×2</td><td class="c">☐</td><td class="c">☐</td><td class="c">☐</td></tr>
+      </table></div>
+    </section>
+    <section class="fita" id="fita1"><header><span class="badge">FITA 1</span><h2>Tipus de nombres</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Classificar un nombre: natural (ℕ), enter (ℤ), racional (ℚ) o irracional (I).</li><li>Passar una fracció a decimal i dir si és exacte, periòdic pur, periòdic mixt o il·limitat no periòdic.</li></ul>
+      <div class="rec"><p>ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ. Els racionals es poden escriure com a fracció: decimals exactes o periòdics. Els irracionals tenen infinites xifres sense període: √<span class="rad">2</span>, π…</p></div>
+      <div class="ex"><p><b><span class="frac"><span>7</span><span>6</span></span></b> → 7 : 6 = 1,1666… = 1,1<span class="per">6</span> → periòdic mixt → racional.<br><b>√<span class="rad">49</span></b> = 7 → natural (i també enter, racional i real).</p></div>
+      <h3>Practica</h3><ol class="exs"><li>Classifica cada nombre (el conjunt més petit on és): −5 · <span class="frac"><span>3</span><span>4</span></span> · √<span class="rad">16</span> · √<span class="rad">7</span> · 2,0303… · π<div class="space"></div></li><li>Passa a decimal i digues de quin tipus és: a) <span class="frac"><span>5</span><span>8</span></span> b) <span class="frac"><span>4</span><span>9</span></span> c) <span class="frac"><span>7</span><span>12</span></span><div class="space"></div></li><li>Vertader o fals? Justifica-ho. a) Tot nombre enter és racional. b) 0,121212… és irracional. c) √<span class="rad">25</span> és irracional.<div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC1">🎮 Practica-la al joc →</a><a href="estudi.html#u1-conjunts">📖 Teoria →</a></p>
+    </div></section>
+    <section class="fita" id="fita2"><header><span class="badge">FITA 2</span><h2>Intervals i aproximacions</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Passar d'una desigualtat a un interval i a la recta, i al revés.</li><li>Saber quan l'extrem és obert ( ) o tancat [ ]; amb ∞ sempre obert.</li><li>Arrodonir i truncar a un ordre donat i calcular l'error absolut.</li></ul>
+      <div class="rec"><p>&lt; o &gt; → parèntesi ( ) i punt buit · ≤ o ≥ → claudàtor [ ] i punt ple · ±∞ → sempre parèntesi.<br>Error absolut = |valor real − aproximació|.</p></div>
+      <div class="ex"><p>−1 &lt; x ≤ 4 → (−1, 4] · x ≥ 2 → [2, +∞)<br>π = 3,14159… arrodonit a les centèsimes: 3,14 · error absolut ≈ |3,14159 − 3,14| = 0,00159</p></div>
+      <h3>Practica</h3><ol class="exs"><li>Escriu com a interval i representa a la recta: a) −2 ≤ x &lt; 5 b) x &gt; 3 c) x ≤ 1<div class="space"></div></li><li>Escriu amb una desigualtat: a) (−4, 0] b) [2, +∞) c) (−∞, −1)<div class="space"></div></li><li>El temps d'una cursa és 3,4762 s. a) Arrodoneix-lo a les centèsimes. b) Trunca'l a les centèsimes. c) Calcula l'error absolut de l'arrodoniment.<div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC2">🎮 Practica-la al joc →</a><a href="estudi.html#u1-intervals">📖 Teoria →</a></p>
+    </div></section>
+    <section class="fita" id="fita3"><header><span class="badge">FITA 3</span><h2>Enters i fraccions</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Fer operacions combinades respectant la jerarquia: parèntesis → potències → × i : → + i −.</li><li>Aplicar la regla dels signes.</li><li>Sumar i restar fraccions (m.c.m.), multiplicar-les, dividir-les i simplificar.</li></ul>
+      <div class="rec"><p>Mateix signe → +, signes diferents → − (en × i :).<br><span class="frac"><span>a</span><span>b</span></span> · <span class="frac"><span>c</span><span>d</span></span> = <span class="frac"><span>a·c</span><span>b·d</span></span> · <span class="frac"><span>a</span><span>b</span></span> : <span class="frac"><span>c</span><span>d</span></span> = <span class="frac"><span>a·d</span><span>b·c</span></span>. Per sumar, primer el mateix denominador.</p></div>
+      <div class="ex"><p>−3 + 4 · (2 − 5) = −3 + 4 · (−3) = −3 − 12 = −15<br><span class="frac"><span>1</span><span>2</span></span> + <span class="frac"><span>1</span><span>3</span></span> = <span class="frac"><span>3</span><span>6</span></span> + <span class="frac"><span>2</span><span>6</span></span> = <span class="frac"><span>5</span><span>6</span></span></p></div>
+      <h3>Practica</h3><ol class="exs"><li>Calcula: a) 12 − 3 · (4 − 6)<sup>2</sup> b) (−2) · (−5) − 18 : (−3)<div class="space"></div></li><li>Calcula i simplifica: <span class="frac"><span>2</span><span>3</span></span> + <span class="frac"><span>1</span><span>4</span></span> − <span class="frac"><span>5</span><span>6</span></span><div class="space"></div></li><li>Calcula i simplifica: <span class="frac"><span>1</span><span>2</span></span> + <span class="frac"><span>3</span><span>4</span></span> · <span class="frac"><span>2</span><span>9</span></span><div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC3">🎮 Practica-la al joc →</a><a href="estudi.html#u1-enters">📖 Teoria →</a></p>
+    </div></section>
+    <section class="fita" id="fita4"><header><span class="badge">FITA 4</span><h2>Potències</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Calcular potències d'exponent 0 i negatiu.</li><li>Aplicar les propietats: producte i quocient de la mateixa base, potència d'una potència.</li><li>Calcular potències de fraccions (també amb exponent negatiu).</li></ul>
+      <div class="rec"><p>a<sup>0</sup> = 1 · a<sup>−n</sup> = <span class="frac"><span>1</span><span>a<sup>n</sup></span></span> · a<sup>m</sup> · a<sup>n</sup> = a<sup>m+n</sup> · a<sup>m</sup> : a<sup>n</sup> = a<sup>m−n</sup> · (a<sup>m</sup>)<sup>n</sup> = a<sup>m·n</sup> · (<span class="frac"><span>a</span><span>b</span></span>)<sup>−n</sup> = (<span class="frac"><span>b</span><span>a</span></span>)<sup>n</sup></p></div>
+      <div class="ex"><p>2<sup>3</sup> · 2<sup>−5</sup> = 2<sup>−2</sup> = <span class="frac"><span>1</span><span>4</span></span> · (<span class="frac"><span>3</span><span>2</span></span>)<sup>−2</sup> = (<span class="frac"><span>2</span><span>3</span></span>)<sup>2</sup> = <span class="frac"><span>4</span><span>9</span></span></p></div>
+      <h3>Practica</h3><ol class="exs"><li>Calcula: a) 2<sup>−3</sup> b) (−3)<sup>0</sup> c) (<span class="frac"><span>2</span><span>5</span></span>)<sup>−2</sup> d) (−2)<sup>4</sup> i −2<sup>4</sup><div class="space"></div></li><li>Escriu com una sola potència: a) 3<sup>5</sup> · 3<sup>−2</sup> b) 5<sup>7</sup> : 5<sup>9</sup> c) (2<sup>3</sup>)<sup>4</sup> d) x<sup>2</sup> · x<sup>3</sup> : x<sup>4</sup><div class="space"></div></li><li>Simplifica i calcula: <span class="frac"><span>2<sup>4</sup> · 2<sup>−1</sup></span><span>(2<sup>2</sup>)<sup>3</sup></span></span><div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC4">🎮 Practica-la al joc →</a><a href="estudi.html#u2-propietats">📖 Teoria →</a></p>
+    </div></section>
+    <section class="fita" id="fita5"><header><span class="badge">FITA 5</span><h2>Notació científica</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Escriure nombres grans i petits en notació científica i al revés.</li><li>Multiplicar i dividir en notació científica i corregir el resultat si cal.</li><li>Fer-ho servir en problemes (amb la calculadora).</li></ul>
+      <div class="rec"><p>a · 10<sup>n</sup> amb 1 ≤ a &lt; 10. Producte: es multipliquen els nombres i se sumen els exponents. Quocient: es divideixen i es resten.</p></div>
+      <div class="ex"><p>0,00056 = 5,6 · 10<sup>−4</sup> · (2 · 10<sup>5</sup>) · (7 · 10<sup>3</sup>) = 14 · 10<sup>8</sup> = 1,4 · 10<sup>9</sup></p></div>
+      <h3>Practica</h3><ol class="exs"><li>Escriu en notació científica: a) 45 000 000 b) 0,00072 c) 0,3 · 10<sup>5</sup><div class="space"></div></li><li>Calcula i dona el resultat en notació científica: a) (3 · 10<sup>8</sup>) · (4 · 10<sup>−3</sup>) b) (8 · 10<sup>5</sup>) : (2 · 10<sup>9</sup>)<div class="space"></div></li><li>Un joc ocupa 2,5 · 10<sup>9</sup> bytes. Quants jocs caben en un disc d'1 · 10<sup>12</sup> bytes?<div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC5">🎮 Practica-la al joc →</a><a href="estudi.html#u2-nc">📖 Teoria →</a></p>
+    </div></section>
+    <section class="fita" id="fita6"><header><span class="badge">FITA 6</span><h2>Radicals i Pitàgores</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Extreure factors d'una arrel.</li><li>Sumar i restar radicals semblants.</li><li>Aplicar el teorema de Pitàgores per trobar un costat o una distància.</li></ul>
+      <div class="rec"><p>√<span class="rad">a · b</span> = √<span class="rad">a</span> · √<span class="rad">b</span>. Només se sumen els radicals amb la mateixa arrel: 3√<span class="rad">2</span> + 5√<span class="rad">2</span> = 8√<span class="rad">2</span>.<br>Pitàgores: a<sup>2</sup> = b<sup>2</sup> + c<sup>2</sup> (a = hipotenusa).</p></div>
+      <div class="ex"><p>√<span class="rad">48</span> = √<span class="rad">16 · 3</span> = 4√<span class="rad">3</span> · Catets 6 i 8 → hipotenusa = √<span class="rad">36 + 64</span> = √<span class="rad">100</span> = 10</p></div>
+      <h3>Practica</h3><ol class="exs"><li>Extreu factors: a) √<span class="rad">50</span> b) √<span class="rad">72</span> c) √<span class="rad">12</span><div class="space"></div></li><li>Calcula: 3√<span class="rad">2</span> + √<span class="rad">8</span> − √<span class="rad">18</span><div class="space"></div></li><li>a) Calcula la distància entre A(1, 1) i B(4, 5). b) La hipotenusa d'un triangle rectangle fa 13 cm i un catet, 5 cm. Quant fa l'altre catet?<div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC6">🎮 Practica-la al joc →</a><a href="estudi.html#u2-radicals">📖 Teoria →</a></p>
+    </div></section>
+    <section class="fita" id="fita7"><header><span class="badge">FITA 7</span><h2>Operacions amb polinomis</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Calcular el valor numèric d'un polinomi.</li><li>Sumar i restar polinomis (agrupant termes semblants).</li><li>Multiplicar polinomis (cada terme per cada terme).</li></ul>
+      <div class="rec"><p>Valor numèric: substitueix la x pel nombre (entre parèntesis si és negatiu). En restar, canvia el signe de <b>tots</b> els termes del segon polinomi.</p></div>
+      <div class="ex"><p>P(x) = x<sup>2</sup> − 3x → P(−2) = (−2)<sup>2</sup> − 3 · (−2) = 4 + 6 = 10<br>(x + 2)(x − 3) = x<sup>2</sup> − 3x + 2x − 6 = x<sup>2</sup> − x − 6</p></div>
+      <h3>Practica</h3><ol class="exs"><li>P(x) = 2x<sup>2</sup> − 3x + 1. Calcula P(−1) i P(2).<div class="space"></div></li><li>Amb P(x) = 2x<sup>2</sup> − 3x + 1 i Q(x) = x − 2, calcula P(x) + Q(x) i P(x) − Q(x).<div class="space"></div></li><li>Calcula P(x) · Q(x).<div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC7">🎮 Practica-la al joc →</a><a href="estudi.html#u3-operacions">📖 Teoria →</a></p>
+    </div></section>
+    <section class="fita" id="fita8"><header><span class="badge">FITA 8</span><h2>Identitats notables i factor comú</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Desenvolupar (a + b)<sup>2</sup>, (a − b)<sup>2</sup> i (a + b)(a − b).</li><li>Factoritzar traient factor comú.</li><li>Reconèixer una identitat notable per factoritzar.</li></ul>
+      <div class="rec"><p>(a + b)<sup>2</sup> = a<sup>2</sup> + 2ab + b<sup>2</sup> · (a − b)<sup>2</sup> = a<sup>2</sup> − 2ab + b<sup>2</sup> · (a + b)(a − b) = a<sup>2</sup> − b<sup>2</sup></p></div>
+      <div class="ex"><p>(x − 4)<sup>2</sup> = x<sup>2</sup> − 8x + 16 · 4x<sup>2</sup> − 8x = 4x(x − 2) · x<sup>2</sup> − 9 = (x + 3)(x − 3)</p></div>
+      <h3>Practica</h3><ol class="exs"><li>Desenvolupa: a) (x + 3)<sup>2</sup> b) (2x − 1)<sup>2</sup> c) (x + 5)(x − 5)<div class="space"></div></li><li>Factoritza: a) 6x<sup>3</sup> − 9x<sup>2</sup> b) x<sup>2</sup> − 16 c) x<sup>2</sup> − 10x + 25<div class="space"></div></li><li>Factoritza del tot: 2x<sup>2</sup> − 18<div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC8">🎮 Practica-la al joc →</a><a href="estudi.html#u3-notables">📖 Teoria →</a></p>
+    </div></section>
+    <section class="fita" id="fita9"><header><span class="badge">FITA 9</span><h2>Ruffini i arrels</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Dividir un polinomi entre (x − a) amb la regla de Ruffini.</li><li>Saber que si el residu és 0, a és una arrel.</li><li>Trobar les arrels enteres (entre els divisors del terme independent) i factoritzar.</li></ul>
+      <div class="rec"><p>Les arrels enteres possibles són els divisors del terme independent. P(a) = 0 ⇔ a és arrel ⇔ (x − a) és un factor.</p></div>
+      <div class="ex"><p>x<sup>2</sup> − 5x + 6: P(2) = 4 − 10 + 6 = 0 → x = 2 és arrel → x<sup>2</sup> − 5x + 6 = (x − 2)(x − 3)</p></div>
+      <h3>Practica</h3><ol class="exs"><li>Divideix per Ruffini (x<sup>3</sup> − 2x<sup>2</sup> − 5x + 6) : (x − 1). Quin és el quocient i el residu?<div class="space"></div></li><li>És x = 2 una arrel de P(x) = x<sup>3</sup> − 3x + 2? I x = −2?<div class="space"></div></li><li>Factoritza x<sup>3</sup> − 2x<sup>2</sup> − 5x + 6 i escriu les seves arrels.<div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC9">🎮 Practica-la al joc →</a><a href="estudi.html#u3-ruffini">📖 Teoria →</a></p>
+    </div></section>
+    <section class="fita" id="fita10"><header><span class="badge">FITA 10</span><h2>Equacions de 1r grau</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Resoldre equacions amb parèntesis.</li><li>Resoldre equacions amb denominadors (multiplicant pel m.c.m.).</li><li>Comprovar la solució.</li></ul>
+      <div class="rec"><p>1) Parèntesis 2) Denominadors: tot × m.c.m. 3) x a un costat i nombres a l'altre 4) Aïlla la x 5) Comprova.</p></div>
+      <div class="ex"><p>2(x + 3) = x + 10 → 2x + 6 = x + 10 → x = 4 · Comprova: 2 · 7 = 14 i 4 + 10 = 14 ✔</p></div>
+      <h3>Practica</h3><ol class="exs"><li>Resol: 5x − 7 = 2x + 8<div class="space"></div></li><li>Resol: 3(x − 4) − 2(x + 1) = 6<div class="space"></div></li><li>Resol: <span class="frac"><span>x</span><span>2</span></span> − <span class="frac"><span>x − 1</span><span>3</span></span> = 2<div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC10">🎮 Practica-la al joc →</a><a href="estudi.html#u4-eq1">📖 Teoria →</a></p>
+    </div></section>
+    <section class="fita" id="fita11"><header><span class="badge">FITA 11</span><h2>Equacions de 2n grau</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Resoldre equacions completes amb la fórmula.</li><li>Resoldre les incompletes de la manera ràpida.</li><li>Saber quantes solucions té una equació amb el discriminant.</li></ul>
+      <div class="rec"><p>ax<sup>2</sup> + bx + c = 0 → x = <span class="frac"><span>−b ± √<span class="rad">b<sup>2</sup> − 4ac</span></span><span>2a</span></span> · Δ = b<sup>2</sup> − 4ac: Δ &gt; 0 dues, Δ = 0 una, Δ &lt; 0 cap.</p></div>
+      <div class="ex"><p>x<sup>2</sup> − 2x − 8 = 0 → x = <span class="frac"><span>2 ± √<span class="rad">4 + 32</span></span><span>2</span></span> = <span class="frac"><span>2 ± 6</span><span>2</span></span> → x = 4 o x = −2</p></div>
+      <h3>Practica</h3><ol class="exs"><li>Resol: x<sup>2</sup> − 5x + 6 = 0<div class="space"></div></li><li>Resol: a) 3x<sup>2</sup> − 27 = 0 b) x<sup>2</sup> + 7x = 0<div class="space"></div></li><li>Sense resoldre-les, quantes solucions tenen? a) 2x<sup>2</sup> − 4x + 5 = 0 b) x<sup>2</sup> − 6x + 9 = 0<div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC11">🎮 Practica-la al joc →</a><a href="estudi.html#u4-eq2">📖 Teoria →</a></p>
+    </div></section>
+    <section class="fita" id="fita12"><header><span class="badge">FITA 12</span><h2>Problemes i percentatges</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Calcular descomptes, augments i IVA amb l'índex de variació.</li><li>Trobar el preu inicial a partir del final.</li><li>Plantejar i resoldre un problema amb una equació (i respondre amb una frase).</li></ul>
+      <div class="rec"><p>Descompte del r % → × (1 − r/100) · Augment o IVA del r % → × (1 + r/100) · Preu inicial = preu final : índex.</p></div>
+      <div class="ex"><p>Un 21 % d'IVA sobre 30 €: 30 · 1,21 = 36,30 €</p></div>
+      <h3>Practica</h3><ol class="exs"><li>Un joc costa 40 € i té un 15 % de descompte. Quant val ara?<div class="space"></div></li><li>Un preu amb el 21 % d'IVA és 60,50 €. Quin era el preu sense IVA?<div class="space"></div></li><li>La suma de tres nombres consecutius és 72. Quins són?<div class="space"></div></li><li>Un rectangle fa 3 cm més de llarg que d'ample i té 40 cm<sup>2</sup> d'àrea. Quines mides té?<div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC12">🎮 Practica-la al joc →</a><a href="estudi.html#u4-problemes">📖 Teoria →</a></p>
+    </div></section>
+    <section class="fita" id="fita13"><header><span class="badge">FITA 13</span><h2>Sistemes 2×2</h2></header><div class="in">
+      <h3>Què he de saber fer</h3><ul class="sap"><li>Resoldre un sistema per substitució, igualació o reducció.</li><li>Comprovar la solució a les dues equacions.</li><li>Plantejar un sistema a partir d'un enunciat.</li></ul>
+      <div class="rec"><p>Substitució: aïlla una incògnita i substitueix-la a l'altra equació. Reducció: multiplica perquè una incògnita tingui coeficients oposats i suma.</p></div>
+      <div class="ex"><p>x + y = 5 i x − y = 1 → sumant: 2x = 6 → x = 3, y = 2</p></div>
+      <h3>Practica</h3><ol class="exs"><li>Resol per substitució: x + y = 10 · x − y = 4<div class="space"></div></li><li>Resol pel mètode que vulguis: 2x + 3y = 12 · 3x − y = 7<div class="space"></div></li><li>2 skins i 1 gemma costen 11 €; 1 skin i 3 gemmes, 13 €. Quant costa cada cosa?<div class="space"></div></li></ol>
+      <p class="links"><a href="temporada1.html#jugar=RC13">🎮 Practica-la al joc →</a><a href="estudi.html#u4-sistemes">📖 Teoria →</a></p>
+    </div></section>
+  </main>
+  <footer class="foot">Situació d'aprenentatge «Corbatera Games Studio» · Curs 2026–2027</footer>
+</body>
+</html>
