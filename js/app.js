@@ -126,14 +126,12 @@
       '<div class="quick">' + QUICK.filter(function (q) { return !q.amagat; }).map(function (q) {
         return '<a class="mission quickcard" href="' + q.href + '"><span class="badge tr">PREGUNTES RÀPIDES</span><span class="mt">' + q.titol + '</span><span class="ms">' + q.sub + '</span><span class="mstate">' + quickXP(q) + ' XP guanyats →</span></a>';
       }).join('') + '</div>';
-    h += '<section class="card tools"><h3>Diari de procés</h3><p class="small">Tot el que has fet, pas a pas, amb els intents i les pistes. Quan acabis (o quan t\'ho demani la docent), descarrega l\'informe i penja\'l al Classroom.</p>' +
-      '<div class="row"><button class="btn" id="diari">Mira el diari</button><button class="btn" id="inf">Descarrega l\'informe</button><button class="btn ghost" id="print">Imprimeix / PDF</button><button class="btn ghost" id="out">Canvia de jugador</button></div></section>';
+    h += '<section class="card tools"><h3>Diari de procés</h3><p class="small">Tot el que has fet, pas a pas, amb els intents i les pistes. L\'informe per penjar al Classroom es descarrega des de l\'Inici, fora de les temporades.</p>' +
+      '<div class="row"><button class="btn" id="diari">Mira el diari</button><a class="btn" href="index.html#informes">Informes (a l\'Inici)</a><button class="btn ghost" id="out">Canvia de jugador</button></div></section>';
     app.innerHTML = h;
     [].forEach.call(document.querySelectorAll('button.mission:not([disabled])'), function (b) { b.onclick = function () { startMission(b.dataset.id); }; });
     document.getElementById('diari').onclick = viewDiari;
-    document.getElementById('inf').onclick = downloadReport;
-    document.getElementById('print').onclick = printReport;
-    document.getElementById('out').onclick = function () { DB.current = null; save(); viewStart(); };
+    document.getElementById('out').onclick = function () { DB.current = null; save(); location.href = 'index.html'; };
     window.scrollTo(0, 0);
   }
 
@@ -345,7 +343,7 @@
     MISSIONS.forEach(function (m) {
       var st = p.missions[m.id] || {}, n = 0, f = 0, hi = 0, rv = 0;
       p.log.forEach(function (l) { if (l.mid !== m.id) return; l.steps.forEach(function (s) { n++; if (!s.wrong.length && !s.hint && !s.revealed && s.ok) f++; if (s.hint) hi++; if (s.revealed) rv++; }); });
-      h += '<tr><td>' + (m.repas ? 'REPÀS ' : m.boss ? 'BOSS ' : m.nivell.id + '·F' + m.fase + ' ') + m.titol + '</td><td>' + (st.done ? (m.repas ? '✔ ' + st.runs + ' rond.' : '✔ superada') : st.runs ? 'en curs' : '—') + '</td><td>' + (st.runs || 0) + '</td><td>' + (st.best || 0) + (st.max ? ' / ' + st.max : '') + '</td><td>' + (n ? f + ' / ' + n : '—') + '</td><td>' + hi + '</td><td>' + rv + '</td></tr>';
+      h += '<tr><td>' + (m.repas ? 'REPÀS ' : m.boss ? m.nivell.id + ' · ' : m.nivell.id + '·F' + m.fase + ' ') + m.titol + '</td><td>' + (st.done ? (m.repas ? '✔ ' + st.runs + ' rond.' : '✔ superada') : st.runs ? 'en curs' : '—') + '</td><td>' + (st.runs || 0) + '</td><td>' + (st.best || 0) + (st.max ? ' / ' + st.max : '') + '</td><td>' + (n ? f + ' / ' + n : '—') + '</td><td>' + hi + '</td><td>' + rv + '</td></tr>';
     });
     return h + '</tbody></table>';
   }
@@ -357,12 +355,20 @@
     document.getElementById('inf').onclick = downloadReport;
     window.scrollTo(0, 0);
   }
+  // Insígnies del tràiler de la Temporada 2 (trailer.html), si n'hi ha
+  var T2M = { e1: 'Temporada 2 desbloquejada', e2: 'Narrador/a de gràfiques', e3: 'Analista de partides', e4: 'Dissenyador/a de salts', e5: 'Memòria de dades', e6: 'Al dia', e7: 'Enigma resolt' };
+  function t2HTML() {
+    var m = {}; try { m = (JSON.parse(localStorage.getItem('cgs-trailer-t2') || 'null') || {}).medals || {}; } catch (e) {}
+    var ks = Object.keys(T2M).filter(function (k) { return m[k]; });
+    if (!ks.length) return '';
+    return '<h2>Temporada 2 · Tràiler</h2><p>Insígnies (' + ks.length + ' de 7): ' + ks.map(function (k) { return '★ ' + T2M[k] + ' <span class="small">(' + new Date(m[k]).toLocaleDateString('ca-ES') + ')</span>'; }).join(' · ') + '</p>';
+  }
   function reportDoc() {
     var p = P(), xp = totalXP(p), css = document.getElementById('report-css').textContent;
     return '<!doctype html><html lang="ca"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Informe · ' + U.esc(p.nom) + '</title><style>' + css + '</style></head><body class="report">' +
       '<header class="rhead"><div><b>Corbatera Games Studio</b> · Matemàtiques A · 4t ESO · Corbatera Institut Escola</div><div>Informe de procés</div></header>' +
       '<h1>' + U.esc(p.nom) + '</h1><p>' + xp + ' XP · rang: <b>' + rank(xp)[1] + '</b> · generat el ' + new Date().toLocaleString('ca-ES') + '</p>' +
-      '<h2>Resum</h2><p>XP de missions: <b>' + missionXP(p) + '</b> · XP de preguntes ràpides (mode entrenament, en aquest navegador): <b>' + trainXP() + '</b></p>' + summaryHTML(p) + '<h2>Procés pas a pas</h2><p class="small">Per a cada pas: els intents fallits (ratllats), si s\'ha fet servir pista i la resposta correcta.</p>' + diariHTML(p) + '</body></html>';
+      '<h2>Resum</h2><p>XP de missions: <b>' + missionXP(p) + '</b> · XP de preguntes ràpides (mode entrenament, en aquest navegador): <b>' + trainXP() + '</b></p>' + summaryHTML(p) + t2HTML() + '<h2>Procés pas a pas</h2><p class="small">Per a cada pas: els intents fallits (ratllats), si s\'ha fet servir pista i la resposta correcta.</p>' + diariHTML(p) + '</body></html>';
   }
   function downloadReport() {
     var p = P(), blob = new Blob([reportDoc()], { type: 'text/html' });
@@ -389,6 +395,16 @@
   function jumpTo(id) {
     if (unlocked(MISSIONS.indexOf(mById(id)))) startMission(id);
     else { NOTICE = 'La missió «' + mById(id).titol + '» encara està bloquejada: acaba primer les fases anteriors del nivell.'; viewMap(); }
+  }
+  // Pàgina d'inici (index.html): sense #app, només ofereix el diari i l'informe
+  if (!app) {
+    CGS.informe = {
+      jugador: function () { load(); var p = P(); if (!p) return null; var xp = totalXP(p), nx = nextRank(xp); return { nom: p.nom, xp: xp, missions: missionXP(p), rapides: trainXP(), rang: rank(xp)[1], seguent: nx ? nx[1] : null, falten: nx ? nx[0] - xp : 0, partides: p.log.length }; },
+      diari: function () { load(); var p = P(); return p ? summaryHTML(p) + '<div class="diari">' + diariHTML(p) + '</div>' : ''; },
+      descarrega: function () { load(); if (P()) downloadReport(); },
+      imprimeix: function () { load(); if (P()) printReport(); }
+    };
+    return;
   }
   load();
   if (DB.current && DB.players[DB.current]) {

@@ -30,6 +30,10 @@
     .lk.off { opacity: .6; border-style: dashed; }
     .hello { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 18px; }
     .season.soon .body { color: var(--muted); }
+    .informes { margin-top: 22px; background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; padding: 16px 20px 18px; }
+    .informes h2 { margin: 4px 0 6px; font-size: 1.25rem; }
+    .informes .xpline { font-size: 1.05rem; }
+    #diariview { margin-top: 14px; overflow-x: auto; }
   </style>
 </head>
 <body>
@@ -41,10 +45,39 @@
     </div>
   </header>
   <main style="max-width:980px;margin:0 auto;padding:18px 16px 40px">
-    <div class="hello" id="hello">Sou un estudi de videojocs. Cada trimestre és una <b>temporada</b> nova del vostre joc: tria la temporada per començar.</div>
+    <div class="hello" id="hello"></div>
     <div class="seasons" id="seasons"></div>
+    <section class="informes" id="informes" hidden></section>
   </main>
   <footer class="foot">Situació d'aprenentatge «Corbatera Games Studio» · Curs 2026–2027</footer>
+  <script type="text/plain" id="report-css">
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1d2a22;max-width:900px;margin:0 auto;padding:24px;line-height:1.45;background:#fff}
+    .rhead{background:#2e7d32;color:#fff;padding:12px 16px;border-radius:8px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:14px}
+    h1{margin:18px 0 4px}h2{border-bottom:2px solid #2e7d32;padding-bottom:4px;margin-top:28px}
+    .small{color:#5b6b61;font-size:.85em;font-weight:normal}
+    table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #cfd8d2;padding:6px 8px;text-align:left}th{background:#e8f3ea}
+    .badge{display:inline-block;background:#2e7d32;color:#fff;font-size:11px;font-weight:700;letter-spacing:.05em;padding:2px 8px;border-radius:4px}
+    .dm{margin:18px 0;page-break-inside:avoid}.dm h3{margin:0 0 8px}
+    .dex{border:1px solid #cfd8d2;border-radius:8px;padding:10px 14px;margin:10px 0;page-break-inside:avoid}.dex h4{margin:0 0 6px}
+    .ctx{background:#f5f8f6;padding:8px 10px;border-radius:6px;margin-bottom:6px}
+    .big{font-size:1.25em;text-align:center;margin:6px 0}
+    .sq{font-weight:600}.proc{color:#1b5e20}.wrong{color:#b23b3b}.wrong s{text-decoration-thickness:2px}
+    .tag{display:inline-block;font-size:11px;background:#e8f3ea;color:#1b5e20;border-radius:10px;padding:1px 8px;margin-left:4px}.tag.red{background:#fdeaea;color:#b23b3b}
+    .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.9em}.frac span:first-child{border-bottom:1px solid currentColor}
+    .rad{border-top:1px solid currentColor}.per{text-decoration:overline}.nw{white-space:nowrap}
+    table.ruffini,table.areatab{width:auto;margin:6px auto}.ruffini td{border:0;padding:3px 10px;text-align:center}.ruffini td.ra{border-right:2px solid #1d2a22}.ruffini tr.rmid td{border-bottom:2px solid #1d2a22}.ruffini tr.rmid td:first-child{border-bottom:0}
+    sub{font-size:.75em}.br{display:inline-block;width:100%}
+    svg{display:none}ol{padding-left:22px}li{margin:6px 0}
+    @media print{body{padding:0}.rhead{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  </script>
+  <script src="js/util.js"></script>
+  <script src="js/nivell0.js"></script>
+  <script src="js/nivell1.js"></script>
+  <script src="js/nivell2.js"></script>
+  <script src="js/nivell3.js"></script>
+  <script src="js/repas.js"></script>
+  <script src="js/mode-repas.js"></script>
+  <script src="js/app.js"></script>
   <script>
   (function () {
     var d = new Date(), avui = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
@@ -76,11 +109,62 @@
       }).join('') + '</div>';
       h += '</div></section>';
     });
-    document.getElementById('seasons').innerHTML = h;
-    try {
-      var DB = JSON.parse(localStorage.getItem('cgs-mates4A-v1'));
-      if (DB && DB.current) document.getElementById('hello').innerHTML = 'Hola, <b>' + String(DB.current).replace(/[<>&"]/g, '') + '</b>! Continua on ho havies deixat o tria una altra temporada.';
-    } catch (e) {}
+    var KEY = 'cgs-mates4A-v1', DB = { players: {}, current: null };
+    try { DB = JSON.parse(localStorage.getItem(KEY)) || DB; } catch (e) {}
+    DB.players = DB.players || {};
+    var esc = function (x) { return String(x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(DB)); } catch (e) {} }
+    function entra(n) {
+      n = String(n || '').trim().replace(/\s+/g, ' ');
+      if (n.length < 3) { document.getElementById('nom').focus(); return; }
+      if (!DB.players[n]) DB.players[n] = { nom: n, creat: Date.now(), missions: {}, log: [] };
+      DB.current = n; save();
+      // el mateix nom per al «Resum per a la profe» de les preguntes ràpides
+      ['cgs-entrenament-1a-nom', 'cgs-entrenament-2a-nom'].forEach(function (k) { try { if (!localStorage.getItem(k)) localStorage.setItem(k, n); } catch (e) {} });
+      pinta();
+    }
+    function pinta() {
+      var hello = document.getElementById('hello'), seasons = document.getElementById('seasons');
+      if (DB.current && DB.players[DB.current]) {
+        hello.innerHTML = '<div class="row" style="margin:0;justify-content:space-between"><span>Hola, <b>' + esc(DB.current) + '</b>! Tria la temporada.</span><button class="btn ghost sm" id="canvi">Canvia de jugador</button></div>';
+        document.getElementById('canvi').onclick = function () { DB.current = null; save(); pinta(); };
+        seasons.innerHTML = h;
+        informes();
+        return;
+      }
+      var noms = Object.keys(DB.players);
+      hello.innerHTML = '<span class="badge">ACCÉS A L\'ESTUDI</span><h2 style="margin:8px 0 4px">Benvingut/da a Corbatera Games Studio</h2>' +
+        '<p>Sou un estudi de videojocs: cada trimestre és una <b>temporada</b> nova del vostre joc. Escriu el teu nom i cognom per entrar. El progrés es guarda en aquest navegador amb aquest nom.</p>' +
+        '<div class="row"><input id="nom" autocomplete="off" placeholder="Ex.: Laia Puig" maxlength="40" style="flex:1;min-width:200px"><button class="btn" id="go">Entra a l\'estudi</button></div>' +
+        (noms.length ? '<p class="small">O continua amb un jugador d\'aquest ordinador:</p><div class="chips">' + noms.map(function (n) { return '<button class="chip" data-n="' + esc(n) + '">' + esc(n) + '</button>'; }).join('') + '</div>' : '');
+      seasons.innerHTML = '';
+      document.getElementById('informes').hidden = true;
+      document.getElementById('go').onclick = function () { entra(document.getElementById('nom').value); };
+      document.getElementById('nom').onkeydown = function (e) { if (e.key === 'Enter') entra(this.value); };
+      [].forEach.call(document.querySelectorAll('.chip'), function (b) { b.onclick = function () { entra(b.dataset.n); }; });
+      document.getElementById('nom').focus();
+    }
+    // Informes i diari: fora de les temporades, recullen tot el que has fet
+    function informes() {
+      var box = document.getElementById('informes'), I = window.CGS && CGS.informe, j = I && I.jugador();
+      if (!j) { box.hidden = true; return; }
+      box.hidden = false;
+      box.innerHTML = '<span class="badge">INFORMES</span><h2>El meu diari de procés</h2>' +
+        '<p class="xpline"><b>' + j.xp + ' XP</b> · rang: <b>' + j.rang + '</b>' + (j.seguent ? ' <span class="small">(et falten ' + j.falten + ' XP per a ' + j.seguent + ')</span>' : '') + '</p>' +
+        '<p class="small">L\'informe recull totes les temporades: missions del joc pas a pas (amb intents, pistes i solucions), XP de les preguntes ràpides i insígnies del tràiler. Quan t\'ho demani la docent, <b>descarrega l\'informe i penja\'l al Classroom</b>.</p>' +
+        '<div class="row"><button class="btn" id="inf">Descarrega l\'informe</button><button class="btn ghost" id="print">Imprimeix / PDF</button><button class="btn ghost" id="vdiari">Mira el diari</button></div>' +
+        '<p class="small" style="margin-top:10px">Les preguntes ràpides tenen, a més, el seu propi «Resum per a la profe» dins de cada pàgina.</p>' +
+        '<div id="diariview" hidden></div>';
+      document.getElementById('inf').onclick = I.descarrega;
+      document.getElementById('print').onclick = I.imprimeix;
+      document.getElementById('vdiari').onclick = function () {
+        var v = document.getElementById('diariview');
+        if (v.hidden) { v.innerHTML = j.partides ? I.diari() : '<p>Encara no hi ha cap missió començada.</p>'; v.hidden = false; this.textContent = 'Amaga el diari'; }
+        else { v.hidden = true; this.textContent = 'Mira el diari'; }
+      };
+      if (location.hash === '#informes') setTimeout(function () { box.scrollIntoView({ behavior: 'smooth' }); }, 50);
+    }
+    pinta();
   })();
   </script>
 </body>

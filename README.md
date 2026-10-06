@@ -61,7 +61,7 @@ Als polinomis, l'alumnat escriu cada coeficient en una casella amb el seu signe 
 
 ## Inici per temporades
 
-`index.html` és la porta d'entrada: una targeta per temporada.
+`index.html` és la porta d'entrada. Primer l'alumne escriu el seu **nom i cognom** (o tria un jugador ja guardat en aquell ordinador) i després veu una targeta per temporada. El nom serveix per a totes les pàgines: el joc l'agafa directament i les preguntes ràpides l'escriuen sol al «Resum per a la profe». «Canvia de jugador» torna a aquesta pantalla.
 
 - **Temporada 1 · «El primer joc»** (1r trimestre): joc pas a pas (`temporada1.html`), Estudi i preguntes ràpides.
 - **Temporada 2 · «El joc creix»** (2a avaluació): tràiler de desembre (s'obre el 9/12) i, al gener, el joc de la temporada.
@@ -77,7 +77,7 @@ De dalt a baix:
 2. **Nivells 0, 1, 2 i 3**, per ordre. Els nivells 0 i 1 (ja fets a classe) tenen totes les fases obertes; als nivells 2 i 3 les fases s'obren en ordre.
 3. **Mode repàs**: rondes d'exercicis barrejats per tema, pas a pas i sempre obertes (vegeu més avall).
 4. **Mode entrenament**: les preguntes ràpides de la 1a avaluació (`entrenament-1a.html`), amb diari d'errors C/P/D, boss per nivell, «El meu avanç» i «Resum per a la profe». Els seus XP també sumen per al rang del joc (es llegeixen del mateix navegador). Les de la 2a avaluació (`entrenament-2a.html`) són al repositori però estan **amagades** al mapa: per mostrar-les, a `js/app.js` canvieu `amagat: true` per `amagat: false`.
-5. **Diari de procés** i informe.
+5. **Diari de procés** (per consultar-lo). L'informe es descarrega des de l'**Inici**.
 
 Per obrir totes les fases d'un nivell que ja s'ha fet a classe, edita `var ENTRENAMENT = ['N0', 'N1'];` a `js/app.js` (per exemple, afegeix-hi `'N2'` quan s'acabi el Nivell 2).
 
@@ -118,7 +118,7 @@ Rondes d'exercicis barrejats d'un tema, amb el mateix sistema pas a pas, pistes 
 - **Rangs:** Becari/ària (0) → Junior dev (400) → Desenvolupador/a (1.200) → Sènior dev (2.300) → Lead dev (3.500) → Cap d'estudi (4.800 XP).
 - **Bosses:** sense pistes; cal un 60 % dels XP per superar-los.
 - **Desbloqueig:** a la campanya, la fase 1 de cada nivell està oberta i les altres s'obren en ordre. Al mode entrenament tot està obert.
-- **Diari de procés i informe:** el botó *Descarrega l'informe* genera un fitxer HTML amb el resum (missions, XP, passos a la primera, pistes, solucions mostrades) i el procés complet de cada exercici, amb els intents fallits ratllats. També es pot imprimir o desar com a PDF. L'alumnat el penja al Classroom.
+- **Diari de procés i informe:** són a la pàgina d'**Inici** (`index.html#informes`), fora de les temporades, perquè recullen tot el curs. El botó *Descarrega l'informe* genera un fitxer HTML amb el resum (missions, XP, passos a la primera, pistes, solucions mostrades) i el procés complet de cada exercici, amb els intents fallits ratllats, l'XP de les preguntes ràpides i les insígnies del tràiler de la Temporada 2. També es pot imprimir o desar com a PDF. L'alumnat el penja al Classroom.
 
 ### Mode docent
 

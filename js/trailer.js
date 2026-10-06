@@ -347,7 +347,7 @@
       h += '<p>Jugador/a: <b>' + esc(p.nom) + '</b></p><ul class="checklist">' +
         '<li>' + (pend.filter(function (x) { return x[1] === '2'; }).length ? '☐' : '☑') + ' ' + NOMS.N2 + ': ' + (pend.filter(function (x) { return x[1] === '2'; }).length ? pend.filter(function (x) { return x[1] === '2'; }).length + ' missions pendents' : 'complet') + '</li>' +
         '<li>' + (pend.filter(function (x) { return x[1] === '3'; }).length ? '☐' : '☑') + ' ' + NOMS.N3 + ': ' + (pend.filter(function (x) { return x[1] === '3'; }).length ? pend.filter(function (x) { return x[1] === '3'; }).length + ' missions pendents' : 'complet') + '</li>' +
-        '<li>☐ Descarrega l\'informe (PDF) i comprova que l\'has lliurat al Classroom</li>' +
+        '<li>☐ Descarrega l\'informe (a l\'<a href="index.html#informes">Inici</a>) i comprova que l\'has lliurat al Classroom</li>' +
         '<li>' + (quick > 0 ? '☑' : '☐') + ' Preguntes ràpides de la 1a avaluació: ' + quick + ' XP · genera el «Resum per a la profe» i enganxa\'l al Classroom</li></ul>' +
         '<div class="row"><a class="btn" href="temporada1.html">Obre el joc</a><a class="btn ghost" href="entrenament-1a.html">Preguntes ràpides</a><a class="btn ghost" href="estudi.html">Estudi</a></div>';
       if (!pend.length) h += done(ep, 'Tens el Nivell 2 i el Nivell 3 complets. Quan hagis lliurat l\'informe, ja pots desconnectar!');
