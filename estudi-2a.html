@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estudi T2 · Corbatera Games Studio</title>
+  <meta name="description" content="Teoria de Matemàtiques A (4t ESO) de la 2a avaluació: característiques de les funcions, tipus de funcions i trigonometria bàsica.">
+  <link rel="stylesheet" href="css/estil.css">
+  <link rel="stylesheet" href="css/estudi.css">
+  <style>
+    .top.t2, .unit > header { background: linear-gradient(90deg, #2e7d32, #1f5c66); }
+    .unit > header .badge { color: #1f5c66; }
+    .gfig { margin: 12px auto; max-width: 380px; text-align: center; }
+    .gfig svg { width: 100%; height: auto; display: block; }
+    .gfig figcaption { font-size: .85rem; color: var(--muted); margin-top: 2px; }
+    .gfig .gl { stroke: var(--line); stroke-width: .7; }
+    .gfig .ax { stroke: var(--ink); stroke-width: 1.4; }
+    .gfig .tk { fill: var(--muted); font-size: 10px; }
+    .gfig .tl { fill: var(--ink); font-size: 11px; font-style: italic; }
+    .gfig .cv, .gfig .cv2, .gfig .cv3, .gfig .sec, .gfig .sec2 { fill: none; stroke-width: 2.6; stroke-linejoin: round; stroke-linecap: round; }
+    .gfig .cv { stroke: var(--green); }
+    .gfig .cv2, .gfig .sec2 { stroke: #1e88e5; }
+    .gfig .cv3 { stroke: var(--gold); }
+    .gfig .sec { stroke: var(--red); stroke-dasharray: 6 4; }
+    .gfig .sec2 { stroke-dasharray: 6 4; }
+    .gfig .dash { stroke: var(--muted); stroke-width: 1.3; stroke-dasharray: 5 4; fill: none; }
+    .gfig .thin { stroke: var(--ink); stroke-width: 1.4; fill: none; }
+    .gfig .tri { fill: var(--green-l); stroke: var(--ink); stroke-width: 1.8; }
+    .gfig .bld { fill: var(--green-l); stroke: var(--ink); stroke-width: 1.4; }
+    .gfig .pt { fill: var(--ink); }
+    .gfig .po { fill: var(--card); stroke: var(--ink); stroke-width: 1.6; }
+    .gfig .lb { fill: var(--ink); font-size: 12px; font-weight: 700; }
+    .gfig .lb2 { fill: #1e88e5; font-size: 12px; font-weight: 700; }
+    .gfig .lb3 { fill: var(--gold); font-size: 12px; font-weight: 700; }
+    .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; align-items: start; }
+    @media print { .gfig { break-inside: avoid; } }
+  </style>
+</head>
+<body>
+  <header class="top t2">
+    <div class="logo" aria-hidden="true">T2</div>
+    <div>
+      <h1>Corbatera Games Studio · Estudi de la Temporada 2</h1>
+      <p>Matemàtiques A · 4t ESO · Teoria de la 2a avaluació: funcions i trigonometria bàsica</p>
+    </div>
+  </header>
+
+  <div class="study">
+    <nav class="toc" aria-label="Índex">
+      <a href="index.html" class="btn ghost sm" style="display:block;text-align:center;margin-bottom:6px">⌂ Inici</a><a href="estudi.html" class="btn ghost sm" style="display:block;text-align:center;margin-bottom:10px">📖 Estudi de la Temporada 1</a>
+      <label for="cerca" class="small">Cerca a la teoria</label>
+      <input id="cerca" type="search" placeholder="Ex.: vèrtex, domini, sinus…" autocomplete="off">
+      <h2>Índex</h2>
+      <div id="tocl"></div>
+      <div class="tools"><button class="btn sm" onclick="window.print()">Imprimeix / PDF</button></div>
+    </nav>
+
+    <main id="contingut">
+      <p class="nores" id="nores" hidden>No hi ha cap apartat que contingui aquesta paraula.</p>
+
+      <!-- ===================================================== N4 ===================================================== -->
+      <section class="unit" id="n4">
+        <header><span class="badge">NIVELL 4 · LES DADES DEL JOC</span><h2>Nivell 4 · Les funcions i les seves característiques</h2><p>Concepte de funció, domini i recorregut, talls, creixement, extrems, TVM i continuïtat</p></header>
+
+        <article class="topic" id="n4-funcio">
+          <h3>4.1 Què és una funció</h3>
+          <div class="def">
+            <p>Una <b>funció</b> és una relació entre dues variables que a cada valor de la primera (x) li fa correspondre <b>un sol valor</b> de la segona (y). S'escriu y = f(x).</p>
+            <ul>
+              <li><b>Variable independent (x)</b>: la que triem o la que passa (el temps, els minuts jugats…). Va a l'eix horitzontal.</li>
+              <li><b>Variable dependent (y)</b>: la que en depèn (les monedes, l'alçada…). Va a l'eix vertical.</li>
+            </ul>
+          </div>
+          <div class="prop">
+            <p>Una funció es pot donar de quatre maneres (les <b>4 representacions</b>):</p>
+            <ol><li><b>Enunciat</b>: una frase que explica la relació.</li><li><b>Taula de valors</b>.</li><li><b>Gràfica</b>: els punts (x, y) als eixos.</li><li><b>Fórmula</b> (expressió algebraica): y = f(x).</li></ol>
+          </div>
+          <div class="ex">
+            <p><b>Enunciat:</b> comences la partida amb 10 monedes i en guanyes 3 per minut.</p>
+            <p><b>Fórmula:</b> f(x) = 3x + 10 (x = minuts, y = monedes)</p>
+            <div class="tblwrap"><table class="tbl"><tr><th>x (min)</th><td>0</td><td>1</td><td>2</td><td>5</td><td>10</td></tr><tr><th>y (monedes)</th><td>10</td><td>13</td><td>16</td><td>25</td><td>40</td></tr></table></div>
+            <p class="st">f(5) = 3 · 5 + 10 = 25 → als 5 minuts tens 25 monedes.</p>
+          </div>
+          <div class="warn2"><ul><li>Una gràfica és d'una funció si cap recta vertical la talla en més d'un punt (a cada x, una sola y).</li><li>f(5) no vol dir «f per 5»: vol dir «el valor de y quan x = 5».</li></ul></div>
+        </article>
+
+        <article class="topic" id="n4-domini">
+          <h3>4.2 Domini i recorregut</h3>
+          <div class="def">
+            <ul>
+              <li><b>Domini</b>, Dom f: els valors de <b>x</b> que tenen imatge (on «existeix» la gràfica, d'esquerra a dreta).</li>
+              <li><b>Recorregut</b> (o imatge), Im f: els valors de <b>y</b> que pren la funció (de baix a dalt).</li>
+            </ul>
+            <p>Normalment s'escriuen amb <b>intervals</b>.</p>
+          </div>
+          <div class="prop">
+            <ul>
+              <li><b>A la gràfica</b>: el domini és la «ombra» de la gràfica sobre l'eix X; el recorregut, la seva «ombra» sobre l'eix Y.</li>
+              <li><b>A la fórmula</b>: no es pot dividir entre 0 ni fer l'arrel quadrada d'un nombre negatiu.</li>
+              <li><b>Al context</b>: només tenen sentit els valors possibles (temps ≥ 0, nombre de persones enter…).</li>
+            </ul>
+          </div>
+          <div class="ex">
+            <ul>
+              <li>f(x) = 3x + 10 → Dom f = ℝ. Però si x són els minuts d'una partida de 30 min: Dom = [0, 30] i Im = [10, 100].</li>
+              <li>f(x) = <span class="frac"><span>1</span><span>x − 2</span></span> → no es pot fer x = 2 → Dom f = ℝ − &#123;2&#125;.</li>
+              <li>f(x) = √<span class="rad">x − 3</span> → cal x − 3 ≥ 0 → Dom f = [3, +∞).</li>
+              <li>A la gràfica de 4.4: Dom = [0, 10] i Im = [1, 6].</li>
+            </ul>
+          </div>
+          <div class="practice"><a href="estudi.html#u1-intervals">Repassa (Temporada 1): Intervals →</a></div>
+        </article>
+
+        <article class="topic" id="n4-talls">
+          <h3>4.3 Punts de tall amb els eixos</h3>
+          <div class="prop">
+            <ul>
+              <li><b>Tall amb l'eix Y</b>: fem <b>x = 0</b>. És el punt (0, f(0)). Com a màxim n'hi ha un.</li>
+              <li><b>Talls amb l'eix X</b>: fem <b>y = 0</b> i resolem l'equació f(x) = 0. Poden ser-ne cap, un o més.</li>
+            </ul>
+          </div>
+          <div class="ex">
+            <p class="st">f(x) = 2x − 6 → eix Y: f(0) = −6 → (0, −6)<br>eix X: 2x − 6 = 0 → x = 3 → (3, 0)</p>
+            <p class="st">g(x) = x² − 4x + 3 → eix Y: (0, 3)<br>eix X: x² − 4x + 3 = 0 → x = 1 o x = 3 → (1, 0) i (3, 0)</p>
+          </div>
+          <div class="warn2"><ul><li>Els punts de tall s'escriuen com a <b>punts</b> (x, y), no com un sol nombre.</li><li>No confonguis els eixos: a l'eix X la <b>y</b> val 0; a l'eix Y la <b>x</b> val 0.</li></ul></div>
+          <div class="practice"><a href="estudi.html#u4-eq1">Repassa (Temporada 1): Equacions de 1r grau →</a><a href="estudi.html#u4-eq2">Repassa (Temporada 1): Equacions de 2n grau →</a></div>
+        </article>
+
+        <article class="topic" id="n4-creixement">
+          <h3>4.4 Creixement, decreixement, màxims i mínims</h3>
+          <div class="def">
+            <ul>
+              <li><b>Creixent</b> en un interval: si en augmentar la x, augmenta la y (la gràfica puja d'esquerra a dreta).</li>
+              <li><b>Decreixent</b>: si en augmentar la x, la y disminueix (la gràfica baixa).</li>
+              <li><b>Constant</b>: la y no canvia (tram horitzontal).</li>
+              <li><b>Màxim relatiu</b>: punt on la funció passa de créixer a decréixer (un «cim»). <b>Mínim relatiu</b>: passa de decréixer a créixer (una «vall»).</li>
+              <li><b>Màxim / mínim absolut</b>: el valor de y més alt / més baix de tota la funció.</li>
+            </ul>
+          </div>
+          <figure class="gfig"><svg viewBox="0 0 350 240" role="img" aria-label="Jugadors connectats (milers) segons les hores des de les 14 h"><line x1="26.0" y1="214.0" x2="26.0" y2="26.0" class="gl"/><line x1="54.8" y1="214.0" x2="54.8" y2="26.0" class="gl"/><line x1="83.6" y1="214.0" x2="83.6" y2="26.0" class="gl"/><line x1="112.4" y1="214.0" x2="112.4" y2="26.0" class="gl"/><line x1="141.2" y1="214.0" x2="141.2" y2="26.0" class="gl"/><line x1="170.0" y1="214.0" x2="170.0" y2="26.0" class="gl"/><line x1="198.8" y1="214.0" x2="198.8" y2="26.0" class="gl"/><line x1="227.6" y1="214.0" x2="227.6" y2="26.0" class="gl"/><line x1="256.4" y1="214.0" x2="256.4" y2="26.0" class="gl"/><line x1="285.2" y1="214.0" x2="285.2" y2="26.0" class="gl"/><line x1="314.0" y1="214.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="314.0" y2="214.0" class="gl"/><line x1="26.0" y1="187.1" x2="314.0" y2="187.1" class="gl"/><line x1="26.0" y1="160.3" x2="314.0" y2="160.3" class="gl"/><line x1="26.0" y1="133.4" x2="314.0" y2="133.4" class="gl"/><line x1="26.0" y1="106.6" x2="314.0" y2="106.6" class="gl"/><line x1="26.0" y1="79.7" x2="314.0" y2="79.7" class="gl"/><line x1="26.0" y1="52.9" x2="314.0" y2="52.9" class="gl"/><line x1="26.0" y1="26.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="322.0" y2="214.0" class="ax"/><line x1="26.0" y1="214.0" x2="26.0" y2="18.0" class="ax"/><text x="318.0" y="228.0" class="tl">hores</text><text x="31.0" y="20.0" class="tl">milers</text><text x="54.8" y="227.0" class="tk" text-anchor="middle">1</text><text x="83.6" y="227.0" class="tk" text-anchor="middle">2</text><text x="112.4" y="227.0" class="tk" text-anchor="middle">3</text><text x="141.2" y="227.0" class="tk" text-anchor="middle">4</text><text x="170.0" y="227.0" class="tk" text-anchor="middle">5</text><text x="198.8" y="227.0" class="tk" text-anchor="middle">6</text><text x="227.6" y="227.0" class="tk" text-anchor="middle">7</text><text x="256.4" y="227.0" class="tk" text-anchor="middle">8</text><text x="285.2" y="227.0" class="tk" text-anchor="middle">9</text><text x="314.0" y="227.0" class="tk" text-anchor="middle">10</text><text x="22.0" y="191.1" class="tk" text-anchor="end">1</text><text x="22.0" y="164.3" class="tk" text-anchor="end">2</text><text x="22.0" y="137.4" class="tk" text-anchor="end">3</text><text x="22.0" y="110.6" class="tk" text-anchor="end">4</text><text x="22.0" y="83.7" class="tk" text-anchor="end">5</text><text x="22.0" y="56.9" class="tk" text-anchor="end">6</text><text x="22.0" y="30.0" class="tk" text-anchor="end">7</text><polyline points="26.0,160.3 112.4,52.9 227.6,187.1 314.0,79.7" class="cv"/><circle cx="26.0" cy="160.3" r="4" class="pt"/><text x="34.0" y="164.3" class="lb">(0, 2)</text><circle cx="112.4" cy="52.9" r="4" class="pt"/><text x="92.4" y="42.9" class="lb">màx (3, 6)</text><circle cx="227.6" cy="187.1" r="4" class="pt"/><text x="209.6" y="205.1" class="lb">mín (7, 1)</text><circle cx="314.0" cy="79.7" r="4" class="pt"/><text x="266.0" y="71.7" class="lb">(10, 5)</text></svg><figcaption>Jugadors connectats (milers) segons les hores des de les 14 h</figcaption></figure>
+          <div class="ex">
+            <ul>
+              <li>Creixent a (0, 3) ∪ (7, 10) · Decreixent a (3, 7)</li>
+              <li>Màxim relatiu (i absolut) a (3, 6): a les 17 h hi ha 6 000 jugadors, el màxim.</li>
+              <li>Mínim relatiu (i absolut) a (7, 1): a les 21 h, només 1 000.</li>
+              <li>Talls: amb l'eix Y a (0, 2); amb l'eix X, cap.</li>
+            </ul>
+          </div>
+          <div class="warn2"><ul><li>El creixement es dona amb intervals de <b>x</b> (llegint la gràfica d'esquerra a dreta), no de y.</li><li>Un màxim és un <b>punt</b>: diu on (x) i quant (y).</li></ul></div>
+        </article>
+
+        <article class="topic" id="n4-tvm">
+          <h3>4.5 Taxa de variació mitjana (TVM)</h3>
+          <div class="def"><p>La <b>TVM</b> d'una funció en l'interval [a, b] mesura quant canvia la y, de mitjana, per cada unitat que augmenta la x. És la <b>velocitat de canvi</b>.</p></div>
+          <div class="prop">
+            <p class="f">TVM [a, b] = <span class="frac"><span>f(b) − f(a)</span><span>b − a</span></span></p>
+            <ul><li>TVM &gt; 0 → de mitjana, la funció creix en aquest interval.</li><li>TVM &lt; 0 → de mitjana, decreix.</li><li>Gràficament, és el <b>pendent</b> del segment que uneix els dos punts.</li></ul>
+          </div>
+          <figure class="gfig"><svg viewBox="0 0 350 240" role="img" aria-label="TVM: pendent del segment que uneix dos punts de la gràfica"><line x1="26.0" y1="214.0" x2="26.0" y2="26.0" class="gl"/><line x1="54.8" y1="214.0" x2="54.8" y2="26.0" class="gl"/><line x1="83.6" y1="214.0" x2="83.6" y2="26.0" class="gl"/><line x1="112.4" y1="214.0" x2="112.4" y2="26.0" class="gl"/><line x1="141.2" y1="214.0" x2="141.2" y2="26.0" class="gl"/><line x1="170.0" y1="214.0" x2="170.0" y2="26.0" class="gl"/><line x1="198.8" y1="214.0" x2="198.8" y2="26.0" class="gl"/><line x1="227.6" y1="214.0" x2="227.6" y2="26.0" class="gl"/><line x1="256.4" y1="214.0" x2="256.4" y2="26.0" class="gl"/><line x1="285.2" y1="214.0" x2="285.2" y2="26.0" class="gl"/><line x1="314.0" y1="214.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="314.0" y2="214.0" class="gl"/><line x1="26.0" y1="187.1" x2="314.0" y2="187.1" class="gl"/><line x1="26.0" y1="160.3" x2="314.0" y2="160.3" class="gl"/><line x1="26.0" y1="133.4" x2="314.0" y2="133.4" class="gl"/><line x1="26.0" y1="106.6" x2="314.0" y2="106.6" class="gl"/><line x1="26.0" y1="79.7" x2="314.0" y2="79.7" class="gl"/><line x1="26.0" y1="52.9" x2="314.0" y2="52.9" class="gl"/><line x1="26.0" y1="26.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="322.0" y2="214.0" class="ax"/><line x1="26.0" y1="214.0" x2="26.0" y2="18.0" class="ax"/><text x="318.0" y="228.0" class="tl">hores</text><text x="31.0" y="20.0" class="tl">milers</text><text x="54.8" y="227.0" class="tk" text-anchor="middle">1</text><text x="83.6" y="227.0" class="tk" text-anchor="middle">2</text><text x="112.4" y="227.0" class="tk" text-anchor="middle">3</text><text x="141.2" y="227.0" class="tk" text-anchor="middle">4</text><text x="170.0" y="227.0" class="tk" text-anchor="middle">5</text><text x="198.8" y="227.0" class="tk" text-anchor="middle">6</text><text x="227.6" y="227.0" class="tk" text-anchor="middle">7</text><text x="256.4" y="227.0" class="tk" text-anchor="middle">8</text><text x="285.2" y="227.0" class="tk" text-anchor="middle">9</text><text x="314.0" y="227.0" class="tk" text-anchor="middle">10</text><text x="22.0" y="191.1" class="tk" text-anchor="end">1</text><text x="22.0" y="164.3" class="tk" text-anchor="end">2</text><text x="22.0" y="137.4" class="tk" text-anchor="end">3</text><text x="22.0" y="110.6" class="tk" text-anchor="end">4</text><text x="22.0" y="83.7" class="tk" text-anchor="end">5</text><text x="22.0" y="56.9" class="tk" text-anchor="end">6</text><text x="22.0" y="30.0" class="tk" text-anchor="end">7</text><polyline points="26.0,160.3 112.4,52.9 227.6,187.1 314.0,79.7" class="cv"/><line x1="26.0" y1="160.3" x2="112.4" y2="52.9" class="sec"/><line x1="112.4" y1="52.9" x2="227.6" y2="187.1" class="sec2"/><circle cx="26.0" cy="160.3" r="4" class="pt"/><circle cx="112.4" cy="52.9" r="4" class="pt"/><circle cx="227.6" cy="187.1" r="4" class="pt"/></svg><figcaption>TVM: pendent del segment que uneix dos punts de la gràfica</figcaption></figure>
+          <div class="ex">
+            <p class="st">TVM [0, 3] = <span class="frac"><span>6 − 2</span><span>3 − 0</span></span> = <span class="frac"><span>4</span><span>3</span></span> ≈ 1,33 → de 14 h a 17 h entren uns 1 330 jugadors per hora.</p>
+            <p class="st">TVM [3, 7] = <span class="frac"><span>1 − 6</span><span>7 − 3</span></span> = <span class="frac"><span>−5</span><span>4</span></span> = −1,25 → de 17 h a 21 h en marxen 1 250 per hora.</p>
+          </div>
+          <div class="warn2"><ul><li>Resta sempre en el mateix ordre a dalt i a baix: f(b) − f(a) i b − a.</li><li>Les unitats de la TVM són «unitats de y per unitat de x» (jugadors/hora, €/minut…).</li></ul></div>
+        </article>
+
+        <article class="topic" id="n4-continuitat">
+          <h3>4.6 Funcions contínues i discontínues</h3>
+          <div class="def"><p>Una funció és <b>contínua</b> si la seva gràfica es pot dibuixar <b>sense aixecar el llapis</b>. Si fa un <b>salt</b> o té un forat, és <b>discontínua</b> en aquell punt.</p></div>
+          <figure class="gfig"><svg viewBox="0 0 350 220" role="img" aria-label="Preu del pack de dades per trams: la gràfica fa salts a 100 i a 500 MB"><line x1="26.0" y1="194.0" x2="26.0" y2="26.0" class="gl"/><line x1="62.0" y1="194.0" x2="62.0" y2="26.0" class="gl"/><line x1="98.0" y1="194.0" x2="98.0" y2="26.0" class="gl"/><line x1="134.0" y1="194.0" x2="134.0" y2="26.0" class="gl"/><line x1="170.0" y1="194.0" x2="170.0" y2="26.0" class="gl"/><line x1="206.0" y1="194.0" x2="206.0" y2="26.0" class="gl"/><line x1="242.0" y1="194.0" x2="242.0" y2="26.0" class="gl"/><line x1="278.0" y1="194.0" x2="278.0" y2="26.0" class="gl"/><line x1="314.0" y1="194.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="194.0" x2="314.0" y2="194.0" class="gl"/><line x1="26.0" y1="194.0" x2="322.0" y2="194.0" class="ax"/><line x1="26.0" y1="194.0" x2="26.0" y2="18.0" class="ax"/><text x="318.0" y="208.0" class="tl">MB</text><text x="31.0" y="20.0" class="tl">€</text><polyline points="26.0,160.4 62.0,160.4" class="cv"/><polyline points="62.0,110.0 206.0,110.0" class="cv"/><polyline points="206.0,59.6 314.0,59.6" class="cv"/><circle cx="26.0" cy="160.4" r="4" class="pt"/><circle cx="62.0" cy="160.4" r="4" class="pt"/><circle cx="62.0" cy="110.0" r="4" class="po"/><circle cx="206.0" cy="110.0" r="4" class="pt"/><circle cx="206.0" cy="59.6" r="4" class="po"/><text x="57.7" y="206.6" class="tk">100</text><text x="201.7" y="206.6" class="tk">500</text><text x="4.4" y="162.9" class="tk">2</text><text x="4.4" y="112.5" class="tk">5</text><text x="4.4" y="62.1" class="tk">8</text></svg><figcaption>Preu del pack de dades per trams: la gràfica fa salts a 100 i a 500 MB</figcaption></figure>
+          <div class="ex">
+            <p>Pack de dades del joc: fins a 100 MB costa 2 €; de més de 100 a 500 MB, 5 €; més de 500 MB, 8 €.</p>
+            <p>És discontínua a x = 100 i a x = 500 (el preu fa un salt). El punt ple indica el valor que sí que pren; el buit, el que no.</p>
+          </div>
+          <div class="warn2"><ul><li>Una funció com <span class="frac"><span>1</span><span>x − 2</span></span> també és discontínua: a x = 2 no existeix.</li></ul></div>
+        </article>
+      </section>
+
+      <!-- ===================================================== N5 ===================================================== -->
+      <section class="unit" id="n5">
+        <header><span class="badge">NIVELL 5 · ELS MODELS DEL JOC</span><h2>Nivell 5 · Tipus de funcions</h2><p>Funcions lineals i afins, quadràtiques, de proporcionalitat inversa i exponencials</p></header>
+
+        <article class="topic" id="n5-afi">
+          <h3>5.1 Funció lineal i funció afí</h3>
+          <div class="def">
+            <ul>
+              <li><b>Funció afí</b>: y = mx + n. La gràfica és una <b>recta</b>.</li>
+              <li><b>m</b> és el <b>pendent</b>: el que augmenta (o disminueix) la y quan la x augmenta 1.</li>
+              <li><b>n</b> és l'<b>ordenada a l'origen</b>: on la recta talla l'eix Y, el punt (0, n). És el valor inicial.</li>
+              <li><b>Funció lineal</b> (o de proporcionalitat directa): y = mx (n = 0). Passa per l'origen (0, 0).</li>
+              <li><b>Funció constant</b>: y = n (m = 0). Recta horitzontal.</li>
+            </ul>
+          </div>
+          <div class="prop"><ul><li>m &gt; 0 → creixent · m &lt; 0 → decreixent · m = 0 → constant.</li><li>Com més gran és |m|, més inclinada és la recta.</li></ul></div>
+          <figure class="gfig"><svg viewBox="0 0 350 240" role="img" aria-label="Pendent positiu (creix), negatiu (decreix) i nul (constant)"><line x1="26.0" y1="214.0" x2="26.0" y2="26.0" class="gl"/><line x1="62.0" y1="214.0" x2="62.0" y2="26.0" class="gl"/><line x1="98.0" y1="214.0" x2="98.0" y2="26.0" class="gl"/><line x1="134.0" y1="214.0" x2="134.0" y2="26.0" class="gl"/><line x1="170.0" y1="214.0" x2="170.0" y2="26.0" class="gl"/><line x1="206.0" y1="214.0" x2="206.0" y2="26.0" class="gl"/><line x1="242.0" y1="214.0" x2="242.0" y2="26.0" class="gl"/><line x1="278.0" y1="214.0" x2="278.0" y2="26.0" class="gl"/><line x1="314.0" y1="214.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="314.0" y2="214.0" class="gl"/><line x1="26.0" y1="196.9" x2="314.0" y2="196.9" class="gl"/><line x1="26.0" y1="179.8" x2="314.0" y2="179.8" class="gl"/><line x1="26.0" y1="162.7" x2="314.0" y2="162.7" class="gl"/><line x1="26.0" y1="145.6" x2="314.0" y2="145.6" class="gl"/><line x1="26.0" y1="128.5" x2="314.0" y2="128.5" class="gl"/><line x1="26.0" y1="111.5" x2="314.0" y2="111.5" class="gl"/><line x1="26.0" y1="94.4" x2="314.0" y2="94.4" class="gl"/><line x1="26.0" y1="77.3" x2="314.0" y2="77.3" class="gl"/><line x1="26.0" y1="60.2" x2="314.0" y2="60.2" class="gl"/><line x1="26.0" y1="43.1" x2="314.0" y2="43.1" class="gl"/><line x1="26.0" y1="26.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="145.6" x2="322.0" y2="145.6" class="ax"/><line x1="170.0" y1="214.0" x2="170.0" y2="18.0" class="ax"/><text x="318.0" y="159.6" class="tl">x</text><text x="175.0" y="20.0" class="tl">y</text><text x="26.0" y="158.6" class="tk" text-anchor="middle">−4</text><text x="62.0" y="158.6" class="tk" text-anchor="middle">−3</text><text x="98.0" y="158.6" class="tk" text-anchor="middle">−2</text><text x="134.0" y="158.6" class="tk" text-anchor="middle">−1</text><text x="206.0" y="158.6" class="tk" text-anchor="middle">1</text><text x="242.0" y="158.6" class="tk" text-anchor="middle">2</text><text x="278.0" y="158.6" class="tk" text-anchor="middle">3</text><text x="314.0" y="158.6" class="tk" text-anchor="middle">4</text><text x="166.0" y="218.0" class="tk" text-anchor="end">−4</text><text x="166.0" y="200.9" class="tk" text-anchor="end">−3</text><text x="166.0" y="183.8" class="tk" text-anchor="end">−2</text><text x="166.0" y="166.7" class="tk" text-anchor="end">−1</text><text x="166.0" y="132.5" class="tk" text-anchor="end">1</text><text x="166.0" y="115.5" class="tk" text-anchor="end">2</text><text x="166.0" y="98.4" class="tk" text-anchor="end">3</text><text x="166.0" y="81.3" class="tk" text-anchor="end">4</text><text x="166.0" y="64.2" class="tk" text-anchor="end">5</text><text x="166.0" y="47.1" class="tk" text-anchor="end">6</text><text x="166.0" y="30.0" class="tk" text-anchor="end">7</text><polyline points="72.1,221.5 73.5,220.2 75.0,218.8 76.4,217.4 77.8,216.1 79.3,214.7 80.7,213.3 82.2,211.9 83.6,210.6 85.0,209.2 86.5,207.8 87.9,206.5 89.4,205.1 90.8,203.7 92.2,202.4 93.7,201.0 95.1,199.6 96.6,198.3 98.0,196.9 99.4,195.5 100.9,194.2 102.3,192.8 103.8,191.4 105.2,190.1 106.6,188.7 108.1,187.3 109.5,186.0 111.0,184.6 112.4,183.2 113.8,181.9 115.3,180.5 116.7,179.1 118.2,177.8 119.6,176.4 121.0,175.0 122.5,173.7 123.9,172.3 125.4,170.9 126.8,169.6 128.2,168.2 129.7,166.8 131.1,165.5 132.6,164.1 134.0,162.7 135.4,161.4 136.9,160.0 138.3,158.6 139.8,157.3 141.2,155.9 142.6,154.5 144.1,153.2 145.5,151.8 147.0,150.4 148.4,149.1 149.8,147.7 151.3,146.3 152.7,145.0 154.2,143.6 155.6,142.2 157.0,140.9 158.5,139.5 159.9,138.1 161.4,136.7 162.8,135.4 164.2,134.0 165.7,132.6 167.1,131.3 168.6,129.9 170.0,128.5 171.4,127.2 172.9,125.8 174.3,124.4 175.8,123.1 177.2,121.7 178.6,120.3 180.1,119.0 181.5,117.6 183.0,116.2 184.4,114.9 185.8,113.5 187.3,112.1 188.7,110.8 190.2,109.4 191.6,108.0 193.0,106.7 194.5,105.3 195.9,103.9 197.4,102.6 198.8,101.2 200.2,99.8 201.7,98.5 203.1,97.1 204.6,95.7 206.0,94.4 207.4,93.0 208.9,91.6 210.3,90.3 211.8,88.9 213.2,87.5 214.6,86.2 216.1,84.8 217.5,83.4 219.0,82.1 220.4,80.7 221.8,79.3 223.3,78.0 224.7,76.6 226.2,75.2 227.6,73.9 229.0,72.5 230.5,71.1 231.9,69.8 233.4,68.4 234.8,67.0 236.2,65.7 237.7,64.3 239.1,62.9 240.6,61.5 242.0,60.2 243.4,58.8 244.9,57.4 246.3,56.1 247.8,54.7 249.2,53.3 250.6,52.0 252.1,50.6 253.5,49.2 255.0,47.9 256.4,46.5 257.8,45.1 259.3,43.8 260.7,42.4 262.2,41.0 263.6,39.7 265.0,38.3 266.5,36.9 267.9,35.6 269.4,34.2 270.8,32.8 272.2,31.5 273.7,30.1 275.1,28.7 276.6,27.4 278.0,26.0 279.4,24.6 280.9,23.3 282.3,21.9 283.8,20.5 285.2,19.2 286.6,17.8" class="cv"/><polyline points="26.0,26.0 27.4,26.7 28.9,27.4 30.3,28.1 31.8,28.7 33.2,29.4 34.6,30.1 36.1,30.8 37.5,31.5 39.0,32.2 40.4,32.8 41.8,33.5 43.3,34.2 44.7,34.9 46.2,35.6 47.6,36.3 49.0,36.9 50.5,37.6 51.9,38.3 53.4,39.0 54.8,39.7 56.2,40.4 57.7,41.0 59.1,41.7 60.6,42.4 62.0,43.1 63.4,43.8 64.9,44.5 66.3,45.1 67.8,45.8 69.2,46.5 70.6,47.2 72.1,47.9 73.5,48.6 75.0,49.2 76.4,49.9 77.8,50.6 79.3,51.3 80.7,52.0 82.2,52.7 83.6,53.3 85.0,54.0 86.5,54.7 87.9,55.4 89.4,56.1 90.8,56.8 92.2,57.4 93.7,58.1 95.1,58.8 96.6,59.5 98.0,60.2 99.4,60.9 100.9,61.5 102.3,62.2 103.8,62.9 105.2,63.6 106.6,64.3 108.1,65.0 109.5,65.7 111.0,66.3 112.4,67.0 113.8,67.7 115.3,68.4 116.7,69.1 118.2,69.8 119.6,70.4 121.0,71.1 122.5,71.8 123.9,72.5 125.4,73.2 126.8,73.9 128.2,74.5 129.7,75.2 131.1,75.9 132.6,76.6 134.0,77.3 135.4,78.0 136.9,78.6 138.3,79.3 139.8,80.0 141.2,80.7 142.6,81.4 144.1,82.1 145.5,82.7 147.0,83.4 148.4,84.1 149.8,84.8 151.3,85.5 152.7,86.2 154.2,86.8 155.6,87.5 157.0,88.2 158.5,88.9 159.9,89.6 161.4,90.3 162.8,90.9 164.2,91.6 165.7,92.3 167.1,93.0 168.6,93.7 170.0,94.4 171.4,95.0 172.9,95.7 174.3,96.4 175.8,97.1 177.2,97.8 178.6,98.5 180.1,99.1 181.5,99.8 183.0,100.5 184.4,101.2 185.8,101.9 187.3,102.6 188.7,103.3 190.2,103.9 191.6,104.6 193.0,105.3 194.5,106.0 195.9,106.7 197.4,107.4 198.8,108.0 200.2,108.7 201.7,109.4 203.1,110.1 204.6,110.8 206.0,111.5 207.4,112.1 208.9,112.8 210.3,113.5 211.8,114.2 213.2,114.9 214.6,115.6 216.1,116.2 217.5,116.9 219.0,117.6 220.4,118.3 221.8,119.0 223.3,119.7 224.7,120.3 226.2,121.0 227.6,121.7 229.0,122.4 230.5,123.1 231.9,123.8 233.4,124.4 234.8,125.1 236.2,125.8 237.7,126.5 239.1,127.2 240.6,127.9 242.0,128.5 243.4,129.2 244.9,129.9 246.3,130.6 247.8,131.3 249.2,132.0 250.6,132.6 252.1,133.3 253.5,134.0 255.0,134.7 256.4,135.4 257.8,136.1 259.3,136.7 260.7,137.4 262.2,138.1 263.6,138.8 265.0,139.5 266.5,140.2 267.9,140.9 269.4,141.5 270.8,142.2 272.2,142.9 273.7,143.6 275.1,144.3 276.6,145.0 278.0,145.6 279.4,146.3 280.9,147.0 282.3,147.7 283.8,148.4 285.2,149.1 286.6,149.7 288.1,150.4 289.5,151.1 291.0,151.8 292.4,152.5 293.8,153.2 295.3,153.8 296.7,154.5 298.2,155.2 299.6,155.9 301.0,156.6 302.5,157.3 303.9,157.9 305.4,158.6 306.8,159.3 308.2,160.0 309.7,160.7 311.1,161.4 312.6,162.0 314.0,162.7" class="cv2"/><polyline points="26.0,179.8 27.4,179.8 28.9,179.8 30.3,179.8 31.8,179.8 33.2,179.8 34.6,179.8 36.1,179.8 37.5,179.8 39.0,179.8 40.4,179.8 41.8,179.8 43.3,179.8 44.7,179.8 46.2,179.8 47.6,179.8 49.0,179.8 50.5,179.8 51.9,179.8 53.4,179.8 54.8,179.8 56.2,179.8 57.7,179.8 59.1,179.8 60.6,179.8 62.0,179.8 63.4,179.8 64.9,179.8 66.3,179.8 67.8,179.8 69.2,179.8 70.6,179.8 72.1,179.8 73.5,179.8 75.0,179.8 76.4,179.8 77.8,179.8 79.3,179.8 80.7,179.8 82.2,179.8 83.6,179.8 85.0,179.8 86.5,179.8 87.9,179.8 89.4,179.8 90.8,179.8 92.2,179.8 93.7,179.8 95.1,179.8 96.6,179.8 98.0,179.8 99.4,179.8 100.9,179.8 102.3,179.8 103.8,179.8 105.2,179.8 106.6,179.8 108.1,179.8 109.5,179.8 111.0,179.8 112.4,179.8 113.8,179.8 115.3,179.8 116.7,179.8 118.2,179.8 119.6,179.8 121.0,179.8 122.5,179.8 123.9,179.8 125.4,179.8 126.8,179.8 128.2,179.8 129.7,179.8 131.1,179.8 132.6,179.8 134.0,179.8 135.4,179.8 136.9,179.8 138.3,179.8 139.8,179.8 141.2,179.8 142.6,179.8 144.1,179.8 145.5,179.8 147.0,179.8 148.4,179.8 149.8,179.8 151.3,179.8 152.7,179.8 154.2,179.8 155.6,179.8 157.0,179.8 158.5,179.8 159.9,179.8 161.4,179.8 162.8,179.8 164.2,179.8 165.7,179.8 167.1,179.8 168.6,179.8 170.0,179.8 171.4,179.8 172.9,179.8 174.3,179.8 175.8,179.8 177.2,179.8 178.6,179.8 180.1,179.8 181.5,179.8 183.0,179.8 184.4,179.8 185.8,179.8 187.3,179.8 188.7,179.8 190.2,179.8 191.6,179.8 193.0,179.8 194.5,179.8 195.9,179.8 197.4,179.8 198.8,179.8 200.2,179.8 201.7,179.8 203.1,179.8 204.6,179.8 206.0,179.8 207.4,179.8 208.9,179.8 210.3,179.8 211.8,179.8 213.2,179.8 214.6,179.8 216.1,179.8 217.5,179.8 219.0,179.8 220.4,179.8 221.8,179.8 223.3,179.8 224.7,179.8 226.2,179.8 227.6,179.8 229.0,179.8 230.5,179.8 231.9,179.8 233.4,179.8 234.8,179.8 236.2,179.8 237.7,179.8 239.1,179.8 240.6,179.8 242.0,179.8 243.4,179.8 244.9,179.8 246.3,179.8 247.8,179.8 249.2,179.8 250.6,179.8 252.1,179.8 253.5,179.8 255.0,179.8 256.4,179.8 257.8,179.8 259.3,179.8 260.7,179.8 262.2,179.8 263.6,179.8 265.0,179.8 266.5,179.8 267.9,179.8 269.4,179.8 270.8,179.8 272.2,179.8 273.7,179.8 275.1,179.8 276.6,179.8 278.0,179.8 279.4,179.8 280.9,179.8 282.3,179.8 283.8,179.8 285.2,179.8 286.6,179.8 288.1,179.8 289.5,179.8 291.0,179.8 292.4,179.8 293.8,179.8 295.3,179.8 296.7,179.8 298.2,179.8 299.6,179.8 301.0,179.8 302.5,179.8 303.9,179.8 305.4,179.8 306.8,179.8 308.2,179.8 309.7,179.8 311.1,179.8 312.6,179.8 314.0,179.8" class="cv3"/><text x="242.0" y="101.2" class="lb">y = 2x + 1</text><text x="29.6" y="70.4" class="lb2">y = −x + 3</text><text x="224.0" y="173.0" class="lb3">y = −2</text></svg><figcaption>Pendent positiu (creix), negatiu (decreix) i nul (constant)</figcaption></figure>
+          <div class="ex"><p>f(x) = 3x + 10 (monedes): m = 3 monedes per minut, n = 10 monedes inicials. Creixent.</p><p>Vida d'un escut: comença a 80 i perd 4 punts per segon → y = −4x + 80. m = −4, decreixent; s'esgota quan −4x + 80 = 0 → x = 20 s.</p></div>
+          <div class="warn2"><ul><li>A y = 5 − 2x, el pendent és <b>−2</b> (el nombre que multiplica la x), no 5.</li></ul></div>
+        </article>
+
+        <article class="topic" id="n5-rectes">
+          <h3>5.2 Representar una recta i trobar-ne l'equació</h3>
+          <div class="prop">
+            <h4>Representar y = mx + n</h4>
+            <p>N'hi ha prou amb <b>dos punts</b>: fes una taula amb dos valors de x (per exemple, x = 0 i un altre), marca'ls i uneix-los.</p>
+            <h4>Equació a partir de dos punts A(x₁, y₁) i B(x₂, y₂)</h4>
+            <ol><li>Pendent: <span class="f" style="font-size:1rem">m = <span class="frac"><span>y₂ − y₁</span><span>x₂ − x₁</span></span></span></li><li>Substitueix un punt a y = mx + n i aïlla n.</li><li>Comprova amb l'altre punt.</li></ol>
+          </div>
+          <figure class="gfig"><svg viewBox="0 0 350 240" role="img" aria-label="De A a B: la x augmenta 3 i la y augmenta 6 → m = 6/3 = 2"><line x1="26.0" y1="214.0" x2="26.0" y2="26.0" class="gl"/><line x1="67.1" y1="214.0" x2="67.1" y2="26.0" class="gl"/><line x1="108.3" y1="214.0" x2="108.3" y2="26.0" class="gl"/><line x1="149.4" y1="214.0" x2="149.4" y2="26.0" class="gl"/><line x1="190.6" y1="214.0" x2="190.6" y2="26.0" class="gl"/><line x1="231.7" y1="214.0" x2="231.7" y2="26.0" class="gl"/><line x1="272.9" y1="214.0" x2="272.9" y2="26.0" class="gl"/><line x1="314.0" y1="214.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="314.0" y2="214.0" class="gl"/><line x1="26.0" y1="198.3" x2="314.0" y2="198.3" class="gl"/><line x1="26.0" y1="182.7" x2="314.0" y2="182.7" class="gl"/><line x1="26.0" y1="167.0" x2="314.0" y2="167.0" class="gl"/><line x1="26.0" y1="151.3" x2="314.0" y2="151.3" class="gl"/><line x1="26.0" y1="135.7" x2="314.0" y2="135.7" class="gl"/><line x1="26.0" y1="120.0" x2="314.0" y2="120.0" class="gl"/><line x1="26.0" y1="104.3" x2="314.0" y2="104.3" class="gl"/><line x1="26.0" y1="88.7" x2="314.0" y2="88.7" class="gl"/><line x1="26.0" y1="73.0" x2="314.0" y2="73.0" class="gl"/><line x1="26.0" y1="57.3" x2="314.0" y2="57.3" class="gl"/><line x1="26.0" y1="41.7" x2="314.0" y2="41.7" class="gl"/><line x1="26.0" y1="26.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="198.3" x2="322.0" y2="198.3" class="ax"/><line x1="67.1" y1="214.0" x2="67.1" y2="18.0" class="ax"/><text x="318.0" y="212.3" class="tl">x</text><text x="72.1" y="20.0" class="tl">y</text><text x="26.0" y="211.3" class="tk" text-anchor="middle">−1</text><text x="108.3" y="211.3" class="tk" text-anchor="middle">1</text><text x="149.4" y="211.3" class="tk" text-anchor="middle">2</text><text x="190.6" y="211.3" class="tk" text-anchor="middle">3</text><text x="231.7" y="211.3" class="tk" text-anchor="middle">4</text><text x="272.9" y="211.3" class="tk" text-anchor="middle">5</text><text x="314.0" y="211.3" class="tk" text-anchor="middle">6</text><text x="63.1" y="218.0" class="tk" text-anchor="end">−1</text><text x="63.1" y="186.7" class="tk" text-anchor="end">1</text><text x="63.1" y="171.0" class="tk" text-anchor="end">2</text><text x="63.1" y="155.3" class="tk" text-anchor="end">3</text><text x="63.1" y="139.7" class="tk" text-anchor="end">4</text><text x="63.1" y="124.0" class="tk" text-anchor="end">5</text><text x="63.1" y="108.3" class="tk" text-anchor="end">6</text><text x="63.1" y="92.7" class="tk" text-anchor="end">7</text><text x="63.1" y="77.0" class="tk" text-anchor="end">8</text><text x="63.1" y="61.3" class="tk" text-anchor="end">9</text><text x="63.1" y="45.7" class="tk" text-anchor="end">10</text><text x="63.1" y="30.0" class="tk" text-anchor="end">11</text><polyline points="26.0,214.0 27.4,212.9 28.9,211.8 30.3,210.7 31.8,209.6 33.2,208.5 34.6,207.4 36.1,206.3 37.5,205.2 39.0,204.1 40.4,203.0 41.8,201.9 43.3,200.8 44.7,199.7 46.2,198.6 47.6,197.6 49.0,196.5 50.5,195.4 51.9,194.3 53.4,193.2 54.8,192.1 56.2,191.0 57.7,189.9 59.1,188.8 60.6,187.7 62.0,186.6 63.4,185.5 64.9,184.4 66.3,183.3 67.8,182.2 69.2,181.1 70.6,180.0 72.1,178.9 73.5,177.8 75.0,176.7 76.4,175.6 77.8,174.5 79.3,173.4 80.7,172.3 82.2,171.2 83.6,170.1 85.0,169.0 86.5,167.9 87.9,166.8 89.4,165.7 90.8,164.7 92.2,163.6 93.7,162.5 95.1,161.4 96.6,160.3 98.0,159.2 99.4,158.1 100.9,157.0 102.3,155.9 103.8,154.8 105.2,153.7 106.6,152.6 108.1,151.5 109.5,150.4 111.0,149.3 112.4,148.2 113.8,147.1 115.3,146.0 116.7,144.9 118.2,143.8 119.6,142.7 121.0,141.6 122.5,140.5 123.9,139.4 125.4,138.3 126.8,137.2 128.2,136.1 129.7,135.0 131.1,133.9 132.6,132.8 134.0,131.8 135.4,130.7 136.9,129.6 138.3,128.5 139.8,127.4 141.2,126.3 142.6,125.2 144.1,124.1 145.5,123.0 147.0,121.9 148.4,120.8 149.8,119.7 151.3,118.6 152.7,117.5 154.2,116.4 155.6,115.3 157.0,114.2 158.5,113.1 159.9,112.0 161.4,110.9 162.8,109.8 164.2,108.7 165.7,107.6 167.1,106.5 168.6,105.4 170.0,104.3 171.4,103.2 172.9,102.1 174.3,101.0 175.8,99.9 177.2,98.9 178.6,97.8 180.1,96.7 181.5,95.6 183.0,94.5 184.4,93.4 185.8,92.3 187.3,91.2 188.7,90.1 190.2,89.0 191.6,87.9 193.0,86.8 194.5,85.7 195.9,84.6 197.4,83.5 198.8,82.4 200.2,81.3 201.7,80.2 203.1,79.1 204.6,78.0 206.0,76.9 207.4,75.8 208.9,74.7 210.3,73.6 211.8,72.5 213.2,71.4 214.6,70.3 216.1,69.2 217.5,68.1 219.0,67.0 220.4,66.0 221.8,64.9 223.3,63.8 224.7,62.7 226.2,61.6 227.6,60.5 229.0,59.4 230.5,58.3 231.9,57.2 233.4,56.1 234.8,55.0 236.2,53.9 237.7,52.8 239.1,51.7 240.6,50.6 242.0,49.5 243.4,48.4 244.9,47.3 246.3,46.2 247.8,45.1 249.2,44.0 250.6,42.9 252.1,41.8 253.5,40.7 255.0,39.6 256.4,38.5 257.8,37.4 259.3,36.3 260.7,35.2 262.2,34.1 263.6,33.0 265.0,32.0 266.5,30.9 267.9,29.8 269.4,28.7 270.8,27.6 272.2,26.5 273.7,25.4 275.1,24.3 276.6,23.2 278.0,22.1 279.4,21.0 280.9,19.9 282.3,18.8" class="cv"/><circle cx="108.3" cy="151.3" r="4" class="pt"/><text x="56.3" y="145.3" class="lb">A(1, 3)</text><circle cx="231.7" cy="57.3" r="4" class="pt"/><text x="173.7" y="53.3" class="lb">B(4, 9)</text><line x1="108.3" y1="151.3" x2="231.7" y2="151.3" class="dash"/><line x1="231.7" y1="151.3" x2="231.7" y2="57.3" class="dash"/><text x="153.5" y="163.9" class="lb">+3</text><text x="239.9" y="107.5" class="lb">+6</text></svg><figcaption>De A a B: la x augmenta 3 i la y augmenta 6 → m = 6/3 = 2</figcaption></figure>
+          <div class="ex">
+            <p class="st">A(1, 3) i B(4, 9) → m = <span class="frac"><span>9 − 3</span><span>4 − 1</span></span> = <span class="frac"><span>6</span><span>3</span></span> = 2<br>3 = 2 · 1 + n → n = 1 → y = 2x + 1<br>Comprova B: 2 · 4 + 1 = 9 ✔</p>
+            <p><b>Des de la gràfica:</b> llegeix n on talla l'eix Y; després compta quant puja (o baixa) la recta quan avances 1 cap a la dreta: això és m.</p>
+          </div>
+          <div class="warn2"><ul><li>Al pendent, la y va a dalt i la x a baix (no al revés).</li><li>Si en el pendent queda un nombre negatiu a dalt o a baix, vigila el signe del resultat.</li></ul></div>
+        </article>
+
+        <article class="topic" id="n5-tarifes">
+          <h3>5.3 Problemes amb rectes: comparar tarifes</h3>
+          <div class="prop"><ol><li>Escriu cada tarifa com una funció afí (n = quota fixa, m = preu per unitat).</li><li>El <b>punt de tall</b> de les dues rectes és on costen el mateix: iguala les fórmules (és un sistema, com al Nivell 3).</li><li>Mira la gràfica: abans i després del tall, quina recta queda per sota (la més barata)?</li></ol></div>
+          <figure class="gfig"><svg viewBox="0 0 350 240" role="img" aria-label="Tarifes: fins a 10 h surt més barat B; a partir de 10 h, A"><line x1="26.0" y1="214.0" x2="26.0" y2="26.0" class="gl"/><line x1="67.1" y1="214.0" x2="67.1" y2="26.0" class="gl"/><line x1="108.3" y1="214.0" x2="108.3" y2="26.0" class="gl"/><line x1="149.4" y1="214.0" x2="149.4" y2="26.0" class="gl"/><line x1="190.6" y1="214.0" x2="190.6" y2="26.0" class="gl"/><line x1="231.7" y1="214.0" x2="231.7" y2="26.0" class="gl"/><line x1="272.9" y1="214.0" x2="272.9" y2="26.0" class="gl"/><line x1="314.0" y1="214.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="314.0" y2="214.0" class="gl"/><line x1="26.0" y1="196.9" x2="314.0" y2="196.9" class="gl"/><line x1="26.0" y1="179.8" x2="314.0" y2="179.8" class="gl"/><line x1="26.0" y1="162.7" x2="314.0" y2="162.7" class="gl"/><line x1="26.0" y1="145.6" x2="314.0" y2="145.6" class="gl"/><line x1="26.0" y1="128.5" x2="314.0" y2="128.5" class="gl"/><line x1="26.0" y1="111.5" x2="314.0" y2="111.5" class="gl"/><line x1="26.0" y1="94.4" x2="314.0" y2="94.4" class="gl"/><line x1="26.0" y1="77.3" x2="314.0" y2="77.3" class="gl"/><line x1="26.0" y1="60.2" x2="314.0" y2="60.2" class="gl"/><line x1="26.0" y1="43.1" x2="314.0" y2="43.1" class="gl"/><line x1="26.0" y1="26.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="322.0" y2="214.0" class="ax"/><line x1="26.0" y1="214.0" x2="26.0" y2="18.0" class="ax"/><text x="318.0" y="228.0" class="tl">h</text><text x="31.0" y="20.0" class="tl">€</text><text x="67.1" y="227.0" class="tk" text-anchor="middle">2</text><text x="108.3" y="227.0" class="tk" text-anchor="middle">4</text><text x="149.4" y="227.0" class="tk" text-anchor="middle">6</text><text x="190.6" y="227.0" class="tk" text-anchor="middle">8</text><text x="231.7" y="227.0" class="tk" text-anchor="middle">10</text><text x="272.9" y="227.0" class="tk" text-anchor="middle">12</text><text x="314.0" y="227.0" class="tk" text-anchor="middle">14</text><text x="22.0" y="200.9" class="tk" text-anchor="end">2</text><text x="22.0" y="183.8" class="tk" text-anchor="end">4</text><text x="22.0" y="166.7" class="tk" text-anchor="end">6</text><text x="22.0" y="149.6" class="tk" text-anchor="end">8</text><text x="22.0" y="132.5" class="tk" text-anchor="end">10</text><text x="22.0" y="115.5" class="tk" text-anchor="end">12</text><text x="22.0" y="98.4" class="tk" text-anchor="end">14</text><text x="22.0" y="81.3" class="tk" text-anchor="end">16</text><text x="22.0" y="64.2" class="tk" text-anchor="end">18</text><text x="22.0" y="47.1" class="tk" text-anchor="end">20</text><text x="22.0" y="30.0" class="tk" text-anchor="end">22</text><polyline points="26.0,128.5 27.4,128.2 28.9,127.9 30.3,127.6 31.8,127.3 33.2,127.0 34.6,126.8 36.1,126.5 37.5,126.2 39.0,125.9 40.4,125.6 41.8,125.3 43.3,125.0 44.7,124.7 46.2,124.4 47.6,124.1 49.0,123.8 50.5,123.5 51.9,123.2 53.4,122.9 54.8,122.6 56.2,122.3 57.7,122.0 59.1,121.7 60.6,121.4 62.0,121.1 63.4,120.8 64.9,120.5 66.3,120.2 67.8,119.9 69.2,119.6 70.6,119.3 72.1,119.0 73.5,118.7 75.0,118.4 76.4,118.1 77.8,117.8 79.3,117.5 80.7,117.2 82.2,116.9 83.6,116.6 85.0,116.3 86.5,116.0 87.9,115.7 89.4,115.4 90.8,115.1 92.2,114.8 93.7,114.5 95.1,114.2 96.6,113.9 98.0,113.6 99.4,113.3 100.9,113.0 102.3,112.7 103.8,112.4 105.2,112.1 106.6,111.8 108.1,111.5 109.5,111.2 111.0,110.9 112.4,110.6 113.8,110.3 115.3,110.0 116.7,109.7 118.2,109.4 119.6,109.1 121.0,108.8 122.5,108.5 123.9,108.2 125.4,107.9 126.8,107.6 128.2,107.3 129.7,107.0 131.1,106.7 132.6,106.4 134.0,106.1 135.4,105.8 136.9,105.5 138.3,105.2 139.8,104.9 141.2,104.6 142.6,104.3 144.1,104.0 145.5,103.7 147.0,103.4 148.4,103.1 149.8,102.8 151.3,102.5 152.7,102.2 154.2,101.9 155.6,101.6 157.0,101.3 158.5,101.0 159.9,100.7 161.4,100.4 162.8,100.1 164.2,99.8 165.7,99.5 167.1,99.2 168.6,98.9 170.0,98.6 171.4,98.3 172.9,98.0 174.3,97.7 175.8,97.4 177.2,97.1 178.6,96.8 180.1,96.5 181.5,96.2 183.0,95.9 184.4,95.6 185.8,95.3 187.3,95.0 188.7,94.7 190.2,94.4 191.6,94.1 193.0,93.9 194.5,93.6 195.9,93.3 197.4,93.0 198.8,92.7 200.2,92.4 201.7,92.1 203.1,91.8 204.6,91.5 206.0,91.2 207.4,90.9 208.9,90.6 210.3,90.3 211.8,90.0 213.2,89.7 214.6,89.4 216.1,89.1 217.5,88.8 219.0,88.5 220.4,88.2 221.8,87.9 223.3,87.6 224.7,87.3 226.2,87.0 227.6,86.7 229.0,86.4 230.5,86.1 231.9,85.8 233.4,85.5 234.8,85.2 236.2,84.9 237.7,84.6 239.1,84.3 240.6,84.0 242.0,83.7 243.4,83.4 244.9,83.1 246.3,82.8 247.8,82.5 249.2,82.2 250.6,81.9 252.1,81.6 253.5,81.3 255.0,81.0 256.4,80.7 257.8,80.4 259.3,80.1 260.7,79.8 262.2,79.5 263.6,79.2 265.0,78.9 266.5,78.6 267.9,78.3 269.4,78.0 270.8,77.7 272.2,77.4 273.7,77.1 275.1,76.8 276.6,76.5 278.0,76.2 279.4,75.9 280.9,75.6 282.3,75.3 283.8,75.0 285.2,74.7 286.6,74.4 288.1,74.1 289.5,73.8 291.0,73.5 292.4,73.2 293.8,72.9 295.3,72.6 296.7,72.3 298.2,72.0 299.6,71.7 301.0,71.4 302.5,71.1 303.9,70.8 305.4,70.5 306.8,70.2 308.2,69.9 309.7,69.6 311.1,69.3 312.6,69.0 314.0,68.7" class="cv"/><polyline points="26.0,214.0 27.4,213.1 28.9,212.2 30.3,211.3 31.8,210.4 33.2,209.5 34.6,208.6 36.1,207.7 37.5,206.8 39.0,205.9 40.4,205.0 41.8,204.1 43.3,203.2 44.7,202.3 46.2,201.4 47.6,200.5 49.0,199.6 50.5,198.7 51.9,197.8 53.4,197.0 54.8,196.1 56.2,195.2 57.7,194.3 59.1,193.4 60.6,192.5 62.0,191.6 63.4,190.7 64.9,189.8 66.3,188.9 67.8,188.0 69.2,187.1 70.6,186.2 72.1,185.3 73.5,184.4 75.0,183.5 76.4,182.6 77.8,181.7 79.3,180.8 80.7,179.9 82.2,179.0 83.6,178.1 85.0,177.2 86.5,176.3 87.9,175.4 89.4,174.5 90.8,173.6 92.2,172.7 93.7,171.8 95.1,170.9 96.6,170.0 98.0,169.1 99.4,168.2 100.9,167.3 102.3,166.4 103.8,165.5 105.2,164.7 106.6,163.8 108.1,162.9 109.5,162.0 111.0,161.1 112.4,160.2 113.8,159.3 115.3,158.4 116.7,157.5 118.2,156.6 119.6,155.7 121.0,154.8 122.5,153.9 123.9,153.0 125.4,152.1 126.8,151.2 128.2,150.3 129.7,149.4 131.1,148.5 132.6,147.6 134.0,146.7 135.4,145.8 136.9,144.9 138.3,144.0 139.8,143.1 141.2,142.2 142.6,141.3 144.1,140.4 145.5,139.5 147.0,138.6 148.4,137.7 149.8,136.8 151.3,135.9 152.7,135.0 154.2,134.1 155.6,133.2 157.0,132.3 158.5,131.5 159.9,130.6 161.4,129.7 162.8,128.8 164.2,127.9 165.7,127.0 167.1,126.1 168.6,125.2 170.0,124.3 171.4,123.4 172.9,122.5 174.3,121.6 175.8,120.7 177.2,119.8 178.6,118.9 180.1,118.0 181.5,117.1 183.0,116.2 184.4,115.3 185.8,114.4 187.3,113.5 188.7,112.6 190.2,111.7 191.6,110.8 193.0,109.9 194.5,109.0 195.9,108.1 197.4,107.2 198.8,106.3 200.2,105.4 201.7,104.5 203.1,103.6 204.6,102.7 206.0,101.8 207.4,100.9 208.9,100.0 210.3,99.1 211.8,98.3 213.2,97.4 214.6,96.5 216.1,95.6 217.5,94.7 219.0,93.8 220.4,92.9 221.8,92.0 223.3,91.1 224.7,90.2 226.2,89.3 227.6,88.4 229.0,87.5 230.5,86.6 231.9,85.7 233.4,84.8 234.8,83.9 236.2,83.0 237.7,82.1 239.1,81.2 240.6,80.3 242.0,79.4 243.4,78.5 244.9,77.6 246.3,76.7 247.8,75.8 249.2,74.9 250.6,74.0 252.1,73.1 253.5,72.2 255.0,71.3 256.4,70.4 257.8,69.5 259.3,68.6 260.7,67.7 262.2,66.8 263.6,65.9 265.0,65.1 266.5,64.2 267.9,63.3 269.4,62.4 270.8,61.5 272.2,60.6 273.7,59.7 275.1,58.8 276.6,57.9 278.0,57.0 279.4,56.1 280.9,55.2 282.3,54.3 283.8,53.4 285.2,52.5 286.6,51.6 288.1,50.7 289.5,49.8 291.0,48.9 292.4,48.0 293.8,47.1 295.3,46.2 296.7,45.3 298.2,44.4 299.6,43.5 301.0,42.6 302.5,41.7 303.9,40.8 305.4,39.9 306.8,39.0 308.2,38.1 309.7,37.2 311.1,36.3 312.6,35.4 314.0,34.5" class="cv2"/><circle cx="231.7" cy="85.8" r="4" class="pt"/><text x="171.7" y="77.8" class="lb">(10, 15)</text><text x="36.3" y="109.7" class="lb">A: y = 0,5x + 10</text><text x="194.7" y="38.8" class="lb2">B: y = 1,5x</text></svg><figcaption>Tarifes: fins a 10 h surt més barat B; a partir de 10 h, A</figcaption></figure>
+          <div class="ex">
+            <p>Servidor de partides. Pla A: 10 € al mes + 0,50 €/h. Pla B: 1,50 €/h sense quota.</p>
+            <p class="st">A: y = 0,5x + 10 · B: y = 1,5x<br>1,5x = 0,5x + 10 → x = 10 h → y = 15 €</p>
+            <p>Fins a 10 h al mes, convé el B; a partir de 10 h, el A; a les 10 h, costen igual (15 €).</p>
+          </div>
+          <div class="practice"><a href="estudi.html#u4-sistemes">Repassa (Temporada 1): Sistemes 2×2 →</a></div>
+        </article>
+
+        <article class="topic" id="n5-quadratica">
+          <h3>5.4 Funció quadràtica: la paràbola</h3>
+          <div class="def"><p><b>Funció quadràtica</b>: y = ax² + bx + c, amb a ≠ 0. La gràfica és una <b>paràbola</b>.</p></div>
+          <div class="prop">
+            <ul>
+              <li><b>Orientació</b>: a &gt; 0 → obre cap amunt (∪, té mínim) · a &lt; 0 → obre cap avall (∩, té màxim).</li>
+              <li><b>Vèrtex</b> V: el punt més baix o més alt. <span class="f" style="font-size:1rem">x<sub>v</sub> = <span class="frac"><span>−b</span><span>2a</span></span></span>, i y<sub>v</sub> = f(x<sub>v</sub>).</li>
+              <li><b>Eix de simetria</b>: la recta vertical x = x<sub>v</sub>.</li>
+              <li><b>Tall amb l'eix Y</b>: (0, c). <b>Talls amb l'eix X</b>: resol ax² + bx + c = 0 (pot tenir 2, 1 o cap tall).</li>
+            </ul>
+            <h4>Per representar-la</h4>
+            <ol><li>Orientació.</li><li>Vèrtex i eix.</li><li>Talls amb els eixos.</li><li>Una taula amb valors a banda i banda del vèrtex (els valors simètrics donen la mateixa y).</li></ol>
+          </div>
+          <div class="two">
+            <div class="ex">
+              <p class="st">y = x² − 4x + 3 → a = 1 &gt; 0: ∪<br>x<sub>v</sub> = <span class="frac"><span>4</span><span>2</span></span> = 2 · y<sub>v</sub> = 4 − 8 + 3 = −1<br>V(2, −1) · eix x = 2<br>Eix Y: (0, 3) · Eix X: (1, 0) i (3, 0)</p>
+              <div class="tblwrap"><table class="tbl"><tr><th>x</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><th>y</th><td>3</td><td>0</td><td>−1</td><td>0</td><td>3</td></tr></table></div>
+            </div>
+            <figure class="gfig"><svg viewBox="0 0 350 240" role="img" aria-label="y = x² − 4x + 3: obre cap amunt, vèrtex V(2, −1), talls (1, 0), (3, 0) i (0, 3)"><line x1="26.0" y1="214.0" x2="26.0" y2="26.0" class="gl"/><line x1="74.0" y1="214.0" x2="74.0" y2="26.0" class="gl"/><line x1="122.0" y1="214.0" x2="122.0" y2="26.0" class="gl"/><line x1="170.0" y1="214.0" x2="170.0" y2="26.0" class="gl"/><line x1="218.0" y1="214.0" x2="218.0" y2="26.0" class="gl"/><line x1="266.0" y1="214.0" x2="266.0" y2="26.0" class="gl"/><line x1="314.0" y1="214.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="314.0" y2="214.0" class="gl"/><line x1="26.0" y1="190.5" x2="314.0" y2="190.5" class="gl"/><line x1="26.0" y1="167.0" x2="314.0" y2="167.0" class="gl"/><line x1="26.0" y1="143.5" x2="314.0" y2="143.5" class="gl"/><line x1="26.0" y1="120.0" x2="314.0" y2="120.0" class="gl"/><line x1="26.0" y1="96.5" x2="314.0" y2="96.5" class="gl"/><line x1="26.0" y1="73.0" x2="314.0" y2="73.0" class="gl"/><line x1="26.0" y1="49.5" x2="314.0" y2="49.5" class="gl"/><line x1="26.0" y1="26.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="167.0" x2="322.0" y2="167.0" class="ax"/><line x1="74.0" y1="214.0" x2="74.0" y2="18.0" class="ax"/><text x="318.0" y="181.0" class="tl">x</text><text x="79.0" y="20.0" class="tl">y</text><text x="26.0" y="180.0" class="tk" text-anchor="middle">−1</text><text x="122.0" y="180.0" class="tk" text-anchor="middle">1</text><text x="170.0" y="180.0" class="tk" text-anchor="middle">2</text><text x="218.0" y="180.0" class="tk" text-anchor="middle">3</text><text x="266.0" y="180.0" class="tk" text-anchor="middle">4</text><text x="314.0" y="180.0" class="tk" text-anchor="middle">5</text><text x="70.0" y="218.0" class="tk" text-anchor="end">−2</text><text x="70.0" y="194.5" class="tk" text-anchor="end">−1</text><text x="70.0" y="147.5" class="tk" text-anchor="end">1</text><text x="70.0" y="124.0" class="tk" text-anchor="end">2</text><text x="70.0" y="100.5" class="tk" text-anchor="end">3</text><text x="70.0" y="77.0" class="tk" text-anchor="end">4</text><text x="70.0" y="53.5" class="tk" text-anchor="end">5</text><text x="70.0" y="30.0" class="tk" text-anchor="end">6</text><polyline points="39.0,15.4 40.4,19.2 41.8,23.0 43.3,26.7 44.7,30.4 46.2,34.1 47.6,37.7 49.0,41.3 50.5,44.8 51.9,48.3 53.4,51.7 54.8,55.1 56.2,58.5 57.7,61.8 59.1,65.1 60.6,68.3 62.0,71.5 63.4,74.7 64.9,77.8 66.3,80.9 67.8,83.9 69.2,86.9 70.6,89.8 72.1,92.7 73.5,95.6 75.0,98.4 76.4,101.1 77.8,103.9 79.3,106.6 80.7,109.2 82.2,111.8 83.6,114.4 85.0,116.9 86.5,119.4 87.9,121.8 89.4,124.2 90.8,126.5 92.2,128.8 93.7,131.1 95.1,133.3 96.6,135.5 98.0,137.6 99.4,139.7 100.9,141.8 102.3,143.8 103.8,145.7 105.2,147.7 106.6,149.6 108.1,151.4 109.5,153.2 111.0,154.9 112.4,156.7 113.8,158.3 115.3,160.0 116.7,161.5 118.2,163.1 119.6,164.6 121.0,166.1 122.5,167.5 123.9,168.8 125.4,170.2 126.8,171.5 128.2,172.7 129.7,173.9 131.1,175.1 132.6,176.2 134.0,177.3 135.4,178.3 136.9,179.3 138.3,180.3 139.8,181.2 141.2,182.0 142.6,182.9 144.1,183.6 145.5,184.4 147.0,185.1 148.4,185.7 149.8,186.4 151.3,186.9 152.7,187.5 154.2,187.9 155.6,188.4 157.0,188.8 158.5,189.1 159.9,189.5 161.4,189.7 162.8,190.0 164.2,190.2 165.7,190.3 167.1,190.4 168.6,190.5 170.0,190.5 171.4,190.5 172.9,190.4 174.3,190.3 175.8,190.2 177.2,190.0 178.6,189.7 180.1,189.5 181.5,189.1 183.0,188.8 184.4,188.4 185.8,187.9 187.3,187.5 188.7,186.9 190.2,186.4 191.6,185.7 193.0,185.1 194.5,184.4 195.9,183.6 197.4,182.9 198.8,182.0 200.2,181.2 201.7,180.3 203.1,179.3 204.6,178.3 206.0,177.3 207.4,176.2 208.9,175.1 210.3,173.9 211.8,172.7 213.2,171.5 214.6,170.2 216.1,168.8 217.5,167.5 219.0,166.1 220.4,164.6 221.8,163.1 223.3,161.5 224.7,160.0 226.2,158.3 227.6,156.7 229.0,154.9 230.5,153.2 231.9,151.4 233.4,149.6 234.8,147.7 236.2,145.7 237.7,143.8 239.1,141.8 240.6,139.7 242.0,137.6 243.4,135.5 244.9,133.3 246.3,131.1 247.8,128.8 249.2,126.5 250.6,124.2 252.1,121.8 253.5,119.4 255.0,116.9 256.4,114.4 257.8,111.8 259.3,109.2 260.7,106.6 262.2,103.9 263.6,101.1 265.0,98.4 266.5,95.6 267.9,92.7 269.4,89.8 270.8,86.9 272.2,83.9 273.7,80.9 275.1,77.8 276.6,74.7 278.0,71.5 279.4,68.3 280.9,65.1 282.3,61.8 283.8,58.5 285.2,55.1 286.6,51.7 288.1,48.3 289.5,44.8 291.0,41.3 292.4,37.7 293.8,34.1 295.3,30.4 296.7,26.7 298.2,23.0 299.6,19.2 301.0,15.4" class="cv"/><line x1="170.0" y1="214.0" x2="170.0" y2="26.0" class="dash"/><circle cx="170.0" cy="190.5" r="4" class="pt"/><text x="178.0" y="200.5" class="lb">V(2, −1)</text><circle cx="122.0" cy="167.0" r="4" class="pt"/><circle cx="218.0" cy="167.0" r="4" class="pt"/><circle cx="74.0" cy="96.5" r="4" class="pt"/><text x="82.0" y="100.5" class="lb">(0, 3)</text><text x="174.8" y="40.1" class="lb3">eix x = 2</text></svg><figcaption>y = x² − 4x + 3: obre cap amunt, vèrtex V(2, −1), talls (1, 0), (3, 0) i (0, 3)</figcaption></figure>
+          </div>
+          <div class="warn2"><ul><li>x<sub>v</sub> = −b/(2a): el signe menys és de la fórmula. Si b = −4, −b = 4.</li><li>(−3)² = 9, però −3² = −9: amb la calculadora, posa els negatius entre parèntesis.</li></ul></div>
+          <div class="practice"><a href="estudi.html#u4-eq2">Repassa (Temporada 1): Equacions de 2n grau →</a><a href="estudi.html#u3-ruffini">Repassa (Temporada 1): El salt del Nivell 2 →</a></div>
+        </article>
+
+        <article class="topic" id="n5-maxims">
+          <h3>5.5 Problemes de màxims i mínims</h3>
+          <div class="prop"><p>Quan una magnitud segueix una funció quadràtica, el seu valor <b>màxim</b> (si a &lt; 0) o <b>mínim</b> (si a &gt; 0) és al <b>vèrtex</b>: x<sub>v</sub> diu <b>quan / amb quin valor</b> i y<sub>v</sub> diu <b>quant</b>.</p></div>
+          <div class="two">
+            <div class="ex">
+              <p><b>El salt.</b> h(t) = −5t² + 20t (m, s)</p>
+              <p class="st">t<sub>v</sub> = <span class="frac"><span>−20</span><span>2 · (−5)</span></span> = 2 s<br>h(2) = −20 + 40 = 20 m<br>Aterra: −5t² + 20t = 0 → t(−5t + 20) = 0 → t = 0 o t = 4 s</p>
+            </div>
+            <figure class="gfig"><svg viewBox="0 0 350 240" role="img" aria-label="Salt h(t) = −5t² + 20t: alçada màxima 20 m als 2 s; aterra als 4 s"><line x1="26.0" y1="214.0" x2="26.0" y2="26.0" class="gl"/><line x1="314.0" y1="214.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="314.0" y2="214.0" class="gl"/><line x1="26.0" y1="182.7" x2="314.0" y2="182.7" class="gl"/><line x1="26.0" y1="151.3" x2="314.0" y2="151.3" class="gl"/><line x1="26.0" y1="120.0" x2="314.0" y2="120.0" class="gl"/><line x1="26.0" y1="88.7" x2="314.0" y2="88.7" class="gl"/><line x1="26.0" y1="57.3" x2="314.0" y2="57.3" class="gl"/><line x1="26.0" y1="26.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="322.0" y2="214.0" class="ax"/><line x1="26.0" y1="214.0" x2="26.0" y2="18.0" class="ax"/><text x="318.0" y="228.0" class="tl">t</text><text x="31.0" y="20.0" class="tl">h</text><text x="314.0" y="227.0" class="tk" text-anchor="middle">4</text><text x="22.0" y="186.7" class="tk" text-anchor="end">4</text><text x="22.0" y="155.3" class="tk" text-anchor="end">8</text><text x="22.0" y="124.0" class="tk" text-anchor="end">12</text><text x="22.0" y="92.7" class="tk" text-anchor="end">16</text><text x="22.0" y="61.3" class="tk" text-anchor="end">20</text><text x="22.0" y="30.0" class="tk" text-anchor="end">24</text><polyline points="26.0,214.0 27.4,210.9 28.9,207.8 30.3,204.7 31.8,201.7 33.2,198.7 34.6,195.8 36.1,192.8 37.5,189.9 39.0,187.1 40.4,184.2 41.8,181.4 43.3,178.7 44.7,175.9 46.2,173.2 47.6,170.5 49.0,167.9 50.5,165.3 51.9,162.7 53.4,160.1 54.8,157.6 56.2,155.1 57.7,152.6 59.1,150.2 60.6,147.8 62.0,145.5 63.4,143.1 64.9,140.8 66.3,138.5 67.8,136.3 69.2,134.1 70.6,131.9 72.1,129.8 73.5,127.7 75.0,125.6 76.4,123.5 77.8,121.5 79.3,119.5 80.7,117.6 82.2,115.6 83.6,113.7 85.0,111.9 86.5,110.0 87.9,108.2 89.4,106.5 90.8,104.7 92.2,103.0 93.7,101.3 95.1,99.7 96.6,98.1 98.0,96.5 99.4,94.9 100.9,93.4 102.3,91.9 103.8,90.5 105.2,89.1 106.6,87.7 108.1,86.3 109.5,85.0 111.0,83.7 112.4,82.4 113.8,81.2 115.3,80.0 116.7,78.8 118.2,77.6 119.6,76.5 121.0,75.4 122.5,74.4 123.9,73.4 125.4,72.4 126.8,71.4 128.2,70.5 129.7,69.6 131.1,68.8 132.6,67.9 134.0,67.1 135.4,66.4 136.9,65.6 138.3,64.9 139.8,64.2 141.2,63.6 142.6,63.0 144.1,62.4 145.5,61.9 147.0,61.3 148.4,60.9 149.8,60.4 151.3,60.0 152.7,59.6 154.2,59.2 155.6,58.9 157.0,58.6 158.5,58.3 159.9,58.1 161.4,57.9 162.8,57.7 164.2,57.6 165.7,57.5 167.1,57.4 168.6,57.3 170.0,57.3 171.4,57.3 172.9,57.4 174.3,57.5 175.8,57.6 177.2,57.7 178.6,57.9 180.1,58.1 181.5,58.3 183.0,58.6 184.4,58.9 185.8,59.2 187.3,59.6 188.7,60.0 190.2,60.4 191.6,60.9 193.0,61.3 194.5,61.9 195.9,62.4 197.4,63.0 198.8,63.6 200.2,64.2 201.7,64.9 203.1,65.6 204.6,66.4 206.0,67.1 207.4,67.9 208.9,68.8 210.3,69.6 211.8,70.5 213.2,71.4 214.6,72.4 216.1,73.4 217.5,74.4 219.0,75.4 220.4,76.5 221.8,77.6 223.3,78.8 224.7,80.0 226.2,81.2 227.6,82.4 229.0,83.7 230.5,85.0 231.9,86.3 233.4,87.7 234.8,89.1 236.2,90.5 237.7,91.9 239.1,93.4 240.6,94.9 242.0,96.5 243.4,98.1 244.9,99.7 246.3,101.3 247.8,103.0 249.2,104.7 250.6,106.5 252.1,108.2 253.5,110.0 255.0,111.9 256.4,113.7 257.8,115.6 259.3,117.6 260.7,119.5 262.2,121.5 263.6,123.5 265.0,125.6 266.5,127.7 267.9,129.8 269.4,131.9 270.8,134.1 272.2,136.3 273.7,138.5 275.1,140.8 276.6,143.1 278.0,145.5 279.4,147.8 280.9,150.2 282.3,152.6 283.8,155.1 285.2,157.6 286.6,160.1 288.1,162.7 289.5,165.3 291.0,167.9 292.4,170.5 293.8,173.2 295.3,175.9 296.7,178.7 298.2,181.4 299.6,184.2 301.0,187.1 302.5,189.9 303.9,192.8 305.4,195.8 306.8,198.7 308.2,201.7 309.7,204.7 311.1,207.8 312.6,210.9 314.0,214.0" class="cv"/><circle cx="170.0" cy="57.3" r="4" class="pt"/><text x="178.0" y="61.3" class="lb">màxim (2, 20)</text><circle cx="26.0" cy="214.0" r="4" class="pt"/><circle cx="314.0" cy="214.0" r="4" class="pt"/><text x="270.0" y="208.0" class="lb">aterra</text></svg><figcaption>Salt h(t) = −5t² + 20t: alçada màxima 20 m als 2 s; aterra als 4 s</figcaption></figure>
+          </div>
+          <div class="ex">
+            <p><b>Ingrés màxim.</b> Si un skin costa p euros, se'n venen 100 − 5p al dia. Ingrés: I(p) = p · (100 − 5p) = −5p² + 100p.</p>
+            <p class="st">p<sub>v</sub> = <span class="frac"><span>−100</span><span>2 · (−5)</span></span> = 10 € → I(10) = −500 + 1 000 = 500 € al dia (el màxim)</p>
+          </div>
+          <div class="warn2"><ul><li>Respon el que demana l'enunciat: «quan?» és la x del vèrtex; «quina alçada / quin ingrés?» és la y.</li></ul></div>
+        </article>
+
+        <article class="topic" id="n5-inversa">
+          <h3>5.6 Proporcionalitat inversa: la hipèrbola</h3>
+          <div class="def"><p>Dues magnitudes són <b>inversament proporcionals</b> si el seu <b>producte és constant</b>: x · y = k. La funció és <b>y = <span class="frac"><span>k</span><span>x</span></span></b> (k ≠ 0, x ≠ 0) i la gràfica és una <b>hipèrbola</b>.</p></div>
+          <div class="prop"><ul><li>Si la x es multiplica per 2, la y es divideix entre 2.</li><li>Amb k &gt; 0 és decreixent; la gràfica s'apropa als eixos però <b>no els talla mai</b>.</li><li>Dom = ℝ − &#123;0&#125; (al context, normalment només x &gt; 0).</li></ul></div>
+          <div class="two">
+            <div class="ex">
+              <p>El servidor costa 120 € al mes i es reparteix entre els x jugadors que paguen: y = <span class="frac"><span>120</span><span>x</span></span>.</p>
+              <div class="tblwrap"><table class="tbl"><tr><th>x</th><td>10</td><td>20</td><td>40</td><td>60</td></tr><tr><th>y (€)</th><td>12</td><td>6</td><td>3</td><td>2</td></tr></table></div>
+              <p>Una tasca de 60 hores feta per x persones: y = <span class="frac"><span>60</span><span>x</span></span> hores per persona.</p>
+            </div>
+            <figure class="gfig"><svg viewBox="0 0 350 240" role="img" aria-label="y = 120/x: com més jugadors, menys paga cadascú (però mai 0)"><line x1="26.0" y1="214.0" x2="26.0" y2="26.0" class="gl"/><line x1="74.0" y1="214.0" x2="74.0" y2="26.0" class="gl"/><line x1="122.0" y1="214.0" x2="122.0" y2="26.0" class="gl"/><line x1="170.0" y1="214.0" x2="170.0" y2="26.0" class="gl"/><line x1="218.0" y1="214.0" x2="218.0" y2="26.0" class="gl"/><line x1="266.0" y1="214.0" x2="266.0" y2="26.0" class="gl"/><line x1="314.0" y1="214.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="314.0" y2="214.0" class="gl"/><line x1="26.0" y1="135.7" x2="314.0" y2="135.7" class="gl"/><line x1="26.0" y1="57.3" x2="314.0" y2="57.3" class="gl"/><line x1="26.0" y1="214.0" x2="322.0" y2="214.0" class="ax"/><line x1="26.0" y1="214.0" x2="26.0" y2="18.0" class="ax"/><text x="318.0" y="228.0" class="tl">x</text><text x="31.0" y="20.0" class="tl">€</text><text x="74.0" y="227.0" class="tk" text-anchor="middle">10</text><text x="122.0" y="227.0" class="tk" text-anchor="middle">20</text><text x="170.0" y="227.0" class="tk" text-anchor="middle">30</text><text x="218.0" y="227.0" class="tk" text-anchor="middle">40</text><text x="266.0" y="227.0" class="tk" text-anchor="middle">50</text><text x="314.0" y="227.0" class="tk" text-anchor="middle">60</text><text x="22.0" y="139.7" class="tk" text-anchor="end">10</text><text x="22.0" y="61.3" class="tk" text-anchor="end">20</text><polyline points="50.0,26.0 51.3,35.8 52.6,44.6 54.0,52.6 55.3,59.9 56.6,66.5 57.9,72.6 59.2,78.3 60.6,83.4 61.9,88.2 63.2,92.7 64.5,96.9 65.8,100.7 67.2,104.4 68.5,107.8 69.8,111.0 71.1,114.0 72.4,116.8 73.8,119.5 75.1,122.1 76.4,124.5 77.7,126.8 79.0,128.9 80.4,131.0 81.7,133.0 83.0,134.8 84.3,136.6 85.6,138.3 87.0,140.0 88.3,141.6 89.6,143.1 90.9,144.5 92.2,145.9 93.6,147.2 94.9,148.5 96.2,149.7 97.5,150.9 98.8,152.1 100.2,153.2 101.5,154.2 102.8,155.2 104.1,156.2 105.4,157.2 106.8,158.1 108.1,159.0 109.4,159.9 110.7,160.7 112.0,161.6 113.4,162.4 114.7,163.1 116.0,163.9 117.3,164.6 118.6,165.3 120.0,166.0 121.3,166.6 122.6,167.3 123.9,167.9 125.2,168.5 126.6,169.1 127.9,169.7 129.2,170.3 130.5,170.8 131.8,171.4 133.2,171.9 134.5,172.4 135.8,172.9 137.1,173.4 138.4,173.9 139.8,174.3 141.1,174.8 142.4,175.2 143.7,175.7 145.0,176.1 146.4,176.5 147.7,176.9 149.0,177.3 150.3,177.7 151.6,178.1 153.0,178.5 154.3,178.8 155.6,179.2 156.9,179.5 158.2,179.9 159.6,180.2 160.9,180.5 162.2,180.9 163.5,181.2 164.8,181.5 166.2,181.8 167.5,182.1 168.8,182.4 170.1,182.7 171.4,183.0 172.8,183.3 174.1,183.5 175.4,183.8 176.7,184.1 178.0,184.3 179.4,184.6 180.7,184.8 182.0,185.1 183.3,185.3 184.6,185.6 186.0,185.8 187.3,186.0 188.6,186.3 189.9,186.5 191.2,186.7 192.6,186.9 193.9,187.1 195.2,187.3 196.5,187.5 197.8,187.7 199.2,187.9 200.5,188.1 201.8,188.3 203.1,188.5 204.4,188.7 205.8,188.9 207.1,189.1 208.4,189.3 209.7,189.4 211.0,189.6 212.4,189.8 213.7,190.0 215.0,190.1 216.3,190.3 217.6,190.5 219.0,190.6 220.3,190.8 221.6,190.9 222.9,191.1 224.2,191.2 225.6,191.4 226.9,191.5 228.2,191.7 229.5,191.8 230.8,192.0 232.2,192.1 233.5,192.3 234.8,192.4 236.1,192.5 237.4,192.7 238.8,192.8 240.1,192.9 241.4,193.1 242.7,193.2 244.0,193.3 245.4,193.4 246.7,193.6 248.0,193.7 249.3,193.8 250.6,193.9 252.0,194.0 253.3,194.1 254.6,194.3 255.9,194.4 257.2,194.5 258.6,194.6 259.9,194.7 261.2,194.8 262.5,194.9 263.8,195.0 265.2,195.1 266.5,195.2 267.8,195.3 269.1,195.4 270.4,195.5 271.8,195.6 273.1,195.7 274.4,195.8 275.7,195.9 277.0,196.0 278.4,196.1 279.7,196.2 281.0,196.3 282.3,196.4 283.6,196.5 285.0,196.6 286.3,196.7 287.6,196.8 288.9,196.8 290.2,196.9 291.6,197.0 292.9,197.1 294.2,197.2 295.5,197.3 296.8,197.3 298.2,197.4 299.5,197.5 300.8,197.6 302.1,197.7 303.4,197.7 304.8,197.8 306.1,197.9 307.4,198.0 308.7,198.0 310.0,198.1 311.4,198.2 312.7,198.3 314.0,198.3" class="cv"/><circle cx="74.0" cy="120.0" r="4" class="pt"/><text x="80.0" y="114.0" class="lb">(10, 12)</text><circle cx="122.0" cy="167.0" r="4" class="pt"/><text x="128.0" y="161.0" class="lb">(20, 6)</text><circle cx="218.0" cy="190.5" r="4" class="pt"/><text x="224.0" y="184.5" class="lb">(40, 3)</text></svg><figcaption>y = 120/x: com més jugadors, menys paga cadascú (però mai 0)</figcaption></figure>
+          </div>
+          <div class="warn2"><ul><li>«Quan una augmenta, l'altra disminueix» no n'hi ha prou: y = −2x + 10 també baixa i no és inversa. Comprova que <b>x · y</b> sigui sempre el mateix.</li></ul></div>
+        </article>
+
+        <article class="topic" id="n5-exponencial">
+          <h3>5.7 Funció exponencial</h3>
+          <div class="def"><p><b>Funció exponencial</b>: y = a · b<sup>x</sup>, amb b &gt; 0 i b ≠ 1. La x és a l'<b>exponent</b>: a cada pas, la y es <b>multiplica</b> per b.</p></div>
+          <div class="prop"><ul><li>b &gt; 1 → creixement exponencial · 0 &lt; b &lt; 1 → decreixement exponencial.</li><li>Passa per (0, a): a és el valor inicial.</li><li>Lineal: <b>suma</b> sempre el mateix · Exponencial: <b>multiplica</b> sempre pel mateix. A la llarga, l'exponencial guanya sempre.</li></ul></div>
+          <figure class="gfig"><svg viewBox="0 0 350 240" role="img" aria-label="Exponencial (×2 cada setmana) contra lineal (+1 500 cada setmana)"><line x1="26.0" y1="214.0" x2="26.0" y2="26.0" class="gl"/><line x1="83.6" y1="214.0" x2="83.6" y2="26.0" class="gl"/><line x1="141.2" y1="214.0" x2="141.2" y2="26.0" class="gl"/><line x1="198.8" y1="214.0" x2="198.8" y2="26.0" class="gl"/><line x1="256.4" y1="214.0" x2="256.4" y2="26.0" class="gl"/><line x1="314.0" y1="214.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="314.0" y2="214.0" class="gl"/><line x1="26.0" y1="202.2" x2="314.0" y2="202.2" class="gl"/><line x1="26.0" y1="190.5" x2="314.0" y2="190.5" class="gl"/><line x1="26.0" y1="178.8" x2="314.0" y2="178.8" class="gl"/><line x1="26.0" y1="167.0" x2="314.0" y2="167.0" class="gl"/><line x1="26.0" y1="155.2" x2="314.0" y2="155.2" class="gl"/><line x1="26.0" y1="143.5" x2="314.0" y2="143.5" class="gl"/><line x1="26.0" y1="131.8" x2="314.0" y2="131.8" class="gl"/><line x1="26.0" y1="120.0" x2="314.0" y2="120.0" class="gl"/><line x1="26.0" y1="108.2" x2="314.0" y2="108.2" class="gl"/><line x1="26.0" y1="96.5" x2="314.0" y2="96.5" class="gl"/><line x1="26.0" y1="84.8" x2="314.0" y2="84.8" class="gl"/><line x1="26.0" y1="73.0" x2="314.0" y2="73.0" class="gl"/><line x1="26.0" y1="61.2" x2="314.0" y2="61.2" class="gl"/><line x1="26.0" y1="49.5" x2="314.0" y2="49.5" class="gl"/><line x1="26.0" y1="37.8" x2="314.0" y2="37.8" class="gl"/><line x1="26.0" y1="26.0" x2="314.0" y2="26.0" class="gl"/><line x1="26.0" y1="214.0" x2="322.0" y2="214.0" class="ax"/><line x1="26.0" y1="214.0" x2="26.0" y2="18.0" class="ax"/><text x="318.0" y="228.0" class="tl">setm.</text><text x="31.0" y="20.0" class="tl">milers</text><text x="83.6" y="227.0" class="tk" text-anchor="middle">1</text><text x="141.2" y="227.0" class="tk" text-anchor="middle">2</text><text x="198.8" y="227.0" class="tk" text-anchor="middle">3</text><text x="256.4" y="227.0" class="tk" text-anchor="middle">4</text><text x="314.0" y="227.0" class="tk" text-anchor="middle">5</text><text x="22.0" y="206.2" class="tk" text-anchor="end">1</text><text x="22.0" y="194.5" class="tk" text-anchor="end">2</text><text x="22.0" y="182.8" class="tk" text-anchor="end">3</text><text x="22.0" y="171.0" class="tk" text-anchor="end">4</text><text x="22.0" y="159.2" class="tk" text-anchor="end">5</text><text x="22.0" y="147.5" class="tk" text-anchor="end">6</text><text x="22.0" y="135.8" class="tk" text-anchor="end">7</text><text x="22.0" y="124.0" class="tk" text-anchor="end">8</text><text x="22.0" y="112.2" class="tk" text-anchor="end">9</text><text x="22.0" y="100.5" class="tk" text-anchor="end">10</text><text x="22.0" y="88.8" class="tk" text-anchor="end">11</text><text x="22.0" y="77.0" class="tk" text-anchor="end">12</text><text x="22.0" y="65.2" class="tk" text-anchor="end">13</text><text x="22.0" y="53.5" class="tk" text-anchor="end">14</text><text x="22.0" y="41.8" class="tk" text-anchor="end">15</text><text x="22.0" y="30.0" class="tk" text-anchor="end">16</text><polyline points="26.0,208.1 27.4,208.0 28.9,207.9 30.3,207.8 31.8,207.7 33.2,207.6 34.6,207.5 36.1,207.4 37.5,207.3 39.0,207.1 40.4,207.0 41.8,206.9 43.3,206.8 44.7,206.6 46.2,206.5 47.6,206.4 49.0,206.2 50.5,206.1 51.9,206.0 53.4,205.8 54.8,205.7 56.2,205.5 57.7,205.4 59.1,205.2 60.6,205.1 62.0,204.9 63.4,204.8 64.9,204.6 66.3,204.5 67.8,204.3 69.2,204.1 70.6,203.9 72.1,203.8 73.5,203.6 75.0,203.4 76.4,203.2 77.8,203.0 79.3,202.8 80.7,202.7 82.2,202.5 83.6,202.2 85.0,202.0 86.5,201.8 87.9,201.6 89.4,201.4 90.8,201.2 92.2,201.0 93.7,200.7 95.1,200.5 96.6,200.3 98.0,200.0 99.4,199.8 100.9,199.5 102.3,199.3 103.8,199.0 105.2,198.8 106.6,198.5 108.1,198.2 109.5,197.9 111.0,197.7 112.4,197.4 113.8,197.1 115.3,196.8 116.7,196.5 118.2,196.2 119.6,195.9 121.0,195.6 122.5,195.2 123.9,194.9 125.4,194.6 126.8,194.2 128.2,193.9 129.7,193.5 131.1,193.2 132.6,192.8 134.0,192.5 135.4,192.1 136.9,191.7 138.3,191.3 139.8,190.9 141.2,190.5 142.6,190.1 144.1,189.7 145.5,189.2 147.0,188.8 148.4,188.4 149.8,187.9 151.3,187.5 152.7,187.0 154.2,186.5 155.6,186.1 157.0,185.6 158.5,185.1 159.9,184.6 161.4,184.0 162.8,183.5 164.2,183.0 165.7,182.4 167.1,181.9 168.6,181.3 170.0,180.8 171.4,180.2 172.9,179.6 174.3,179.0 175.8,178.4 177.2,177.8 178.6,177.1 180.1,176.5 181.5,175.8 183.0,175.2 184.4,174.5 185.8,173.8 187.3,173.1 188.7,172.4 190.2,171.6 191.6,170.9 193.0,170.1 194.5,169.4 195.9,168.6 197.4,167.8 198.8,167.0 200.2,166.2 201.7,165.3 203.1,164.5 204.6,163.6 206.0,162.7 207.4,161.9 208.9,160.9 210.3,160.0 211.8,159.1 213.2,158.1 214.6,157.1 216.1,156.1 217.5,155.1 219.0,154.1 220.4,153.0 221.8,152.0 223.3,150.9 224.7,149.8 226.2,148.7 227.6,147.5 229.0,146.4 230.5,145.2 231.9,144.0 233.4,142.8 234.8,141.5 236.2,140.2 237.7,139.0 239.1,137.6 240.6,136.3 242.0,135.0 243.4,133.6 244.9,132.2 246.3,130.7 247.8,129.3 249.2,127.8 250.6,126.3 252.1,124.8 253.5,123.2 255.0,121.6 256.4,120.0 257.8,118.4 259.3,116.7 260.7,115.0 262.2,113.3 263.6,111.5 265.0,109.7 266.5,107.9 267.9,106.0 269.4,104.1 270.8,102.2 272.2,100.3 273.7,98.3 275.1,96.2 276.6,94.2 278.0,92.1 279.4,90.0 280.9,87.8 282.3,85.6 283.8,83.3 285.2,81.1 286.6,78.7 288.1,76.4 289.5,74.0 291.0,71.5 292.4,69.0 293.8,66.5 295.3,63.9 296.7,61.3 298.2,58.6 299.6,55.9 301.0,53.1 302.5,50.3 303.9,47.5 305.4,44.6 306.8,41.6 308.2,38.6 309.7,35.5 311.1,32.4 312.6,29.2 314.0,26.0" class="cv"/><polyline points="26.0,208.1 27.4,207.7 28.9,207.2 30.3,206.8 31.8,206.4 33.2,205.9 34.6,205.5 36.1,205.0 37.5,204.6 39.0,204.2 40.4,203.7 41.8,203.3 43.3,202.8 44.7,202.4 46.2,202.0 47.6,201.5 49.0,201.1 50.5,200.6 51.9,200.2 53.4,199.8 54.8,199.3 56.2,198.9 57.7,198.4 59.1,198.0 60.6,197.6 62.0,197.1 63.4,196.7 64.9,196.2 66.3,195.8 67.8,195.3 69.2,194.9 70.6,194.5 72.1,194.0 73.5,193.6 75.0,193.1 76.4,192.7 77.8,192.3 79.3,191.8 80.7,191.4 82.2,190.9 83.6,190.5 85.0,190.1 86.5,189.6 87.9,189.2 89.4,188.7 90.8,188.3 92.2,187.9 93.7,187.4 95.1,187.0 96.6,186.5 98.0,186.1 99.4,185.7 100.9,185.2 102.3,184.8 103.8,184.3 105.2,183.9 106.6,183.4 108.1,183.0 109.5,182.6 111.0,182.1 112.4,181.7 113.8,181.2 115.3,180.8 116.7,180.4 118.2,179.9 119.6,179.5 121.0,179.0 122.5,178.6 123.9,178.2 125.4,177.7 126.8,177.3 128.2,176.8 129.7,176.4 131.1,176.0 132.6,175.5 134.0,175.1 135.4,174.6 136.9,174.2 138.3,173.8 139.8,173.3 141.2,172.9 142.6,172.4 144.1,172.0 145.5,171.6 147.0,171.1 148.4,170.7 149.8,170.2 151.3,169.8 152.7,169.3 154.2,168.9 155.6,168.5 157.0,168.0 158.5,167.6 159.9,167.1 161.4,166.7 162.8,166.3 164.2,165.8 165.7,165.4 167.1,164.9 168.6,164.5 170.0,164.1 171.4,163.6 172.9,163.2 174.3,162.7 175.8,162.3 177.2,161.9 178.6,161.4 180.1,161.0 181.5,160.5 183.0,160.1 184.4,159.7 185.8,159.2 187.3,158.8 188.7,158.3 190.2,157.9 191.6,157.5 193.0,157.0 194.5,156.6 195.9,156.1 197.4,155.7 198.8,155.2 200.2,154.8 201.7,154.4 203.1,153.9 204.6,153.5 206.0,153.0 207.4,152.6 208.9,152.2 210.3,151.7 211.8,151.3 213.2,150.8 214.6,150.4 216.1,150.0 217.5,149.5 219.0,149.1 220.4,148.6 221.8,148.2 223.3,147.8 224.7,147.3 226.2,146.9 227.6,146.4 229.0,146.0 230.5,145.6 231.9,145.1 233.4,144.7 234.8,144.2 236.2,143.8 237.7,143.4 239.1,142.9 240.6,142.5 242.0,142.0 243.4,141.6 244.9,141.2 246.3,140.7 247.8,140.3 249.2,139.8 250.6,139.4 252.1,138.9 253.5,138.5 255.0,138.1 256.4,137.6 257.8,137.2 259.3,136.7 260.7,136.3 262.2,135.9 263.6,135.4 265.0,135.0 266.5,134.5 267.9,134.1 269.4,133.7 270.8,133.2 272.2,132.8 273.7,132.3 275.1,131.9 276.6,131.5 278.0,131.0 279.4,130.6 280.9,130.1 282.3,129.7 283.8,129.3 285.2,128.8 286.6,128.4 288.1,127.9 289.5,127.5 291.0,127.1 292.4,126.6 293.8,126.2 295.3,125.7 296.7,125.3 298.2,124.8 299.6,124.4 301.0,124.0 302.5,123.5 303.9,123.1 305.4,122.6 306.8,122.2 308.2,121.8 309.7,121.3 311.1,120.9 312.6,120.4 314.0,120.0" class="cv2"/><circle cx="26.0" cy="208.1" r="4" class="pt"/><circle cx="83.6" cy="202.2" r="4" class="pt"/><circle cx="141.2" cy="190.5" r="4" class="pt"/><circle cx="198.8" cy="167.0" r="4" class="pt"/><circle cx="256.4" cy="120.0" r="4" class="pt"/><text x="210.4" y="116.0" class="lb">(4, 8)</text><text x="265.0" y="151.7" class="lb2">lineal: +1,5</text><text x="216.1" y="43.6" class="lb">exponencial: ×2</text></svg><figcaption>Exponencial (×2 cada setmana) contra lineal (+1 500 cada setmana)</figcaption></figure>
+          <div class="ex">
+            <p>El joc té 500 jugadors i el nombre es duplica cada setmana: y = 500 · 2<sup>x</sup>. Al cap de 4 setmanes: 500 · 2<sup>4</sup> = 8 000 jugadors.</p>
+            <p>Corba d'XP: el nivell 0 demana 100 XP i cada nivell en demana 1,5 vegades més: y = 100 · 1,5<sup>x</sup>. Nivell 2: 100 · 1,5<sup>2</sup> = 225 XP.</p>
+            <p>Un objecte perd el 20 % del valor cada any: y = 50 · 0,8<sup>x</sup> (decreixent).</p>
+          </div>
+          <div class="warn2"><ul><li>2<sup>x</sup> no és 2x: 2<sup>5</sup> = 32, però 2 · 5 = 10.</li><li>Perdre un 20 % vol dir multiplicar per 0,8 (no per 0,2).</li></ul></div>
+          <div class="practice"><a href="estudi.html#u2-potencies">Repassa (Temporada 1): Potències →</a></div>
+        </article>
+
+        <article class="topic" id="n5-model">
+          <h3>5.8 Quin model? Triar la funció a partir de les dades</h3>
+          <div class="prop">
+            <p>Amb valors de x que augmenten d'1 en 1, mira la taula:</p>
+            <div class="tblwrap"><table class="tbl">
+              <tr><th>Si…</th><th>el model és…</th><th>gràfica</th></tr>
+              <tr><td>la y augmenta (o disminueix) sempre el <b>mateix</b> (diferències constants)</td><td>lineal / afí y = mx + n</td><td>recta</td></tr>
+              <tr><td>les diferències canvien, però les <b>diferències de les diferències</b> són constants</td><td>quadràtica y = ax² + bx + c</td><td>paràbola</td></tr>
+              <tr><td>el <b>producte</b> x · y és constant</td><td>proporcionalitat inversa y = k/x</td><td>hipèrbola</td></tr>
+              <tr><td>la y es <b>multiplica</b> sempre pel mateix (quocients constants)</td><td>exponencial y = a · b<sup>x</sup></td><td>corba exponencial</td></tr>
+            </table></div>
+          </div>
+          <div class="ex">
+            <div class="tblwrap"><table class="tbl">
+              <tr><th>x</th><td>1</td><td>2</td><td>3</td><td>4</td><th>Diagnòstic</th></tr>
+              <tr><th>A</th><td>5</td><td>8</td><td>11</td><td>14</td><td style="text-align:left">+3, +3, +3 → afí: y = 3x + 2</td></tr>
+              <tr><th>B</th><td>1</td><td>4</td><td>9</td><td>16</td><td style="text-align:left">+3, +5, +7 → les diferències augmenten 2 cada vegada → quadràtica: y = x²</td></tr>
+              <tr><th>C</th><td>24</td><td>12</td><td>8</td><td>6</td><td style="text-align:left">x · y = 24 sempre → inversa: y = 24/x</td></tr>
+              <tr><th>D</th><td>6</td><td>18</td><td>54</td><td>162</td><td style="text-align:left">×3, ×3, ×3 → exponencial: y = 2 · 3<sup>x</sup></td></tr>
+            </table></div>
+            <p>Amb dades reals (que no encaixen exactament), representa els punts amb GeoGebra o el full de càlcul i tria el model que s'hi ajusta més.</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ===================================================== N6 ===================================================== -->
+      <section class="unit" id="n6">
+        <header><span class="badge">NIVELL 6 · EL MAPA DEL JOC</span><h2>Nivell 6 · Trigonometria bàsica</h2><p>Pitàgores, semblança i Tales, pendents i angles, raons trigonomètriques i resolució de triangles rectangles</p></header>
+
+        <article class="topic" id="n6-pitagores">
+          <h3>6.1 El teorema de Pitàgores en context</h3>
+          <div class="def"><p>En un <b>triangle rectangle</b>, el quadrat de la hipotenusa és igual a la suma dels quadrats dels catets.</p></div>
+          <div class="prop"><p class="f">a² = b² + c² &nbsp;&nbsp;(a = hipotenusa)</p><p>Hipotenusa: a = √<span class="rad">b² + c²</span> · Catet: b = √<span class="rad">a² − c²</span></p></div>
+          <div class="ex">
+            <p class="st">Una escala de 5 m té el peu a 1,4 m de la paret. Fins a quina alçada arriba?<br>h = √<span class="rad">5² − 1,4²</span> = √<span class="rad">25 − 1,96</span> = √<span class="rad">23,04</span> = 4,8 m</p>
+            <p class="st">Distància al mapa entre (1, 2) i (7, 10): √<span class="rad">6² + 8²</span> = √<span class="rad">100</span> = 10 unitats</p>
+          </div>
+          <div class="warn2"><ul><li>Per trobar un catet es <b>resta</b>, no es suma.</li><li>√<span class="rad">25 − 1,96</span> no és √<span class="rad">25</span> − √<span class="rad">1,96</span>.</li></ul></div>
+          <div class="practice"><a href="estudi.html#u2-pitagores">Repassa (Temporada 1): Pitàgores →</a></div>
+        </article>
+
+        <article class="topic" id="n6-semblanca">
+          <h3>6.2 Triangles semblants i teorema de Tales</h3>
+          <div class="def">
+            <p>Dos triangles són <b>semblants</b> si tenen els <b>angles iguals</b> i els <b>costats proporcionals</b>. El quocient entre costats corresponents és la <b>raó de semblança</b> k.</p>
+            <p>Dos triangles són semblants si tenen <b>dos angles iguals</b> (el tercer també ho serà, perquè sumen 180°).</p>
+          </div>
+          <div class="prop">
+            <p><b>Teorema de Tales</b>: si dues rectes es tallen per rectes paral·leles, els segments que s'hi determinen són proporcionals. En un triangle, una paral·lela a un costat forma un triangle petit semblant al gran (<b>posició de Tales</b>).</p>
+            <p class="f"><span class="frac"><span>AB</span><span>AD</span></span> = <span class="frac"><span>AC</span><span>AE</span></span> = <span class="frac"><span>BC</span><span>DE</span></span></p>
+          </div>
+          <div class="two">
+            <div class="ex">
+              <p>A la figura, AB = 4, BD = 2 (AD = 6) i AC = 5. Quant fa AE?</p>
+              <p class="st"><span class="frac"><span>4</span><span>6</span></span> = <span class="frac"><span>5</span><span>AE</span></span> → AE = <span class="frac"><span>6 · 5</span><span>4</span></span> = 7,5</p>
+              <p>Un sprite de 3, 4 i 5 cm s'escala amb k = 2,5: els costats nous fan 7,5, 10 i 12,5 cm (els angles no canvien).</p>
+            </div>
+            <figure class="gfig"><svg viewBox="0 0 330 210" role="img" aria-label="Triangles en posició de Tales">
+<polyline points="30,180 300,180" class="thin"/><polyline points="30,180 228,45" class="thin"/>
+<line x1="150" y1="180" x2="150" y2="98" class="cv"/><line x1="210" y1="180" x2="210" y2="57" class="cv2"/>
+<text x="20" y="196" class="lb">A</text><text x="144" y="196" class="lb">B</text><text x="204" y="196" class="lb">D</text>
+<text x="140" y="92" class="lb">C</text><text x="204" y="50" class="lb">E</text>
+<text x="80" y="174" class="tk">4</text><text x="176" y="174" class="tk">2</text><text x="70" y="128" class="tk">5</text><text x="172" y="72" class="tk">?</text>
+</svg><figcaption>BC ∥ DE: els triangles ABC i ADE són semblants (posició de Tales)</figcaption></figure>
+          </div>
+          <div class="warn2"><ul><li>Compara costats <b>corresponents</b> (els que són oposats a angles iguals), i sempre en el mateix ordre: petit/gran = petit/gran.</li><li>AD és el segment sencer (4 + 2 = 6), no només el tros de 2.</li></ul></div>
+        </article>
+
+        <article class="topic" id="n6-altures">
+          <h3>6.3 Mesurar altures inaccessibles</h3>
+          <div class="prop">
+            <ul>
+              <li><b>Mètode de les ombres</b>: a la mateixa hora, els raigs de sol arriben paral·lels. Un pal i l'edifici, amb les seves ombres, formen triangles semblants: <span class="frac"><span>h</span><span>ombra edifici</span></span> = <span class="frac"><span>alçada pal</span><span>ombra pal</span></span>.</li>
+              <li><b>Mètode del mirall</b>: posem un mirall a terra i ens movem fins a veure-hi el cim. Els angles d'incidència i de reflexió són iguals → triangles semblants: <span class="frac"><span>h</span><span>distància mirall–objecte</span></span> = <span class="frac"><span>alçada dels ulls</span><span>distància persona–mirall</span></span>.</li>
+            </ul>
+          </div>
+          <figure class="gfig"><svg viewBox="0 0 350 200" role="img" aria-label="Mètode de les ombres">
+<line x1="10" y1="170" x2="345" y2="170" class="thin"/>
+<line x1="40" y1="170" x2="40" y2="140" class="cv2"/><line x1="40" y1="140" x2="80" y2="170" class="dash"/>
+<text x="20" y="160" class="tk">1,5</text><text x="52" y="186" class="tk">2</text>
+<rect x="150" y="50" width="26" height="120" class="bld"/><line x1="176" y1="50" x2="336" y2="170" class="dash"/>
+<text x="130" y="112" class="tk">h</text><text x="250" y="186" class="tk">16</text>
+<text x="200" y="30" class="lb">☀ raigs de sol paral·lels</text>
+</svg><figcaption>Pal i edifici fan ombres amb el mateix angle → triangles semblants</figcaption></figure>
+          <div class="ex">
+            <p class="st">Ombres: un pal d'1,5 m fa una ombra de 2 m i l'edifici, de 16 m → <span class="frac"><span>h</span><span>16</span></span> = <span class="frac"><span>1,5</span><span>2</span></span> → h = 12 m</p>
+            <p class="st">Mirall: ulls a 1,6 m, persona a 2 m del mirall i mirall a 7,5 m de l'arbre → <span class="frac"><span>h</span><span>7,5</span></span> = <span class="frac"><span>1,6</span><span>2</span></span> → h = 6 m</p>
+          </div>
+        </article>
+
+        <article class="topic" id="n6-pendent">
+          <h3>6.4 Pendents i angles d'inclinació</h3>
+          <div class="def"><p>El <b>pendent</b> d'una rampa és el que puja per cada unitat que s'avança en horitzontal. En percentatge: quants metres puja per cada 100 m horitzontals.</p></div>
+          <div class="prop">
+            <p class="f">pendent = <span class="frac"><span>desnivell (vertical)</span><span>distància horitzontal</span></span> &nbsp;·&nbsp; pendent (%) = pendent · 100</p>
+            <p>L'<b>angle d'inclinació</b> α es troba amb la calculadora (en mode <b>DEG</b>): α = tan<sup>−1</sup>(pendent) (tecles SHIFT + tan).</p>
+          </div>
+          <div class="ex">
+            <p class="st">Una rampa del mapa puja 1,2 m en 15 m horitzontals:<br>pendent = <span class="frac"><span>1,2</span><span>15</span></span> = 0,08 → 8 %<br>α = tan<sup>−1</sup>(0,08) ≈ 4,57°</p>
+            <p>És el mateix pendent m de les rectes del Nivell 5: una recta y = 0,08x té un pendent del 8 %.</p>
+          </div>
+          <div class="warn2"><ul><li>Un pendent del 100 % no és vertical: vol dir que puja tant com avança (45°).</li><li>Es divideix per la distància <b>horitzontal</b>, no per la longitud de la rampa.</li></ul></div>
+        </article>
+
+        <article class="topic" id="n6-raons">
+          <h3>6.5 Raons trigonomètriques d'un angle agut</h3>
+          <div class="def"><p>En un triangle rectangle, per a un angle agut α:</p>
+            <ul>
+              <li><b>sinus</b>: sin α = <span class="frac"><span>catet oposat</span><span>hipotenusa</span></span></li>
+              <li><b>cosinus</b>: cos α = <span class="frac"><span>catet contigu</span><span>hipotenusa</span></span></li>
+              <li><b>tangent</b>: tan α = <span class="frac"><span>catet oposat</span><span>catet contigu</span></span></li>
+            </ul>
+            <p>Només depenen de l'angle, no de la mida del triangle (perquè tots els triangles rectangles amb l'angle α són semblants).</p>
+          </div>
+          <div class="two">
+            <figure class="gfig"><svg viewBox="0 0 330 220" role="img" aria-label="Triangle rectangle amb angle alfa">
+<polygon points="30,190 280,190 280,40" class="tri"/>
+<polyline points="266,190 266,176 280,176" class="thin"/>
+<path d="M 72 190 A 42 42 0 0 0 66.5 168.5" class="thin"/><text x="78" y="182" class="lb">α</text>
+<text x="140" y="208" class="lb3" text-anchor="middle">catet contigu a α</text>
+<text x="290" y="120" class="lb2">catet</text><text x="290" y="136" class="lb2">oposat</text>
+<text x="128" y="104" class="lb" transform="rotate(-31 128 104)">hipotenusa</text>
+</svg><figcaption>La hipotenusa és el costat oposat a l'angle recte (el més llarg)</figcaption></figure>
+            <div class="prop">
+              <ul>
+                <li>sin α i cos α estan entre 0 i 1 (els catets són més curts que la hipotenusa).</li>
+                <li>tan α és el pendent.</li>
+                <li>Calculadora en mode <b>DEG</b>: sin 30 = 0,5.</li>
+                <li>Per trobar l'angle: sin<sup>−1</sup>, cos<sup>−1</sup> o tan<sup>−1</sup> (SHIFT + la tecla).</li>
+              </ul>
+            </div>
+          </div>
+          <div class="ex">
+            <p class="st">Triangle de catets 3 i 4 i hipotenusa 5. Per a l'angle α oposat al catet 3:<br>sin α = <span class="frac"><span>3</span><span>5</span></span> = 0,6 · cos α = <span class="frac"><span>4</span><span>5</span></span> = 0,8 · tan α = <span class="frac"><span>3</span><span>4</span></span> = 0,75<br>α = sin<sup>−1</sup>(0,6) ≈ 36,87°</p>
+          </div>
+          <div class="warn2"><ul><li>«Oposat» i «contigu» depenen de l'angle que mires: canvien si mires l'altre angle agut.</li><li>Si la calculadora dona sin 30 = −0,988…, està en radians (RAD): posa-la en DEG.</li></ul></div>
+        </article>
+
+        <article class="topic" id="n6-resoldre">
+          <h3>6.6 Resolució de triangles rectangles</h3>
+          <div class="def"><p><b>Resoldre</b> un triangle rectangle és trobar tots els costats i angles a partir de dues dades (almenys una ha de ser un costat).</p></div>
+          <div class="prop">
+            <ol><li>Fes un dibuix i marca l'angle recte, l'angle conegut i què és cada costat (hipotenusa, oposat, contigu).</li><li>Tria la raó que relaciona el que saps amb el que busques.</li><li>Aïlla i calcula. L'altre angle agut: 90° − α. L'últim costat: Pitàgores o una altra raó.</li><li>Comprova que el resultat tingui sentit (la hipotenusa és el costat més llarg).</li></ol>
+          </div>
+          <div class="ex">
+            <p class="st"><b>Escala</b> de 6 m recolzada a la paret amb un angle de 70° amb el terra:<br>alçada = 6 · sin 70° ≈ 5,64 m · peu = 6 · cos 70° ≈ 2,05 m · angle amb la paret = 20°</p>
+            <p class="st"><b>Angle de la càmera</b>: una càmera a 12 m d'alçada enfoca un punt del terra a 20 m (en horitzontal):<br>tan α = <span class="frac"><span>12</span><span>20</span></span> = 0,6 → α = tan<sup>−1</sup>(0,6) ≈ 31,0° per sota de l'horitzontal</p>
+            <p class="st"><b>Rampa</b> de 8 m de llarg que puja 1 m: sin α = <span class="frac"><span>1</span><span>8</span></span> = 0,125 → α ≈ 7,18°</p>
+          </div>
+          <div class="warn2"><ul><li>Si l'incògnita és a baix (x = 12 / tan 31°), cal <b>dividir</b>, no multiplicar.</li><li>Arrodoneix només al final; fes servir els valors de la calculadora sense retallar-los entremig.</li></ul></div>
+        </article>
+
+        <article class="topic" id="n6-historia">
+          <h3>6.7 Com es va mesurar la Terra i el cel</h3>
+          <div class="lect">
+            <p><b>Eratòstenes</b> (segle III aC) va saber que a Siene, al migdia del solstici d'estiu, el Sol no feia ombra (queia vertical). El mateix dia, a Alexandria, uns 800 km més al nord, un pal feia una ombra amb un angle de 7,2°. Com que 7,2° és <span class="frac"><span>1</span><span>50</span></span> de 360°, la distància entre les dues ciutats era <span class="frac"><span>1</span><span>50</span></span> de la volta a la Terra: 50 · 800 = 40 000 km. El valor real és d'uns 40 000 km!</p>
+            <p><b>Aristarc de Samos</b> (segle III aC) va pensar que quan veiem exactament mitja Lluna, el triangle Terra–Lluna–Sol és rectangle a la Lluna. Va mesurar l'angle a la Terra entre la Lluna i el Sol: uns 87°. Aleshores, cos 87° ≈ 0,05 = <span class="frac"><span>distància Terra–Lluna</span><span>distància Terra–Sol</span></span>: el Sol era unes 20 vegades més lluny que la Lluna. La idea era bona, però l'angle real és 89,85° i el Sol és unes 400 vegades més lluny: un error petit en l'angle dona un error molt gran en el resultat.</p>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+  <footer class="foot">Situació d'aprenentatge «Corbatera Games Studio» · Temporada 2 · Curs 2026–2027 · Aquesta teoria és la mateixa que pots copiar al teu formulari personal.</footer>
+
+  <script>
+  (function () {
+    var toc = document.getElementById('tocl'), units = document.querySelectorAll('.unit');
+    var html = '';
+    [].forEach.call(units, function (u) {
+      html += '<a class="tu" href="#' + u.id + '">' + u.querySelector('h2').textContent + '</a>';
+      [].forEach.call(u.querySelectorAll('.topic'), function (t) {
+        html += '<a class="ts" href="#' + t.id + '">' + t.querySelector('h3').textContent + '</a>';
+      });
+    });
+    toc.innerHTML = html;
+    var links = toc.querySelectorAll('a.ts');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) [].forEach.call(links, function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
+        });
+      }, { rootMargin: '-10% 0px -80% 0px' });
+      [].forEach.call(document.querySelectorAll('.topic'), function (t) { io.observe(t); });
+    }
+    var norm = function (s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+    document.getElementById('cerca').addEventListener('input', function () {
+      var q = norm(this.value.trim()), any = false;
+      [].forEach.call(units, function (u) {
+        var vis = 0;
+        [].forEach.call(u.querySelectorAll('.topic'), function (t) {
+          var ok = !q || norm(t.textContent).indexOf(q) >= 0;
+          t.classList.toggle('hidden-by-search', !ok); if (ok) vis++;
+        });
+        u.classList.toggle('hidden-by-search', vis === 0); if (vis) any = true;
+      });
+      document.getElementById('nores').hidden = any;
+    });
+  })();
+  </script>
+</body>
+</html>

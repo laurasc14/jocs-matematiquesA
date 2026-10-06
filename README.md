@@ -59,12 +59,22 @@ Als polinomis, l'alumnat escriu cada coeficient en una casella amb el seu signe 
 - Cada apartat de teoria té botons **Practica-ho** que obren directament la missió corresponent (`temporada1.html#jugar=N2M8`). Si la missió encara està bloquejada, el joc ho avisa.
 - Adreça directa: `https://laurasc14.github.io/jocs-matematiquesA/estudi.html`
 
+### Estudi de la Temporada 2
+
+`estudi-2a.html` és la teoria de la 2a avaluació, amb el mateix format (índex, cercador, imprimir/PDF) i gràfiques dibuixades:
+
+- **Nivell 4 · Característiques de les funcions**: concepte i 4 representacions, domini i recorregut, talls amb els eixos, creixement i extrems, TVM, continuïtat.
+- **Nivell 5 · Tipus de funcions**: lineal i afí, rectes per dos punts, comparar tarifes, quadràtica (vèrtex, eix, talls), màxims i mínims, proporcionalitat inversa, exponencial, «Quin model?».
+- **Nivell 6 · Trigonometria bàsica**: Pitàgores, semblança i Tales, altures inaccessibles (ombres i mirall), pendents i angles, raons trigonomètriques, resolució de triangles rectangles i lectura sobre Eratòstenes i Aristarc.
+
+Cada apartat enllaça amb la teoria de la Temporada 1 que cal repassar. A l'Inici apareix dins la Temporada 2 a partir del 9/12 (amb `?docent`, sempre). Adreça directa: `https://laurasc14.github.io/jocs-matematiquesA/estudi-2a.html`
+
 ## Inici per temporades
 
 `index.html` és la porta d'entrada. Primer l'alumne escriu el seu **nom i cognom** (o tria un jugador ja guardat en aquell ordinador) i després veu una targeta per temporada. El nom serveix per a totes les pàgines: el joc l'agafa directament i les preguntes ràpides l'escriuen sol al «Resum per a la profe». «Canvia de jugador» torna a aquesta pantalla.
 
 - **Temporada 1 · «El primer joc»** (1r trimestre): joc pas a pas (`temporada1.html`), Estudi i preguntes ràpides.
-- **Temporada 2 · «El joc creix»** (2a avaluació): tràiler de desembre (s'obre el 9/12) i, al gener, el joc de la temporada.
+- **Temporada 2 · «El joc creix»** (2a avaluació): tràiler de desembre i Estudi dels nivells 4 a 6 (s'obren el 9/12) i, al gener, el joc de la temporada.
 - **Temporada 3**: properament.
 
 Amb `?docent` (`index.html?docent`) es veu tot obert. Els enllaços antics `index.html#jugar=…` porten sols a la Temporada 1.
@@ -135,7 +145,7 @@ Al navegador de cada ordinador (`localStorage`). Si diversos alumnes fan servir 
 ## Publicar-ho a GitHub Pages
 
 1. Repositori: `laurasc14/jocs-matematiquesA`.
-2. Puja-hi **tot el contingut d'aquesta carpeta** (`index.html`, `estudi.html`, `entrenament-1a.html`, `entrenament-2a.html`, `css/`, `js/`, `README.md`, `.nojekyll`) a l'arrel del repositori. Des de la web: *Add file → Upload files* i arrossega-ho tot.
+2. Puja-hi **tot el contingut d'aquesta carpeta** (`index.html`, `estudi.html`, `estudi-2a.html`, `entrenament-1a.html`, `entrenament-2a.html`, `css/`, `js/`, `README.md`, `.nojekyll`) a l'arrel del repositori. Des de la web: *Add file → Upload files* i arrossega-ho tot.
 3. Ves a *Settings → Pages*, a *Source* tria *Deploy from a branch*, branca `main` i carpeta `/ (root)`. Desa.
 4. Al cap d'un minut la pàgina serà a `https://laurasc14.github.io/jocs-matematiquesA/`.
    - Mode entrenament: `https://laurasc14.github.io/jocs-matematiquesA/entrenament-1a.html` i `…/entrenament-2a.html`
@@ -148,6 +158,7 @@ També funciona sense internet: obre `index.html` directament amb el navegador.
 index.html        inici: tria de temporada (T1, T2, T3)
 temporada1.html   Temporada 1: el joc pas a pas (nivells 0–3, repàs, diari)
 estudi.html       apartat d'estudi: teoria de les unitats 1 a 4
+estudi-2a.html    apartat d'estudi de la Temporada 2: funcions i trigonometria (nivells 4 a 6)
 trailer.html      Temporada 2 · tràiler de desembre (un minijoc per sessió)
 entrenament-1a.html  mode entrenament · preguntes ràpides de la 1a avaluació
 entrenament-2a.html  mode entrenament · preguntes ràpides de la 2a avaluació
@@ -164,8 +175,6 @@ js/mode-repas.js  mode repàs: rondes per tema (notació científica i la resta 
 js/trailer.js     minijocs del tràiler de la Temporada 2
 js/app.js         motor del joc: mapa, passos, XP, diari i informe
 ```
-
-Per afegir un nivell nou (per exemple, funcions a la 2a avaluació) n'hi ha prou de crear `js/nivell4.js` amb el mateix format (`CGS.NIVELLS.push({...})`) i enllaçar-lo a `index.html` abans d'`app.js`.
 
 ---
 Docent: Laura · Corbatera Institut Escola
