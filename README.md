@@ -1,7 +1,7 @@
 # Corbatera Games Studio · Matemàtiques A
 
 Gamificació de **Matemàtiques A · 4t ESO** (Corbatera Institut Escola, curs 2026–2027) dins de la situació d'aprenentatge «Corbatera Games Studio».
-L'alumnat resol cada missió **pas a pas** i tot el procés (respostes, intents fallits, pistes) queda registrat en un **diari de procés** que es pot descarregar com a informe.   
+L'alumnat resol cada missió **pas a pas** i tot el procés (respostes, intents fallits, pistes) queda registrat en un **diari de procés** que es pot descarregar com a informe.
 
 ## Contingut
 
@@ -12,6 +12,8 @@ L'alumnat resol cada missió **pas a pas** i tot el procés (respostes, intents 
 | | 3 | Les regles del joc | Intervals: desigualtat, notació, paraules, recta |
 | | 4 | La pista de curses | Arrodoniment, truncament, error absolut |
 | | 5 | Caça el bug | Errors conceptuals de la U1 |
+| | 6 | Operacions amb enters | Repàs: signes, parèntesis, jerarquia, valor absolut |
+| | 7 | Fraccions | Repàs: simplificar, fracció d'una quantitat, operacions |
 | | BOSS | Prova d'accés a l'estudi | Un exercici de cada fase, sense pistes |
 | **1 · Memòria i píxels** (U2) | 1 | Quants colors? | Potències, bits, exponent 0 i negatiu |
 | | 2 | Quant ocupa? | Propietats de les potències |
@@ -21,6 +23,7 @@ L'alumnat resol cada missió **pas a pas** i tot el procés (respostes, intents 
 | | 6 | Distància entre personatges | Arrels i teorema de Pitàgores |
 | | 7 | Escalat de sprites | Extreure factors d'un radical |
 | | 8 | Camins del mapa | Operacions amb radicals |
+| | 9 | Potències de fraccions | Repàs: base fraccionària o negativa, mateixa base |
 | | BOSS | Boss del Nivell 1 | Un exercici de cada fase, sense pistes |
 | **2 · La física del salt** (U3) | 1 | El salt com a fórmula | Monomis, polinomis i valor numèric |
 | | 2 | Salts diferents | Sumar i restar polinomis |
@@ -62,17 +65,33 @@ De dalt a baix:
 
 1. **Estudi**: targeta que porta a la teoria (`estudi.html`).
 2. **Nivells 0, 1, 2 i 3**, per ordre. Els nivells 0 i 1 (ja fets a classe) tenen totes les fases obertes; als nivells 2 i 3 les fases s'obren en ordre.
-3. **Mode entrenament**: les preguntes ràpides (`entrenament-1a.html` i `entrenament-2a.html`), amb diari d'errors C/P/D, boss per nivell, «El meu avanç» i «Resum per a la profe». Els seus XP també sumen per al rang del joc (es llegeixen del mateix navegador).
-4. **Diari de procés** i informe.
+3. **Mode repàs**: rondes d'exercicis barrejats per tema, pas a pas i sempre obertes (vegeu més avall).
+4. **Mode entrenament**: les preguntes ràpides (`entrenament-1a.html` i `entrenament-2a.html`), amb diari d'errors C/P/D, boss per nivell, «El meu avanç» i «Resum per a la profe». Els seus XP també sumen per al rang del joc (es llegeixen del mateix navegador).
+5. **Diari de procés** i informe.
 
 Per obrir totes les fases d'un nivell que ja s'ha fet a classe, edita `var ENTRENAMENT = ['N0', 'N1'];` a `js/app.js` (per exemple, afegeix-hi `'N2'` quan s'acabi el Nivell 2).
+
+## Mode repàs
+
+Rondes d'exercicis barrejats d'un tema, amb el mateix sistema pas a pas, pistes i diari de procés. Sempre obert; cada ronda té nombres nous i compta la millor ronda de cada tema per als XP.
+
+| Tema | Exercicis per ronda | D'on surten |
+|---|---|---|
+| Notació científica | 10 | Xifres del joc, El servidor i 5 tipus nous: corregir una dada mal escrita, ordenar, potències en notació científica, «quants jocs hi caben?» i canvi d'unitats (kB, MB, GB, TB) |
+| Enters i fraccions | 8 | Nivell 0, fases 6 i 7 |
+| Potències | 8 | Nivell 1, fases 1, 2, 3 i 9 |
+| Radicals i Pitàgores | 8 | Nivell 1, fases 6, 7 i 8 |
+| Polinomis | 8 | Nivell 2 |
+| Equacions i problemes | 8 | Nivell 3, fases 1–5 |
+| Percentatges i interessos | 8 | Nivell 3, fases 6 i 7 |
+| Inequacions i sistemes | 8 | Nivell 3, fases 8–10 |
 
 ## Com funciona
 
 - **Pas a pas:** cada exercici està dividit en passos. Fins que un pas no és correcte no apareix el següent, i els passos resolts queden escrits a sobre com un procediment.
 - **Nombres personalitzats:** els nombres es generen a partir del nom de l'alumne/a, així cadascú té exercicis diferents. Si torna a jugar una missió, li surten nombres nous.
 - **XP:** 10 XP per pas a la primera; −3 per cada intent fallit (mínim 3); amb pista, màxim 5; si es mostra la solució (després de 3 intents), 0 XP. Compta la millor partida de cada missió.
-- **Rangs:** Becari/ària (0) → Junior dev (300) → Desenvolupador/a (900) → Sènior dev (1.700) → Lead dev (2.600) → Cap d'estudi (3.500 XP).
+- **Rangs:** Becari/ària (0) → Junior dev (400) → Desenvolupador/a (1.200) → Sènior dev (2.300) → Lead dev (3.500) → Cap d'estudi (4.800 XP).
 - **Bosses:** sense pistes; cal un 60 % dels XP per superar-los.
 - **Desbloqueig:** a la campanya, la fase 1 de cada nivell està oberta i les altres s'obren en ordre. Al mode entrenament tot està obert.
 - **Diari de procés i informe:** el botó *Descarrega l'informe* genera un fitxer HTML amb el resum (missions, XP, passos a la primera, pistes, solucions mostrades) i el procés complet de cada exercici, amb els intents fallits ratllats. També es pot imprimir o desar com a PDF. L'alumnat el penja al Classroom.
@@ -112,6 +131,8 @@ js/nivell0.js     missions del Nivell 0 (U1)
 js/nivell1.js     missions del Nivell 1 (U2)
 js/nivell2.js     missions del Nivell 2 (U3)
 js/nivell3.js     missions del Nivell 3 (U4)
+js/repas.js       fases de repàs: enters i fraccions (N0) i potències de fraccions (N1)
+js/mode-repas.js  mode repàs: rondes per tema (notació científica i la resta de temes)
 js/app.js         motor del joc: mapa, passos, XP, diari i informe
 ```
 

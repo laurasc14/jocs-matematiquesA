@@ -232,8 +232,8 @@
         ctx: 'Calcula:<div class="big">(' + sci(a, m) + ') · (' + sci(b, n) + ')</div>',
         steps: [
           { q: 'Multiplica els nombres de davant.', parts: [a + ' · ' + fmt(b) + ' = ', { ans: pa, w: 6 }], hint: 'Fes-ho amb la calculadora.', show: a + ' · ' + fmt(b) + ' = ' + fmt(pa) },
-          { q: 'Multiplica les potències de 10.', parts: ['10<sup>' + m + '</sup> · 10<sup>' + n + '</sup> = 10<sup>', { ans: ex, w: 3 }, '</sup>'],
-            hint: 'Producte de la mateixa base: se sumen els exponents.', show: '10<sup>' + m + '</sup> · 10<sup>' + n + '</sup> = 10<sup>' + ex + '</sup>' },
+          { q: 'Multiplica les potències de 10.', parts: ['10<sup>' + fmt(m) + '</sup> · 10<sup>' + fmt(n) + '</sup> = 10<sup>', { ans: ex, w: 3 }, '</sup>'],
+            hint: 'Producte de la mateixa base: se sumen els exponents.', show: '10<sup>' + fmt(m) + '</sup> · 10<sup>' + fmt(n) + '</sup> = 10<sup>' + fmt(ex) + '</sup>' },
           { q: 'Escriu el resultat en notació científica correcta (1 ≤ a < 10).', parts: [{ ans: A, w: 5 }, ' · 10<sup>', { ans: E, w: 3 }, '</sup>'],
             hint: norm ? fmt(pa) + ' és més gran que 10: escriu-lo com ' + fmt(A) + ' · 10 i suma 1 a l\'exponent.' : 'Ja està bé: ' + fmt(pa) + ' és entre 1 i 10.',
             show: '= ' + sci(pa, ex) + (norm ? ' = ' + sci(A, E) : '') }

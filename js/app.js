@@ -15,9 +15,11 @@
 
   var MISSIONS = [];
   CGS.NIVELLS.forEach(function (nv) { nv.missions.forEach(function (m) { m.nivell = nv; MISSIONS.push(m); }); });
+  if (CGS.REPAS) CGS.REPAS.missions.forEach(function (m) { m.nivell = CGS.REPAS; MISSIONS.push(m); });
+  function badgeOf(m) { return m.repas ? 'REPÀS' : m.boss ? 'BOSS' : 'FASE ' + m.fase; }
   function mById(id) { return MISSIONS.filter(function (m) { return m.id === id; })[0]; }
 
-  var RANKS = [[0, 'Becari/ària'], [300, 'Junior dev'], [900, 'Desenvolupador/a'], [1700, 'Sènior dev'], [2600, 'Lead dev'], [3500, 'Cap d\'estudi']];
+  var RANKS = [[0, 'Becari/ària'], [400, 'Junior dev'], [1200, 'Desenvolupador/a'], [2300, 'Sènior dev'], [3500, 'Lead dev'], [4800, 'Cap d\'estudi']];
   function rank(xp) { var r = RANKS[0]; RANKS.forEach(function (k) { if (xp >= k[0]) r = k; }); return r; }
   function nextRank(xp) { for (var i = 0; i < RANKS.length; i++) if (RANKS[i][0] > xp) return RANKS[i]; return null; }
   // Nivells ja fets a classe: passen al mode entrenament (tot obert)
@@ -38,7 +40,7 @@
   function missionXP(p) { var s = 0; Object.keys(p.missions).forEach(function (k) { s += p.missions[k].best || 0; }); return s; }
   function totalXP(p) { return missionXP(p) + trainXP(); }
   function unlocked(idx) {
-    if (DOCENT || MISSIONS[idx].nivell.entrenament) return true;
+    if (DOCENT || MISSIONS[idx].repas || MISSIONS[idx].nivell.entrenament) return true;
     // Cada nivell s'obre per la seva fase 1; dins del nivell, les fases van en ordre
     for (var i = 0; i < idx; i++) {
       if (MISSIONS[i].nivell !== MISSIONS[idx].nivell) continue;
@@ -100,7 +102,7 @@
         var idx = MISSIONS.indexOf(m), st = p.missions[m.id] || {}, open = unlocked(idx);
         var cls = 'mission' + (m.boss ? ' boss' : '') + (st.done ? ' done' : '') + (open ? '' : ' locked');
         o += '<button class="' + cls + '" data-id="' + m.id + '"' + (open ? '' : ' disabled') + '>' +
-          '<span class="badge">' + (m.boss ? 'BOSS' : 'FASE ' + m.fase) + '</span>' +
+          '<span class="badge">' + badgeOf(m) + '</span>' +
           '<span class="mt">' + m.titol + '</span><span class="ms">' + m.sabers + '</span>' +
           '<span class="mstate">' + (st.done ? '✔ Superada · ' + (st.best || 0) + ' / ' + (st.max || '?') + ' XP' : open ? (st.runs ? 'En curs' : 'Disponible') : '🔒 Bloquejada') + '</span></button>';
       });
@@ -109,6 +111,15 @@
     h += '<a class="card estudi-link" href="estudi.html"><span class="badge tr">ESTUDI</span> <b>Teoria</b> · Tota la teoria del trimestre, amb definicions, fórmules, exemples resolts i errors típics. Ideal per preparar els bosses i la prova. →</a>';
     h += '<h2 class="part">Nivells</h2>';
     CGS.NIVELLS.forEach(function (nv) { h += levelHTML(nv); });
+    if (CGS.REPAS) {
+      h += '<h2 class="part">Mode repàs</h2><p class="small">Tria un tema i fes una ronda d\'exercicis barrejats, pas a pas. Sempre obert; compta la teva millor ronda de cada tema i queda al diari de procés.</p><div class="missions">';
+      CGS.REPAS.missions.forEach(function (m) {
+        var st = p.missions[m.id] || {};
+        h += '<button class="mission repascard' + (st.done ? ' done' : '') + '" data-id="' + m.id + '"><span class="badge rp">REPÀS</span><span class="mt">' + m.titol + '</span><span class="ms">' + m.sabers + '</span>' +
+          '<span class="mstate">' + (st.runs ? 'Millor ronda: ' + (st.best || 0) + ' / ' + (st.max || '?') + ' XP · ' + st.runs + (st.runs === 1 ? ' ronda' : ' rondes') : m.n + ' exercicis per ronda') + '</span></button>';
+      });
+      h += '</div>';
+    }
     h += '<h2 class="part">Mode entrenament</h2><p class="small">Preguntes ràpides per repassar. Tot el que hi guanyis també suma XP per al teu rang.</p>' +
       '<div class="quick">' + QUICK.map(function (q) {
         return '<a class="mission quickcard" href="' + q.href + '"><span class="badge tr">PREGUNTES RÀPIDES</span><span class="mt">' + q.titol + '</span><span class="ms">' + q.sub + '</span><span class="mstate">' + quickXP(q) + ' XP guanyats →</span></a>';
@@ -149,10 +160,10 @@
   function renderExercise() {
     var m = S.m, c = S.cur, e = S.exs[c.ex], L = currentLog();
     var h = hud() + '<div class="mhead"><button class="btn ghost sm" id="back">← Mapa</button>' +
-      '<div><span class="badge">' + (m.boss ? 'BOSS' : 'FASE ' + m.fase) + '</span> <b>' + m.titol + '</b> <span class="small">· ' + m.nivell.nom + '</span></div>' +
+      '<div><span class="badge' + (m.repas ? ' rp' : '') + '">' + badgeOf(m) + '</span> <b>' + m.titol + '</b> <span class="small">· ' + m.nivell.nom + '</span></div>' +
       '<div class="small">Exercici ' + (c.ex + 1) + ' / ' + S.exs.length + ' · ' + c.xp + ' XP en aquesta partida</div></div>';
     h += '<div class="progress">' + S.exs.map(function (x, i) { return '<span class="' + (i < c.ex ? 'ok' : i === c.ex ? 'now' : '') + '"></span>'; }).join('') + '</div>';
-    h += '<details class="theory"' + (c.ex === 0 && c.step === 0 && !m.boss ? ' open' : '') + '><summary>☰ Recuadre de teoria</summary><div>' + m.teoria + (ESTUDI[m.id] ? '<p class="small"><a href="estudi.html#' + ESTUDI[m.id] + '" target="_blank" rel="noopener">Teoria completa d\'aquest tema →</a></p>' : '') + '</div></details>';
+    h += '<details class="theory"' + (c.ex === 0 && c.step === 0 && !m.boss ? ' open' : '') + '><summary>☰ Recuadre de teoria</summary><div>' + m.teoria + ((ESTUDI[m.id] || m.estudi) ? '<p class="small"><a href="estudi.html#' + (ESTUDI[m.id] || m.estudi) + '" target="_blank" rel="noopener">Teoria completa d\'aquest tema →</a></p>' : '') + '</div></details>';
     h += '<section class="card ex"><h3>' + e.title + '</h3><div class="ctx">' + e.ctx + '</div>' + (e.fig ? '<div class="figwrap">' + e.fig + '</div>' : '') + '<ol class="steps">';
     e.steps.forEach(function (st, i) {
       var lg = L.steps[i];
@@ -289,8 +300,8 @@
     var logs = p.log.filter(function (l) { return l.mid === m.id && l.run === c.run; });
     var nSteps = 0, first = 0, hints = 0, rev = 0;
     logs.forEach(function (l) { l.steps.forEach(function (s) { nSteps++; if (!s.wrong.length && !s.hint && !s.revealed) first++; if (s.hint) hints++; if (s.revealed) rev++; }); });
-    var h = hud() + '<section class="card end ' + (passed ? 'win' : 'lose') + '"><div class="badge">' + (m.boss ? 'BOSS' : 'FASE ' + m.fase) + '</div>' +
-      '<h2>' + (passed ? (m.boss ? 'Boss derrotat!' : 'Missió superada!') : 'El boss encara resisteix…') + '</h2>' +
+    var h = hud() + '<section class="card end ' + (passed ? 'win' : 'lose') + '"><div class="badge">' + badgeOf(m) + '</div>' +
+      '<h2>' + (passed ? (m.repas ? 'Ronda de repàs acabada!' : m.boss ? 'Boss derrotat!' : 'Missió superada!') : 'El boss encara resisteix…') + '</h2>' +
       '<p class="bigxp">' + c.xp + ' / ' + max + ' XP</p>' +
       '<ul class="stats"><li><b>' + first + '</b> de ' + nSteps + ' passos a la primera</li><li><b>' + hints + '</b> pistes</li><li><b>' + rev + '</b> solucions mostrades</li></ul>' +
       (m.boss && !passed ? '<p>Per superar el boss cal un 60 % dels XP. Repassa les fases i torna-ho a provar (els nombres canvien).</p>' : '') +
@@ -332,7 +343,7 @@
     MISSIONS.forEach(function (m) {
       var st = p.missions[m.id] || {}, n = 0, f = 0, hi = 0, rv = 0;
       p.log.forEach(function (l) { if (l.mid !== m.id) return; l.steps.forEach(function (s) { n++; if (!s.wrong.length && !s.hint && !s.revealed && s.ok) f++; if (s.hint) hi++; if (s.revealed) rv++; }); });
-      h += '<tr><td>' + (m.boss ? 'BOSS ' : m.nivell.id + '·F' + m.fase + ' ') + m.titol + '</td><td>' + (st.done ? '✔ superada' : st.runs ? 'en curs' : '—') + '</td><td>' + (st.runs || 0) + '</td><td>' + (st.best || 0) + (st.max ? ' / ' + st.max : '') + '</td><td>' + (n ? f + ' / ' + n : '—') + '</td><td>' + hi + '</td><td>' + rv + '</td></tr>';
+      h += '<tr><td>' + (m.repas ? 'REPÀS ' : m.boss ? 'BOSS ' : m.nivell.id + '·F' + m.fase + ' ') + m.titol + '</td><td>' + (st.done ? (m.repas ? '✔ ' + st.runs + ' rond.' : '✔ superada') : st.runs ? 'en curs' : '—') + '</td><td>' + (st.runs || 0) + '</td><td>' + (st.best || 0) + (st.max ? ' / ' + st.max : '') + '</td><td>' + (n ? f + ' / ' + n : '—') + '</td><td>' + hi + '</td><td>' + rv + '</td></tr>';
     });
     return h + '</tbody></table>';
   }
