@@ -78,15 +78,15 @@ Els formularis dels quaderns, en net: una taula per nivell amb *Concepte · La r
 
 També s'hi arriba des del botó «🧾 Formularis» de cada apartat d'Estudi. En imprimir, cada nivell comença en una pàgina nova (T1: 4 pàgines; T2: 3).
 
-## Recuperació de la 1a avaluació
+## Fites mínimes de la 1a avaluació
 
-Per a l'alumnat que va a la recuperació hi ha **13 fites mínimes** (tipus de nombres; intervals i aproximacions; enters i fraccions; potències; notació científica; radicals i Pitàgores; operacions amb polinomis; identitats notables i factor comú; Ruffini i arrels; equacions de 1r grau; equacions de 2n grau; problemes i percentatges; sistemes 2×2). Inequacions i interessos queden fora del mínim.
+**13 fites mínimes** que tothom ha de dominar per aprovar: serveixen per preparar els bosses i la prova trimestral i, si cal, la recuperació. Són: tipus de nombres; intervals i aproximacions; enters i fraccions; potències; notació científica; radicals i Pitàgores; operacions amb polinomis; identitats notables i factor comú; Ruffini i arrels; equacions de 1r grau; equacions de 2n grau; problemes i percentatges; sistemes 2×2. Inequacions i interessos queden fora del mínim.
 
-- **Ruta de recuperació** (dins de `temporada1.html`, a dalt del mapa): una ronda de 5 exercicis pas a pas per fita. La fita queda **assolida** quan una ronda arriba al 60 % dels XP. El recompte (x / 13) surt al mapa i a l'informe. Enllaç directe: `temporada1.html#recu`.
-- **Fitxa de fites mínimes** (`recu-1a.html`): per a cada fita, què has de saber fer, un recordatori, un exemple resolt i exercicis per fer a mà. Inclou una taula d'autoavaluació inicial. Per imprimir, una fita per pàgina amb espai per escriure.
-- **Solucionari** (`recu-1a-solucions.html`): no està enllaçat des de les pàgines de l'alumnat; repartiu-lo quan vulgueu.
+- **Al joc** (`temporada1.html`, a dalt del mapa; enllaç directe `temporada1.html#recu`): una ronda de 5 exercicis pas a pas per fita. La fita queda **assolida** quan una ronda arriba al 60 % dels XP. El recompte (x / 13) surt al mapa i a l'informe. Cada fita s'obre quan el seu nivell és a `ENTRENAMENT` (a `js/app.js`) o quan l'alumne en supera el boss; ara hi ha obertes les fites 1 a 6 (nivells 0 i 1).
+- **Fitxa** (`recu-1a.html`): per a cada fita, què has de saber fer, un recordatori, un exemple resolt i exercicis per fer a mà, amb una taula d'autoavaluació. Per imprimir, una fita per pàgina.
+- **Solucionari** (`recu-1a-solucions.html`): no està enllaçat des de les pàgines de l'alumnat.
 
-Tot apareix a partir del **10/12** (amb `?docent`, sempre). Per canviar la data o el llindar, editeu `obre` i `llindar` a `js/recu-1a.js`.
+El llindar (60 %) i la data d'aparició (`obre`, ara 0 = sempre) es canvien a `js/recu-1a.js`.
 
 ## Inici per temporades
 
@@ -180,9 +180,9 @@ estudi.html       apartat d'estudi: teoria de les unitats 1 a 4
 estudi-2a.html    apartat d'estudi de la Temporada 2: funcions i trigonometria (nivells 4 a 6)
 formularis-1a.html  formularis dels nivells 0 a 3
 formularis-2a.html  formularis dels nivells 4 a 6
-recu-1a.html      fitxa de fites mínimes per a la recuperació de la 1a avaluació
+recu-1a.html      fitxa de fites mínimes de la 1a avaluació (prova trimestral i recuperació)
 recu-1a-solucions.html  solucionari de la fitxa (per a la docent)
-js/recu-1a.js     ruta de recuperació del joc (13 fites mínimes)
+js/recu-1a.js     fites mínimes al joc (13 fites)
 trailer.html      Temporada 2 · tràiler de desembre (un minijoc per sessió)
 entrenament-1a.html  mode entrenament · preguntes ràpides de la 1a avaluació
 entrenament-2a.html  mode entrenament · preguntes ràpides de la 2a avaluació

@@ -1,6 +1,7 @@
-/* RUTA DE RECUPERACIÓ · 1a avaluació
+/* FITES MÍNIMES · 1a avaluació (per a tothom: bosses, prova trimestral i recuperació)
    Una missió per fita mínima: 5 exercicis pas a pas trets de les fases de cada tema.
-   La fita queda ASSOLIDA quan una ronda arriba al 60 % dels XP. */
+   La fita queda ASSOLIDA quan una ronda arriba al 60 % dels XP.
+   Cada fita s'obre quan el seu nivell és a ENTRENAMENT (js/app.js) o quan l'alumne en supera el boss. */
 (function () {
   var mis = function (id) {
     var out = null;
@@ -10,7 +11,7 @@
   var from = function (id) { return function (r, used) { var m = mis(id); return m.gen(r, r.int(0, m.n - 1), used); }; };
   function fita(n, titol, saber, estudi, fonts, teoria) {
     return {
-      id: 'RC' + n, recu: true, fita: n, titol: titol, sabers: saber, estudi: estudi, n: 5,
+      id: 'RC' + n, recu: true, fita: n, nv: fonts[0] === 'RNC' ? 'N1' : fonts[0].slice(0, 2), titol: titol, sabers: saber, estudi: estudi, n: 5,
       teoria: teoria || fonts.map(function (id) { return mis(id).teoria; }).filter(Boolean).join('<br>'),
       gen: function (r, i, used) {
         var k = (i + r.int(0, fonts.length - 1)) % fonts.length, key = 's' + k;
@@ -21,8 +22,8 @@
     };
   }
   CGS.RECU = {
-    id: 'RC', nom: 'Ruta de recuperació', sub: 'Fites mínimes de la 1a avaluació',
-    obre: 20261210,           // dia que apareix al mapa (aaaammdd)
+    id: 'RC', nom: 'Fites mínimes', sub: 'El mínim de la 1a avaluació: bosses, prova trimestral i recuperació',
+    obre: 0,                  // dia que apareix al mapa (aaaammdd); 0 = sempre
     llindar: 0.6,             // percentatge d'XP per donar la fita per assolida
     missions: [
       fita(1, 'Tipus de nombres', 'Classificar nombres (ℕ, ℤ, ℚ, I) i dir el tipus d\'expressió decimal', 'u1-conjunts', ['N0M1', 'N0M2']),

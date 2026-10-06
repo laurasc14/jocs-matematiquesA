@@ -41,7 +41,8 @@
   function missionXP(p) { var s = 0; Object.keys(p.missions).forEach(function (k) { s += p.missions[k].best || 0; }); return s; }
   function totalXP(p) { return missionXP(p) + trainXP(); }
   function unlocked(idx) {
-    if (DOCENT || MISSIONS[idx].repas || MISSIONS[idx].recu || MISSIONS[idx].nivell.entrenament) return true;
+    if (MISSIONS[idx].recu) return fitaOberta(MISSIONS[idx]);
+    if (DOCENT || MISSIONS[idx].repas || MISSIONS[idx].nivell.entrenament) return true;
     // Cada nivell s'obre per la seva fase 1; dins del nivell, les fases van en ordre
     for (var i = 0; i < idx; i++) {
       if (MISSIONS[i].nivell !== MISSIONS[idx].nivell) continue;
@@ -94,20 +95,25 @@
       '<div class="xp" title="' + missionXP(p) + ' XP de missions + ' + trainXP() + ' XP de preguntes ràpides">' + xp + ' XP' + (nx ? ' <span class="small">(' + (nx[0] - xp) + ' per a ' + nx[1] + ')</span>' : '') + '</div></div>';
   }
   function avuiN() { var d = new Date(); return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate(); }
-  // Ruta de recuperació: fites mínimes de la 1a avaluació
+  // Fites mínimes de la 1a avaluació: s'obren quan el nivell ja s'ha fet a classe o se n'ha superat el boss
+  function fitaOberta(m) {
+    if (DOCENT) return true;
+    var nv = CGS.NIVELLS.filter(function (n) { return n.id === m.nv; })[0], p = P();
+    return !nv || nv.entrenament || !!(p && p.missions[m.nv + 'B'] && p.missions[m.nv + 'B'].done);
+  }
   function recuState(p) {
     var ok = 0; CGS.RECU.missions.forEach(function (m) { if ((p.missions[m.id] || {}).done) ok++; });
     return ok;
   }
   function recuHTML(p) {
     var R = CGS.RECU, ok = recuState(p), tot = R.missions.length, pc = Math.round(100 * R.llindar);
-    var h = '<section class="card recu" id="recu"><div class="row" style="margin:0;justify-content:space-between;align-items:center"><div><span class="badge fi">RECUPERACIÓ</span> <b>Ruta de recuperació · fites mínimes de la 1a avaluació</b></div><b>' + ok + ' / ' + tot + ' fites</b></div>' +
+    var h = '<section class="card recu" id="recu"><div class="row" style="margin:0;justify-content:space-between;align-items:center"><div><span class="badge fi">FITES MÍNIMES</span> <b>El mínim de la 1a avaluació</b></div><b>' + ok + ' / ' + tot + ' fites</b></div>' +
       '<div class="xpbar" style="margin:8px 0"><span style="width:' + Math.round(100 * ok / tot) + '%"></span></div>' +
-      '<p class="small">Si vas a la recuperació, aquest és el mínim que has de dominar. Cada fita és una ronda de 5 exercicis pas a pas: quan en fas una amb el ' + pc + ' % dels XP o més, la fita queda <b>assolida</b>. Els nombres canvien a cada ronda. També tens la <a href="recu-1a.html">fitxa de fites mínimes</a> per fer a mà.</p><div class="missions">';
+      '<p class="small">El que tothom ha de dominar per aprovar: et serveix per preparar els bosses i la prova trimestral i, si cal, la recuperació. Cada fita és una ronda de 5 exercicis pas a pas: quan en fas una amb el ' + pc + ' % dels XP o més, queda <b>assolida</b>. Cada fita s\'obre quan el seu nivell ja s\'ha fet a classe o quan en superes el boss. També tens la <a href="recu-1a.html">fitxa de fites mínimes</a> per fer a mà.</p><div class="missions">';
     R.missions.forEach(function (m) {
-      var st = p.missions[m.id] || {};
-      h += '<button class="mission recucard' + (st.done ? ' done' : '') + '" data-id="' + m.id + '"><span class="badge fi">FITA ' + m.fita + '</span><span class="mt">' + m.titol + '</span><span class="ms">' + m.sabers + '</span>' +
-        '<span class="mstate">' + (st.done ? '✔ Assolida · millor ronda ' + Math.round(100 * (st.pct || 0)) + ' %' : st.runs ? 'Encara no · millor ronda ' + Math.round(100 * (st.pct || 0)) + ' % (cal ' + pc + ' %)' : 'Pendent') + '</span></button>';
+      var st = p.missions[m.id] || {}, ob = fitaOberta(m);
+      h += '<button class="mission recucard' + (st.done ? ' done' : '') + (ob ? '' : ' locked') + '" data-id="' + m.id + '"' + (ob ? '' : ' disabled') + '><span class="badge fi">FITA ' + m.fita + '</span><span class="mt">' + m.titol + '</span><span class="ms">' + m.sabers + '</span>' +
+        '<span class="mstate">' + (!ob ? '🔒 S\'obre en acabar el Nivell ' + m.nv.slice(1) : st.done ? '✔ Assolida · millor ronda ' + Math.round(100 * (st.pct || 0)) + ' %' : st.runs ? 'Encara no · millor ronda ' + Math.round(100 * (st.pct || 0)) + ' % (cal ' + pc + ' %)' : 'Pendent') + '</span></button>';
     });
     return h + '</div></section>';
   }
@@ -387,7 +393,7 @@
   }
   function recuReport(p) {
     if (!CGS.RECU || !CGS.RECU.missions.some(function (m) { return p.missions[m.id]; })) return '';
-    return '<h2>Ruta de recuperació · 1a avaluació</h2><p>Fites mínimes assolides: <b>' + recuState(p) + ' de ' + CGS.RECU.missions.length + '</b></p><ul>' +
+    return '<h2>Fites mínimes · 1a avaluació</h2><p>Fites mínimes assolides: <b>' + recuState(p) + ' de ' + CGS.RECU.missions.length + '</b></p><ul>' +
       CGS.RECU.missions.map(function (m) { var st = p.missions[m.id] || {}; return '<li>' + (st.done ? '✔' : '☐') + ' Fita ' + m.fita + ' · ' + m.titol + (st.runs ? ' <span class="small">(' + st.runs + (st.runs === 1 ? ' ronda' : ' rondes') + ', millor ' + Math.round(100 * (st.pct || 0)) + ' %)</span>' : '') + '</li>'; }).join('') + '</ul>';
   }
   function reportDoc() {
@@ -422,6 +428,7 @@
   var NOTICE = '';
   function jumpTo(id) {
     if (unlocked(MISSIONS.indexOf(mById(id)))) startMission(id);
+    else if (mById(id).recu) { NOTICE = 'La fita «' + mById(id).titol + '» s\'obre quan acabeu el Nivell ' + mById(id).nv.slice(1) + ' a classe o quan en superes el boss.'; viewMap(); }
     else { NOTICE = 'La missió «' + mById(id).titol + '» encara està bloquejada: acaba primer les fases anteriors del nivell.'; viewMap(); }
   }
   // Pàgina d'inici (index.html): sense #app, només ofereix el diari i l'informe
