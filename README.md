@@ -66,7 +66,7 @@ De dalt a baix:
 1. **Estudi**: targeta que porta a la teoria (`estudi.html`).
 2. **Nivells 0, 1, 2 i 3**, per ordre. Els nivells 0 i 1 (ja fets a classe) tenen totes les fases obertes; als nivells 2 i 3 les fases s'obren en ordre.
 3. **Mode repàs**: rondes d'exercicis barrejats per tema, pas a pas i sempre obertes (vegeu més avall).
-4. **Mode entrenament**: les preguntes ràpides (`entrenament-1a.html` i `entrenament-2a.html`), amb diari d'errors C/P/D, boss per nivell, «El meu avanç» i «Resum per a la profe». Els seus XP també sumen per al rang del joc (es llegeixen del mateix navegador).
+4. **Mode entrenament**: les preguntes ràpides de la 1a avaluació (`entrenament-1a.html`), amb diari d'errors C/P/D, boss per nivell, «El meu avanç» i «Resum per a la profe». Els seus XP també sumen per al rang del joc (es llegeixen del mateix navegador). Les de la 2a avaluació (`entrenament-2a.html`) són al repositori però estan **amagades** al mapa: per mostrar-les, a `js/app.js` canvieu `amagat: true` per `amagat: false`.
 5. **Diari de procés** i informe.
 
 Per obrir totes les fases d'un nivell que ja s'ha fet a classe, edita `var ENTRENAMENT = ['N0', 'N1'];` a `js/app.js` (per exemple, afegeix-hi `'N2'` quan s'acabi el Nivell 2).
