@@ -4,48 +4,84 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Corbatera Games Studio · Matemàtiques A</title>
-  <meta name="description" content="Gamificació de Matemàtiques A (4t ESO): nombres reals, potències, radicals, polinomis, equacions i sistemes, pas a pas.">
+  <meta name="description" content="Corbatera Games Studio: les temporades de Matemàtiques A (4t ESO) de Corbatera Institut Escola.">
+  <script>
+    // Enllaços antics al joc (index.html#jugar=…): els portem a la Temporada 1
+    function cgsFwd() { if (/jugar=/.test(location.hash)) location.replace('temporada1.html' + location.search + location.hash); }
+    cgsFwd(); window.addEventListener('hashchange', cgsFwd);
+  </script>
   <link rel="stylesheet" href="css/estil.css">
+  <style>
+    .seasons { display: grid; gap: 16px; margin-top: 16px; }
+    .season { background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; overflow: hidden; }
+    .season > header { padding: 16px 20px; color: #fff; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+    .season > header h2 { margin: 2px 0 0; font-size: 1.35rem; }
+    .season > header p { margin: 0; opacity: .92; }
+    .season .tag { background: #fff; color: var(--ink); font-size: .72rem; font-weight: 800; letter-spacing: .06em; padding: 3px 9px; border-radius: 5px; text-transform: uppercase; }
+    .s1 > header { background: #2e7d32; }
+    .s2 > header { background: linear-gradient(90deg, #2e7d32, #1f5c66); }
+    .s3 > header { background: #5b6b61; }
+    .season .body { padding: 14px 20px 18px; }
+    .links { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+    .lk { display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--ink); border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+    a.lk:hover { border-color: var(--green); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+    .lk b { font-size: 1.02rem; }
+    .lk span { font-size: .85rem; color: var(--muted); }
+    .lk.off { opacity: .6; border-style: dashed; }
+    .hello { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 18px; }
+    .season.soon .body { color: var(--muted); }
+  </style>
 </head>
 <body>
   <header class="top">
     <div class="logo" aria-hidden="true">CGS</div>
     <div>
       <h1>Corbatera Games Studio</h1>
-      <p>Matemàtiques A · 4t ESO · Corbatera Institut Escola · Nivells 0 a 3</p>
+      <p>Matemàtiques A · 4t ESO · Corbatera Institut Escola · Curs 2026–2027</p>
     </div>
   </header>
-  <main id="app"><noscript>Cal activar JavaScript per jugar.</noscript></main>
-  <footer class="foot">Situació d'aprenentatge «Corbatera Games Studio» · Curs 2026–2027 · Escriu sempre el procés: la calculadora és per comprovar.</footer>
-
-  <!-- Estils de l'informe descarregable -->
-  <script type="text/plain" id="report-css">
-    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1d2a22;max-width:900px;margin:0 auto;padding:24px;line-height:1.45;background:#fff}
-    .rhead{background:#2e7d32;color:#fff;padding:12px 16px;border-radius:8px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:14px}
-    h1{margin:18px 0 4px}h2{border-bottom:2px solid #2e7d32;padding-bottom:4px;margin-top:28px}
-    .small{color:#5b6b61;font-size:.85em;font-weight:normal}
-    table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #cfd8d2;padding:6px 8px;text-align:left}th{background:#e8f3ea}
-    .badge{display:inline-block;background:#2e7d32;color:#fff;font-size:11px;font-weight:700;letter-spacing:.05em;padding:2px 8px;border-radius:4px}
-    .dm{margin:18px 0;page-break-inside:avoid}.dm h3{margin:0 0 8px}
-    .dex{border:1px solid #cfd8d2;border-radius:8px;padding:10px 14px;margin:10px 0;page-break-inside:avoid}.dex h4{margin:0 0 6px}
-    .ctx{background:#f5f8f6;padding:8px 10px;border-radius:6px;margin-bottom:6px}
-    .big{font-size:1.25em;text-align:center;margin:6px 0}
-    .sq{font-weight:600}.proc{color:#1b5e20}.wrong{color:#b23b3b}.wrong s{text-decoration-thickness:2px}
-    .tag{display:inline-block;font-size:11px;background:#e8f3ea;color:#1b5e20;border-radius:10px;padding:1px 8px;margin-left:4px}.tag.red{background:#fdeaea;color:#b23b3b}
-    .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.9em}.frac span:first-child{border-bottom:1px solid currentColor}
-    .rad{border-top:1px solid currentColor}.per{text-decoration:overline}.nw{white-space:nowrap}
-    table.ruffini,table.areatab{width:auto;margin:6px auto}.ruffini td{border:0;padding:3px 10px;text-align:center}.ruffini td.ra{border-right:2px solid #1d2a22}.ruffini tr.rmid td{border-bottom:2px solid #1d2a22}.ruffini tr.rmid td:first-child{border-bottom:0}
-    sub{font-size:.75em}.br{display:inline-block;width:100%}
-    svg{display:none}ol{padding-left:22px}li{margin:6px 0}
-    @media print{body{padding:0}.rhead{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+  <main style="max-width:980px;margin:0 auto;padding:18px 16px 40px">
+    <div class="hello" id="hello">Sou un estudi de videojocs. Cada trimestre és una <b>temporada</b> nova del vostre joc: tria la temporada per començar.</div>
+    <div class="seasons" id="seasons"></div>
+  </main>
+  <footer class="foot">Situació d'aprenentatge «Corbatera Games Studio» · Curs 2026–2027</footer>
+  <script>
+  (function () {
+    var d = new Date(), avui = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+    var DOCENT = /[?&]docent\b/.test(location.search), q = DOCENT ? '?docent' : '';
+    var T = [
+      { cls: 's1', n: 1, t: 'El primer joc', p: '1r trimestre · Nombres i àlgebra', obre: 0,
+        links: [
+          { h: 'temporada1.html' + q, b: '🎮 Joc pas a pas', s: 'Nivells 0 a 3, mode repàs i diari de procés' },
+          { h: 'estudi.html', b: '📖 Estudi', s: 'Teoria de les unitats 1 a 4' },
+          { h: 'entrenament-1a.html', b: '⚡ Preguntes ràpides', s: 'Mode entrenament de la 1a avaluació' }
+        ] },
+      { cls: 's2', n: 2, t: 'El joc creix', p: '2a avaluació · Funcions i trigonometria', obre: 20261209,
+        links: [
+          { h: 'trailer.html' + q, b: '🎬 Tràiler de desembre', s: 'Un minijoc per sessió (9–21/12)', obre: 20261209 },
+          { b: '🎮 Joc de la Temporada 2', s: 'Arriba al gener', off: true }
+        ] },
+      { cls: 's3', n: 3, t: 'Properament', p: '3a avaluació', obre: 99999999, links: [] }
+    ];
+    var h = '';
+    T.forEach(function (s) {
+      var oberta = DOCENT || avui >= s.obre;
+      h += '<section class="season ' + s.cls + (oberta ? '' : ' soon') + '"><header><div><span class="tag">Temporada ' + s.n + '</span><h2>' + (s.n === 3 ? s.t : '«' + s.t + '»') + '</h2><p>' + s.p + '</p></div>' +
+        '<span class="tag">' + (s.n === 3 ? 'Properament' : oberta ? 'Oberta' : 'S\'obre el ' + String(s.obre).slice(6) + '/' + String(s.obre).slice(4, 6)) + '</span></header><div class="body">';
+      if (!s.links.length) h += 'Aviat sabreu quin joc farem a la tercera temporada.';
+      else h += '<div class="links">' + s.links.map(function (l) {
+        var ok = !l.off && (DOCENT || !l.obre || avui >= l.obre);
+        return ok ? '<a class="lk" href="' + l.h + '"><b>' + l.b + '</b><span>' + l.s + '</span></a>'
+                  : '<div class="lk off"><b>' + l.b + '</b><span>' + (l.off ? l.s : 'S\'obre el ' + String(l.obre).slice(6) + '/' + String(l.obre).slice(4, 6)) + '</span></div>';
+      }).join('') + '</div>';
+      h += '</div></section>';
+    });
+    document.getElementById('seasons').innerHTML = h;
+    try {
+      var DB = JSON.parse(localStorage.getItem('cgs-mates4A-v1'));
+      if (DB && DB.current) document.getElementById('hello').innerHTML = 'Hola, <b>' + String(DB.current).replace(/[<>&"]/g, '') + '</b>! Continua on ho havies deixat o tria una altra temporada.';
+    } catch (e) {}
+  })();
   </script>
-  <script src="js/util.js"></script>
-  <script src="js/nivell0.js"></script>
-  <script src="js/nivell1.js"></script>
-  <script src="js/nivell2.js"></script>
-  <script src="js/nivell3.js"></script>
-  <script src="js/repas.js"></script>
-  <script src="js/mode-repas.js"></script>
-  <script src="js/app.js"></script>
 </body>
 </html>

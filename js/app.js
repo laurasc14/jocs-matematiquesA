@@ -108,6 +108,8 @@
       });
       return o + '</div></section>';
     };
+    var avui = new Date(), t2 = DOCENT || (avui.getFullYear() * 10000 + (avui.getMonth() + 1) * 100 + avui.getDate()) >= 20261209;
+    if (t2) h += '<a class="card estudi-link t2link" href="trailer.html' + (DOCENT ? '?docent' : '') + '"><span class="badge tr">TEMPORADA 2</span> <b>Tràiler «El joc creix»</b> · Un minijoc per sessió fins a Nadal: històries amb gràfiques, caça monedes, dissenya el salt, dominó i l\'enigma de Nadal. →</a>';
     h += '<a class="card estudi-link" href="estudi.html"><span class="badge tr">ESTUDI</span> <b>Teoria</b> · Tota la teoria del trimestre, amb definicions, fórmules, exemples resolts i errors típics. Ideal per preparar els bosses i la prova. →</a>';
     h += '<h2 class="part">Nivells</h2>';
     CGS.NIVELLS.forEach(function (nv) { h += levelHTML(nv); });
@@ -379,7 +381,7 @@
 
   window.addEventListener('pageshow', function (e) { if (e.persisted && DB.current && document.querySelector('.missions')) viewMap(); });
   // ======================= ARRENCADA =======================
-  // Enllaços «Practica-ho» de l'apartat d'estudi: index.html#jugar=N2M8
+  // Enllaços «Practica-ho» de l'apartat d'estudi: temporada1.html#jugar=N2M8
   var PENDING = (location.hash.match(/jugar=(\w+)/) || [])[1] || null;
   if (PENDING) history.replaceState(null, '', location.pathname + location.search);
   if (PENDING && !mById(PENDING)) PENDING = null;

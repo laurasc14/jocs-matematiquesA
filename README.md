@@ -56,8 +56,18 @@ Als polinomis, l'alumnat escriu cada coeficient en una casella amb el seu signe 
 
 - Al mapa del joc hi ha una targeta **Estudi** a dalt de tot.
 - Dins de cada missió, el «Recuadre de teoria» té un enllaç **Teoria completa d'aquest tema →**.
-- Cada apartat de teoria té botons **Practica-ho** que obren directament la missió corresponent (`index.html#jugar=N2M8`). Si la missió encara està bloquejada, el joc ho avisa.
+- Cada apartat de teoria té botons **Practica-ho** que obren directament la missió corresponent (`temporada1.html#jugar=N2M8`). Si la missió encara està bloquejada, el joc ho avisa.
 - Adreça directa: `https://laurasc14.github.io/jocs-matematiquesA/estudi.html`
+
+## Inici per temporades
+
+`index.html` és la porta d'entrada: una targeta per temporada.
+
+- **Temporada 1 · «El primer joc»** (1r trimestre): joc pas a pas (`temporada1.html`), Estudi i preguntes ràpides.
+- **Temporada 2 · «El joc creix»** (2a avaluació): tràiler de desembre (s'obre el 9/12) i, al gener, el joc de la temporada.
+- **Temporada 3**: properament.
+
+Amb `?docent` (`index.html?docent`) es veu tot obert. Els enllaços antics `index.html#jugar=…` porten sols a la Temporada 1.
 
 ## Organització del mapa
 
@@ -70,6 +80,20 @@ De dalt a baix:
 5. **Diari de procés** i informe.
 
 Per obrir totes les fases d'un nivell que ja s'ha fet a classe, edita `var ENTRENAMENT = ['N0', 'N1'];` a `js/app.js` (per exemple, afegeix-hi `'N2'` quan s'acabi el Nivell 2).
+
+## Temporada 2 · Tràiler (després de la junta, 9–21/12)
+
+`trailer.html`: un minijoc per sessió per a les sessions de desembre (S47–S53), d'exploració i **sense nota**. Cada episodi s'obre automàticament el seu dia (amb `?docent` s'obren tots) i dona una insígnia. Al mapa del joc la targeta «Temporada 2» apareix a partir del 9/12.
+
+| Episodi | Sessió | Minijoc |
+|---|---|---|
+| 1 · El joc creix | S47 · dc 9/12 | Presentació de la Temporada 2 i primera ullada: què fa el personatge segons la gràfica |
+| 2 · Històries amb gràfiques | S48 · dj 10/12 | Tria la gràfica de cada història i la història de cada gràfica (10 preguntes) |
+| 3 · Juga i registra | S49 · dl 14/12 | «Caça monedes» 30 s → taula de dades (punts i vides cada 3 s) → gràfiques → preguntes |
+| 4 · Dissenya el salt | S50 · dt 15/12 | Controls lliscants de h(t) = −5t² + vt + h₀ i 5 reptes (altura màxima, aterratge, mur, plataforma) |
+| 5 · Dominó de gràfiques | S51 · dc 16/12 | Memory història ↔ gràfica, per a 1 o 2 jugadors |
+| 6 · Posa't al dia | S52 · dj 17/12 | Llista del que falta: missions dels nivells 2 i 3, informe i preguntes ràpides |
+| 7 · Enigma de Nadal | S53 · dl 21/12 | Cinc cadenats amb continguts del trimestre; codi final 4 3 5 8 6 |
 
 ## Mode repàs
 
@@ -98,13 +122,14 @@ Rondes d'exercicis barrejats d'un tema, amb el mateix sistema pas a pas, pistes 
 
 ### Mode docent
 
-Afegint `?docent` a l'adreça (`https://laurasc14.github.io/jocs-matematiquesA/?docent`) totes les missions queden desbloquejades, per revisar-les o projectar-les.
+Afegint `?docent` a l'adreça (`https://laurasc14.github.io/jocs-matematiquesA/temporada1.html?docent`) totes les missions queden desbloquejades, per revisar-les o projectar-les.
 
 ### On es guarda el progrés
 
 Al navegador de cada ordinador (`localStorage`). Si diversos alumnes fan servir el mateix ordinador, cadascú entra amb el seu nom. Si s'esborren les dades del navegador o es canvia d'ordinador, el progrés es perd: per això cal descarregar l'informe en acabar cada sessió.
 
-**Joc:** https://laurasc14.github.io/jocs-matematiquesA/
+**Inici (temporades):** https://laurasc14.github.io/jocs-matematiquesA/
+**Joc de la Temporada 1:** https://laurasc14.github.io/jocs-matematiquesA/temporada1.html
 **Repositori:** https://github.com/laurasc14/jocs-matematiquesA
 
 ## Publicar-ho a GitHub Pages
@@ -120,12 +145,15 @@ També funciona sense internet: obre `index.html` directament amb el navegador.
 ## Estructura
 
 ```
-index.html        pàgina principal (joc pas a pas)
+index.html        inici: tria de temporada (T1, T2, T3)
+temporada1.html   Temporada 1: el joc pas a pas (nivells 0–3, repàs, diari)
 estudi.html       apartat d'estudi: teoria de les unitats 1 a 4
+trailer.html      Temporada 2 · tràiler de desembre (un minijoc per sessió)
 entrenament-1a.html  mode entrenament · preguntes ràpides de la 1a avaluació
 entrenament-2a.html  mode entrenament · preguntes ràpides de la 2a avaluació
 css/estil.css     estil (capçalera verda, etiquetes FASE, mode fosc)
 css/estudi.css    estil de l'apartat d'estudi (i de la versió impresa)
+css/trailer.css   estil del tràiler de la Temporada 2
 js/util.js        utilitats: atzar amb llavor, format, lectura de respostes, figures SVG
 js/nivell0.js     missions del Nivell 0 (U1)
 js/nivell1.js     missions del Nivell 1 (U2)
@@ -133,6 +161,7 @@ js/nivell2.js     missions del Nivell 2 (U3)
 js/nivell3.js     missions del Nivell 3 (U4)
 js/repas.js       fases de repàs: enters i fraccions (N0) i potències de fraccions (N1)
 js/mode-repas.js  mode repàs: rondes per tema (notació científica i la resta de temes)
+js/trailer.js     minijocs del tràiler de la Temporada 2
 js/app.js         motor del joc: mapa, passos, XP, diari i informe
 ```
 

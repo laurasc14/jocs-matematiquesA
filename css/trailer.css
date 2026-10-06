@@ -1,0 +1,73 @@
+/* Temporada 2 · Tràiler */
+.top.t2 { background: linear-gradient(90deg, #2e7d32, #1f5c66); }
+.top.t2 .logo { color: #1f5c66; }
+#t2 { max-width: 980px; margin: 0 auto; padding: 18px 16px 40px; }
+.intro { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; }
+.intro h2 { margin: 0 0 6px; }
+.eps { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 14px; }
+.ep { text-align: left; font: inherit; color: var(--ink); background: var(--card); border: 1.5px solid var(--line); border-radius: 12px; padding: 14px; cursor: pointer; display: flex; flex-direction: column; gap: 6px; }
+.ep:hover:not([disabled]) { border-color: #1f5c66; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+.ep[disabled] { opacity: .55; cursor: not-allowed; }
+.ep .badge { background: #1f5c66; align-self: flex-start; }
+.ep .et { font-weight: 800; font-size: 1.08rem; }
+.ep .ed { font-size: .85rem; color: var(--muted); }
+.ep .es { font-size: .8rem; font-weight: 700; color: var(--green-d); margin-top: auto; }
+.ep.got { border-color: var(--gold); background: var(--gold-l); }
+.medals { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.medal { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 16px; border: 1.5px solid var(--gold); background: var(--gold-l); font-size: .85rem; font-weight: 700; }
+.medal.off { border-color: var(--line); background: transparent; color: var(--muted); font-weight: 400; }
+.game { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; margin-top: 14px; }
+.ghead { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.ghead h2 { margin: 0; font-size: 1.25rem; }
+.qtext { font-size: 1.1rem; font-weight: 600; margin: 12px 0 8px; }
+.gopts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.gopt { background: var(--card); border: 2px solid var(--line); border-radius: 10px; padding: 8px; cursor: pointer; font: inherit; color: var(--ink); text-align: left; }
+.gopt:hover:not(:disabled) { border-color: #1f5c66; }
+.gopt.ok { border-color: var(--green); background: var(--green-l); }
+.gopt.ko { border-color: var(--red); background: var(--red-l); }
+.gopt:disabled { cursor: default; }
+.graph { width: 100%; height: auto; display: block; }
+.graph .ax { stroke: var(--ink); stroke-width: 1.5; }
+.graph .gr { stroke: var(--line); stroke-width: 1; }
+.graph .cv { fill: none; stroke: #1e88e5; stroke-width: 3.5; stroke-linejoin: round; stroke-linecap: round; }
+.graph .cv2 { fill: none; stroke: #d84315; stroke-width: 3; stroke-linejoin: round; }
+.graph .lb { fill: var(--muted); font-size: 11px; }
+.graph .pt { fill: #d84315; }
+.graph .wall { fill: #8d6e63; opacity: .8; }
+.graph .plat { fill: #2e7d32; }
+.fbk { margin-top: 10px; padding: 10px 12px; border-radius: 8px; }
+.fbk.ok { background: var(--green-l); border-left: 4px solid var(--green); }
+.fbk.ko { background: var(--red-l); border-left: 4px solid var(--red); }
+.score { font-weight: 800; color: var(--gold); }
+.progressbar { display: flex; gap: 4px; margin-top: 8px; }
+.progressbar span { flex: 1; height: 7px; border-radius: 4px; background: var(--line); }
+.progressbar span.ok { background: var(--green); } .progressbar span.ko { background: var(--red); } .progressbar span.now { background: var(--gold); }
+canvas.play { width: 100%; max-width: 640px; aspect-ratio: 16 / 9; display: block; margin: 10px auto; border-radius: 12px; background: #10241a; touch-action: manipulation; cursor: crosshair; }
+.hud2 { display: flex; gap: 18px; justify-content: center; font-weight: 800; font-size: 1.1rem; }
+table.data { border-collapse: collapse; margin: 10px auto; font-size: .92rem; }
+table.data th, table.data td { border: 1px solid var(--line); padding: 4px 10px; text-align: center; }
+table.data th { background: var(--green-l); }
+.twocol { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.sliders { display: grid; gap: 10px; margin: 10px 0; }
+.sliders label { display: grid; grid-template-columns: 170px 1fr 60px; gap: 10px; align-items: center; font-weight: 600; }
+.sliders input[type=range] { width: 100%; }
+.facts { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; font-size: .95rem; }
+.facts b { color: #1e88e5; }
+.chal { display: grid; gap: 8px; margin-top: 10px; }
+.chal .c { display: flex; gap: 10px; align-items: center; justify-content: space-between; border: 1.5px solid var(--line); border-radius: 10px; padding: 8px 12px; }
+.chal .c.done { border-color: var(--green); background: var(--green-l); }
+.chal .c.on { border-color: #1f5c66; }
+.cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+@media (max-width: 640px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } .sliders label { grid-template-columns: 1fr; } }
+.card2 { aspect-ratio: 4 / 3; border-radius: 10px; border: 2px solid #1f5c66; background: #1f5c66; color: #fff; cursor: pointer; display: grid; place-items: center; font: inherit; font-weight: 800; font-size: 1.4rem; padding: 6px; }
+.card2.up { background: var(--card); color: var(--ink); font-size: .85rem; font-weight: 600; cursor: default; }
+.card2.match { border-color: var(--green); background: var(--green-l); color: var(--ink); font-size: .85rem; font-weight: 600; }
+.card2.up svg, .card2.match svg { width: 100%; height: auto; }
+.lock { display: grid; grid-template-columns: 54px 1fr; gap: 12px; align-items: start; border: 1.5px solid var(--line); border-radius: 12px; padding: 12px; margin: 10px 0; }
+.lock.open { border-color: var(--green); background: var(--green-l); }
+.lock .ln { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: #b71c1c; color: #fff; font-weight: 800; font-size: 1.1rem; }
+.lock.open .ln { background: var(--green); }
+.code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 1.6rem; letter-spacing: .3em; text-align: center; margin: 10px 0; }
+.snow { text-align: center; font-size: 1.3rem; margin: 14px 0; }
+.checklist li { margin: 6px 0; }
+.small2 { font-size: .85rem; color: var(--muted); }
