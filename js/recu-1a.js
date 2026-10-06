@@ -1,7 +1,6 @@
-/* FITES MÍNIMES · 1a avaluació (per a tothom: bosses, prova trimestral i recuperació)
+/* RUTA DE RECUPERACIÓ · 1a avaluació
    Una missió per fita mínima: 5 exercicis pas a pas trets de les fases de cada tema.
-   La fita queda ASSOLIDA quan una ronda arriba al 60 % dels XP.
-   Cada fita s'obre quan el seu nivell és a ENTRENAMENT (js/app.js) o quan l'alumne en supera el boss. */
+   La fita queda ASSOLIDA quan una ronda arriba al 60 % dels XP. */
 (function () {
   var mis = function (id) {
     var out = null;
@@ -22,8 +21,8 @@
     };
   }
   CGS.RECU = {
-    id: 'RC', nom: 'Fites mínimes', sub: 'El mínim de la 1a avaluació: bosses, prova trimestral i recuperació',
-    obre: 0,                  // dia que apareix al mapa (aaaammdd); 0 = sempre
+    id: 'RC', nom: 'Ruta de recuperació', sub: 'Fites mínimes de la 1a avaluació',
+    obre: 20261210,           // dia que apareix al mapa (aaaammdd)
     llindar: 0.6,             // percentatge d'XP per donar la fita per assolida
     missions: [
       fita(1, 'Tipus de nombres', 'Classificar nombres (ℕ, ℤ, ℚ, I) i dir el tipus d\'expressió decimal', 'u1-conjunts', ['N0M1', 'N0M2']),
