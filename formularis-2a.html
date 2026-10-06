@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formularis T2 · Corbatera Games Studio</title>
+  <meta name="description" content="Formularis dels nivells 4 a 6 de Matemàtiques A (4t ESO): funcions i trigonometria, amb la regla bàsica i un exemple.">
+  <link rel="stylesheet" href="css/estil.css">
+  <style>
+    .top.fx { background: linear-gradient(90deg, #2e7d32, #1f5c66); }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 18px 16px 40px; }
+    .bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; align-items: center; }
+    .bar .btn { text-decoration: none; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 6px; }
+    .tabs a { text-decoration: none; font-size: .85rem; font-weight: 700; padding: 5px 12px; border-radius: 16px; border: 1.5px solid var(--green); color: var(--green-d); background: var(--green-l); }
+    .intro { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 16px; font-size: .95rem; }
+    .fm { background: var(--card); border: 1px solid var(--line); border-radius: 12px; margin: 16px 0; overflow: hidden; scroll-margin-top: 10px; }
+    .fm > header { background: linear-gradient(90deg, #2e7d32, #1f5c66); color: #fff; padding: 10px 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .fm > header h2 { margin: 0; font-size: 1.12rem; }
+    .fm > header .badge { background: #fff; color: var(--green-d); }
+    .ft { width: 100%; border-collapse: collapse; font-size: .95rem; }
+    .ft th { background: var(--green-l); text-align: left; padding: 6px 10px; font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--green-d); }
+    .ft td { border-top: 1px solid var(--line); padding: 7px 10px; vertical-align: top; line-height: 1.6; }
+    .ft td:first-child { font-weight: 700; width: 20%; }
+    .ft td:last-child { width: 34%; background: var(--bg); }
+    .cpt { color: var(--red); font-weight: 700; }
+    .tblwrap { overflow-x: auto; }
+    @media (max-width: 640px) { .ft, .ft tbody, .ft tr, .ft td { display: block; width: auto !important; } .ft thead { display: none; } .ft td:first-child { padding-bottom: 0; border-top: 2px solid var(--line); } .ft td + td { border-top: 0; } }
+    @media print {
+      .bar, .tabs, .foot { display: none !important; }
+      .wrap { padding: 0; max-width: none; }
+      .top, .fm > header, .ft th, .ft td:last-child { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .fm { break-before: page; border-color: #bbb; }
+      .intro + .fm { break-before: auto; }
+      .ft tr { break-inside: avoid; }
+      .ft { font-size: .8rem; } .ft td { padding: 4px 8px; line-height: 1.45; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top fx">
+    <div class="logo" aria-hidden="true">T2</div>
+    <div>
+      <h1>Formularis de la Temporada 2</h1>
+      <p>Matemàtiques A · 4t ESO · Corbatera Institut Escola · Nivells 4 a 6</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="bar"><a class="btn ghost sm" href="index.html">⌂ Inici</a><a class="btn ghost sm" href="estudi-2a.html">📖 Estudi</a><button class="btn sm" onclick="window.print()">Imprimeix / PDF</button></div>
+    <nav class="tabs"><a href="#n4">Nivell 4</a><a href="#n5">Nivell 5</a><a href="#n6">Nivell 6</a></nav>
+    <p class="intro">Els formularis del quadern, en net: la regla bàsica i un exemple de cada concepte. Al quadern el completes amb les teves paraules; el pots fer servir al boss de cada nivell, però <b>no a la prova trimestral</b>.</p>
+    <section class="fm" id="n4"><header><span class="badge">NIVELL 4 · LES DADES DEL JOC</span><h2>Funcions i les seves característiques</h2></header><div class="tblwrap"><table class="ft"><thead><tr><th>Concepte</th><th>La regla</th><th>Un exemple</th></tr></thead><tbody>
+      <tr><td>Funció</td><td>A cada x li correspon una sola y. x: variable independent · y: dependent.</td><td>f(x) = 3x + 10 → f(5) = 25</td></tr>
+      <tr><td>4 representacions</td><td>Enunciat, taula, gràfica i fórmula.</td><td>«10 monedes i 3 més per minut» → f(x) = 3x + 10</td></tr>
+      <tr><td>Domini</td><td>Els valors de x que tenen imatge. No es pot dividir per 0 ni fer l'arrel d'un negatiu. Mira també el context.</td><td>f(x) = <span class="frac"><span>1</span><span>x − 2</span></span> → Dom = ℝ − &#123;2&#125;</td></tr>
+      <tr><td>Recorregut</td><td>Els valors de y que pren la funció.</td><td>f(x) = x<sup>2</sup> → Im = [0, +∞)</td></tr>
+      <tr><td>Punts de tall</td><td>Eix Y: x = 0 → (0, f(0)) · Eix X: resol f(x) = 0.</td><td>f(x) = 2x − 6 → (0, −6) i (3, 0)</td></tr>
+      <tr><td>Creixement</td><td>Intervals de x on la gràfica puja (creixent) o baixa (decreixent), d'esquerra a dreta.</td><td>Puja de x = 0 a x = 3 → creixent a (0, 3)</td></tr>
+      <tr><td>Màxims i mínims</td><td>Relatiu: on passa de créixer a decréixer (màxim) o al revés (mínim). Absolut: el valor més alt o més baix.</td><td>Màxim a (3, 6): a x = 3, y = 6</td></tr>
+      <tr><td>TVM</td><td>TVM [a, b] = <span class="frac"><span>f(b) − f(a)</span><span>b − a</span></span>. És la velocitat de canvi.</td><td>f(x) = x<sup>2</sup>: TVM [1, 3] = <span class="frac"><span>9 − 1</span><span>3 − 1</span></span> = 4</td></tr>
+      <tr><td>Continuïtat</td><td>Contínua: es dibuixa sense aixecar el llapis. Si fa un salt, és discontínua.</td><td>Preu per trams: salt a 100 MB</td></tr>
+    </tbody></table></div></section>
+    <section class="fm" id="n5"><header><span class="badge">NIVELL 5 · ELS MODELS DEL JOC</span><h2>Tipus de funcions</h2></header><div class="tblwrap"><table class="ft"><thead><tr><th>Concepte</th><th>La regla</th><th>Un exemple</th></tr></thead><tbody>
+      <tr><td>Funció afí</td><td>y = mx + n. m: pendent (el que augmenta la y quan x augmenta 1). n: ordenada a l'origen (0, n).</td><td>y = 3x + 10: m = 3, n = 10</td></tr>
+      <tr><td>Lineal i constant</td><td>Lineal: y = mx (passa per l'origen). Constant: y = n (horitzontal).</td><td>y = 2x · y = 4</td></tr>
+      <tr><td>Pendent per dos punts</td><td>m = <span class="frac"><span>y₂ − y₁</span><span>x₂ − x₁</span></span>. m &gt; 0 creix · m &lt; 0 decreix.</td><td>A(1, 3), B(4, 9): m = <span class="frac"><span>6</span><span>3</span></span> = 2</td></tr>
+      <tr><td>Equació de la recta</td><td>Calcula m i substitueix un punt a y = mx + n per trobar n.</td><td>3 = 2 · 1 + n → n = 1 → y = 2x + 1</td></tr>
+      <tr><td>Tall de dues rectes</td><td>Iguala les dues fórmules.</td><td>1,5x = 0,5x + 10 → x = 10, y = 15</td></tr>
+      <tr><td>Funció quadràtica</td><td>y = ax<sup>2</sup> + bx + c: paràbola. a &gt; 0 → ∪ (mínim) · a &lt; 0 → ∩ (màxim).</td><td>y = −x<sup>2</sup> + 4x → ∩</td></tr>
+      <tr><td>Vèrtex i eix</td><td>x<sub>v</sub> = <span class="frac"><span>−b</span><span>2a</span></span>, y<sub>v</sub> = f(x<sub>v</sub>). Eix: x = x<sub>v</sub>.</td><td>y = x<sup>2</sup> − 4x + 3 → V(2, −1)</td></tr>
+      <tr><td>Talls de la paràbola</td><td>Eix Y: (0, c) · Eix X: resol ax<sup>2</sup> + bx + c = 0.</td><td>x<sup>2</sup> − 4x + 3 = 0 → (1, 0) i (3, 0)</td></tr>
+      <tr><td>Màxims i mínims en problemes</td><td>El valor màxim o mínim és al vèrtex: x<sub>v</sub> diu quan; y<sub>v</sub>, quant.</td><td>h = −5t<sup>2</sup> + 20t → màxim als 2 s: 20 m</td></tr>
+      <tr><td>Proporcionalitat inversa</td><td>y = <span class="frac"><span>k</span><span>x</span></span>: x · y = k sempre. Hipèrbola; no talla els eixos.</td><td>y = <span class="frac"><span>120</span><span>x</span></span>: x = 20 → y = 6</td></tr>
+      <tr><td>Exponencial</td><td>y = a · b<sup>x</sup>. b &gt; 1 creix · 0 &lt; b &lt; 1 decreix. A cada pas es multiplica per b.</td><td>y = 500 · 2<sup>x</sup> → x = 3: 4 000</td></tr>
+      <tr><td>Quin model?</td><td>Diferències constants → afí · segones diferències constants → quadràtica · x · y constant → inversa · quocients constants → exponencial.</td><td>6, 18, 54, 162 (×3) → exponencial</td></tr>
+    </tbody></table></div></section>
+    <section class="fm" id="n6"><header><span class="badge">NIVELL 6 · EL MAPA DEL JOC</span><h2>Trigonometria bàsica</h2></header><div class="tblwrap"><table class="ft"><thead><tr><th>Concepte</th><th>La regla</th><th>Un exemple</th></tr></thead><tbody>
+      <tr><td>Pitàgores</td><td>a<sup>2</sup> = b<sup>2</sup> + c<sup>2</sup> (a = hipotenusa). Per a un catet, es resta.</td><td>Catets 6 i 8 → √<span class="rad">36 + 64</span> = 10</td></tr>
+      <tr><td>Triangles semblants</td><td>Angles iguals i costats proporcionals. k = raó de semblança.</td><td>3, 4, 5 amb k = 2 → 6, 8, 10</td></tr>
+      <tr><td>Teorema de Tales</td><td>Rectes paral·leles tallen segments proporcionals: <span class="frac"><span>AB</span><span>AD</span></span> = <span class="frac"><span>AC</span><span>AE</span></span></td><td><span class="frac"><span>4</span><span>6</span></span> = <span class="frac"><span>5</span><span>AE</span></span> → AE = 7,5</td></tr>
+      <tr><td>Altures amb ombres</td><td>A la mateixa hora: <span class="frac"><span>h</span><span>ombra</span></span> = <span class="frac"><span>alçada del pal</span><span>ombra del pal</span></span></td><td><span class="frac"><span>h</span><span>16</span></span> = <span class="frac"><span>1,5</span><span>2</span></span> → h = 12 m</td></tr>
+      <tr><td>Pendent</td><td>pendent = <span class="frac"><span>desnivell</span><span>distància horitzontal</span></span> · en % = pendent · 100.</td><td><span class="frac"><span>1,2</span><span>15</span></span> = 0,08 → 8 %</td></tr>
+      <tr><td>Raons trigonomètriques</td><td>sin α = <span class="frac"><span>oposat</span><span>hipotenusa</span></span> · cos α = <span class="frac"><span>contigu</span><span>hipotenusa</span></span> · tan α = <span class="frac"><span>oposat</span><span>contigu</span></span></td><td>Triangle 3, 4, 5: sin α = <span class="frac"><span>3</span><span>5</span></span> = 0,6</td></tr>
+      <tr><td>Trobar un angle</td><td>sin<sup>−1</sup>, cos<sup>−1</sup> o tan<sup>−1</sup> (SHIFT) amb la calculadora en DEG.</td><td>tan α = 0,6 → α ≈ 31,0°</td></tr>
+      <tr><td>Trobar un costat</td><td>Tria la raó amb la dada i la incògnita i aïlla.<br><span class="cpt">Compte:</span> si la incògnita és a baix, divideix.</td><td>Escala de 6 m a 70°: alçada = 6 · sin 70° ≈ 5,64 m</td></tr>
+      <tr><td>Angles aguts</td><td>En un triangle rectangle: α + β = 90°.</td><td>α = 31° → β = 59°</td></tr>
+    </tbody></table></div></section>
+  </main>
+  <footer class="foot">Situació d'aprenentatge «Corbatera Games Studio» · Curs 2026–2027</footer>
+</body>
+</html>

@@ -69,6 +69,15 @@ Als polinomis, l'alumnat escriu cada coeficient en una casella amb el seu signe 
 
 Cada apartat enllaça amb la teoria de la Temporada 1 que cal repassar. A l'Inici apareix dins la Temporada 2 a partir del 9/12 (amb `?docent`, sempre). Adreça directa: `https://laurasc14.github.io/jocs-matematiquesA/estudi-2a.html`
 
+## Formularis
+
+Els formularis dels quaderns, en net: una taula per nivell amb *Concepte · La regla · Un exemple*, només el bàsic.
+
+- `formularis-1a.html`: nivells 0 a 3 (nombres reals, potències i radicals, polinomis, equacions, percentatges, interessos, inequacions i sistemes). A l'Inici, dins la Temporada 1.
+- `formularis-2a.html`: nivells 4 a 6 (característiques de les funcions, tipus de funcions i trigonometria bàsica). A l'Inici, dins la Temporada 2, a partir del 9/12.
+
+També s'hi arriba des del botó «🧾 Formularis» de cada apartat d'Estudi. En imprimir, cada nivell comença en una pàgina nova (T1: 4 pàgines; T2: 3).
+
 ## Recuperació de la 1a avaluació
 
 Per a l'alumnat que va a la recuperació hi ha **13 fites mínimes** (tipus de nombres; intervals i aproximacions; enters i fraccions; potències; notació científica; radicals i Pitàgores; operacions amb polinomis; identitats notables i factor comú; Ruffini i arrels; equacions de 1r grau; equacions de 2n grau; problemes i percentatges; sistemes 2×2). Inequacions i interessos queden fora del mínim.
@@ -155,7 +164,7 @@ Al navegador de cada ordinador (`localStorage`). Si diversos alumnes fan servir 
 ## Publicar-ho a GitHub Pages
 
 1. Repositori: `laurasc14/jocs-matematiquesA`.
-2. Puja-hi **tot el contingut d'aquesta carpeta** (`index.html`, `estudi.html`, `estudi-2a.html`, `recu-1a.html`, `recu-1a-solucions.html`, `entrenament-1a.html`, `entrenament-2a.html`, `css/`, `js/`, `README.md`, `.nojekyll`) a l'arrel del repositori. Des de la web: *Add file → Upload files* i arrossega-ho tot.
+2. Puja-hi **tot el contingut d'aquesta carpeta** (`index.html`, `estudi.html`, `estudi-2a.html`, `recu-1a.html`, `recu-1a-solucions.html`, `formularis-1a.html`, `formularis-2a.html`, `entrenament-1a.html`, `entrenament-2a.html`, `css/`, `js/`, `README.md`, `.nojekyll`) a l'arrel del repositori. Des de la web: *Add file → Upload files* i arrossega-ho tot.
 3. Ves a *Settings → Pages*, a *Source* tria *Deploy from a branch*, branca `main` i carpeta `/ (root)`. Desa.
 4. Al cap d'un minut la pàgina serà a `https://laurasc14.github.io/jocs-matematiquesA/`.
    - Mode entrenament: `https://laurasc14.github.io/jocs-matematiquesA/entrenament-1a.html` i `…/entrenament-2a.html`
@@ -169,6 +178,8 @@ index.html        inici: tria de temporada (T1, T2, T3)
 temporada1.html   Temporada 1: el joc pas a pas (nivells 0–3, repàs, diari)
 estudi.html       apartat d'estudi: teoria de les unitats 1 a 4
 estudi-2a.html    apartat d'estudi de la Temporada 2: funcions i trigonometria (nivells 4 a 6)
+formularis-1a.html  formularis dels nivells 0 a 3
+formularis-2a.html  formularis dels nivells 4 a 6
 recu-1a.html      fitxa de fites mínimes per a la recuperació de la 1a avaluació
 recu-1a-solucions.html  solucionari de la fitxa (per a la docent)
 js/recu-1a.js     ruta de recuperació del joc (13 fites mínimes)
