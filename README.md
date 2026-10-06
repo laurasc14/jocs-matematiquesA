@@ -165,7 +165,6 @@ js/trailer.js     minijocs del tràiler de la Temporada 2
 js/app.js         motor del joc: mapa, passos, XP, diari i informe
 ```
 
-Per afegir un nivell nou (per exemple, funcions a la 2a avaluació) n'hi ha prou de crear `js/nivell4.js` amb el mateix format (`CGS.NIVELLS.push({...})`) i enllaçar-lo a `index.html` abans d'`app.js`.
 
 ---
 Docent: Laura · Corbatera Institut Escola
