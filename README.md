@@ -86,6 +86,16 @@ També s'hi arriba des del botó «🧾 Formularis» de cada apartat d'Estudi. E
 - **Solucionari** (`recu-1a-solucions.html`): no està enllaçat des de les pàgines de l'alumnat.
 - **Ruta de recuperació** (dins de `temporada1.html`, a dalt del mapa; enllaç directe `temporada1.html#recu`), només per a la recu, a partir del **10/12**: una ronda de 5 exercicis pas a pas per fita. La fita queda **assolida** quan una ronda arriba al 60 % dels XP; el recompte (x / 13) surt al mapa i a l'informe. La data (`obre`) i el llindar (`llindar`) es canvien a `js/recu-1a.js`.
 
+## Escape room de repàs (S42 · dj 26/11)
+
+`escape.html` · **«Ctrl + Alt + Escape»**: escape room cooperatiu per a tot el grup (un sol equip de 4) per repassar els nivells 0 a 3 abans de la prova trimestral. El BUG-0 ha bloquejat l'estudi: cal obrir 4 sales (una per nivell, 13 cadenats) i el nucli del servidor en 40 minuts.
+
+- **Paper + pantalla:** cada cadenat té una targeta impresa on es fa el procediment; cap codi s'entra sense procediment escrit.
+- **Rols que roten** a cada sala: cap de proves, verificador/a (l'únic que tecleja), calculista i pistes i temps.
+- **Rellotge** de 40 min amb pausa; cada pista suma +1 min i cada codi errat +20 s. Les claus van xifrades (`js/escape-data.js`).
+- **Pantalla final:** temps, pistes, errors i la llista dels cadenats que han costat, amb l'enllaç «Practica-ho» a la missió del joc. El resultat també surt a l'informe de procés.
+- A l'Inici apareix dins la Temporada 1 a partir del 26/11 (amb `?docent`, sempre). «Reinicia l'escape room» (al mapa) esborra la partida d'aquell ordinador.
+
 ## Inici per temporades
 
 `index.html` és la porta d'entrada. Primer l'alumne escriu el seu **nom i cognom** (o tria un jugador ja guardat en aquell ordinador) i després veu una targeta per temporada. El nom serveix per a totes les pàgines: el joc l'agafa directament i les preguntes ràpides l'escriuen sol al «Resum per a la profe». «Canvia de jugador» torna a aquesta pantalla.
@@ -162,7 +172,7 @@ Al navegador de cada ordinador (`localStorage`). Si diversos alumnes fan servir 
 ## Publicar-ho a GitHub Pages
 
 1. Repositori: `laurasc14/jocs-matematiquesA`.
-2. Puja-hi **tot el contingut d'aquesta carpeta** (`index.html`, `estudi.html`, `estudi-2a.html`, `recu-1a.html`, `recu-1a-solucions.html`, `formularis-1a.html`, `formularis-2a.html`, `entrenament-1a.html`, `entrenament-2a.html`, `css/`, `js/`, `README.md`, `.nojekyll`) a l'arrel del repositori. Des de la web: *Add file → Upload files* i arrossega-ho tot.
+2. Puja-hi **tot el contingut d'aquesta carpeta** (`index.html`, `estudi.html`, `estudi-2a.html`, `recu-1a.html`, `recu-1a-solucions.html`, `escape.html`, `formularis-1a.html`, `formularis-2a.html`, `entrenament-1a.html`, `entrenament-2a.html`, `css/`, `js/`, `README.md`, `.nojekyll`) a l'arrel del repositori. Des de la web: *Add file → Upload files* i arrossega-ho tot.
 3. Ves a *Settings → Pages*, a *Source* tria *Deploy from a branch*, branca `main` i carpeta `/ (root)`. Desa.
 4. Al cap d'un minut la pàgina serà a `https://laurasc14.github.io/jocs-matematiquesA/`.
    - Mode entrenament: `https://laurasc14.github.io/jocs-matematiquesA/entrenament-1a.html` i `…/entrenament-2a.html`
@@ -181,6 +191,10 @@ formularis-2a.html  formularis dels nivells 4 a 6
 recu-1a.html      fitxa de fites mínimes de la 1a avaluació (prova trimestral i recuperació)
 recu-1a-solucions.html  solucionari de la fitxa (per a la docent)
 js/recu-1a.js     ruta de recuperació del joc (13 fites mínimes)
+escape.html       escape room de repàs de la 1a avaluació (S42)
+js/escape-data.js  cadenats de l'escape room (claus en hash)
+js/escape.js      motor de l'escape room
+css/escape.css    estil de l'escape room
 trailer.html      Temporada 2 · tràiler de desembre (un minijoc per sessió)
 entrenament-1a.html  mode entrenament · preguntes ràpides de la 1a avaluació
 entrenament-2a.html  mode entrenament · preguntes ràpides de la 2a avaluació

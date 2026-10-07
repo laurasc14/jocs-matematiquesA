@@ -385,6 +385,13 @@
     if (!ks.length) return '';
     return '<h2>Temporada 2 · Tràiler</h2><p>Insígnies (' + ks.length + ' de 7): ' + ks.map(function (k) { return '★ ' + T2M[k] + ' <span class="small">(' + new Date(m[k]).toLocaleDateString('ca-ES') + ')</span>'; }).join(' · ') + '</p>';
   }
+  // Resultat de l'escape room de repàs (escape.html), si s'ha fet en aquest navegador
+  function escHTML() {
+    var e = null; try { e = JSON.parse(localStorage.getItem('cgs-escape-1a') || 'null'); } catch (x) {}
+    if (!e || !e.inici) return '';
+    var n = Object.keys(e.oberts || {}).length, sum = function (o) { var t = 0; for (var k in o) t += o[k]; return t; };
+    return '<h2>Escape room · Ctrl + Alt + Escape</h2><p>Equip <b>' + U.esc(e.equip || '') + '</b>: ' + (e.fi ? '<b>servidor salvat</b>' : 'en curs') + ' · cadenats oberts: ' + n + ' de 14 · pistes: ' + sum(e.pistes || {}) + ' · codis errats: ' + sum(e.errors || {}) + '</p>';
+  }
   function recuReport(p) {
     if (!CGS.RECU || !CGS.RECU.missions.some(function (m) { return p.missions[m.id]; })) return '';
     return '<h2>Ruta de recuperació · 1a avaluació</h2><p>Fites mínimes assolides: <b>' + recuState(p) + ' de ' + CGS.RECU.missions.length + '</b></p><ul>' +
@@ -395,7 +402,7 @@
     return '<!doctype html><html lang="ca"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Informe · ' + U.esc(p.nom) + '</title><style>' + css + '</style></head><body class="report">' +
       '<header class="rhead"><div><b>Corbatera Games Studio</b> · Matemàtiques A · 4t ESO · Corbatera Institut Escola</div><div>Informe de procés</div></header>' +
       '<h1>' + U.esc(p.nom) + '</h1><p>' + xp + ' XP · rang: <b>' + rank(xp)[1] + '</b> · generat el ' + new Date().toLocaleString('ca-ES') + '</p>' +
-      '<h2>Resum</h2><p>XP de missions: <b>' + missionXP(p) + '</b> · XP de preguntes ràpides (mode entrenament, en aquest navegador): <b>' + trainXP() + '</b></p>' + summaryHTML(p) + recuReport(p) + t2HTML() + '<h2>Procés pas a pas</h2><p class="small">Per a cada pas: els intents fallits (ratllats), si s\'ha fet servir pista i la resposta correcta.</p>' + diariHTML(p) + '</body></html>';
+      '<h2>Resum</h2><p>XP de missions: <b>' + missionXP(p) + '</b> · XP de preguntes ràpides (mode entrenament, en aquest navegador): <b>' + trainXP() + '</b></p>' + summaryHTML(p) + recuReport(p) + escHTML() + t2HTML() + '<h2>Procés pas a pas</h2><p class="small">Per a cada pas: els intents fallits (ratllats), si s\'ha fet servir pista i la resposta correcta.</p>' + diariHTML(p) + '</body></html>';
   }
   function downloadReport() {
     var p = P(), blob = new Blob([reportDoc()], { type: 'text/html' });
