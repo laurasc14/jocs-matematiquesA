@@ -1,4 +1,4 @@
-/* NIVELL 1 · Memòria i píxels — Unitat 2: potències, notació científica i radicals */
+/* NIVELL 1 · Memòria i píxels — Unitat 1: potències, notació científica i radicals */
 (function (U) {
   var pw = U.pw, rad = U.rad, frac = U.frac, sci = U.sci, fmt = U.fmt;
 
@@ -415,7 +415,7 @@
 
   CGS.NIVELLS = CGS.NIVELLS || [];
   CGS.NIVELLS.push({
-    id: 'N1', nom: 'Nivell 1 · Memòria i píxels', sub: 'Unitat 2 · Potències, notació científica i radicals',
+    id: 'N1', nom: 'Nivell 1 · Memòria i píxels', sub: 'Unitat 1 · Potències, notació científica i radicals',
     missions: [
       { id: 'N1M1', fase: 1, titol: 'Quants colors?', sabers: 'Potències, bits, exponent 0 i negatiu', n: 4, gen: genColors,
         teoria: 'a<sup>n</sup> = a · a · … · a (n vegades): <b>a</b> és la base i <b>n</b> l\'exponent.<br>a<sup>0</sup> = 1 · a<sup>−n</sup> = 1 / a<sup>n</sup> · Base negativa: exponent parell → +, senar → −.<br>1 byte = 8 bits = 2<sup>8</sup> = 256 valors.' },

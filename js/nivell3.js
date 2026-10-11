@@ -1,4 +1,4 @@
-/* NIVELL 3 · La botiga i el llançament — Unitat 4: equacions, percentatges, inequacions i sistemes */
+/* NIVELL 3 · La botiga i el llançament — Unitat 3: equacions, percentatges, inequacions i sistemes */
 (function (U) {
   var P = U.poly, PF = U.polyFields, fmt = U.fmt;
   var nz = function (r, lo, hi) { var v = 0; while (v === 0) v = r.int(lo, hi); return v; };
@@ -488,7 +488,7 @@
 
   CGS.NIVELLS = CGS.NIVELLS || [];
   CGS.NIVELLS.push({
-    id: 'N3', nom: 'Nivell 3 · La botiga i el llançament', sub: 'Unitat 4 · Equacions, percentatges, inequacions i sistemes',
+    id: 'N3', nom: 'Nivell 3 · La botiga i el llançament', sub: 'Unitat 3 · Equacions, percentatges, inequacions i sistemes',
     missions: [
       { id: 'N3M1', fase: 1, titol: 'Situar plataformes', sabers: 'Equacions de 1r grau (parèntesis i denominadors)', n: 4, gen: genEq1,
         teoria: 'Passos: 1) treu parèntesis · 2) si hi ha denominadors, multiplica-ho tot pel m.c.m. · 3) lletres a un costat, nombres a l\'altre · 4) aïlla x · 5) comprova.<br>3(x − 2) = x + 4 → 3x − 6 = x + 4 → 2x = 10 → x = 5.' },

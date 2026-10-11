@@ -1,4 +1,4 @@
-/* NIVELL 0 · Tutorial — Unitat 1: els nombres reals */
+/* NIVELL 0 · Tutorial — Unitat 0: els nombres reals */
 (function (U) {
   var SETS = ['ℕ naturals', 'ℤ enters', 'ℚ racionals', 'I irracionals', 'ℝ reals'];
   var setsFor = function (v, irr) {
@@ -239,7 +239,7 @@
 
   CGS.NIVELLS = CGS.NIVELLS || [];
   CGS.NIVELLS.push({
-    id: 'N0', nom: 'Nivell 0 · Tutorial', sub: 'Unitat 1 · Els nombres reals',
+    id: 'N0', nom: 'Nivell 0 · Tutorial', sub: 'Unitat 0 · Els nombres reals',
     missions: [
       { id: 'N0M1', fase: 1, titol: 'Tria el teu personatge', sabers: 'Classificació dels nombres: ℕ, ℤ, ℚ, I, ℝ', n: 5, gen: genClassifica,
         teoria: '<b>ℕ</b> naturals: 0, 1, 2, 3… · <b>ℤ</b> enters: …, −2, −1, 0, 1, 2… · <b>ℚ</b> racionals: es poden escriure com a fracció (decimals exactes i periòdics) · <b>I</b> irracionals: infinites xifres decimals sense període (√2, π…) · <b>ℝ</b> reals = ℚ ∪ I.<br>Nines russes: ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ. Atenció: les arrels exactes (√25 = 5) <b>no</b> són irracionals.' },
@@ -249,7 +249,7 @@
         teoria: '[a, b] tancat: a ≤ x ≤ b · (a, b) obert: a < x < b · [a, b) i (a, b] semioberts.<br>[a, +∞): x ≥ a «com a mínim a» · (−∞, b): x < b «menys de b».<br>Recta: punt <b>ple</b> = inclòs, punt <b>buit</b> = no inclòs. L\'infinit sempre amb parèntesi.' },
       { id: 'N0M4', fase: 4, titol: 'La pista de curses', sabers: 'Aproximacions: arrodoniment, truncament i error absolut', n: 4, gen: genAprox,
         teoria: '<b>Arrodonir</b>: si la xifra següent és ≥ 5, la última que queda puja 1 (3,147 → 3,15). <b>Truncar</b>: tallar sense mirar (3,147 → 3,14).<br><b>Error absolut</b> = |valor real − aproximació|. La millor aproximació és la que té menys error.' },
-      { id: 'N0M5', fase: 5, titol: 'Caça el bug', sabers: 'Errors conceptuals típics de la Unitat 1', n: 4, gen: genBug,
+      { id: 'N0M5', fase: 5, titol: 'Caça el bug', sabers: 'Errors conceptuals típics de la Unitat 0', n: 4, gen: genBug,
         teoria: 'Els 3 bugs més freqüents: (1) periòdic → és <b>racional</b>; (2) les arrels exactes són <b>racionals</b> (√9 = 3); (3) els enters també són racionals (7 = 7/1).' },
       { id: 'N0B', fase: 6, boss: true, titol: 'BOSS · Prova d\'accés a l\'estudi', sabers: 'Entrenament del boss: un exercici de cada fase, sense pistes', n: 6,
         gen: function (r, i, used) { return [genClassifica, genDecimals, genIntervals, genAprox, genBug, genIntervals][i](r, i === 5 ? 2 : i, used); },

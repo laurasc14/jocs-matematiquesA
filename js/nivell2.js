@@ -1,4 +1,4 @@
-/* NIVELL 2 · La física del salt — Unitat 3: polinomis */
+/* NIVELL 2 · La física del salt — Unitat 2: polinomis */
 (function (U) {
   var P = U.poly, PF = U.polyFields, fmt = U.fmt;
   var NOTA = '<p class="small">Escriu cada coeficient amb el seu signe (per exemple −3) i posa 0 si aquell terme no hi és.</p>';
@@ -407,7 +407,7 @@
 
   CGS.NIVELLS = CGS.NIVELLS || [];
   CGS.NIVELLS.push({
-    id: 'N2', nom: 'Nivell 2 · La física del salt', sub: 'Unitat 3 · Polinomis',
+    id: 'N2', nom: 'Nivell 2 · La física del salt', sub: 'Unitat 2 · Polinomis',
     missions: [
       { id: 'N2M1', fase: 1, titol: 'El salt com a fórmula', sabers: 'Monomis, polinomis i valor numèric', n: 4, gen: genSalt,
         teoria: '<b>Monomi</b>: −5t<sup>2</sup> → coeficient −5, part literal t<sup>2</sup>, grau 2. <b>Polinomi</b>: suma de monomis; el grau és el del monomi de grau més alt; el <b>terme independent</b> no té lletra.<br><b>Valor numèric</b>: substituir la lletra per un nombre. h(1) = −5 · 1<sup>2</sup> + 20 · 1 = 15 m.' },

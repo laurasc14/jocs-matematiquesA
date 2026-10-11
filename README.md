@@ -7,15 +7,15 @@ L'alumnat resol cada missió **pas a pas** i tot el procés (respostes, intents 
 
 | Nivell | Fase | Missió | Sabers |
 |---|---|---|---|
-| **0 · Tutorial** (U1) | 1 | Tria el teu personatge | Classificació: ℕ, ℤ, ℚ, I, ℝ |
+| **0 · Tutorial** (U0) | 1 | Tria el teu personatge | Classificació: ℕ, ℤ, ℚ, I, ℝ |
 | | 2 | Els cofres del tresor | Decimal exacte, periòdic pur i mixt, il·limitat |
 | | 3 | Les regles del joc | Intervals: desigualtat, notació, paraules, recta |
 | | 4 | La pista de curses | Arrodoniment, truncament, error absolut |
-| | 5 | Caça el bug | Errors conceptuals de la U1 |
+| | 5 | Caça el bug | Errors conceptuals de la U0 |
 | | 6 | Operacions amb enters | Repàs: signes, parèntesis, jerarquia, valor absolut |
 | | 7 | Fraccions | Repàs: simplificar, fracció d'una quantitat, operacions |
 | | BOSS | Prova d'accés a l'estudi | Un exercici de cada fase, sense pistes |
-| **1 · Memòria i píxels** (U2) | 1 | Quants colors? | Potències, bits, exponent 0 i negatiu |
+| **1 · Memòria i píxels** (U1) | 1 | Quants colors? | Potències, bits, exponent 0 i negatiu |
 | | 2 | Quant ocupa? | Propietats de les potències |
 | | 3 | Caça de bugs | Errors típics amb potències |
 | | 4 | Xifres del joc | Notació científica i la «E» de la calculadora |
@@ -25,7 +25,7 @@ L'alumnat resol cada missió **pas a pas** i tot el procés (respostes, intents 
 | | 8 | Camins del mapa | Operacions amb radicals |
 | | 9 | Potències de fraccions | Repàs: base fraccionària o negativa, mateixa base |
 | | BOSS | Boss del Nivell 1 | Un exercici de cada fase, sense pistes |
-| **2 · La física del salt** (U3) | 1 | El salt com a fórmula | Monomis, polinomis i valor numèric |
+| **2 · La física del salt** (U2) | 1 | El salt com a fórmula | Monomis, polinomis i valor numèric |
 | | 2 | Salts diferents | Sumar i restar polinomis |
 | | 3 | L'àrea jugable | Multiplicar polinomis (taula de l'àrea) |
 | | 4 | Quadrats que creixen | Productes notables i càlcul mental |
@@ -34,7 +34,7 @@ L'alumnat resol cada missió **pas a pas** i tot el procés (respostes, intents 
 | | 7 | Repartir la pantalla | Divisió entre (x − a), D = d · q + r |
 | | 8 | Ruffini: quan toca a terra? | Ruffini, teorema del residu, arrels enteres |
 | | BOSS | Boss del Nivell 2 | Un exercici de cada fase, sense pistes |
-| **3 · La botiga i el llançament** (U4) | 1 | Situar plataformes | Equacions de 1r grau (parèntesis i denominadors) |
+| **3 · La botiga i el llançament** (U3) | 1 | Situar plataformes | Equacions de 1r grau (parèntesis i denominadors) |
 | | 2 | Quan aterra el salt? | Equacions de 2n grau: fórmula general |
 | | 3 | Dreceres | Equacions de 2n grau incompletes i factoritzades |
 | | 4 | El salt arriba a la plataforma? | Discriminant i nombre de solucions |
@@ -52,7 +52,7 @@ Als polinomis, l'alumnat escriu cada coeficient en una casella amb el seu signe 
 
 ## Estudi (teoria)
 
-`estudi.html` és l'apartat de teoria del trimestre (unitats 1 a 4): definicions, regles i fórmules, exemples resolts i errors típics, amb índex, cercador i opció d'imprimir o desar en PDF.
+`estudi.html` és l'apartat de teoria del trimestre (unitats 0 a 3): definicions, regles i fórmules, exemples resolts i errors típics, amb índex, cercador i opció d'imprimir o desar en PDF.
 
 - Al mapa del joc hi ha una targeta **Estudi** a dalt de tot.
 - Dins de cada missió, el «Recuadre de teoria» té un enllaç **Teoria completa d'aquest tema →**.
@@ -184,7 +184,7 @@ També funciona sense internet: obre `index.html` directament amb el navegador.
 ```
 index.html        inici: tria de temporada (T1, T2, T3)
 temporada1.html   Temporada 1: el joc pas a pas (nivells 0–3, repàs, diari)
-estudi.html       apartat d'estudi: teoria de les unitats 1 a 4
+estudi.html       apartat d'estudi: teoria de les unitats 0 a 3
 estudi-2a.html    apartat d'estudi de la Temporada 2: funcions i trigonometria (nivells 4 a 6)
 formularis-1a.html  formularis dels nivells 0 a 3
 formularis-2a.html  formularis dels nivells 4 a 6
@@ -202,10 +202,10 @@ css/estil.css     estil (capçalera verda, etiquetes FASE, mode fosc)
 css/estudi.css    estil de l'apartat d'estudi (i de la versió impresa)
 css/trailer.css   estil del tràiler de la Temporada 2
 js/util.js        utilitats: atzar amb llavor, format, lectura de respostes, figures SVG
-js/nivell0.js     missions del Nivell 0 (U1)
-js/nivell1.js     missions del Nivell 1 (U2)
-js/nivell2.js     missions del Nivell 2 (U3)
-js/nivell3.js     missions del Nivell 3 (U4)
+js/nivell0.js     missions del Nivell 0 (U0)
+js/nivell1.js     missions del Nivell 1 (U1)
+js/nivell2.js     missions del Nivell 2 (U2)
+js/nivell3.js     missions del Nivell 3 (U3)
 js/repas.js       fases de repàs: enters i fraccions (N0) i potències de fraccions (N1)
 js/mode-repas.js  mode repàs: rondes per tema (notació científica i la resta de temes)
 js/trailer.js     minijocs del tràiler de la Temporada 2
