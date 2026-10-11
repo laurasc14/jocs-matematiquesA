@@ -242,11 +242,20 @@
           <div class="prop">
             <p><b>Operar</b>: producte → es multipliquen els nombres i se <b>sumen</b> els exponents. Quocient → es divideixen els nombres i es <b>resten</b> els exponents. Al final, si el nombre de davant no és entre 1 i 10, es corregeix.</p>
           </div>
+          <div class="prop">
+            <p><b>Sumar i restar</b>: cal que tots els nombres tinguin el <b>mateix exponent</b>. Es treu factor comú la potència de 10 i es sumen o resten els nombres de davant.</p>
+          </div>
           <div class="ex">
             <p class="st">(6 · 10<sup>3</sup>) · (3,9 · 10<sup>4</sup>) = 23,4 · 10<sup>7</sup> = 2,34 · 10<sup>8</sup></p>
             <p class="st">(1,2 · 10<sup>9</sup>) : (4 · 10<sup>3</sup>) = 0,3 · 10<sup>6</sup> = 3 · 10<sup>5</sup></p>
+            <p class="st">3,2 · 10<sup>5</sup> + 4 · 10<sup>4</sup> = 3,2 · 10<sup>5</sup> + 0,4 · 10<sup>5</sup> = 3,6 · 10<sup>5</sup><br>5 · 10<sup>−3</sup> − 2 · 10<sup>−4</sup> = 5 · 10<sup>−3</sup> − 0,2 · 10<sup>−3</sup> = 4,8 · 10<sup>−3</sup></p>
           </div>
-          <div class="warn2"><ul><li>23,4 · 10<sup>7</sup> és correcte però no està en notació científica: 23,4 = 2,34 · 10, per tant l'exponent puja 1.</li></ul></div>
+          <div class="prop">
+            <h4>Canvi d'unitats amb potències de 10</h4>
+            <p>1 kB = 10<sup>3</sup> B · 1 MB = 10<sup>6</sup> B · 1 GB = 10<sup>9</sup> B · 1 TB = 10<sup>12</sup> B</p>
+            <p class="st">Un joc de 4,5 GB ocupa 4,5 · 10<sup>9</sup> B. Quants MB? 4,5 · 10<sup>9</sup> : 10<sup>6</sup> = 4,5 · 10<sup>3</sup> MB = 4.500 MB.<br>Un servidor guarda 2 TB i cada partida ocupa 5 · 10<sup>7</sup> B → 2 · 10<sup>12</sup> : 5 · 10<sup>7</sup> = 0,4 · 10<sup>5</sup> = 4 · 10<sup>4</sup> partides.</p>
+          </div>
+          <div class="warn2"><ul><li>23,4 · 10<sup>7</sup> és correcte però no està en notació científica: 23,4 = 2,34 · 10, per tant l'exponent puja 1.</li><li>Per sumar o restar NO se sumen els exponents: primer s'igualen els exponents.</li></ul></div>
           <div class="practice"><a href="temporada1.html#jugar=N1M4">Practica-ho: Xifres del joc →</a><a href="temporada1.html#jugar=N1M5">El servidor →</a></div>
         </article>
 
@@ -427,7 +436,7 @@
 
       <!-- ===================================================== U4 ===================================================== -->
       <section class="unit" id="u4">
-        <header><span class="badge">NIVELL 3 · LA BOTIGA I EL LLANÇAMENT</span><h2>Unitat 3 · Equacions, percentatges, inequacions i sistemes</h2><p>Equacions de 1r i 2n grau, problemes, percentatges i variacions encadenades (interessos: ampliació), inequacions i sistemes 2×2</p></header>
+        <header><span class="badge">NIVELL 3 · LA BOTIGA I EL LLANÇAMENT</span><h2>Unitat 3 · Equacions, percentatges, inequacions i sistemes</h2><p>Equacions de 1r i 2n grau, problemes, percentatges i variacions encadenades (interessos: ampliació), inequacions, sistemes 2×2 i problemes amb sistemes</p></header>
 
         <article class="topic" id="u4-eq1">
           <h3>3.1 Equacions de primer grau</h3>
@@ -439,7 +448,11 @@
             <p class="st">3(x − 2) = x + 4 → 3x − 6 = x + 4 → 3x − x = 4 + 6 → 2x = 10 → x = 5<br>Comprova: 3 · (5 − 2) = 9 i 5 + 4 = 9 ✔</p>
             <p class="st"><span class="frac"><span>x</span><span>2</span></span> + <span class="frac"><span>x</span><span>3</span></span> = 10 → m.c.m. = 6 → 3x + 2x = 60 → 5x = 60 → x = 12</p>
           </div>
-          <div class="warn2"><ul><li>5(x − 2): el 5 multiplica també el 2 → 5x − 10.</li><li>En multiplicar pel m.c.m., cal multiplicar <b>tots</b> els termes, també els que no tenen denominador.</li></ul></div>
+          <div class="ex">
+            <p class="st">Amb parèntesis i fraccions: <span class="frac"><span>x + 1</span><span>2</span></span> − <span class="frac"><span>x − 2</span><span>3</span></span> = 2 → m.c.m. = 6 → 3(x + 1) − 2(x − 2) = 12 → 3x + 3 − 2x + 4 = 12 → x + 7 = 12 → x = 5</p>
+            <p>Casos especials: 2x + 3 = 2x + 7 → 3 = 7 és fals → <b>cap solució</b>. 2(x + 1) = 2x + 2 → 2 = 2 és sempre cert → <b>infinites solucions</b>.</p>
+          </div>
+          <div class="warn2"><ul><li>5(x − 2): el 5 multiplica també el 2 → 5x − 10.</li><li>En multiplicar pel m.c.m., cal multiplicar <b>tots</b> els termes, també els que no tenen denominador.</li><li>Un signe − davant d'un parèntesi o d'una fracció canvia el signe de <b>tots</b> els termes de dins: −(x − 3) = −x + 3.</li></ul></div>
           <div class="practice"><a href="temporada1.html#jugar=N3M1">Practica-ho: Situar plataformes →</a></div>
         </article>
 
@@ -450,6 +463,7 @@
             <p class="f">x = <span class="frac"><span>−b ± √<span class="rad">b<sup>2</sup> − 4ac</span></span><span>2a</span></span></p>
             <p><b>Discriminant</b> Δ = b<sup>2</sup> − 4ac:</p>
             <ul><li>Δ &gt; 0 → dues solucions diferents</li><li>Δ = 0 → una solució (doble)</li><li>Δ &lt; 0 → cap solució real</li></ul>
+            <p><b>Al joc</b> (salt i plataforma): Δ &gt; 0 → el salt passa per aquella altura dues vegades (pujant i baixant) · Δ = 0 → la toca just al punt més alt · Δ &lt; 0 → no hi arriba.</p>
           </div>
           <div class="prop">
             <h4>Equacions incompletes (dreceres)</h4>
@@ -459,8 +473,13 @@
               <li><b>Ja factoritzada</b>: (x − 4)(x + 1) = 0 → x = 4 o x = −1.</li>
             </ul>
           </div>
+          <div class="prop">
+            <h4>Equacions de grau superior factoritzables</h4>
+            <p>Si es pot treure factor comú o factoritzar (Ruffini, identitats notables), es resol igualant cada factor a 0.</p>
+            <p class="st">x<sup>3</sup> − 9x = 0 → x(x<sup>2</sup> − 9) = 0 → x(x − 3)(x + 3) = 0 → x = 0, x = 3 o x = −3<br>x<sup>3</sup> − x<sup>2</sup> − 6x = 0 → x(x<sup>2</sup> − x − 6) = 0 → x = 0, o bé x<sup>2</sup> − x − 6 = 0 → x = 3 o x = −2</p>
+          </div>
           <div class="ex"><p class="st">x<sup>2</sup> − 5x + 6 = 0 → a = 1, b = −5, c = 6 → Δ = 25 − 24 = 1 → x = <span class="frac"><span>5 ± 1</span><span>2</span></span> → x = 3 o x = 2</p></div>
-          <div class="warn2"><ul><li>No dividis mai per x: perdries la solució x = 0.</li><li>Escriu a, b i c amb el seu signe abans de substituir: −b vol dir el contrari de b.</li><li>x<sup>2</sup> = 49 té dues solucions, 7 i −7.</li></ul></div>
+          <div class="warn2"><ul><li>No dividis mai per x: perdries la solució x = 0.</li><li>Escriu a, b i c amb el seu signe abans de substituir: −b vol dir el contrari de b.</li><li>x<sup>2</sup> = 49 té dues solucions, 7 i −7.</li><li>Comprova sempre les solucions: al joc, un temps o una distància negativa no té sentit.</li></ul></div>
           <div class="practice"><a href="temporada1.html#jugar=N3M2">Practica-ho: Quan aterra el salt? →</a><a href="temporada1.html#jugar=N3M3">Dreceres →</a><a href="temporada1.html#jugar=N3M4">El salt arriba a la plataforma? →</a></div>
         </article>
 
@@ -469,7 +488,11 @@
           <div class="prop">
             <ol><li><b>Llegeix</b> i escriu què és la x (amb unitats).</li><li><b>Planteja</b> l'equació a partir de l'enunciat.</li><li><b>Resol</b>-la.</li><li><b>Comprova</b> a l'enunciat i <b>descarta</b> les solucions que no tenen sentit (longituds, temps o quantitats negatives…).</li></ol>
           </div>
-          <div class="ex"><p>Un nivell rectangular és 30 m més llarg que ample i té 260 m de perímetre. x = amplada → 2x + 2(x + 30) = 260 → 4x + 60 = 260 → x = 50. Dimensions: 50 × 80 m.</p><p>Dos nivells consecutius: x(x + 1) = 132 → x<sup>2</sup> + x − 132 = 0 → x = 11 o x = −12 → es descarta −12: nivells 11 i 12.</p></div>
+          <div class="ex"><p>Un nivell rectangular és 30 m més llarg que ample i té 260 m de perímetre. x = amplada → 2x + 2(x + 30) = 260 → 4x + 60 = 260 → x = 50. Dimensions: 50 × 80 m.</p><p>Dos nivells consecutius: x(x + 1) = 132 → x<sup>2</sup> + x − 132 = 0 → x = 11 o x = −12 → es descarta −12: nivells 11 i 12.</p>
+            <p>Tarifes: el plan A costa 5 € fixos + 0,50 € per partida; el plan B, 2 € fixos + 0,80 € per partida. Quan costen el mateix? 5 + 0,5x = 2 + 0,8x → 3 = 0,3x → x = 10 partides.</p>
+            <p>Trobada: dos jugadors surten l'un cap a l'altre d'extrems d'un mapa de 600 m, a 4 m/s i 2 m/s. S'ajunten quan 4t + 2t = 600 → t = 100 s.</p>
+            <p>Àrea: un camp rectangular té 20 m més de llarg que d'ample i 525 m<sup>2</sup> → x(x + 20) = 525 → x<sup>2</sup> + 20x − 525 = 0 → x = 15 o x = −35 → es descarta −35: 15 × 35 m.</p>
+          </div>
           <div class="practice"><a href="temporada1.html#jugar=N3M5">Practica-ho: Del joc a l'equació →</a></div>
         </article>
 
@@ -517,6 +540,8 @@
           <div class="ex">
             <p class="st">3x − 5 &lt; 10 → 3x &lt; 15 → x &lt; 5 → (−∞, 5)<br>7 − 4x &gt; 15 → −4x &gt; 8 → x &lt; −2 → (−∞, −2) &nbsp;(gira en dividir per −4)</p>
             <p>Preu mínim: cost 4.800 €, la botiga es queda el 30 %, 1.000 còpies → 1.000 · 0,70 · p ≥ 4.800 → p ≥ 6,857… → preu mínim 6,86 € (s'arrodoneix cap amunt).</p>
+            <p>Tarifa: el plan A costa 5 + 0,50x € i el plan B és una quota fixa de 12 €. Quan surt més a compte el A? 5 + 0,5x &lt; 12 → 0,5x &lt; 7 → x &lt; 14 partides.</p>
+            <p>«Com a mínim» → ≥ · «com a màxim» → ≤ · «més de» → &gt; · «menys de» → &lt;.</p>
           </div>
           <div class="practice"><a href="temporada1.html#jugar=N3M8">Practica-ho: El preu mínim →</a></div>
         </article>
@@ -544,6 +569,20 @@
             <p>Packs: 2 skins i 3 gemmes costen 12 €; 3 skins i 1 gemma, 11 € → 2s + 3g = 12, 3s + g = 11 → s = 3 €, g = 2 €.</p>
           </div>
           <div class="practice"><a href="temporada1.html#jugar=N3M9">Practica-ho: Packs a la gràfica →</a><a href="temporada1.html#jugar=N3M10">Tres camins →</a></div>
+        </article>
+
+        <article class="topic" id="u4-problemes-sistemes">
+          <h3>3.8 Problemes amb sistemes</h3>
+          <div class="prop">
+            <ol><li><b>Identifica les dues incògnites</b> i escriu què és x i què és y (amb unitats).</li><li>Escriu <b>dues equacions</b> a partir de dues dades de l'enunciat.</li><li>Resol el sistema pel mètode més còmode.</li><li><b>Comprova</b> a l'enunciat i contesta amb una frase.</li></ol>
+          </div>
+          <div class="ex">
+            <p>Botiga: 2 espases i 1 escut costen 34 €; 1 espasa i 3 escuts, 37 €. x = preu espasa, y = preu escut → 2x + y = 34, x + 3y = 37. Reducció: 1a × 3 → 6x + 3y = 102; restant la 2a: 5x = 65 → x = 13; y = 8. Espasa 13 €, escut 8 €.</p>
+            <p>Entrades: es venen 120 entrades, d'adults a 8 € i de joves a 5 €, i s'ingressen 810 €. x = adults, y = joves → x + y = 120, 8x + 5y = 810. Substitució: y = 120 − x → 8x + 600 − 5x = 810 → 3x = 210 → x = 70, y = 50.</p>
+            <p>Dos nombres sumen 45 i es diferencien en 11: x + y = 45, x − y = 11 → sumant: 2x = 56 → x = 28, y = 17.</p>
+          </div>
+          <div class="warn2"><ul><li>Cal tantes equacions com incògnites: dues dades, dues equacions.</li><li>Comprova la solució a les <b>dues</b> equacions i que tingui sentit (no pot haver-hi −3 entrades).</li></ul></div>
+          <div class="practice"><a href="temporada1.html#jugar=N3M10">Practica-ho: Tres camins →</a></div>
         </article>
       </section>
     </main>
